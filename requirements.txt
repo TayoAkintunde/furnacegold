@@ -1,0 +1,3 @@
+PyYAML==6.0.1
+# Optional: model backend for LLM agents (without it the system runs offline and reports NO_MODEL)
+# anthropic>=1.0

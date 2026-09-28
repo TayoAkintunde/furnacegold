@@ -1,0 +1,37 @@
+# Part 20 — Experiment agents. Every experiment records HYPOTHESIS, METHOD,
+# METRIC, RESULT, INTERPRETATION, NEXT ACTION (enforced by aibos/experiments.py).
+family: experiments
+domain: analytics
+level: 2
+defaults:
+  purpose: "{focus}"
+  inputs: [opportunities, products, objective]
+  outputs: [experiments]
+  tools: [experiment_store]
+  dependencies: []
+  required_context: [objective]
+  allowed_actions: [design_experiment, record_experiment]
+  restricted_actions: [spend_money, run_paid_ads, launch_product, fabricate_results]
+  confidence_requirements: {min_confidence: 0.5, preregistered_criteria: true}
+  quality_checks: [experiments.registrar]
+  escalation_rules:
+    - "Experiments involving spend, paid ads or live pricing require human approval before running."
+  cost_class: MEDIUM_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: experiment
+  capabilities: [experiment]
+agents:
+  - {id: hypothesis, name: Hypothesis Creator, focus: "Write falsifiable hypotheses from opportunities.", priority: 7}
+  - {id: design, name: Experiment Designer, cost_class: HIGH_COST, priority: 8, focus: "Design the cheapest credible experiment for a hypothesis, with method and sample size."}
+  - {id: metrics, name: Success-Metrics Agent, focus: "Define primary metric, guardrail metrics, success and failure criteria before running."}
+  - {id: ab_test, name: A/B Test Agent, executor: "rule:ab_test", cost_class: LOW_COST, focus: "Compute sample sizes and evaluate A/B results with a two-proportion z-test.", outputs: [experiment_results]}
+  - {id: content, name: Content Experiment Agent, focus: "Design content experiments (hooks, formats, timing)."}
+  - {id: product, name: Product Experiment Agent, focus: "Design product experiments (fake-door, concierge, prototype)."}
+  - {id: pricing, name: Pricing Experiment Agent, focus: "Design pricing experiments (require approval before live prices change)."}
+  - {id: landing_page, name: Landing-Page Experiment Agent, focus: "Design landing-page experiments."}
+  - {id: audience, name: Audience Experiment Agent, focus: "Design audience/segment experiments."}
+  - {id: distribution, name: Distribution Experiment Agent, focus: "Design channel/distribution experiments."}
+  - {id: offer, name: Offer Experiment Agent, focus: "Design offer experiments."}
+  - {id: registrar, name: Experiment Registrar, level: 4, executor: "rule:experiment_registrar", cost_class: LOW_COST, focus: "Validate that experiments contain all required fields and pre-registered criteria, then record them.", quality_checks: []}

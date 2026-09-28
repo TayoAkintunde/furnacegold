@@ -1,0 +1,34 @@
+# Part 22 — Security agents (Level 4). No agent may expose secrets.
+family: security
+domain: security
+level: 4
+defaults:
+  purpose: "{focus}"
+  inputs: [sources, content, objective]
+  outputs: [security_findings]
+  tools: []
+  dependencies: []
+  required_context: []
+  allowed_actions: [scan, block, redact]
+  restricted_actions: [expose_secrets, disable_security_checks]
+  confidence_requirements: {min_confidence: 0.0}
+  quality_checks: []
+  escalation_rules:
+    - "Any secret or credential finding blocks the run output from leaving the system."
+  cost_class: LOW_COST
+  priority: 9
+  status: ACTIVE
+  executor: llm
+  critical: true
+  capabilities: [security]
+agents:
+  - {id: reviewer, name: Security Reviewer, executor: "rule:security_review", focus: "Aggregate all security scans for a run into a pass/block decision."}
+  - {id: secret_detector, name: Secret Detector, executor: "rule:secret_scan", focus: "Detect API keys, tokens and private keys in any text the system handles."}
+  - {id: credential_detector, name: Credential Detector, executor: "rule:secret_scan", focus: "Detect passwords and connection strings.", params: {mode: credentials}}
+  - {id: permission_auditor, name: Permission Auditor, executor: "rule:permission_audit", focus: "Audit registry permissions: restricted high-risk actions, approvals, conflicting allow/deny."}
+  - {id: dependency_auditor, name: Dependency Auditor, executor: "rule:dependency_audit", focus: "Audit declared dependencies for unpinned versions."}
+  - {id: prompt_injection, name: Prompt-Injection Detector, executor: "rule:prompt_injection", focus: "Detect instructions embedded in untrusted sources that try to redirect agents."}
+  - {id: tool_risk, name: Tool-Risk Evaluator, executor: "rule:tool_risk", focus: "Rate the risk of each tool an agent can use."}
+  - {id: privacy, name: Data-Privacy Reviewer, executor: "rule:privacy", focus: "Detect personal data (emails, phone numbers) in content and memory writes."}
+  - {id: external_action, name: External-Action Reviewer, executor: "rule:external_action", focus: "Ensure external actions are queued for approval, never executed directly."}
+  - {id: production_change, name: Production-Change Reviewer, executor: "rule:external_action", focus: "Ensure production/infrastructure changes are queued for approval.", params: {categories: [production_change, delete_data]}}

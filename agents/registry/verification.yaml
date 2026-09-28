@@ -1,0 +1,40 @@
+# Part 5 — Source verification agents. Most are deterministic rule agents:
+# they check claims against the verbatim text of captured sources.
+family: verification
+domain: quality
+level: 4
+defaults:
+  purpose: "{focus}"
+  inputs: [claims, sources]
+  outputs: [verification_reports]
+  tools: [source_store]
+  dependencies: []
+  required_context: [claims, sources]
+  allowed_actions: [read_sources, annotate_claims]
+  restricted_actions: [publish, send_external_message, fabricate_sources, upgrade_claim_without_evidence]
+  confidence_requirements: {min_confidence: 0.0}
+  quality_checks: []
+  escalation_rules:
+    - "Mark a claim UNSUPPORTED rather than guessing when evidence is missing."
+    - "Escalate CONTRADICTED claims to the conflict resolver."
+  cost_class: LOW_COST
+  priority: 8
+  status: ACTIVE
+  executor: llm
+  capabilities: [verify]
+agents:
+  - {id: primary_source, name: Primary-Source Verifier, executor: "rule:primary_source", focus: "Check each claim is backed by a primary or official source and that its quoted evidence appears verbatim in that source."}
+  - {id: citation, name: Citation Verifier, executor: "rule:citation", focus: "Check every claim cites at least one captured source that exists in the source store."}
+  - {id: date, name: Date Verifier, executor: "rule:date", focus: "Check source publication dates are present, parseable, not in the future, and within the recency window.", params: {max_age_days: 120}}
+  - {id: claim, name: Claim Verifier, executor: "rule:claim_support", focus: "Check that a claim's wording is supported by its quoted evidence (term overlap and quote presence)."}
+  - {id: statistics, name: Statistics Verifier, executor: "rule:statistics", focus: "Check every number in a claim appears in its cited source text."}
+  - {id: quote, name: Quote Verifier, executor: "rule:quote", focus: "Check every quotation attributed to a source appears verbatim in that source."}
+  - {id: documentation, name: Documentation Verifier, cost_class: MEDIUM_COST, executor: llm, prompt_template: verification, focus: "Check technical claims against official documentation among the captured sources."}
+  - {id: github, name: GitHub Verifier, executor: "rule:github", focus: "Check repository claims cite a repository source (github.com) and flag when live repository data is NOT CONNECTED.", extra_tools: [github]}
+  - {id: paper, name: Paper Verifier, executor: "rule:paper", focus: "Check paper claims cite a paper source (arXiv/DOI) with identifiable id."}
+  - {id: company_announcement, name: Company-Announcement Verifier, executor: "rule:company_announcement", focus: "Check claims about a company's launch cite that company's own announcement."}
+  - {id: cross_source, name: Cross-Source Verifier, executor: "rule:cross_source", focus: "Check important claims are supported by independent publishers.", params: {min_publishers: 2}}
+  - {id: contradiction, name: Contradiction Detector, executor: "rule:contradiction", focus: "Detect numeric or categorical disagreements between sources or claims."}
+  - {id: outdated, name: Outdated-Information Detector, executor: "rule:outdated", focus: "Flag claims whose newest supporting source is older than the freshness window.", params: {stale_days: 365}}
+  - {id: misinformation, name: Misinformation Detector, cost_class: MEDIUM_COST, executor: llm, prompt_template: verification, focus: "Identify claims matching known misinformation patterns or lacking any credible support."}
+  - {id: source_quality, name: Source-Quality Evaluator, executor: "rule:source_quality", focus: "Score each source by type (primary, official docs, paper, repository, news, blog, social)."}

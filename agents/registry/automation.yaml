@@ -1,0 +1,37 @@
+# Part 21 — Automation agents.
+family: automation
+domain: automation
+level: 2
+defaults:
+  purpose: "{focus}"
+  inputs: [objective]
+  outputs: [automation_plans]
+  tools: [scheduler]
+  dependencies: []
+  required_context: [objective]
+  allowed_actions: [design_workflow, write_local_files]
+  restricted_actions: [change_infrastructure, expose_secrets, delete_data, send_external_message]
+  confidence_requirements: {min_confidence: 0.6}
+  quality_checks: [security.secret_detector]
+  escalation_rules:
+    - "Deleting data or changing production systems requires human approval."
+  cost_class: MEDIUM_COST
+  priority: 4
+  status: ACTIVE
+  executor: llm
+  prompt_template: engineering
+  capabilities: [automation]
+agents:
+  - {id: workflow_architect, name: Workflow Architect, cost_class: HIGH_COST, focus: "Design automated workflows with human checkpoints."}
+  - {id: workflow_optimizer, name: Workflow Optimizer, focus: "Find redundant steps and cost savings in workflows (uses performance data)."}
+  - {id: api_integration, name: API Integration Agent, focus: "Design API integrations; flags CREDENTIAL REQUIRED when keys are missing."}
+  - {id: mcp_integration, name: MCP Integration Agent, focus: "Design MCP server integrations with least-privilege tool scopes."}
+  - {id: tester, name: Automation Tester, executor: "rule:integration_check", cost_class: LOW_COST, focus: "Check every configured integration's real status (CONNECTED / NOT CONNECTED / CREDENTIAL REQUIRED)."}
+  - {id: debugger, name: Automation Debugger, focus: "Diagnose failed automation runs from run logs."}
+  - {id: scheduler, name: Scheduler Agent, executor: "rule:schedule", cost_class: LOW_COST, focus: "Render the daily/weekly schedule as cron entries (does not install them)."}
+  - {id: notification, name: Notification Agent, cost_class: LOW_COST, focus: "Prepare notifications (delivery requires a connected channel)."}
+  - {id: data_sync, name: Data-Sync Agent, focus: "Plan data synchronisation between stores."}
+  - {id: etl, name: ETL Agent, focus: "Design ETL for metric exports into data/metrics."}
+  - {id: file_management, name: File-Management Agent, cost_class: LOW_COST, focus: "Organise run outputs and archives (never deletes without approval)."}
+  - {id: database_maintenance, name: Database-Maintenance Agent, focus: "Plan store compaction/retention (deletion requires approval)."}
+  - {id: report_generation, name: Report-Generation Agent, executor: "rule:report", cost_class: LOW_COST, focus: "Assemble run outputs into a markdown report.", outputs: [report], capabilities: [automation, report]}

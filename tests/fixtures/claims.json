@@ -1,0 +1,10 @@
+[
+  {"claim_id": "c1", "text": "ExampleAI released Widget-1, which scores 87.5% on the Example benchmark.", "kind": "FACT",
+   "source_ids": ["s1", "s2"], "quotes": ["Widget-1 scores 87.5% on the Example benchmark"], "confidence": 0.9},
+  {"claim_id": "c2", "text": "Widget-1 scores 91% on the Example benchmark.", "kind": "FACT",
+   "source_ids": ["s1"], "quotes": ["Widget-1 scores 87.5% on the Example benchmark"], "confidence": 0.9},
+  {"claim_id": "c3", "text": "ExampleAI says Widget-1 is the best model ever made.", "kind": "FACT",
+   "source_ids": ["s1"], "quotes": ["the best model ever made"], "confidence": 0.9},
+  {"claim_id": "c4", "text": "Most developers will switch to Widget-1 this year.", "kind": "FACT",
+   "source_ids": [], "quotes": [], "confidence": 0.5}
+]

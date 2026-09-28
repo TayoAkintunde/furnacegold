@@ -1,0 +1,104 @@
+# Part 8 / Part 44.16 — platform rules. Add a platform by adding an entry here
+# and a social agent entry with params.platform pointing to it.
+platforms:
+  x_post:
+    label: "X post"
+    max_chars: 280
+    format: single_post
+    norms: ["One idea", "Plain language", "At most 1-2 hashtags", "No engagement bait"]
+    integration: x_api
+  x_thread:
+    label: "X thread"
+    max_chars_per_part: 280
+    min_parts: 3
+    max_parts: 12
+    part_separator: "\n---\n"
+    format: thread
+    norms: ["First post must stand alone", "One idea per post", "Cite sources in the final post"]
+    integration: x_api
+  linkedin:
+    label: "LinkedIn post"
+    max_chars: 3000
+    min_chars: 400
+    format: post
+    norms: ["Hook in first 2 lines (shown before 'see more')", "Short paragraphs", "Professional, specific", "Link sources in text or first comment"]
+    integration: linkedin_api
+  linkedin_carousel:
+    label: "LinkedIn carousel"
+    max_slides: 12
+    max_chars_per_slide: 250
+    part_separator: "\n---\n"
+    format: slides
+    norms: ["One point per slide", "Title slide + summary slide"]
+    integration: linkedin_api
+  instagram:
+    label: "Instagram caption"
+    max_chars: 2200
+    format: caption
+    norms: ["Visual-first; caption supports the image", "Up to ~5 relevant hashtags"]
+    integration: instagram_api
+  instagram_carousel:
+    label: "Instagram carousel"
+    max_slides: 10
+    max_chars_per_slide: 200
+    part_separator: "\n---\n"
+    format: slides
+    norms: ["Large text", "One idea per slide"]
+    integration: instagram_api
+  tiktok:
+    label: "TikTok script"
+    max_words: 220
+    format: video_script
+    norms: ["Hook in first 2 seconds", "Spoken language", "On-screen text cues in [brackets]"]
+    integration: tiktok_api
+  youtube_shorts:
+    label: "YouTube Shorts script"
+    max_words: 200
+    format: video_script
+    norms: ["Under 60 seconds spoken", "Hook, payoff, one takeaway"]
+    integration: youtube_api
+  facebook:
+    label: "Facebook post"
+    max_chars: 2000
+    format: post
+    norms: ["Conversational", "Question to invite discussion"]
+    integration: facebook_api
+  reddit:
+    label: "Reddit post"
+    max_chars: 10000
+    format: post
+    norms: ["Value first; no self-promotion links unless subreddit rules allow", "Disclose affiliation", "Follow each subreddit's rules"]
+    integration: reddit_api
+  community:
+    label: "Community post"
+    max_chars: 2000
+    format: post
+    norms: ["Useful to members", "Invite discussion"]
+    integration: community_webhook
+  newsletter:
+    label: "Newsletter issue"
+    min_words: 250
+    max_words: 1500
+    format: email
+    norms: ["Subject line under 60 chars", "One main story", "Sources linked", "Unsubscribe handled by the email provider"]
+    integration: email_provider
+  blog:
+    label: "Blog article"
+    min_words: 500
+    max_words: 3000
+    format: article
+    norms: ["H2 structure", "Sources linked inline"]
+    integration: cms
+  seo_article:
+    label: "SEO article"
+    min_words: 800
+    max_words: 3500
+    format: article
+    norms: ["Answers a real query", "Title under 60 chars", "No keyword stuffing"]
+    integration: cms
+  podcast:
+    label: "Podcast outline"
+    max_words: 1500
+    format: outline
+    norms: ["Segments with timings", "Sources in show notes"]
+    integration: podcast_host

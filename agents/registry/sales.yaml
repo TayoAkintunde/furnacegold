@@ -1,0 +1,35 @@
+# Part 18 — Sales agents. No deceptive or manipulative tactics.
+family: sales
+domain: customer
+level: 2
+defaults:
+  purpose: "{focus} No deception, fake urgency, or manipulation; respect consent and opt-outs."
+  inputs: [objective, audience_insights, crm_data]
+  outputs: [sales_plans]
+  tools: []
+  dependencies: []
+  required_context: [objective]
+  allowed_actions: [write_draft, analyze_supplied_data]
+  restricted_actions: [send_external_message, scrape_personal_data, deceptive_tactics, commit_to_client]
+  confidence_requirements: {min_confidence: 0.5}
+  quality_checks: [content_quality.hype, content_quality.clickbait]
+  escalation_rules:
+    - "Every outbound message goes to the approval queue; none are sent automatically."
+  cost_class: MEDIUM_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: strategy
+  capabilities: [sales]
+agents:
+  - {id: lead_generation, name: Lead-Generation Agent, focus: "Plan consent-based lead generation."}
+  - {id: lead_qualification, name: Lead-Qualification Agent, focus: "Define qualification criteria and score supplied leads."}
+  - {id: outreach_research, name: Outreach Researcher, focus: "Research organisations (public business info only) for relevant outreach."}
+  - {id: message, name: Sales-Message Agent, focus: "Draft honest, specific sales messages.", outputs: [drafts]}
+  - {id: discovery_call, name: Discovery-Call Analyst, focus: "Analyse supplied discovery-call notes."}
+  - {id: objections, name: Sales Objection Analyst, focus: "Prepare honest answers to sales objections."}
+  - {id: proposal_strategy, name: Proposal Strategist, focus: "Decide proposal structure and pricing options."}
+  - {id: follow_up, name: Follow-Up Strategist, focus: "Plan respectful follow-up cadences."}
+  - {id: crm, name: CRM Analyst, executor: "rule:metrics", cost_class: LOW_COST, level: 5, focus: "Analyse supplied CRM exports.", params: {metrics: [deals, deal_value, win_rate]}}
+  - {id: pipeline, name: Pipeline Analyst, executor: "rule:metrics", cost_class: LOW_COST, level: 5, focus: "Analyse supplied pipeline data.", params: {metrics: [pipeline_value, open_deals, stage_age_days]}}
+  - {id: acquisition, name: Customer-Acquisition Analyst, executor: "rule:unit_economics", cost_class: LOW_COST, level: 5, focus: "Analyse acquisition cost by channel from supplied data."}

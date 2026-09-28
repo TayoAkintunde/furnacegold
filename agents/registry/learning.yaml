@@ -1,0 +1,29 @@
+# Parts 31, 32, 40 — Learning agents: evaluate agents, audit the registry,
+# and propose improvements. Proposals are never applied without human review.
+family: learning
+domain: learning
+level: 5
+defaults:
+  purpose: "{focus}"
+  inputs: [performance_log, registry]
+  outputs: [learning]
+  tools: [performance_store]
+  dependencies: []
+  required_context: []
+  allowed_actions: [read_performance, write_proposals]
+  restricted_actions: [modify_agent_instructions, modify_registry, delete_data]
+  confidence_requirements: {min_confidence: 0.0, min_runs_for_judgement: 5}
+  quality_checks: []
+  escalation_rules:
+    - "All improvement proposals require human review; critical agents are never auto-modified."
+  cost_class: LOW_COST
+  priority: 4
+  status: ACTIVE
+  executor: llm
+  capabilities: [learning]
+agents:
+  - {id: agent_evaluator, name: Agent Evaluator, executor: "rule:agent_evaluation", focus: "Score each agent from performance records: success rate, quality, cost, corrections."}
+  - {id: auditor, name: Agent Auditor, executor: "rule:agent_audit", focus: "Find unused, duplicate, poor-performing, outdated, missing, expensive and failing agents."}
+  - {id: improvement_proposer, name: Improvement Proposer, executor: "rule:improvement_proposals", focus: "Turn audit and evaluation findings into improvement proposals for human review."}
+  - {id: correction_analyzer, name: Correction Analyzer, executor: "rule:correction_analysis", focus: "Cluster human corrections to find recurring failure patterns."}
+  - {id: run_learner, name: Run Learner, executor: "rule:run_learning", focus: "Record what a run produced, what failed, and lessons into agent-learning memory."}

@@ -1,0 +1,29 @@
+# Part 43 — integration registry. Status is computed at runtime, never assumed:
+#   CONNECTED           adapter implemented AND required credentials present
+#   CREDENTIAL REQUIRED adapter implemented, credential env var missing
+#   NOT CONNECTED       no adapter implemented in this codebase yet
+integrations:
+  anthropic:       {purpose: "Model backend for LLM agents", adapter: anthropic, env: [ANTHROPIC_API_KEY], alt_env: [ANTHROPIC_AUTH_TOKEN], python_package: anthropic}
+  http_fetch:      {purpose: "Fetch a URL into the source store (aibos sources add --url)", adapter: http_fetch, env: []}
+  local_files:     {purpose: "Read/write local stores under data/", adapter: local_files, env: []}
+  metrics_csv:     {purpose: "Import analytics exports from CSV (data/metrics/*.csv)", adapter: metrics_csv, env: []}
+  web_search:      {purpose: "Search the web for new developments", adapter: null, env: [SEARCH_API_KEY]}
+  arxiv:           {purpose: "Query arXiv", adapter: null, env: []}
+  github:          {purpose: "Read live repository data", adapter: null, env: [GITHUB_TOKEN]}
+  x_api:           {purpose: "Publish/read X posts", adapter: null, env: [X_API_TOKEN]}
+  linkedin_api:    {purpose: "Publish/read LinkedIn posts", adapter: null, env: [LINKEDIN_TOKEN]}
+  instagram_api:   {purpose: "Publish/read Instagram", adapter: null, env: [INSTAGRAM_TOKEN]}
+  tiktok_api:      {purpose: "Publish/read TikTok", adapter: null, env: [TIKTOK_TOKEN]}
+  youtube_api:     {purpose: "Publish/read YouTube", adapter: null, env: [YOUTUBE_API_KEY]}
+  facebook_api:    {purpose: "Publish/read Facebook", adapter: null, env: [FACEBOOK_TOKEN]}
+  reddit_api:      {purpose: "Publish/read Reddit", adapter: null, env: [REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET]}
+  community_webhook: {purpose: "Post to Discord/Slack communities", adapter: null, env: [COMMUNITY_WEBHOOK_URL]}
+  email_provider:  {purpose: "Send newsletters", adapter: null, env: [EMAIL_PROVIDER_API_KEY]}
+  cms:             {purpose: "Publish blog/SEO articles", adapter: null, env: [CMS_API_KEY]}
+  podcast_host:    {purpose: "Publish podcast episodes", adapter: null, env: [PODCAST_HOST_TOKEN]}
+  web_analytics:   {purpose: "Website analytics API", adapter: null, env: [WEB_ANALYTICS_KEY]}
+  search_console:  {purpose: "Search analytics API", adapter: null, env: [SEARCH_CONSOLE_CREDENTIALS]}
+  payments:        {purpose: "Revenue data / checkout", adapter: null, env: [PAYMENTS_API_KEY]}
+  crm:             {purpose: "CRM pipeline data", adapter: null, env: [CRM_API_KEY]}
+  ads:             {purpose: "Paid advertising (always approval-gated)", adapter: null, env: [ADS_API_KEY]}
+  notifications:   {purpose: "Push/email notifications to the operator", adapter: null, env: [NOTIFY_WEBHOOK_URL]}

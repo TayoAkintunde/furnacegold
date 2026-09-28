@@ -1,0 +1,148 @@
+# Stage library used by the master orchestrator to build plans (Parts 24-25).
+# A stage either lists fixed agents (optionally per complexity) or a `pool` from
+# which the selector picks the best-matching agents for the objective.
+# `intents` are objective keywords that activate the stage; `implies` pulls in
+# stages that must also run.
+order: [SOURCE_SECURITY, RESEARCH, VERIFY, KNOWLEDGE, TRENDS, MARKET, COMPETITION, TEACH,
+        CONTENT_STRATEGY, CONTENT, QUALITY, OPPORTUNITY, PRODUCT, SERVICE, SAAS, REVENUE,
+        EXPERIMENT, ANALYTICS_PLAN, ANALYTICS, APPROVAL, SECURITY, REPORT, LEARN]
+
+stages:
+  SOURCE_SECURITY:
+    orchestrator: orch.security
+    description: "Scan captured sources for prompt injection before any agent reads them."
+    agents: [security.prompt_injection]
+    always: true
+  RESEARCH:
+    orchestrator: orch.research
+    description: "Discover and summarize developments from captured sources."
+    pool: {families: [research]}
+    count: {simple: 1, medium: 1, complex: 2}
+    intents: [research, find, discover, investigate, latest, recent, news, development, developments, trend, trends, what's new]
+    implies: [VERIFY, KNOWLEDGE]
+  VERIFY:
+    orchestrator: orch.quality
+    description: "Verify every claim against captured source text."
+    agents:
+      simple: [verification.citation, verification.primary_source, verification.date]
+      medium: [verification.source_quality, verification.citation, verification.primary_source, verification.quote, verification.statistics, verification.date]
+      complex: [verification.source_quality, verification.citation, verification.primary_source, verification.quote, verification.statistics, verification.date, verification.cross_source, verification.contradiction]
+    intents: [verify, fact-check, fact check, confirm]
+    requires: [claims]
+    post: aggregate_verification
+  KNOWLEDGE:
+    orchestrator: orch.knowledge
+    description: "Persist verified claims as knowledge with evidence chains."
+    requires: [claims]
+    agents:
+      simple: [knowledge.research_to_knowledge]
+      medium: [knowledge.research_to_knowledge, knowledge.classifier]
+      complex: [knowledge.research_to_knowledge, knowledge.classifier, knowledge.gap]
+    intents: [knowledge, remember, store]
+  TRENDS:
+    orchestrator: orch.research
+    description: "Identify technology and industry trends from verified knowledge."
+    agents: [business_intel.technology_trend, business_intel.industry_trend]
+    intents: [trends, trend analysis]
+  MARKET:
+    orchestrator: orch.product
+    description: "Describe the market from captured evidence; estimates are labelled assumptions."
+    agents: [product_discovery.market, business_intel.market_intelligence]
+    intents: [market size, market research, market analysis, market intelligence]
+  COMPETITION:
+    orchestrator: orch.product
+    description: "Map competitors and alternatives from captured sources."
+    agents: [product_discovery.competitor, business_intel.competitor_intelligence]
+    intents: [competitor, competitors, competition, alternatives]
+  TEACH:
+    orchestrator: orch.education
+    description: "Explain the development at the requested learner level(s)."
+    pool: {capability: explain, families: [education]}
+    level_select: true
+    count: {simple: 1, medium: 1, complex: 1}
+    intents: [explain, teach, beginner, beginners, tutorial, lesson, course, educate, education, intermediate, advanced]
+    implies: [QUALITY]
+  CONTENT_STRATEGY:
+    orchestrator: orch.content
+    description: "Choose content angles from verified knowledge."
+    agents: [content_strategy.strategist]
+    intents: [content strategy, angles, content plan]
+  CONTENT:
+    orchestrator: orch.content
+    description: "Write platform-native drafts."
+    pool: {families: [social]}
+    platform_select: true
+    count: {simple: 1, medium: 2, complex: 3}
+    intents: [content, post, posts, thread, newsletter, blog, linkedin, social, repurpose, pieces of content, tiktok, youtube, instagram, reddit, podcast]
+    implies: [CONTENT_STRATEGY, QUALITY, APPROVAL]
+  QUALITY:
+    orchestrator: orch.quality
+    description: "Score drafts; block anything with blocking issues."
+    agents:
+      simple: [content_quality.factuality, content_quality.hype, content_quality.platform_fit]
+      medium: [content_quality.factuality, content_quality.hallucination, content_quality.hype, content_quality.ai_slop, content_quality.platform_fit, content_quality.readability]
+      complex: [content_quality.factuality, content_quality.hallucination, content_quality.hype, content_quality.clickbait, content_quality.ai_slop, content_quality.platform_fit, content_quality.readability, content_quality.plagiarism, content_quality.educational_value]
+    requires: [artifacts]
+    post: quality_gate
+  OPPORTUNITY:
+    orchestrator: orch.product
+    description: "Identify business opportunities as hypotheses with evidence."
+    pool: {capability: opportunity}
+    count: {simple: 1, medium: 1, complex: 1}
+    intents: [opportunity, opportunities, business, monetize, monetise, market]
+  PRODUCT:
+    orchestrator: orch.product
+    description: "Shape the most promising opportunity into an MVP concept."
+    agents: [product_discovery.mvp]
+    intents: [product, mvp, offer, build, validation experiment]
+  SERVICE:
+    orchestrator: orch.customer
+    description: "Design a consulting / automation service offer."
+    agents: [services.consulting_strategist, services.packaging]
+    intents: [service, services, consulting, done-for-you, agency]
+  SAAS:
+    orchestrator: orch.technology
+    description: "Assess a SaaS/software product idea and outline its architecture."
+    agents: [software.saas_idea, software.ai_app_architect]
+    intents: [saas, software product, app idea]
+  REVENUE:
+    orchestrator: orch.revenue
+    description: "Map candidate revenue models and their assumptions."
+    agents: [revenue.model_researcher]
+    intents: [revenue, monetize, monetise, pricing, business model, business opportunities]
+  EXPERIMENT:
+    orchestrator: orch.analytics
+    description: "Design and pre-register a validation experiment."
+    agents: [experiments.design, experiments.registrar]
+    intents: [experiment, validation, validate, test, a/b]
+    implies: [ANALYTICS_PLAN]
+  ANALYTICS_PLAN:
+    orchestrator: orch.analytics
+    description: "Define how results will be measured and which integrations that needs."
+    agents: [analytics.analytics_planner]
+    intents: [measure, measurement, analytics plan, kpi, metrics plan]
+  ANALYTICS:
+    orchestrator: orch.analytics
+    description: "Analyse supplied performance data."
+    agents: [analytics.content, analytics.anomaly, analytics.trend]
+    intents: [analytics, performance, how did, results]
+  SECURITY:
+    orchestrator: orch.security
+    description: "Scan all outputs for secrets, credentials, personal data and unapproved external actions."
+    agents: [security.secret_detector, security.privacy, security.external_action]
+    always: true
+  APPROVAL:
+    orchestrator: orch.master
+    description: "Queue drafts and external actions for human approval. Nothing is published."
+    agents: []
+    post: approval_queue
+  REPORT:
+    orchestrator: orch.automation
+    description: "Assemble the run into a report."
+    agents: [automation.report_generation]
+    always: true
+  LEARN:
+    orchestrator: orch.learning
+    description: "Record lessons and agent performance."
+    agents: [learning.run_learner]
+    always: true

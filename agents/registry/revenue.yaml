@@ -1,0 +1,39 @@
+# Part 17 — Revenue agents. No revenue is ever assumed; models are hypotheses.
+family: revenue
+domain: revenue
+level: 2
+defaults:
+  purpose: "{focus} Never assume a revenue model works; state assumptions and the evidence needed."
+  inputs: [opportunities, products, metrics]
+  outputs: [revenue_models]
+  tools: []
+  dependencies: []
+  required_context: [opportunities]
+  allowed_actions: [propose_revenue_model, analyze_supplied_data]
+  restricted_actions: [process_payment, set_live_prices, promise_revenue, fabricate_revenue]
+  confidence_requirements: {min_confidence: 0.4}
+  quality_checks: []
+  escalation_rules:
+    - "Any financial transaction or live price change requires human approval."
+  cost_class: MEDIUM_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: strategy
+  capabilities: [revenue]
+agents:
+  - {id: model_researcher, name: Revenue-Model Researcher, priority: 8, cost_class: HIGH_COST, focus: "Map candidate revenue models for an opportunity with assumptions and risks."}
+  - {id: digital_product_monetization, name: Digital-Product Monetization Agent, focus: "Assess digital-product monetization."}
+  - {id: course_monetization, name: Course Monetization Agent, focus: "Assess course monetization."}
+  - {id: consulting_monetization, name: Consulting Monetization Agent, focus: "Assess consulting monetization."}
+  - {id: saas_monetization, name: SaaS Monetization Agent, focus: "Assess SaaS monetization."}
+  - {id: subscription, name: Subscription Strategist, focus: "Design subscription models."}
+  - {id: membership, name: Membership Strategist, focus: "Design membership models."}
+  - {id: affiliate, name: Affiliate Opportunity Researcher, focus: "Research affiliate programmes with disclosure requirements."}
+  - {id: sponsorship, name: Sponsorship Researcher, focus: "Research sponsorship fit and disclosure."}
+  - {id: licensing, name: Licensing Researcher, focus: "Research licensing opportunities."}
+  - {id: pricing, name: Pricing Analyst, focus: "Analyse pricing from captured comparables and supplied data."}
+  - {id: conversion, name: Revenue Conversion Analyst, executor: "rule:metrics", cost_class: LOW_COST, level: 5, focus: "Analyse conversion from supplied data.", params: {metrics: [conversions, conversion_rate, checkouts]}}
+  - {id: sales_funnel, name: Sales-Funnel Analyst, executor: "rule:funnel", cost_class: LOW_COST, level: 5, focus: "Compute funnel step conversion from supplied data."}
+  - {id: revenue_analyst, name: Revenue Analyst, executor: "rule:metrics", cost_class: LOW_COST, level: 5, focus: "Analyse revenue from supplied data only.", params: {metrics: [revenue, mrr, refunds]}}
+  - {id: unit_economics, name: Unit-Economics Analyst, executor: "rule:unit_economics", cost_class: LOW_COST, level: 5, focus: "Compute CAC, LTV and margins from supplied data only."}

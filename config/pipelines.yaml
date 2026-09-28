@@ -1,0 +1,117 @@
+# Factory pipelines (Parts 33-38). Each step names the business stage from the
+# spec, the agents that perform it, and optional hooks. `ref` reuses a stage
+# from config/stages.yaml (with its selection logic).
+pipelines:
+  content_factory:
+    description: "TREND -> RESEARCH -> VERIFICATION -> KNOWLEDGE -> CONTENT ANGLES -> PLATFORM CONTENT -> QUALITY REVIEW -> HUMAN APPROVAL -> DISTRIBUTION -> ANALYTICS -> LEARNING"
+    complexity: medium
+    steps:
+      - {name: SOURCE_SECURITY, ref: SOURCE_SECURITY}
+      - {name: TREND, agents: [business_intel.technology_trend]}
+      - {name: RESEARCH, ref: RESEARCH}
+      - {name: VERIFICATION, ref: VERIFY}
+      - {name: KNOWLEDGE, ref: KNOWLEDGE}
+      - {name: CONTENT_ANGLES, ref: CONTENT_STRATEGY}
+      - {name: PLATFORM_CONTENT, ref: CONTENT}
+      - {name: QUALITY_REVIEW, ref: QUALITY}
+      - {name: HUMAN_APPROVAL, ref: APPROVAL}
+      - {name: DISTRIBUTION, agents: [], post: distribution_status}
+      - {name: ANALYTICS, ref: ANALYTICS_PLAN}
+      - {name: SECURITY, ref: SECURITY}
+      - {name: REPORT, ref: REPORT}
+      - {name: LEARNING, ref: LEARN}
+
+  education_factory:
+    description: "TECHNOLOGY DISCOVERY -> RESEARCH -> BEGINNER -> INTERMEDIATE -> ADVANCED -> TUTORIAL -> PROJECT -> COURSE -> WORKSHOP -> LEAD MAGNET -> PRODUCT"
+    complexity: complex
+    steps:
+      - {name: SOURCE_SECURITY, ref: SOURCE_SECURITY}
+      - {name: TECHNOLOGY_DISCOVERY, ref: RESEARCH}
+      - {name: RESEARCH_VERIFICATION, ref: VERIFY}
+      - {name: KNOWLEDGE, ref: KNOWLEDGE}
+      - {name: BEGINNER_EXPLANATION, agents: [education.beginner_teacher]}
+      - {name: INTERMEDIATE_EXPLANATION, agents: [education.intermediate_teacher]}
+      - {name: ADVANCED_EXPLANATION, agents: [education.advanced_teacher]}
+      - {name: TUTORIAL, agents: [education.tutorial_builder]}
+      - {name: PROJECT, agents: [education.project_creator]}
+      - {name: COURSE, agents: [education.course_architect]}
+      - {name: WORKSHOP, agents: [education.workshop_designer]}
+      - {name: LEAD_MAGNET, agents: [marketing.lead_magnet]}
+      - {name: PRODUCT, agents: [digital_products.course]}
+      - {name: QUALITY, agents: [education.quality, content_quality.factuality, content_quality.readability]}
+      - {name: SECURITY, ref: SECURITY}
+      - {name: REPORT, ref: REPORT}
+      - {name: LEARNING, ref: LEARN}
+
+  product_factory:
+    description: "PROBLEM -> RESEARCH -> CUSTOMER -> SOLUTION -> COMPETITION -> VALIDATION -> MVP -> FEEDBACK -> IMPROVEMENT -> LAUNCH -> ANALYTICS"
+    complexity: complex
+    steps:
+      - {name: SOURCE_SECURITY, ref: SOURCE_SECURITY}
+      - {name: PROBLEM, agents: [product_discovery.problem]}
+      - {name: RESEARCH, ref: RESEARCH}
+      - {name: VERIFICATION, ref: VERIFY}
+      - {name: CUSTOMER, agents: [audience.researcher]}
+      - {name: SOLUTION, agents: [product_discovery.ideation]}
+      - {name: COMPETITION, agents: [product_discovery.competitor]}
+      - {name: VALIDATION, agents: [product_discovery.validation, experiments.registrar]}
+      - {name: MVP, agents: [product_discovery.mvp]}
+      - {name: FEEDBACK, agents: [audience.feedback]}
+      - {name: IMPROVEMENT, agents: [product_discovery.roadmap]}
+      - {name: LAUNCH, agents: [], post: launch_gate}
+      - {name: ANALYTICS, agents: [analytics.product, analytics.analytics_planner]}
+      - {name: SECURITY, ref: SECURITY}
+      - {name: REPORT, ref: REPORT}
+      - {name: LEARNING, ref: LEARN}
+
+  revenue_factory:
+    description: "AUDIENCE -> PROBLEM -> CONTENT -> LEAD -> OFFER -> CUSTOMER -> DELIVERY -> FEEDBACK -> RETENTION -> REFERRAL -> REVENUE"
+    complexity: complex
+    steps:
+      - {name: AUDIENCE, agents: [audience.researcher]}
+      - {name: PROBLEM, agents: [audience.pain_points]}
+      - {name: CONTENT, agents: [content_strategy.strategist]}
+      - {name: LEAD, agents: [marketing.lead_magnet]}
+      - {name: OFFER, agents: [marketing.offer]}
+      - {name: CUSTOMER, agents: [sales.lead_qualification]}
+      - {name: DELIVERY, agents: [services.delivery]}
+      - {name: FEEDBACK, agents: [audience.feedback]}
+      - {name: RETENTION, agents: [analytics.retention]}
+      - {name: REFERRAL, agents: [marketing.referral]}
+      - {name: REVENUE, agents: [revenue.model_researcher, revenue.revenue_analyst, revenue.unit_economics]}
+      - {name: SECURITY, ref: SECURITY}
+      - {name: REPORT, ref: REPORT}
+      - {name: LEARNING, ref: LEARN}
+
+  daily:
+    description: "Part 37 daily orchestrated workflow. Prepares an approval queue; never publishes."
+    complexity: complex
+    steps:
+      - {name: SOURCE_SECURITY, ref: SOURCE_SECURITY}
+      - {name: RESEARCH_NEW_DEVELOPMENTS, ref: RESEARCH}
+      - {name: VERIFY_FINDINGS, ref: VERIFY}
+      - {name: UPDATE_KNOWLEDGE, agents: [knowledge.research_to_knowledge, knowledge.gap, knowledge.outdated]}
+      - {name: IDENTIFY_OPPORTUNITIES, agents: [business_intel.emerging_opportunity]}
+      - {name: CONTENT_OPPORTUNITIES, agents: [content_strategy.strategist]}
+      - {name: EDUCATION_OPPORTUNITIES, agents: [education.learning_path]}
+      - {name: PRODUCT_OPPORTUNITIES, agents: [product_discovery.opportunity]}
+      - {name: PREPARE_DRAFTS, ref: CONTENT}
+      - {name: QUALITY_CHECKS, ref: QUALITY}
+      - {name: APPROVAL_QUEUE, ref: APPROVAL}
+      - {name: PREVIOUS_PERFORMANCE, agents: [analytics.content, analytics.anomaly, analytics.trend]}
+      - {name: RECOMMENDATIONS, agents: [learning.agent_evaluator]}
+      - {name: SECURITY, ref: SECURITY}
+      - {name: REPORT, ref: REPORT}
+      - {name: LEARNING, ref: LEARN}
+
+  weekly:
+    description: "Part 38 weekly strategy meeting report."
+    complexity: medium
+    steps:
+      - {name: CONTENT_PERFORMANCE, agents: [analytics.content, analytics.social, analytics.email]}
+      - {name: TRENDS_AND_ANOMALIES, agents: [analytics.trend, analytics.anomaly]}
+      - {name: REVENUE_DATA, agents: [analytics.revenue]}
+      - {name: EXPERIMENTS, agents: [analytics.experiment]}
+      - {name: CUSTOMER_FEEDBACK, agents: [audience.feedback]}
+      - {name: AGENT_HEALTH, agents: [learning.agent_evaluator, learning.auditor]}
+      - {name: WEEKLY_REPORT, agents: [], post: weekly_report}

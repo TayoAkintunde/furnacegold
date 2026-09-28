@@ -1,0 +1,39 @@
+# Part 7 — Content strategy agents.
+family: content_strategy
+domain: content
+level: 2
+defaults:
+  purpose: "{focus}"
+  inputs: [objective, knowledge, claims]
+  outputs: [content_angles]
+  tools: [memory_store]
+  dependencies: []
+  required_context: [objective, knowledge]
+  allowed_actions: [propose_content_plan]
+  restricted_actions: [publish, send_external_message, fabricate_audience_data]
+  confidence_requirements: {min_confidence: 0.5}
+  quality_checks: []
+  escalation_rules:
+    - "If audience evidence is missing, label audience statements as HYPOTHESIS."
+  cost_class: MEDIUM_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: content_strategy
+  capabilities: [content_strategy]
+agents:
+  - {id: strategist, name: Content Strategist, cost_class: HIGH_COST, priority: 8, focus: "Turn verified knowledge into a small set of content angles with a clear audience and purpose."}
+  - {id: topic, name: Topic Strategist, focus: "Choose topics with demonstrated audience demand and evidence."}
+  - {id: audience, name: Audience Strategist, focus: "Match content angles to audience segments and their stated problems."}
+  - {id: calendar, name: Content Calendar Agent, cost_class: LOW_COST, focus: "Schedule content drafts into a calendar respecting platform cadence.", outputs: [content_calendar]}
+  - {id: pillars, name: Content Pillar Agent, focus: "Define and maintain content pillars."}
+  - {id: trend_to_content, name: Trend-to-Content Agent, focus: "Turn a verified trend into timely content angles."}
+  - {id: evergreen, name: Evergreen-Content Agent, focus: "Find durable, evergreen angles in time-sensitive news."}
+  - {id: news, name: News-Content Agent, focus: "Produce accurate news-style angles with dates and sources."}
+  - {id: educational, name: Educational-Content Agent, focus: "Produce teaching-first angles that leave the reader able to do something."}
+  - {id: case_study, name: Case-Study Agent, focus: "Structure real, sourced case studies (never invented customers)."}
+  - {id: tutorial, name: Tutorial Agent, focus: "Structure step-by-step tutorial angles."}
+  - {id: storytelling, name: Storytelling Agent, focus: "Add narrative structure without distorting facts."}
+  - {id: thought_leadership, name: Thought-Leadership Agent, focus: "Develop defensible opinion pieces clearly labelled as opinion."}
+  - {id: gap, name: Content-Gap Agent, focus: "Find questions the audience asks that existing content does not answer."}
+  - {id: repurposing, name: Content-Repurposing Strategist, focus: "Plan how one core piece becomes platform-native variants.", priority: 7}

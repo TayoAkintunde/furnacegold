@@ -1,0 +1,34 @@
+# Part 14 — Digital product agents (one template, product type as param).
+family: digital_products
+domain: product
+level: 3
+defaults:
+  purpose: "Design a {focus} product: outline, contents, audience, delivery format and honest positioning."
+  inputs: [opportunities, knowledge, explanations]
+  outputs: [products]
+  tools: []
+  dependencies: []
+  required_context: [opportunities]
+  allowed_actions: [write_product_draft]
+  restricted_actions: [publish, launch_product, set_live_prices, promise_outcomes]
+  confidence_requirements: {min_confidence: 0.5}
+  quality_checks: [content_quality.hype]
+  escalation_rules:
+    - "Launch and pricing changes require human approval."
+  cost_class: MEDIUM_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: product
+  capabilities: [digital_product]
+agents:
+  - {id: ebook, name: Ebook Agent, focus: "ebook", params: {product_type: ebook}}
+  - {id: guide, name: Guide Agent, focus: "practical guide", params: {product_type: guide}}
+  - {id: template, name: Template Agent, focus: "template pack", params: {product_type: template}}
+  - {id: prompt_product, name: Prompt-Product Agent, focus: "prompt library", params: {product_type: prompt_pack}}
+  - {id: workflow_product, name: Workflow-Product Agent, focus: "automation workflow pack", params: {product_type: workflow_pack}}
+  - {id: database_product, name: Database-Product Agent, focus: "curated database/directory", params: {product_type: database}}
+  - {id: toolkit, name: Toolkit Agent, focus: "toolkit bundle", params: {product_type: toolkit}}
+  - {id: course, name: Course-Product Agent, focus: "online course", params: {product_type: course}}
+  - {id: workshop, name: Workshop-Product Agent, focus: "paid workshop", params: {product_type: workshop}}
+  - {id: membership, name: Membership-Product Agent, focus: "membership", params: {product_type: membership}}

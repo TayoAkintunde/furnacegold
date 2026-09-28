@@ -1,0 +1,40 @@
+# Part 13 — Product discovery agents.
+family: product_discovery
+domain: product
+level: 2
+defaults:
+  purpose: "{focus} Opportunities are hypotheses until validated with evidence."
+  inputs: [objective, knowledge, claims, audience_insights]
+  outputs: [opportunities]
+  tools: [memory_store]
+  dependencies: []
+  required_context: [objective, claims]
+  allowed_actions: [propose_opportunities, propose_experiments]
+  restricted_actions: [publish, spend_money, launch_product, promise_revenue]
+  confidence_requirements: {min_confidence: 0.4, evidence_for_each_opportunity: true}
+  quality_checks: []
+  escalation_rules:
+    - "Major launches require human approval."
+    - "Every opportunity must list its assumptions and the cheapest test that could falsify it."
+  cost_class: HIGH_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: product
+  capabilities: [product]
+agents:
+  - {id: opportunity, name: Opportunity Researcher, priority: 9, focus: "Identify business opportunities created by a verified development.", keywords: [opportunity, opportunities, business, monetize], capabilities: [product, opportunity]}
+  - {id: problem, name: Problem Researcher, focus: "Define the underlying customer problem precisely."}
+  - {id: ideation, name: Product Ideation Agent, focus: "Generate product concepts for a validated problem.", outputs: [products]}
+  - {id: market, name: Market Researcher, priority: 7, focus: "Size and describe the market from captured evidence; mark estimates as assumptions.", capabilities: [product, market]}
+  - {id: competitor, name: Competitor Researcher, focus: "Map competitors and alternatives from captured sources.", capabilities: [product, competition]}
+  - {id: alternatives, name: Alternative-Solution Researcher, focus: "Identify non-product alternatives customers use today."}
+  - {id: differentiation, name: Differentiation Analyst, focus: "Identify defensible differentiation."}
+  - {id: pmf, name: Product-Market-Fit Researcher, focus: "Define PMF signals and how to measure them."}
+  - {id: mvp, name: MVP Architect, priority: 7, focus: "Design the smallest product that tests the riskiest assumption.", outputs: [products], capabilities: [product, mvp]}
+  - {id: validation, name: Validation Strategist, priority: 8, focus: "Design validation plans with explicit success/failure criteria.", outputs: [experiments], capabilities: [product, validation, experiment]}
+  - {id: interview_analyzer, name: Customer-Interview Analyzer, focus: "Analyse supplied interview transcripts (never invent interviews)."}
+  - {id: pricing, name: Pricing Researcher, focus: "Research pricing of comparable offers from captured sources."}
+  - {id: packaging, name: Packaging Strategist, focus: "Package offers into tiers."}
+  - {id: roadmap, name: Product-Roadmap Agent, focus: "Sequence product work by evidence and risk.", outputs: [roadmap]}
+  - {id: risk, name: Product-Risk Analyst, focus: "Identify product, market, legal and platform-dependency risks.", capabilities: [product, risk]}

@@ -1,0 +1,44 @@
+# Part 10 — Education agents.
+family: education
+domain: education
+level: 2
+defaults:
+  purpose: "{focus}"
+  inputs: [knowledge, claims, objective]
+  outputs: [explanations]
+  tools: []
+  dependencies: []
+  required_context: [knowledge, claims]
+  allowed_actions: [write_educational_draft]
+  restricted_actions: [publish, fabricate_claims, promise_outcomes]
+  confidence_requirements: {min_confidence: 0.6, claims_must_be_verified: true}
+  quality_checks: [content_quality.readability, content_quality.educational_value, content_quality.factuality]
+  escalation_rules:
+    - "If a concept depends on an unverified claim, say so in the lesson."
+  cost_class: MEDIUM_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: education
+  capabilities: [education]
+agents:
+  - {id: curriculum_architect, name: Curriculum Architect, cost_class: HIGH_COST, focus: "Design a curriculum: modules, outcomes and sequencing.", outputs: [curriculum]}
+  - {id: beginner_teacher, name: Beginner Teacher, priority: 8, focus: "Explain to a complete beginner: no jargon without definition, one analogy, one concrete example.", params: {level: beginner}, capabilities: [education, explain, teach_beginner]}
+  - {id: intermediate_teacher, name: Intermediate Teacher, focus: "Explain to a practitioner: mechanisms, trade-offs, when to use it.", params: {level: intermediate}, capabilities: [education, explain, teach_intermediate]}
+  - {id: advanced_teacher, name: Advanced Teacher, cost_class: HIGH_COST, focus: "Explain to an expert: architecture, limitations, open problems.", params: {level: advanced}, capabilities: [education, explain, teach_advanced]}
+  - {id: lesson_planner, name: Lesson Planner, focus: "Plan a single lesson with objective, activities and check for understanding.", outputs: [lessons]}
+  - {id: tutorial_builder, name: Tutorial Builder, focus: "Build step-by-step tutorials that the learner can reproduce.", outputs: [tutorials]}
+  - {id: exercise_creator, name: Exercise Creator, cost_class: LOW_COST, focus: "Create practice exercises with worked answers.", outputs: [exercises]}
+  - {id: project_creator, name: Project Creator, focus: "Design hands-on projects with scope, milestones and rubric.", outputs: [projects]}
+  - {id: assessment_creator, name: Assessment Creator, cost_class: LOW_COST, focus: "Create assessments aligned to learning outcomes.", outputs: [assessments]}
+  - {id: quiz_creator, name: Quiz Creator, cost_class: LOW_COST, focus: "Create quizzes whose answers are grounded in verified claims.", outputs: [quizzes]}
+  - {id: workshop_designer, name: Workshop Designer, focus: "Design live workshops: agenda, exercises, materials.", outputs: [workshops]}
+  - {id: course_architect, name: Course Architect, cost_class: HIGH_COST, focus: "Design a course product from a curriculum.", outputs: [courses]}
+  - {id: course_marketer, name: Course Marketer, focus: "Write honest course positioning (no outcome guarantees).", outputs: [content_angles]}
+  - {id: example_creator, name: Educational-Example Creator, cost_class: LOW_COST, focus: "Create concrete examples and analogies."}
+  - {id: learning_path, name: Learning-Path Designer, focus: "Design learning paths across beginner/intermediate/advanced.", outputs: [learning_paths]}
+  - {id: prerequisite_detector, name: Prerequisite Detector, cost_class: LOW_COST, executor: "rule:prerequisites", focus: "Detect prerequisite concepts a learner needs by scanning technical terms."}
+  - {id: misconception_detector, name: Misconception Detector, focus: "Identify likely misconceptions and correct them explicitly."}
+  - {id: curriculum_update, name: Curriculum-Update Agent, focus: "Update curricula when knowledge changes."}
+  - {id: quality, name: Educational-Quality Agent, level: 4, cost_class: LOW_COST, executor: "rule:educational_value", focus: "Evaluate educational drafts for definitions, examples and takeaways.", outputs: [quality_reports]}
+  - {id: teaching_assistant, name: Teacher's-Assistant Agent, cost_class: LOW_COST, focus: "Answer learner questions strictly from course material."}

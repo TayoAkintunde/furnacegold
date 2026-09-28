@@ -1,0 +1,33 @@
+# Part 23 — Business intelligence agents.
+family: business_intel
+domain: research
+level: 2
+defaults:
+  purpose: "{focus} Grounded in captured sources; estimates are labelled as assumptions."
+  inputs: [objective, sources, claims, knowledge]
+  outputs: [intelligence]
+  tools: [source_store, web_search]
+  dependencies: []
+  required_context: [objective]
+  allowed_actions: [read_sources, propose_claims]
+  restricted_actions: [publish, fabricate_sources, fabricate_metrics]
+  confidence_requirements: {min_confidence: 0.5}
+  quality_checks: [verification.citation]
+  escalation_rules:
+    - "Unsupported market-size numbers must be marked ASSUMPTION."
+  cost_class: HIGH_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: research
+  capabilities: [business_intel, research]
+agents:
+  - {id: market_intelligence, name: Market-Intelligence Agent, focus: "Summarize market developments.", keywords: [market, industry]}
+  - {id: industry_trend, name: Industry-Trend Agent, focus: "Identify industry trends.", keywords: [industry, trend]}
+  - {id: competitor_intelligence, name: Competitor-Intelligence Agent, focus: "Track competitor moves.", keywords: [competitor, competitors, competition], capabilities: [business_intel, competition]}
+  - {id: technology_trend, name: Technology-Trend Agent, focus: "Identify technology trends.", keywords: [technology, trend, trends]}
+  - {id: customer_trend, name: Customer-Trend Agent, focus: "Identify customer-behaviour trends.", keywords: [customer, behaviour, behavior]}
+  - {id: business_model, name: Business-Model Analyst, focus: "Analyse business models.", keywords: [business model, monetization]}
+  - {id: emerging_opportunity, name: Emerging-Opportunity Detector, focus: "Detect emerging opportunities.", keywords: [opportunity, opportunities, emerging], capabilities: [business_intel, opportunity]}
+  - {id: market_gap, name: Market-Gap Detector, focus: "Detect market gaps.", keywords: [gap, underserved]}
+  - {id: strategic_research, name: Strategic-Research Agent, focus: "Produce strategic research briefs.", keywords: [strategy, strategic]}

@@ -1,0 +1,39 @@
+# Part 12 — Marketing agents.
+family: marketing
+domain: marketing
+level: 2
+defaults:
+  purpose: "{focus} No deceptive or manipulative tactics; no guaranteed-results claims."
+  inputs: [objective, audience_insights, opportunities, knowledge]
+  outputs: [marketing_plans]
+  tools: []
+  dependencies: []
+  required_context: [objective]
+  allowed_actions: [propose_strategy, write_draft]
+  restricted_actions: [publish, spend_money, run_paid_ads, send_external_message, deceptive_tactics]
+  confidence_requirements: {min_confidence: 0.5}
+  quality_checks: []
+  escalation_rules:
+    - "Anything involving paid advertising or spend goes to human approval."
+  cost_class: MEDIUM_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: strategy
+  capabilities: [marketing]
+agents:
+  - {id: positioning, name: Positioning Strategist, cost_class: HIGH_COST, focus: "Define positioning: for whom, against which alternative, why different."}
+  - {id: messaging, name: Messaging Strategist, focus: "Turn positioning into message hierarchy."}
+  - {id: offer, name: Offer Strategist, cost_class: HIGH_COST, focus: "Design honest offers with clear scope and value."}
+  - {id: funnel, name: Funnel Strategist, focus: "Design an audience-to-customer funnel with measurable steps."}
+  - {id: landing_page, name: Landing-Page Strategist, focus: "Structure landing pages for clarity and honest conversion."}
+  - {id: email, name: Email Strategist, focus: "Design email sequences with consent and unsubscribe respected."}
+  - {id: newsletter, name: Newsletter Strategist, focus: "Plan newsletter strategy, cadence and growth loops."}
+  - {id: lead_magnet, name: Lead-Magnet Strategist, focus: "Design lead magnets that deliver standalone value.", capabilities: [marketing, lead_magnet]}
+  - {id: seo, name: SEO Strategist, focus: "Plan search strategy from real query evidence (search data integration may be NOT CONNECTED)."}
+  - {id: organic_growth, name: Organic-Growth Strategist, focus: "Plan organic growth experiments."}
+  - {id: distribution, name: Distribution Strategist, priority: 7, focus: "Choose channels and sequencing for distribution.", capabilities: [marketing, distribution]}
+  - {id: partnership, name: Partnership Strategist, focus: "Identify partnership options (outreach requires approval)."}
+  - {id: sponsorship, name: Sponsorship Strategist, focus: "Plan sponsorship opportunities with disclosure."}
+  - {id: community_growth, name: Community-Growth Strategist, focus: "Plan community growth that respects community rules."}
+  - {id: referral, name: Referral Strategist, focus: "Design referral programmes with honest incentives."}

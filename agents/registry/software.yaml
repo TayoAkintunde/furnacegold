@@ -1,0 +1,42 @@
+# Part 16 — Software / SaaS agents.
+family: software
+domain: technology
+level: 2
+defaults:
+  purpose: "{focus}"
+  inputs: [objective, products, knowledge]
+  outputs: [technical_designs]
+  tools: [repository_read]
+  dependencies: []
+  required_context: [objective]
+  allowed_actions: [write_design_doc, propose_code_change]
+  restricted_actions: [deploy_production, change_infrastructure, expose_secrets, delete_data]
+  confidence_requirements: {min_confidence: 0.6}
+  quality_checks: [security.secret_detector]
+  escalation_rules:
+    - "Production deployments and infrastructure changes require human approval."
+  cost_class: HIGH_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: engineering
+  capabilities: [software]
+agents:
+  - {id: saas_idea, name: SaaS Idea Researcher, focus: "Research SaaS ideas grounded in verified problems.", outputs: [opportunities], capabilities: [software, opportunity]}
+  - {id: architect, name: Software Architect, focus: "Design overall software architecture and trade-offs."}
+  - {id: tpm, name: Technical Product Manager, focus: "Translate product goals into scoped technical requirements."}
+  - {id: api_architect, name: API Architect, focus: "Design APIs, versioning and contracts."}
+  - {id: database_architect, name: Database Architect, focus: "Design schemas, indexes and data lifecycle."}
+  - {id: frontend_architect, name: Frontend Architect, focus: "Design frontend architecture and accessibility."}
+  - {id: backend_architect, name: Backend Architect, focus: "Design backend services and data flows."}
+  - {id: ai_app_architect, name: AI Application Architect, focus: "Design LLM application architecture: prompts, evals, cost, guardrails."}
+  - {id: agent_system_architect, name: Agent-System Architect, focus: "Design multi-agent systems: roles, orchestration, memory, verification."}
+  - {id: mcp_architect, name: MCP Architect, focus: "Design MCP servers/clients and tool permission models."}
+  - {id: integration_architect, name: Integration Architect, focus: "Design third-party integrations with least privilege."}
+  - {id: security_architect, name: Security Architect, focus: "Threat-model systems and define controls."}
+  - {id: scalability_architect, name: Scalability Architect, focus: "Plan capacity, caching and scaling."}
+  - {id: testing_architect, name: Testing Architect, focus: "Design test strategy and coverage."}
+  - {id: devops_architect, name: DevOps Architect, focus: "Design CI/CD and observability."}
+  - {id: deployment, name: Deployment Agent, focus: "Prepare deployment plans (execution requires approval and a connected platform).", restricted_actions: [deploy_production_without_approval, expose_secrets, delete_data]}
+  - {id: documentation, name: Documentation Agent, cost_class: MEDIUM_COST, focus: "Write technical documentation from the code and designs."}
+  - {id: support, name: Technical-Support Agent, cost_class: LOW_COST, focus: "Answer technical support questions from documentation only."}

@@ -1,0 +1,40 @@
+# Part 9 — Content quality agents (Level 4). All deterministic, cheap, and
+# explainable: they score every draft in `content` and `explanations`.
+family: content_quality
+domain: quality
+level: 4
+defaults:
+  purpose: "{focus}"
+  inputs: [content, explanations, claims, sources]
+  outputs: [quality_reports]
+  tools: []
+  dependencies: []
+  required_context: [content]
+  allowed_actions: [score_content, annotate_content]
+  restricted_actions: [publish, rewrite_content_silently]
+  confidence_requirements: {min_confidence: 0.0}
+  quality_checks: []
+  escalation_rules:
+    - "Any BLOCKING issue removes the draft from the approval queue until fixed."
+  cost_class: LOW_COST
+  priority: 6
+  status: ACTIVE
+  executor: llm
+  capabilities: [content_quality]
+agents:
+  - {id: hook, name: Hook Evaluator, executor: "rule:hook", focus: "Score whether the opening line states a concrete, specific point quickly."}
+  - {id: clarity, name: Clarity Evaluator, executor: "rule:clarity", focus: "Flag long sentences, passive constructions and undefined jargon."}
+  - {id: readability, name: Readability Evaluator, executor: "rule:readability", focus: "Compute Flesch reading ease and grade level against the target audience level."}
+  - {id: educational_value, name: Educational-Value Evaluator, executor: "rule:educational_value", focus: "Check content teaches something concrete: definitions, examples, steps, or takeaways."}
+  - {id: originality, name: Originality Evaluator, executor: "rule:originality", focus: "Measure n-gram overlap with source text and with other drafts."}
+  - {id: factuality, name: Factuality Evaluator, executor: "rule:factuality", focus: "Check every claim id referenced by a draft is VERIFIED/SUPPORTED."}
+  - {id: source, name: Source Evaluator, executor: "rule:source_attribution", focus: "Check drafts that state facts attribute them to a source."}
+  - {id: brand_voice, name: Brand-Voice Evaluator, executor: "rule:brand_voice", focus: "Check drafts against the configured brand voice (config/brand.yaml)."}
+  - {id: cta, name: CTA Evaluator, executor: "rule:cta", focus: "Check the call to action is present, single, and non-manipulative."}
+  - {id: repetition, name: Repetition Detector, executor: "rule:repetition", focus: "Detect repeated phrases and sentences within a draft."}
+  - {id: ai_slop, name: AI-Slop Detector, executor: "rule:ai_slop", focus: "Detect generic AI filler phrases and empty intensifiers."}
+  - {id: hype, name: Hype Detector, executor: "rule:hype", focus: "Detect unsupported superlatives and financial-success promises."}
+  - {id: clickbait, name: Clickbait Detector, executor: "rule:clickbait", focus: "Detect curiosity-gap and misleading headline patterns."}
+  - {id: hallucination, name: Hallucination Detector, executor: "rule:hallucination", focus: "Flag numbers and named entities in drafts that do not appear in verified claims or sources."}
+  - {id: plagiarism, name: Plagiarism-Risk Detector, executor: "rule:plagiarism", focus: "Flag long verbatim runs copied from sources without quotation."}
+  - {id: platform_fit, name: Platform-Fit Checker, level: 3, executor: "rule:platform_fit", focus: "Check each draft against its platform's length and format limits (config/platforms.yaml)."}

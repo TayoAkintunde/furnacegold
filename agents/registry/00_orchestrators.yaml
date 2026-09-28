@@ -1,0 +1,45 @@
+# Level 0 master orchestrator + Level 1 domain orchestrators.
+# Orchestrators are implemented in code (aibos/orchestrator.py); these entries make
+# them visible to the registry, the audit, and the performance tracker.
+family: orch
+domain: orchestration
+level: 1
+defaults:
+  purpose: "Coordinate the {focus} domain: choose the smallest sufficient team of specialists, order them, pass context, and verify their outputs."
+  inputs: [objective, task_profile]
+  outputs: [plan, stage_results]
+  tools: [registry, selector, blackboard]
+  dependencies: []
+  required_context: [objective]
+  allowed_actions: [select_agents, run_agents, request_verification, escalate]
+  restricted_actions: [publish, spend_money, send_external_message, delete_data, modify_agent_instructions]
+  confidence_requirements: {min_confidence: 0.0}
+  quality_checks: []
+  escalation_rules:
+    - "Escalate to master orchestrator when no active agent covers a required capability."
+    - "Escalate to a human when any stage returns BLOCKED or AWAITING_APPROVAL."
+  cost_class: LOW_COST
+  priority: 10
+  status: ACTIVE
+  executor: orchestrator
+  critical: true
+  capabilities: [orchestrate]
+agents:
+  - {id: master, name: Master Orchestrator, level: 0, focus: "whole business operating system",
+     purpose: "Understand the objective, decompose it, select the smallest useful agent team, run it in order, verify, resolve conflicts, escalate uncertainty, produce the final result, and record learning.",
+     domain: master}
+  - {id: research, name: Research Orchestrator, focus: "research and business intelligence", domain: research}
+  - {id: knowledge, name: Knowledge Orchestrator, focus: "knowledge management", domain: knowledge}
+  - {id: content, name: Content Orchestrator, focus: "content strategy and platform content", domain: content}
+  - {id: education, name: Education Orchestrator, focus: "education and curriculum", domain: education}
+  - {id: audience, name: Audience Orchestrator, focus: "audience research", domain: audience}
+  - {id: marketing, name: Marketing Orchestrator, focus: "marketing and distribution", domain: marketing}
+  - {id: product, name: Product Orchestrator, focus: "product discovery and digital products", domain: product}
+  - {id: revenue, name: Revenue Orchestrator, focus: "revenue models and monetization", domain: revenue}
+  - {id: customer, name: Customer Orchestrator, focus: "services, sales and customer success", domain: customer}
+  - {id: analytics, name: Analytics Orchestrator, focus: "analytics and experiments", domain: analytics}
+  - {id: technology, name: Technology Orchestrator, focus: "software and SaaS engineering", domain: technology}
+  - {id: automation, name: Automation Orchestrator, focus: "workflow automation", domain: automation}
+  - {id: quality, name: Quality Orchestrator, focus: "verification and content quality", domain: quality}
+  - {id: security, name: Security Orchestrator, focus: "security and privacy", domain: security}
+  - {id: learning, name: Learning Orchestrator, focus: "agent evaluation and system improvement", domain: learning}

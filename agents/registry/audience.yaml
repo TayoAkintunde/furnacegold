@@ -1,0 +1,39 @@
+# Part 11 — Audience agents. Hard rule: observed evidence vs hypotheses.
+family: audience
+domain: audience
+level: 2
+defaults:
+  purpose: "{focus} Clearly separate OBSERVED evidence (from supplied data or captured sources) from HYPOTHESES. Never invent customer research."
+  inputs: [objective, sources, audience_data]
+  outputs: [audience_insights]
+  tools: [memory_store]
+  dependencies: []
+  required_context: [objective]
+  allowed_actions: [analyze_supplied_data, propose_hypotheses]
+  restricted_actions: [fabricate_customer_research, fabricate_metrics, contact_people, store_personal_data]
+  confidence_requirements: {min_confidence: 0.5, hypotheses_must_be_labelled: true}
+  quality_checks: []
+  escalation_rules:
+    - "If no audience data is supplied, output hypotheses plus a research plan to collect evidence."
+  cost_class: MEDIUM_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: audience
+  capabilities: [audience]
+agents:
+  - {id: researcher, name: Audience Researcher, priority: 8, focus: "Describe who plausibly cares about this topic and why."}
+  - {id: persona, name: Persona Researcher, focus: "Build evidence-backed personas."}
+  - {id: customer_problem, name: Customer-Problem Researcher, focus: "Identify the problems customers describe in their own words."}
+  - {id: customer_language, name: Customer-Language Researcher, focus: "Capture the words customers use (from supplied data only)."}
+  - {id: pain_points, name: Pain-Point Analyst, focus: "Rank pain points by frequency and severity in supplied evidence."}
+  - {id: desired_outcome, name: Desired-Outcome Analyst, focus: "Identify the outcomes customers want."}
+  - {id: objections, name: Objection Analyst, focus: "Identify objections to adopting a solution."}
+  - {id: faq, name: FAQ Researcher, focus: "Collect frequently asked questions."}
+  - {id: community, name: Community Researcher, focus: "Map communities where the audience gathers (without scraping personal data)."}
+  - {id: segmentation, name: Audience-Segmentation Agent, focus: "Segment the audience by need and sophistication."}
+  - {id: feedback, name: Audience-Feedback Agent, executor: "rule:feedback_summary", cost_class: LOW_COST, focus: "Summarize supplied audience feedback files.", level: 5}
+  - {id: engagement, name: Engagement Analyst, executor: "rule:metrics", cost_class: LOW_COST, level: 5, focus: "Analyse engagement metrics from supplied analytics data.", params: {metrics: [likes, comments, shares, saves, engagement_rate]}}
+  - {id: retention, name: Retention Analyst, executor: "rule:metrics", cost_class: LOW_COST, level: 5, focus: "Analyse audience retention from supplied data.", params: {metrics: [retention_rate, returning_visitors, watch_time]}}
+  - {id: subscribers, name: Subscriber Analyst, executor: "rule:metrics", cost_class: LOW_COST, level: 5, focus: "Analyse subscriber growth from supplied data.", params: {metrics: [subscribers, unsubscribes, followers]}}
+  - {id: lead_quality, name: Lead-Quality Analyst, executor: "rule:metrics", cost_class: LOW_COST, level: 5, focus: "Analyse lead quality from supplied CRM exports.", params: {metrics: [leads, qualified_leads, lead_score]}}

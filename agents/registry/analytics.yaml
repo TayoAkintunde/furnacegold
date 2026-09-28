@@ -1,0 +1,41 @@
+# Part 19 — Analytics agents (Level 5). Deterministic; they only analyse
+# supplied data files and report NO DATA rather than inventing numbers.
+family: analytics
+domain: analytics
+level: 5
+defaults:
+  purpose: "{focus} Uses only supplied metric data; reports NO DATA when none exists."
+  inputs: [metrics]
+  outputs: [analytics]
+  tools: [metrics_store]
+  dependencies: []
+  required_context: []
+  allowed_actions: [analyze_supplied_data]
+  restricted_actions: [fabricate_metrics, fabricate_analytics]
+  confidence_requirements: {min_confidence: 0.0, min_data_points: 3}
+  quality_checks: []
+  escalation_rules:
+    - "If an analytics integration is NOT CONNECTED and no export is supplied, say so."
+  cost_class: LOW_COST
+  priority: 5
+  status: ACTIVE
+  executor: "rule:metrics"
+  capabilities: [analytics]
+agents:
+  - {id: content, name: Content Analytics Agent, focus: "Analyse content-level performance.", params: {metrics: [impressions, views, engagement_rate, clicks]}}
+  - {id: social, name: Social Analytics Agent, focus: "Analyse social platform performance.", params: {channels: [x, linkedin, instagram, tiktok, youtube, facebook, reddit]}}
+  - {id: website, name: Website Analytics Agent, focus: "Analyse website traffic.", params: {channels: [website], metrics: [sessions, pageviews, bounce_rate]}}
+  - {id: seo, name: SEO Analytics Agent, focus: "Analyse search performance.", params: {metrics: [search_impressions, search_clicks, avg_position]}}
+  - {id: email, name: Email Analytics Agent, focus: "Analyse email/newsletter performance.", params: {channels: [newsletter, email], metrics: [opens, open_rate, clicks, click_rate, unsubscribes]}}
+  - {id: funnel, name: Funnel Analytics Agent, executor: "rule:funnel", focus: "Compute funnel conversion by step."}
+  - {id: customer, name: Customer Analytics Agent, focus: "Analyse customer counts and behaviour.", params: {metrics: [customers, active_customers, churned_customers]}}
+  - {id: product, name: Product Analytics Agent, focus: "Analyse product usage.", params: {metrics: [active_users, sessions_per_user, feature_usage]}}
+  - {id: revenue, name: Revenue Analytics Agent, focus: "Analyse revenue.", params: {metrics: [revenue, mrr, refunds]}}
+  - {id: experiment, name: Experiment Analyst, executor: "rule:experiment_analysis", focus: "Evaluate experiments against pre-registered success/failure criteria."}
+  - {id: cohort, name: Cohort Analyst, executor: "rule:cohort", focus: "Cohort retention from supplied cohort data."}
+  - {id: retention, name: Retention Analytics Agent, focus: "Analyse retention.", params: {metrics: [retention_rate, churn_rate]}}
+  - {id: conversion, name: Conversion Analytics Agent, focus: "Analyse conversion rates.", params: {metrics: [conversion_rate, conversions]}}
+  - {id: attribution, name: Attribution Analyst, executor: "rule:attribution", focus: "Attribute conversions to channels (last-touch from supplied data; states the model's limits)."}
+  - {id: anomaly, name: Anomaly Detector, executor: "rule:anomaly", focus: "Detect anomalies with a robust z-score.", params: {z_threshold: 3.0}}
+  - {id: trend, name: Trend Detector, executor: "rule:trend", focus: "Detect trends with least-squares slope.", params: {min_points: 4}}
+  - {id: analytics_planner, name: Analytics-Plan Agent, executor: "rule:analytics_plan", level: 5, focus: "Produce a measurement plan (metrics, sources, integration status) for content and experiments.", outputs: [analytics_plan], capabilities: [analytics, analytics_plan]}

@@ -1,0 +1,39 @@
+# Part 6 — Knowledge agents.
+family: knowledge
+domain: knowledge
+level: 2
+defaults:
+  purpose: "{focus}"
+  inputs: [claims, knowledge]
+  outputs: [knowledge]
+  tools: [memory_store]
+  dependencies: []
+  required_context: [claims]
+  allowed_actions: [read_memory, write_memory_draft, annotate_knowledge]
+  restricted_actions: [publish, delete_data, store_sensitive_data]
+  confidence_requirements: {min_confidence: 0.6, only_verified_claims_as_fact: true}
+  quality_checks: []
+  escalation_rules:
+    - "Never store an UNVERIFIED claim as a FACT; store it as a HYPOTHESIS with its evidence gap."
+  cost_class: LOW_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: knowledge
+  capabilities: [knowledge]
+agents:
+  - {id: classifier, name: Knowledge Classifier, executor: "rule:knowledge_classify", focus: "Classify claims and knowledge entries into the taxonomy."}
+  - {id: summarizer, name: Knowledge Summarizer, cost_class: MEDIUM_COST, focus: "Summarize verified claims into concise knowledge entries that keep claim ids.", priority: 7}
+  - {id: linker, name: Knowledge Linker, executor: "rule:knowledge_link", focus: "Link related knowledge entries by shared entities and terms."}
+  - {id: duplicate, name: Duplicate Detector, executor: "rule:duplicate", focus: "Detect near-duplicate claims and knowledge entries."}
+  - {id: taxonomy, name: Taxonomy Manager, executor: "rule:taxonomy", focus: "Maintain the taxonomy and report unclassified items."}
+  - {id: ontology, name: Ontology Builder, cost_class: MEDIUM_COST, focus: "Build entity-relationship structures (who launched what, which capability, which market)."}
+  - {id: gap, name: Knowledge-Gap Detector, executor: "rule:knowledge_gap", focus: "Detect open questions: unverified claims, single-source claims, missing dates."}
+  - {id: outdated, name: Outdated-Knowledge Detector, executor: "rule:outdated_knowledge", focus: "Detect stored knowledge past its freshness window.", params: {stale_days: 180}}
+  - {id: updater, name: Knowledge Updater, cost_class: MEDIUM_COST, focus: "Propose updates to stale knowledge using newer verified claims."}
+  - {id: curator, name: Knowledge Curator, cost_class: MEDIUM_COST, focus: "Decide what verified knowledge is worth keeping long-term."}
+  - {id: research_to_knowledge, name: Research-to-Knowledge Agent, executor: "rule:research_to_knowledge", focus: "Convert verified research claims into persisted knowledge entries with evidence chains.", priority: 8, capabilities: [knowledge, store_evidence]}
+  - {id: personal_organizer, name: Personal-Knowledge Organizer, focus: "Organize the operator's notes into the knowledge base without storing sensitive data."}
+  - {id: framework_extractor, name: Framework Extractor, cost_class: MEDIUM_COST, focus: "Extract reusable frameworks, checklists and mental models from knowledge."}
+  - {id: concept_explainer, name: Concept Explainer, cost_class: MEDIUM_COST, focus: "Explain a concept precisely, grounded in verified claims.", capabilities: [knowledge, explain]}
+  - {id: terminology, name: Terminology Manager, executor: "rule:terminology", focus: "Extract and maintain a glossary of technical terms from sources and claims."}

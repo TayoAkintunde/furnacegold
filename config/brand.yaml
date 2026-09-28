@@ -1,0 +1,18 @@
+# Brand voice used by content_quality.brand_voice. Edit to match your voice.
+voice:
+  description: "Clear, specific, evidence-first educator. Calm, not hype. Explains trade-offs."
+  person: "we/you"
+  avoid_phrases:
+    - "game-changer"
+    - "revolutionary"
+    - "10x"
+    - "guaranteed"
+    - "passive income"
+    - "get rich"
+    - "secret"
+    - "you won't believe"
+  prefer:
+    - "Cite the source for factual claims"
+    - "State what is not yet known"
+  max_exclamation_marks: 1
+  max_emoji: 3

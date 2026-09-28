@@ -1,0 +1,12 @@
+# Knowledge taxonomy used by knowledge.classifier / knowledge.taxonomy.
+taxonomy:
+  ai_models: [model, llm, weights, benchmark, reasoning, multimodal, parameters, context window, frontier]
+  ai_agents: [agent, agents, agentic, autonomous, orchestration, tool use, computer use]
+  developer_tools: [sdk, api, cli, ide, developer, coding, code, repository]
+  protocols_standards: [protocol, mcp, standard, specification, open standard, interoperability]
+  infrastructure: [gpu, chip, cloud, datacenter, compute, inference, latency, cost]
+  security_safety: [security, safety, vulnerability, alignment, misuse, prompt injection, privacy]
+  business_market: [pricing, revenue, market, customers, enterprise, funding, startup, subscription]
+  regulation_policy: [regulation, law, policy, compliance, act, government]
+  education: [course, learning, tutorial, education, teaching]
+  open_source: [open source, open-source, license, github, community]

@@ -1,0 +1,40 @@
+# Part 8 — Platform content agents. One template; platform rules come from
+# config/platforms.yaml via params.platform, so each agent writes natively for its platform.
+family: social
+domain: content
+level: 3
+defaults:
+  purpose: "Write platform-native {focus} drafts from verified knowledge and approved content angles. Follows the platform's format, length and norms; never copies text between platforms verbatim."
+  inputs: [content_angles, knowledge, claims]
+  outputs: [content]
+  tools: [platform_rules]
+  dependencies: []
+  required_context: [content_angles, claims]
+  allowed_actions: [write_draft]
+  restricted_actions: [publish, send_external_message, fabricate_claims, fabricate_metrics]
+  confidence_requirements: {min_confidence: 0.6, claims_must_be_verified: true}
+  quality_checks: [content_quality.factuality, content_quality.hallucination, content_quality.hype, content_quality.platform_fit]
+  escalation_rules:
+    - "Drafts always go to the human approval queue; publishing requires approval and a connected integration."
+  cost_class: MEDIUM_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: platform_content
+  capabilities: [platform_content]
+agents:
+  - {id: x_post, name: X Short-Post Agent, focus: "X (Twitter) short post", params: {platform: x_post}, keywords: [x, twitter, post]}
+  - {id: x_thread, name: X Thread Agent, focus: "X (Twitter) thread", params: {platform: x_thread}, keywords: [x, twitter, thread]}
+  - {id: linkedin, name: LinkedIn Agent, focus: "LinkedIn post", params: {platform: linkedin}, keywords: [linkedin, professional], priority: 7}
+  - {id: linkedin_carousel, name: LinkedIn Carousel Agent, focus: "LinkedIn document carousel", params: {platform: linkedin_carousel}, keywords: [linkedin, carousel]}
+  - {id: instagram, name: Instagram Agent, focus: "Instagram caption", params: {platform: instagram}, keywords: [instagram]}
+  - {id: instagram_carousel, name: Instagram Carousel Agent, focus: "Instagram carousel", params: {platform: instagram_carousel}, keywords: [instagram, carousel]}
+  - {id: tiktok, name: TikTok Agent, focus: "TikTok video script", params: {platform: tiktok}, keywords: [tiktok, video, short]}
+  - {id: youtube_shorts, name: YouTube Shorts Agent, focus: "YouTube Shorts script", params: {platform: youtube_shorts}, keywords: [youtube, shorts, video]}
+  - {id: facebook, name: Facebook Agent, focus: "Facebook post", params: {platform: facebook}, keywords: [facebook]}
+  - {id: reddit, name: Reddit Educational-Content Agent, focus: "Reddit educational post (value-first, no self-promotion, follows subreddit rules)", params: {platform: reddit}, keywords: [reddit, community]}
+  - {id: community, name: Community-Content Agent, focus: "community post (Discord/Slack/forum)", params: {platform: community}, keywords: [community, discord, forum]}
+  - {id: newsletter, name: Newsletter Agent, focus: "email newsletter issue", params: {platform: newsletter}, keywords: [newsletter, email], priority: 7}
+  - {id: blog, name: Blog Agent, focus: "blog article", params: {platform: blog}, keywords: [blog, article], priority: 7}
+  - {id: seo, name: SEO Content Agent, focus: "search-optimized article", params: {platform: seo_article}, keywords: [seo, search, article]}
+  - {id: podcast, name: Podcast Agent, focus: "podcast episode outline", params: {platform: podcast}, keywords: [podcast, audio]}

@@ -1,0 +1,36 @@
+# Part 15 — Service business agents.
+family: services
+domain: customer
+level: 2
+defaults:
+  purpose: "{focus}"
+  inputs: [opportunities, knowledge, audience_insights]
+  outputs: [service_offers]
+  tools: []
+  dependencies: []
+  required_context: [objective]
+  allowed_actions: [write_draft, propose_offer]
+  restricted_actions: [send_external_message, sign_contract, commit_to_client, spend_money]
+  confidence_requirements: {min_confidence: 0.5}
+  quality_checks: []
+  escalation_rules:
+    - "Proposals, SOWs and any external commitment require human approval."
+  cost_class: MEDIUM_COST
+  priority: 5
+  status: ACTIVE
+  executor: llm
+  prompt_template: strategy
+  capabilities: [services]
+agents:
+  - {id: consulting_strategist, name: Consulting Strategist, cost_class: HIGH_COST, focus: "Design consulting offers grounded in demonstrated expertise."}
+  - {id: ai_consulting, name: AI-Consulting Agent, focus: "Shape AI consulting engagements (assessment, roadmap, implementation)."}
+  - {id: automation_consulting, name: Automation-Consulting Agent, focus: "Shape automation consulting engagements."}
+  - {id: implementation, name: Implementation Strategist, focus: "Plan client implementation phases and risks."}
+  - {id: packaging, name: Service-Packaging Agent, focus: "Package services into fixed-scope offers."}
+  - {id: proposal, name: Proposal Agent, focus: "Draft proposals (never sent without approval).", outputs: [drafts]}
+  - {id: sow, name: Statement-of-Work Agent, focus: "Draft statements of work (never signed without approval).", outputs: [drafts]}
+  - {id: discovery, name: Client-Discovery Agent, focus: "Prepare client discovery questions and agendas."}
+  - {id: onboarding, name: Client-Onboarding Agent, focus: "Design client onboarding checklists."}
+  - {id: delivery, name: Delivery-Process Agent, focus: "Design repeatable delivery processes."}
+  - {id: client_success, name: Client-Success Agent, focus: "Plan client success reviews and renewal signals."}
+  - {id: case_study, name: Service Case-Study Agent, focus: "Write client case studies only from approved, real engagement data."}

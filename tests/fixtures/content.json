@@ -1,0 +1,8 @@
+[
+  {"artifact_id": "good-linkedin", "platform": "linkedin", "title": "What Widget-1 changes",
+   "text": "ExampleAI released Widget-1 this month, and one number stands out: 87.5% on the Example benchmark (source: ExampleAI).\n\nIn plain terms, a benchmark is a standard test that lets you compare models. For example, if two models answer the same set of questions, the score tells you how often each was right.\n\nWhat this means for builders:\n- Re-run your own evaluations before switching.\n- Check pricing against your usage.\n- Treat benchmark gains as a signal, not proof.\n\nWhich of your workflows would you test first? Comment below.",
+   "claim_ids": ["c1"], "source_ids": ["s1"], "cta": "Comment below"},
+  {"artifact_id": "bad-x", "platform": "x_post", "title": "INSANE",
+   "text": "You won't believe this revolutionary game-changer!!! Widget-1 is INSANE and will 10x your business with guaranteed passive income. 42 companies already switched. Act now before it's too late! Delve into the ever-evolving landscape and unlock the power of AI today, this is the future of everything and you need to be there first.",
+   "claim_ids": ["c3"], "source_ids": ["s1"], "cta": "Act now"}
+]

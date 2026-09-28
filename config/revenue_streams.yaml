@@ -1,0 +1,17 @@
+# Revenue streams the system can reason about. None is assumed to work: each
+# entry lists the evidence that must exist before it is pursued. Add a stream
+# by adding an entry (see docs/EXTENDING.md).
+revenue_streams:
+  consulting:        {agents: [services.consulting_strategist, revenue.consulting_monetization], evidence_needed: ["inbound requests or discovery calls", "demonstrated expertise"], approval: [external_contract]}
+  ai_automation_services: {agents: [services.automation_consulting, revenue.consulting_monetization], evidence_needed: ["documented repeatable workflow", "a first paying client"], approval: [external_contract]}
+  digital_products:  {agents: [digital_products.guide, revenue.digital_product_monetization], evidence_needed: ["audience demand signal (lead-magnet signups)"], approval: [financial_transaction, major_product_launch]}
+  courses:           {agents: [education.course_architect, revenue.course_monetization], evidence_needed: ["waitlist signups", "workshop attendance"], approval: [major_product_launch]}
+  workshops:         {agents: [education.workshop_designer, digital_products.workshop], evidence_needed: ["registrations"], approval: [financial_transaction]}
+  templates:         {agents: [digital_products.template], evidence_needed: ["downloads of a free version"], approval: [financial_transaction]}
+  prompt_workflow_products: {agents: [digital_products.prompt_product, digital_products.workflow_product], evidence_needed: ["usage of free version"], approval: [financial_transaction]}
+  affiliate:         {agents: [revenue.affiliate], evidence_needed: ["genuine product fit", "disclosure in place"], approval: [publish_content]}
+  sponsorship:       {agents: [revenue.sponsorship, marketing.sponsorship], evidence_needed: ["audience size and engagement from real analytics"], approval: [external_contract]}
+  memberships:       {agents: [revenue.membership, digital_products.membership], evidence_needed: ["recurring engagement"], approval: [financial_transaction]}
+  subscriptions:     {agents: [revenue.subscription], evidence_needed: ["retention data"], approval: [financial_transaction]}
+  saas:              {agents: [software.saas_idea, revenue.saas_monetization], evidence_needed: ["validated problem", "prototype usage"], approval: [major_product_launch, production_change]}
+  licensing:         {agents: [revenue.licensing], evidence_needed: ["asset with demonstrated demand"], approval: [external_contract]}
