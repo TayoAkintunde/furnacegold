@@ -1,0 +1,211 @@
+{
+ "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no Anthropic API key in this environment); grounded only in demo/teaching/sources.json",
+ "responses": {
+  "teaching.level_designer": {
+   "TASK": "see stage",
+   "FINDINGS": [
+    "Three distinct lessons from one discovery."
+   ],
+   "EVIDENCE": [],
+   "ASSUMPTIONS": [],
+   "UNCERTAINTIES": [],
+   "RECOMMENDATIONS": [],
+   "NEXT_ACTION": "",
+   "CONFIDENCE": 0.8,
+   "SOURCES": [],
+   "DATA": {
+    "teaching_levels": [
+     {
+      "level": "beginner",
+      "title": "What is a Gemini managed agent? Clean a CSV in AI Studio (no code)",
+      "question": "What is this and how do I use it?",
+      "promise": "Use an AI Studio agent template to clean a file and download the result.",
+      "demo": "steps 1-6 of the plan, no Python",
+      "outcome": "a cleaned CSV and a plain-English idea of what a sandbox is",
+      "prerequisites": [
+       "Google account"
+      ],
+      "est_minutes": 7,
+      "value_statement": "After this you can use an AI Studio agent template to clean a messy CSV without writing code.",
+      "claim_ids": [
+       "g5",
+       "g3"
+      ]
+     },
+     {
+      "level": "intermediate",
+      "title": "Automate a weekly file clean-up with the Gemini Interactions API",
+      "question": "How can I use this to solve a real problem?",
+      "promise": "Script the same job in Python and keep working in one sandbox across requests.",
+      "demo": "steps 7-8, plus a second file",
+      "outcome": "a reusable Python script that uploads, cleans, charts and downloads",
+      "prerequisites": [
+       "Gemini API key",
+       "Python basics"
+      ],
+      "est_minutes": 12,
+      "value_statement": "After this you can run a managed agent from Python and reuse its sandbox with the environment id.",
+      "claim_ids": [
+       "g7",
+       "g3",
+       "g6"
+      ]
+     },
+     {
+      "level": "advanced",
+      "title": "A production-shaped file agent: Files API, Credentials API and scheduled runs",
+      "question": "How can I build a serious workflow/system with this?",
+      "promise": "Design a scheduled job that feeds exports to the agent, stores results, and uses registered credentials for a connected service.",
+      "demo": "architecture sketch, credential registration, a scheduled run, failure handling",
+      "outcome": "a runnable design with secrets kept out of prompts",
+      "prerequisites": [
+       "the intermediate lesson",
+       "a scheduler (cron or similar)"
+      ],
+      "est_minutes": 20,
+      "value_statement": "After this you can design a scheduled file-processing agent that keeps secrets out of the prompt using the Credentials API.",
+      "claim_ids": [
+       "g4",
+       "g3",
+       "g7"
+      ]
+     }
+    ]
+   }
+  },
+  "teaching.production_planner": {
+   "TASK": "see stage",
+   "FINDINGS": [
+    "Setup, shot list, chapters, titles, description, resources."
+   ],
+   "EVIDENCE": [],
+   "ASSUMPTIONS": [],
+   "UNCERTAINTIES": [
+    "Pricing and free-tier limits must be checked before recording."
+   ],
+   "RECOMMENDATIONS": [],
+   "NEXT_ACTION": "",
+   "CONFIDENCE": 0.8,
+   "SOURCES": [],
+   "DATA": {
+    "production": [
+     {
+      "opp_id": "t1",
+      "setup_checklist": [
+       "Close unrelated tabs and notifications",
+       "Sign in to AI Studio before recording",
+       "Create sales_messy.csv (fictional data only)",
+       "Prepare the Python script in an editor, with the key loaded from an environment variable, never on screen",
+       "Zoom the browser and terminal to a readable size"
+      ],
+      "accounts_and_costs": [
+       "Google AI Studio account",
+       "Gemini API key — check current pricing and free-tier limits before recording"
+      ],
+      "test_data": [
+       "sales_messy.csv: about forty rows, blank rows, three date formats, prices with currency symbols as text"
+      ],
+      "shot_list": [
+       {
+        "shot": 1,
+        "on_screen": "face or title card with the before/after spreadsheet",
+        "duration_s": 12
+       },
+       {
+        "shot": 2,
+        "on_screen": "AI Studio Agents tab and template settings",
+        "duration_s": 60
+       },
+       {
+        "shot": 3,
+        "on_screen": "messy CSV, attach, task prompt",
+        "duration_s": 60
+       },
+       {
+        "shot": 4,
+        "on_screen": "agent steps running",
+        "duration_s": 90
+       },
+       {
+        "shot": 5,
+        "on_screen": "before/after side by side",
+        "duration_s": 45
+       },
+       {
+        "shot": 6,
+        "on_screen": "Python script and output",
+        "duration_s": 120
+       },
+       {
+        "shot": 7,
+        "on_screen": "environment-id mistake and fix",
+        "duration_s": 90
+       },
+       {
+        "shot": 8,
+        "on_screen": "caveats slide",
+        "duration_s": 45
+       }
+      ],
+      "callouts": [
+       "Sandbox = temporary Linux machine for this task",
+       "Store the environment ID",
+       "Keys go in the Credentials API, not the prompt",
+       "Preview: check pricing"
+      ],
+      "chapters": [
+       {
+        "time": "00:00",
+        "title": "The result"
+       },
+       {
+        "time": "00:15",
+        "title": "What changed"
+       },
+       {
+        "time": "01:10",
+        "title": "AI Studio agent templates"
+       },
+       {
+        "time": "03:00",
+        "title": "Cleaning the file"
+       },
+       {
+        "time": "05:30",
+        "title": "Before and after"
+       },
+       {
+        "time": "06:30",
+        "title": "Same thing in Python"
+       },
+       {
+        "time": "08:30",
+        "title": "The environment ID mistake"
+       },
+       {
+        "time": "10:00",
+        "title": "Caveats"
+       }
+      ],
+      "title_options": [
+       "Let a Gemini agent clean your messy CSV (AI Studio + Python)",
+       "Gemini managed agents: give it a file, get a better file back",
+       "The one setting that keeps your files between Gemini agent requests"
+      ],
+      "thumbnail_text_options": [
+       "MESSY CSV → CLEAN",
+       "Agent does the cleanup",
+       "Don't lose your files"
+      ],
+      "description": "Google updated Gemini API managed agents (antigravity-preview-09-2026) and added a Files API and a Credentials API. In this tutorial you give an agent a messy spreadsheet in AI Studio, watch it clean the data in its own sandbox, download the result, then do the same from Python and keep working in the same sandbox with the environment ID. Caveats: preview service; check pricing and free-tier limits; never paste keys into prompts.",
+      "resources": [
+       "https://ai.google.dev/gemini-api/docs/antigravity-agent",
+       "https://aistudio.google.com/learn/managed-agents-updated-harness-files-credentials",
+       "practice pack: sales_messy.csv + task prompt (to be created)"
+      ]
+     }
+    ]
+   }
+  }
+ }
+}

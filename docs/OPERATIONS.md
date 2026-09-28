@@ -37,31 +37,25 @@ python -m aibos sources list
 
 Source types, from strongest to weakest: `primary`, `official_docs`, `paper`, `repository`, `news`, `analysis`, `blog`, `social`, `unknown`.
 
-## Daily workflow (Part 37)
+## Daily workflow: screen-recorded teaching (primary)
 
 ```bash
-python -m aibos daily "AI agents"          # uses data/sources/sources.json
+python -m aibos teach-today ["coding agents"]    # same as: python -m aibos daily
+python -m aibos teaching list                    # the teaching queue
+python -m aibos teaching select <id> --by <you>  # only you decide what gets recorded
+python -m aibos record <id>                      # full recording package -> READY_TO_RECORD
+# ... you record it ...
+python -m aibos content-from-recording <id> --transcript <file> --by <you>
+python -m aibos approvals list                   # review the 14 adapted formats
+python -m aibos teaching advance <id> EDITING --by <you>
+python -m aibos teaching advance <id> READY_TO_PUBLISH --by <you>
+python -m aibos teaching advance <id> PUBLISHED --url <where you published> --by <you>
+python -m aibos teaching analyze <id>            # after exporting metrics to data/metrics/ (asset_id = <id>)
 ```
 
-The daily pipeline runs these stages in order:
+The full guide is in [TEACHING.md](TEACHING.md). **Nothing is recorded or published automatically.**
 
-1. Source security scan
-2. Research new developments
-3. Verify findings
-4. Update knowledge (plus gap and staleness checks)
-5. Emerging opportunities
-6. Content opportunities
-7. Education opportunities (learning paths)
-8. Product opportunities
-9. Draft platform content
-10. Quality checks
-11. Build the approval queue
-12. Analyse previous performance from `data/metrics/`
-13. Agent evaluation and recommendations
-14. Security scan
-15. Report and learning
-
-**Nothing is published.** Review the queue with `python -m aibos approvals list`.
+The earlier general business run (research, opportunities and drafts) is still available as `python -m aibos pipeline daily_business "<topic>"`.
 
 Scheduling: `python -m aibos agent-test automation.scheduler` prints cron lines. Nothing is installed automatically; add them yourself with `crontab -e`.
 

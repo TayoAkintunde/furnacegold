@@ -79,9 +79,9 @@ stages:
     orchestrator: orch.quality
     description: "Score drafts; block anything with blocking issues."
     agents:
-      simple: [content_quality.factuality, content_quality.hype, content_quality.platform_fit]
-      medium: [content_quality.factuality, content_quality.hallucination, content_quality.hype, content_quality.ai_slop, content_quality.platform_fit, content_quality.readability]
-      complex: [content_quality.factuality, content_quality.hallucination, content_quality.hype, content_quality.clickbait, content_quality.ai_slop, content_quality.platform_fit, content_quality.readability, content_quality.plagiarism, content_quality.educational_value]
+      simple: [content_quality.factuality, content_quality.hype, content_quality.platform_fit, content_quality.value_first]
+      medium: [content_quality.factuality, content_quality.hallucination, content_quality.hype, content_quality.ai_slop, content_quality.platform_fit, content_quality.readability, content_quality.value_first]
+      complex: [content_quality.factuality, content_quality.hallucination, content_quality.hype, content_quality.clickbait, content_quality.ai_slop, content_quality.platform_fit, content_quality.readability, content_quality.plagiarism, content_quality.educational_value, content_quality.value_first]
     requires: [artifacts]
     post: quality_gate
   OPPORTUNITY:

@@ -31,7 +31,7 @@ class RegistryTests(unittest.TestCase):
         self.assertTrue({Level.MASTER, Level.DOMAIN_ORCHESTRATOR, Level.SPECIALIST, Level.MICRO_SPECIALIST,
                          Level.QUALITY, Level.ANALYTICS_LEARNING} <= levels)
         self.assertEqual(len(self.reg.by_level(Level.MASTER)), 1)
-        self.assertEqual(len(self.reg.by_level(Level.DOMAIN_ORCHESTRATOR)), 15)
+        self.assertEqual(len(self.reg.by_level(Level.DOMAIN_ORCHESTRATOR)), 16)   # 15 from the spec + Teaching
 
     def test_statuses_valid(self):
         self.assertTrue(all(isinstance(a.status, AgentStatus) for a in self.reg.all()))

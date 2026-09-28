@@ -1,0 +1,70 @@
+# Screen-recorded teaching (the system's primary purpose). See config/teaching.yaml.
+# Guiding question: "What important thing happened in AI recently that I can demonstrate
+# and teach people how to use?"  (not "what AI news can I post today?")
+family: teaching
+domain: teaching
+level: 2
+defaults:
+  purpose: "{focus}"
+  inputs: [objective, claims, knowledge]
+  outputs: [teaching_opportunities]
+  tools: []
+  dependencies: []
+  required_context: [claims]
+  allowed_actions: [write_draft, analyze_supplied_data]
+  restricted_actions: [publish, send_external_message, spend_money, fabricate_claims, fabricate_metrics, promise_outcomes]
+  confidence_requirements: {min_confidence: 0.6, claims_must_be_verified: true}
+  quality_checks: []
+  escalation_rules:
+    - "Nothing is published or recorded automatically; the owner decides what gets recorded and published."
+    - "Reject a topic if the evidence is weak or the demonstration does not give the viewer meaningful value."
+  cost_class: MEDIUM_COST
+  priority: 7
+  status: ACTIVE
+  executor: llm
+  capabilities: [teaching]
+agents:
+  # --- model-backed specialists ---
+  - {id: opportunity_analyst, name: 'Teaching-Opportunity Analyst ("Can I teach this?")', cost_class: HIGH_COST, priority: 9,
+     prompt_template: teaching_opportunity, inputs: [objective, claims, knowledge, radar, findings, teaching_learning, business_context],
+     focus: "For each important verified development decide whether it can be demonstrated and taught: what changed, why it matters, who should care, what someone can actually do with it, whether and how it can be demonstrated, what problem it solves, what can be built, beginner mistakes, the simplest useful example, an advanced example, and what would make the tutorial genuinely valuable. Answer the value-first questions specifically."}
+  - {id: recording_planner, name: Screen-Recording Planner, cost_class: HIGH_COST, priority: 9, prompt_template: recording_plan,
+     inputs: [claims, teaching_opportunities, teaching_selection, knowledge], outputs: [recording_plans],
+     focus: "Turn the selected teaching opportunity into a screen-recording plan: a 5-15 second hook stating the result or problem, brief context, exactly what appears on screen step by step, teaching moments where the presenter pauses to explain, proof (the real result shown), and the takeaway (what the viewer can now do)."}
+  - {id: script_writer, name: Screen-Recording Script Writer, cost_class: HIGH_COST, priority: 9, prompt_template: teaching_script,
+     inputs: [claims, recording_plans, teaching_selection], outputs: [scripts],
+     focus: "Write the natural spoken script for the recording: a knowledgeable person showing another person how to do something. Simple language, concrete examples, real workflow, useful shortcuts, one honest mistake-and-correction, important caveats. No corporate marketing, fake urgency, motivational filler, unnecessary jargon or hype."}
+  - {id: level_designer, name: Multi-Level Teaching Designer, prompt_template: teaching_levels,
+     inputs: [claims, teaching_selection, recording_plans], outputs: [teaching_levels],
+     focus: "Turn one discovery into three educational assets: Beginner ('what is this and how do I use it?'), Intermediate ('how do I use it to solve a real problem?'), Advanced ('how do I build a serious workflow or system with it?')."}
+  - {id: repurposer, name: Recording Repurposer, cost_class: HIGH_COST, prompt_template: repurpose_package,
+     inputs: [claims, teaching_selection, recording_plans, scripts, transcript, transcript_analysis], outputs: [content, repurposing_plan],
+     focus: "Turn one screen recording into a content package (YouTube tutorial, YouTube Short, TikTok, Instagram Reel, LinkedIn post, X post, X thread, newsletter section, blog tutorial, carousel concept, FAQ, checklist, downloadable resource, future course lesson). Adapt each format to its audience and purpose; never duplicate the same text across formats. Every piece states what the viewer can now do."}
+  - {id: business_analyst, name: Teaching Business-Opportunity Analyst, prompt_template: teaching_business,
+     inputs: [claims, teaching_selection, teaching_opportunities, business_context], outputs: [teaching_business],
+     focus: "Assess whether the selected topic could genuinely lead to a digital product, course, workshop, consulting, automation service, implementation service, SaaS/software or affiliate revenue. Do not force monetization: 'none' is a valid answer."}
+  - {id: production_planner, name: Recording Production Planner, prompt_template: production_package,
+     inputs: [claims, teaching_selection, recording_plans, scripts], outputs: [production],
+     focus: "Prepare everything needed before pressing record: environment setup, accounts and costs, test data, a shot list, on-screen callouts, chapter markers, title and thumbnail-text options, the video description and resources to link."}
+  - {id: transcript_analyst, name: Recording Transcript Analyst, prompt_template: transcript_analysis,
+     inputs: [claims, transcript, teaching_selection, scripts], outputs: [transcript_analysis],
+     focus: "Analyse a completed recording's transcript: what was actually shown, key moments with timestamps, claims made on camera (to verify), questions answered, mistakes shown, and the strongest clips for short-form formats."}
+  # --- deterministic checks and hooks (Level 4/5) ---
+  - {id: value_gate, name: Value-First Gate, level: 4, executor: "rule:teaching_value_gate", cost_class: LOW_COST,
+     outputs: [teaching_value], focus: "Reject any teaching idea that cannot say specifically what the viewer can now do, solve, build, understand or avoid."}
+  - {id: scorer, name: Teaching-Opportunity Scorer, level: 4, executor: "rule:teaching_score", cost_class: LOW_COST,
+     outputs: [teaching_scores, teaching_selection], focus: "Score opportunities on newness, practical usefulness, educational value, demonstrability, audience interest, meaningful result, business value and evidence quality; apply hard gates; select today's single most useful recording."}
+  - {id: feasibility, name: Demonstration-Feasibility Checker, level: 4, executor: "rule:recording_feasibility", cost_class: LOW_COST,
+     outputs: [recording_checks], focus: "Check the recording plan can actually be recorded: all sections present, concrete on-screen steps, proof of a real result, prerequisites and costs stated, hook within 5-15 seconds."}
+  - {id: script_quality, name: Spoken-Script Quality Checker, level: 4, executor: "rule:script_quality", cost_class: LOW_COST,
+     outputs: [recording_checks], focus: "Check the spoken script: sounds like a person teaching (not marketing), hook length, takeaway, caveat, a real mistake-and-correction, undefined jargon, hype and fake urgency, estimated duration."}
+  - {id: technical_check, name: Technical-Identifier Verifier, level: 4, executor: "rule:technical_identifiers", cost_class: LOW_COST,
+     outputs: [recording_checks], focus: "Find model ids, API names, commands and package names in plans and scripts and check each appears in verified claims or captured sources; unverified identifiers must be checked on screen before recording."}
+  - {id: repurpose_quality, name: Repurposing-Package Checker, level: 4, executor: "rule:repurpose_quality", cost_class: LOW_COST,
+     outputs: [package_checks], focus: "Check the content package covers every format, adapts rather than duplicates (cross-format overlap), and every piece has a specific value statement."}
+  - {id: transcript_ingest, name: Transcript Ingest, level: 3, executor: "rule:transcript_ingest", cost_class: LOW_COST,
+     outputs: [transcript], focus: "Parse a recording transcript (plain text, SRT or VTT): segments, timestamps, duration, word count."}
+  - {id: performance_analyst, name: Teaching Performance Analyst, level: 5, executor: "rule:teaching_performance", cost_class: LOW_COST,
+     outputs: [teaching_learning], focus: "After publishing: analyse views, retention, watch time, saves, shares, comments, questions, clicks, followers, leads and conversions from supplied data; find which topics, demos and hooks worked, where viewers dropped off, repeated questions and what to teach next; feed this back into topic selection."}
+  - {id: reporter, name: Teaching Report Writer, level: 5, executor: "rule:teaching_report", cost_class: LOW_COST,
+     outputs: [report], focus: "Write the teach-today brief, the recording package, or the content package as markdown files."}

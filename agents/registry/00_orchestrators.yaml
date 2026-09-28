@@ -42,4 +42,5 @@ agents:
   - {id: automation, name: Automation Orchestrator, focus: "workflow automation", domain: automation}
   - {id: quality, name: Quality Orchestrator, focus: "verification and content quality", domain: quality}
   - {id: security, name: Security Orchestrator, focus: "security and privacy", domain: security}
+  - {id: teaching, name: Teaching Orchestrator, focus: "screen-recorded teaching (the primary purpose): trend -> understanding -> demonstration -> teaching -> distribution -> audience learning -> monetization", domain: teaching}
   - {id: learning, name: Learning Orchestrator, focus: "agent evaluation and system improvement", domain: learning}

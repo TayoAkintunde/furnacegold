@@ -1,0 +1,829 @@
+{
+  "affiliate_opportunity": "none genuine",
+  "audience": "developers and technical operators who want an agent to process files, and no-code builders prototyping in AI Studio",
+  "category": "AI agents",
+  "claims": [
+    {
+      "claim_id": "g1",
+      "confidence": 0.693,
+      "kind": "FACT",
+      "quotes": [
+        "The antigravity-preview-09-2026 version was released and replaces the previous antigravity-preview-05-2026"
+      ],
+      "source_ids": [
+        "s1"
+      ],
+      "text": "Google released the antigravity-preview-09-2026 managed-agent harness, which replaces antigravity-preview-05-2026.",
+      "verification": "SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: PASS \u2014 best source score 0.95",
+        "verification.citation: PASS \u2014 cites ['s1']",
+        "verification.primary_source: PASS \u2014 quote found in primary source s1 (Google)",
+        "verification.quote: PASS \u2014 1 quotation(s) verbatim",
+        "verification.statistics: NA \u2014 no numbers",
+        "verification.date: WARN \u2014 no parseable publication date on cited sources",
+        "verification.cross_source: WARN \u2014 only 1 publisher(s) ['Google']; independent corroboration absent",
+        "verification.contradiction: PASS \u2014 no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "g2",
+      "confidence": 1.0,
+      "kind": "FACT",
+      "quotes": [
+        "runs on Gemini 3.8 Flash with the model configurable per interaction",
+        "defaulting to Gemini 3.8 Flash"
+      ],
+      "source_ids": [
+        "s2",
+        "s4"
+      ],
+      "text": "The updated harness runs on Gemini 3.8 Flash, with the model configurable per interaction.",
+      "verification": "SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: PASS \u2014 best source score 1.00",
+        "verification.citation: PASS \u2014 cites ['s2', 's4']",
+        "verification.primary_source: PASS \u2014 quote found in primary source s2 (Google)",
+        "verification.quote: PASS \u2014 2 quotation(s) verbatim",
+        "verification.statistics: PASS \u2014 numbers ['3.8'] found in sources",
+        "verification.date: PASS \u2014 newest source 2026-09-19 (9 days old)",
+        "verification.cross_source: PASS \u2014 2 independent publishers: ['AICoder', 'Google']",
+        "verification.contradiction: PASS \u2014 no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "g3",
+      "confidence": 1.0,
+      "kind": "FACT",
+      "quotes": [
+        "You can upload into a running sandbox, list what the agent wrote, and download the files you need",
+        "The Files API adds a dedicated file-context surface for agent workflows"
+      ],
+      "source_ids": [
+        "s2",
+        "s4"
+      ],
+      "text": "A new Files API lets you upload into a running sandbox, list what the agent wrote, and download the files you need.",
+      "verification": "SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: PASS \u2014 best source score 1.00",
+        "verification.citation: PASS \u2014 cites ['s2', 's4']",
+        "verification.primary_source: PASS \u2014 quote found in primary source s2 (Google)",
+        "verification.quote: PASS \u2014 2 quotation(s) verbatim",
+        "verification.statistics: NA \u2014 no numbers",
+        "verification.date: PASS \u2014 newest source 2026-09-19 (9 days old)",
+        "verification.cross_source: PASS \u2014 2 independent publishers: ['AICoder', 'Google']",
+        "verification.contradiction: PASS \u2014 no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "g4",
+      "confidence": 0.729,
+      "kind": "FACT",
+      "quotes": [
+        "You can register secrets once and attach them to an MCP server or a sandbox environment variable, and the model never sees them"
+      ],
+      "source_ids": [
+        "s2"
+      ],
+      "text": "A new Credentials API lets you register secrets once and attach them to an MCP server or a sandbox environment variable without the model seeing them.",
+      "verification": "SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: PASS \u2014 best source score 1.00",
+        "verification.citation: PASS \u2014 cites ['s2']",
+        "verification.primary_source: PASS \u2014 quote found in primary source s2 (Google)",
+        "verification.quote: PASS \u2014 1 quotation(s) verbatim",
+        "verification.statistics: NA \u2014 no numbers",
+        "verification.date: WARN \u2014 no parseable publication date on cited sources",
+        "verification.cross_source: WARN \u2014 only 1 publisher(s) ['Google']; independent corroboration absent",
+        "verification.contradiction: PASS \u2014 no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "g5",
+      "confidence": 0.693,
+      "kind": "FACT",
+      "quotes": [
+        "Google AI Studio Playground provides a visual interface to prototype and learn how to build managed agents without having to create and write API calls",
+        "The Agents tab has a series of templates that pre-configure the base Antigravity Agent"
+      ],
+      "source_ids": [
+        "s3"
+      ],
+      "text": "Google AI Studio's playground and Agents-tab templates let you prototype managed agents without writing API calls.",
+      "verification": "SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: PASS \u2014 best source score 0.95",
+        "verification.citation: PASS \u2014 cites ['s3']",
+        "verification.primary_source: PASS \u2014 quote found in primary source s3 (Google)",
+        "verification.quote: PASS \u2014 2 quotation(s) verbatim",
+        "verification.statistics: NA \u2014 no numbers",
+        "verification.date: WARN \u2014 no parseable publication date on cited sources",
+        "verification.cross_source: WARN \u2014 only 1 publisher(s) ['Google']; independent corroboration absent",
+        "verification.contradiction: PASS \u2014 no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "g6",
+      "confidence": 0.693,
+      "kind": "FACT",
+      "quotes": [
+        "Each call can provision a Linux sandbox and starts a tool-use loop",
+        "The agent can run Bash, Python, and Node.js commands, install packages, run tests"
+      ],
+      "source_ids": [
+        "s1"
+      ],
+      "text": "Each call can provision a Linux sandbox where the agent can run Bash, Python and Node.js commands, install packages and run tests.",
+      "verification": "SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: PASS \u2014 best source score 0.95",
+        "verification.citation: PASS \u2014 cites ['s1']",
+        "verification.primary_source: PASS \u2014 quote found in primary source s1 (Google)",
+        "verification.quote: PASS \u2014 2 quotation(s) verbatim",
+        "verification.statistics: NA \u2014 no numbers",
+        "verification.date: WARN \u2014 no parseable publication date on cited sources",
+        "verification.cross_source: WARN \u2014 only 1 publisher(s) ['Google']; independent corroboration absent",
+        "verification.contradiction: PASS \u2014 no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "g7",
+      "confidence": 0.693,
+      "kind": "FACT",
+      "quotes": [
+        "create an interaction with the agent \"antigravity-preview-09-2026\", pass input text, and set environment to \"remote\"",
+        "You should store interaction.id and interaction.environment_id to continue the conversation in the same sandbox"
+      ],
+      "source_ids": [
+        "s1"
+      ],
+      "text": "From code, you create an interaction with the agent set to antigravity-preview-09-2026 and the environment set to remote, and store interaction.environment_id to keep using the same sandbox.",
+      "verification": "SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: PASS \u2014 best source score 0.95",
+        "verification.citation: PASS \u2014 cites ['s1']",
+        "verification.primary_source: PASS \u2014 quote found in primary source s1 (Google)",
+        "verification.quote: PASS \u2014 2 quotation(s) verbatim",
+        "verification.statistics: NA \u2014 no numbers",
+        "verification.date: WARN \u2014 no parseable publication date on cited sources",
+        "verification.cross_source: WARN \u2014 only 1 publisher(s) ['Google']; independent corroboration absent",
+        "verification.contradiction: PASS \u2014 no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "g8",
+      "confidence": 0.729,
+      "kind": "FACT",
+      "quotes": [
+        "antigravity-preview-05-2026 will be deprecated on October 5, 2026, after which requests to it are redirected to the updated harness"
+      ],
+      "source_ids": [
+        "s2"
+      ],
+      "text": "antigravity-preview-05-2026 will be deprecated on October 5, 2026, after which requests to it are redirected to the updated harness.",
+      "verification": "SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: PASS \u2014 best source score 1.00",
+        "verification.citation: PASS \u2014 cites ['s2']",
+        "verification.primary_source: PASS \u2014 quote found in primary source s2 (Google)",
+        "verification.quote: PASS \u2014 1 quotation(s) verbatim",
+        "verification.statistics: PASS \u2014 numbers ['5', '2026'] found in sources",
+        "verification.date: WARN \u2014 no parseable publication date on cited sources",
+        "verification.cross_source: WARN \u2014 only 1 publisher(s) ['Google']; independent corroboration absent",
+        "verification.contradiction: PASS \u2014 no contradiction detected"
+      ]
+    }
+  ],
+  "content_formats": [
+    {
+      "approval_id": "apr_331299b269e75025",
+      "artifact_id": "pkg-youtube_tutorial",
+      "blocked": false,
+      "format": "youtube_tutorial",
+      "platform": "youtube_video"
+    },
+    {
+      "approval_id": "apr_80a8e6a44eb41c12",
+      "artifact_id": "pkg-youtube_short",
+      "blocked": false,
+      "format": "youtube_short",
+      "platform": "youtube_shorts"
+    },
+    {
+      "approval_id": "apr_d3a1931c9a64a892",
+      "artifact_id": "pkg-tiktok",
+      "blocked": false,
+      "format": "tiktok",
+      "platform": "tiktok"
+    },
+    {
+      "approval_id": "apr_a7abfb1df17ba152",
+      "artifact_id": "pkg-instagram_reel",
+      "blocked": false,
+      "format": "instagram_reel",
+      "platform": "instagram_reel"
+    },
+    {
+      "approval_id": "apr_6fe9db020796612a",
+      "artifact_id": "pkg-linkedin_post",
+      "blocked": false,
+      "format": "linkedin_post",
+      "platform": "linkedin"
+    },
+    {
+      "approval_id": "apr_b26777f74d8dc7f7",
+      "artifact_id": "pkg-x_post",
+      "blocked": false,
+      "format": "x_post",
+      "platform": "x_post"
+    },
+    {
+      "approval_id": "apr_dd624ad126b75d58",
+      "artifact_id": "pkg-x_thread",
+      "blocked": false,
+      "format": "x_thread",
+      "platform": "x_thread"
+    },
+    {
+      "approval_id": "apr_ae955b8b923c00af",
+      "artifact_id": "pkg-newsletter_section",
+      "blocked": false,
+      "format": "newsletter_section",
+      "platform": "newsletter_section"
+    },
+    {
+      "approval_id": "apr_76de488a2ab51204",
+      "artifact_id": "pkg-blog_tutorial",
+      "blocked": false,
+      "format": "blog_tutorial",
+      "platform": "blog_tutorial"
+    },
+    {
+      "approval_id": "apr_31164afc4cfee445",
+      "artifact_id": "pkg-carousel_concept",
+      "blocked": false,
+      "format": "carousel_concept",
+      "platform": "carousel_concept"
+    },
+    {
+      "approval_id": "apr_959123d2804b7ec4",
+      "artifact_id": "pkg-faq",
+      "blocked": false,
+      "format": "faq",
+      "platform": "faq"
+    },
+    {
+      "approval_id": "apr_ec1f8858679de4e5",
+      "artifact_id": "pkg-checklist",
+      "blocked": false,
+      "format": "checklist",
+      "platform": "checklist"
+    },
+    {
+      "approval_id": "apr_ca1166895d03b48b",
+      "artifact_id": "pkg-downloadable_resource",
+      "blocked": false,
+      "format": "downloadable_resource",
+      "platform": "downloadable_resource"
+    },
+    {
+      "approval_id": "apr_cb8809914fc64b74",
+      "artifact_id": "pkg-course_lesson",
+      "blocked": false,
+      "format": "course_lesson",
+      "platform": "course_lesson"
+    }
+  ],
+  "content_run_id": "20260928T142941Z_42d6ad",
+  "course_opportunity": "none genuine",
+  "created_at": "2026-09-28T14:29:40+00:00",
+  "date_discovered": "2026-09-28",
+  "demo_idea": "AI Studio Agents tab template -> attach a made-up messy CSV -> task -> watch the steps -> download the cleaned file; then the same from Python with a second request in the same sandbox",
+  "difficulty": "beginner",
+  "estimated_recording_time": 12,
+  "gate_reasons": [],
+  "history": [
+    {
+      "at": "2026-09-28T14:29:40+00:00",
+      "by": "system",
+      "note": "created",
+      "to": "RESEARCHED"
+    },
+    {
+      "at": "2026-09-28T14:29:40+00:00",
+      "by": "demo-operator (illustration only, not the owner)",
+      "from": "RESEARCHED",
+      "note": "owner chose to record this",
+      "to": "SELECTED"
+    },
+    {
+      "at": "2026-09-28T14:29:41+00:00",
+      "by": "system",
+      "from": "SELECTED",
+      "note": "recording package 20260928T142941Z_53a4d9",
+      "to": "READY_TO_RECORD"
+    },
+    {
+      "at": "2026-09-28T14:29:41+00:00",
+      "by": "demo-operator (script read-through, NOT a real recording)",
+      "from": "READY_TO_RECORD",
+      "note": "transcript supplied: SCRIPT_READTHROUGH_NOT_A_REAL_RECORDING.vtt",
+      "to": "RECORDED"
+    }
+  ],
+  "id": "tch_c187c188ff",
+  "lessons_learned": null,
+  "levels": [
+    {
+      "claim_ids": [
+        "g5",
+        "g3"
+      ],
+      "demo": "steps 1-6 of the plan, no Python",
+      "est_minutes": 7,
+      "level": "beginner",
+      "outcome": "a cleaned CSV and a plain-English idea of what a sandbox is",
+      "prerequisites": [
+        "Google account"
+      ],
+      "produced_by": "teaching.level_designer",
+      "promise": "Use an AI Studio agent template to clean a file and download the result.",
+      "question": "What is this and how do I use it?",
+      "title": "What is a Gemini managed agent? Clean a CSV in AI Studio (no code)",
+      "value_statement": "After this you can use an AI Studio agent template to clean a messy CSV without writing code."
+    },
+    {
+      "claim_ids": [
+        "g7",
+        "g3",
+        "g6"
+      ],
+      "demo": "steps 7-8, plus a second file",
+      "est_minutes": 12,
+      "level": "intermediate",
+      "outcome": "a reusable Python script that uploads, cleans, charts and downloads",
+      "prerequisites": [
+        "Gemini API key",
+        "Python basics"
+      ],
+      "produced_by": "teaching.level_designer",
+      "promise": "Script the same job in Python and keep working in one sandbox across requests.",
+      "question": "How can I use this to solve a real problem?",
+      "title": "Automate a weekly file clean-up with the Gemini Interactions API",
+      "value_statement": "After this you can run a managed agent from Python and reuse its sandbox with the environment id."
+    },
+    {
+      "claim_ids": [
+        "g4",
+        "g3",
+        "g7"
+      ],
+      "demo": "architecture sketch, credential registration, a scheduled run, failure handling",
+      "est_minutes": 20,
+      "level": "advanced",
+      "outcome": "a runnable design with secrets kept out of prompts",
+      "prerequisites": [
+        "the intermediate lesson",
+        "a scheduler (cron or similar)"
+      ],
+      "produced_by": "teaching.level_designer",
+      "promise": "Design a scheduled job that feeds exports to the agent, stores results, and uses registered credentials for a connected service.",
+      "question": "How can I build a serious workflow/system with this?",
+      "title": "A production-shaped file agent: Files API, Credentials API and scheduled runs",
+      "value_statement": "After this you can design a scheduled file-processing agent that keeps secrets out of the prompt using the Credentials API."
+    }
+  ],
+  "performance": null,
+  "problem_solved": "cleaning and analysing files with an agent without setting up your own code-execution sandbox",
+  "product_opportunity": [
+    {
+      "cheapest_test": "offer the free practice pack under the video and count downloads",
+      "reasoning": "a practice pack (messy sample files, task prompts, a reusable Python script) directly supports the tutorial and costs little to test",
+      "type": "digital_product"
+    }
+  ],
+  "production": {
+    "accounts_and_costs": [
+      "Google AI Studio account",
+      "Gemini API key \u2014 check current pricing and free-tier limits before recording"
+    ],
+    "callouts": [
+      "Sandbox = temporary Linux machine for this task",
+      "Store the environment ID",
+      "Keys go in the Credentials API, not the prompt",
+      "Preview: check pricing"
+    ],
+    "chapters": [
+      {
+        "time": "00:00",
+        "title": "The result"
+      },
+      {
+        "time": "00:15",
+        "title": "What changed"
+      },
+      {
+        "time": "01:10",
+        "title": "AI Studio agent templates"
+      },
+      {
+        "time": "03:00",
+        "title": "Cleaning the file"
+      },
+      {
+        "time": "05:30",
+        "title": "Before and after"
+      },
+      {
+        "time": "06:30",
+        "title": "Same thing in Python"
+      },
+      {
+        "time": "08:30",
+        "title": "The environment ID mistake"
+      },
+      {
+        "time": "10:00",
+        "title": "Caveats"
+      }
+    ],
+    "description": "Google updated Gemini API managed agents (antigravity-preview-09-2026) and added a Files API and a Credentials API. In this tutorial you give an agent a messy spreadsheet in AI Studio, watch it clean the data in its own sandbox, download the result, then do the same from Python and keep working in the same sandbox with the environment ID. Caveats: preview service; check pricing and free-tier limits; never paste keys into prompts.",
+    "opp_id": "t1",
+    "produced_by": "teaching.production_planner",
+    "resources": [
+      "https://ai.google.dev/gemini-api/docs/antigravity-agent",
+      "https://aistudio.google.com/learn/managed-agents-updated-harness-files-credentials",
+      "practice pack: sales_messy.csv + task prompt (to be created)"
+    ],
+    "setup_checklist": [
+      "Close unrelated tabs and notifications",
+      "Sign in to AI Studio before recording",
+      "Create sales_messy.csv (fictional data only)",
+      "Prepare the Python script in an editor, with the key loaded from an environment variable, never on screen",
+      "Zoom the browser and terminal to a readable size"
+    ],
+    "shot_list": [
+      {
+        "duration_s": 12,
+        "on_screen": "face or title card with the before/after spreadsheet",
+        "shot": 1
+      },
+      {
+        "duration_s": 60,
+        "on_screen": "AI Studio Agents tab and template settings",
+        "shot": 2
+      },
+      {
+        "duration_s": 60,
+        "on_screen": "messy CSV, attach, task prompt",
+        "shot": 3
+      },
+      {
+        "duration_s": 90,
+        "on_screen": "agent steps running",
+        "shot": 4
+      },
+      {
+        "duration_s": 45,
+        "on_screen": "before/after side by side",
+        "shot": 5
+      },
+      {
+        "duration_s": 120,
+        "on_screen": "Python script and output",
+        "shot": 6
+      },
+      {
+        "duration_s": 90,
+        "on_screen": "environment-id mistake and fix",
+        "shot": 7
+      },
+      {
+        "duration_s": 45,
+        "on_screen": "caveats slide",
+        "shot": 8
+      }
+    ],
+    "test_data": [
+      "sales_messy.csv: about forty rows, blank rows, three date formats, prices with currency symbols as text"
+    ],
+    "thumbnail_text_options": [
+      "MESSY CSV \u2192 CLEAN",
+      "Agent does the cleanup",
+      "Don't lose your files"
+    ],
+    "title_options": [
+      "Let a Gemini agent clean your messy CSV (AI Studio + Python)",
+      "Gemini managed agents: give it a file, get a better file back",
+      "The one setting that keeps your files between Gemini agent requests"
+    ]
+  },
+  "quality_blocking": [],
+  "recommended": true,
+  "record_run_id": "20260928T142941Z_53a4d9",
+  "recording_plan": {
+    "audience": "developers and technical operators; no-code builders for the first half",
+    "claim_ids": [
+      "g1",
+      "g2",
+      "g3",
+      "g4",
+      "g5",
+      "g6",
+      "g7",
+      "g8"
+    ],
+    "context": "Google updated the managed agents in the Gemini API (antigravity-preview-09-2026, on Gemini 3.8 Flash) and added a Files API and a Credentials API. A managed agent is one Google runs for you: it plans, runs code, checks the result and repeats until the task is done.",
+    "demonstration": [
+      {
+        "on_screen": "Google AI Studio home, then click the Agents tab and scroll the template list",
+        "say": "These templates are the base Antigravity agent with tools and settings pre-configured.",
+        "step": 1,
+        "why": "orient beginners before any code"
+      },
+      {
+        "on_screen": "Open the base Antigravity agent template and show its tool and environment settings",
+        "say": "This is where the agent's sandbox and tools are configured.",
+        "step": 2,
+        "why": "makes the sandbox concrete"
+      },
+      {
+        "on_screen": "Open sales_messy.csv in a spreadsheet: blank rows, three date formats, prices as text",
+        "say": "Here's our starting point, a file I made up for this video.",
+        "step": 3,
+        "why": "starting state for the before/after proof"
+      },
+      {
+        "on_screen": "Attach sales_messy.csv to the agent and type the task: clean it, standardise dates, convert prices, summarise the changes",
+        "say": "One file, one instruction.",
+        "step": 4,
+        "why": "the simplest useful example"
+      },
+      {
+        "on_screen": "Watch the agent's steps: it writes Python, runs it, reads the output and corrects itself",
+        "say": "Plan, act, check, repeat.",
+        "step": 5,
+        "why": "teaching moment: the agent loop"
+      },
+      {
+        "on_screen": "Download the cleaned file and the change summary; open both next to the original",
+        "say": "Same data, fixed.",
+        "step": 6,
+        "why": "proof"
+      },
+      {
+        "on_screen": "Terminal: a short Python script that creates an interaction with agent antigravity-preview-09-2026, environment remote, then prints `interaction.output_text` and `interaction.environment_id`; the client call shown as `client.interactions.create()`",
+        "say": "Now the same thing from code.",
+        "step": 7,
+        "why": "moves the viewer from playground to something they can automate"
+      },
+      {
+        "on_screen": "Second request asking for a monthly sales chart: first without the environment id (file not found), then with it (chart created)",
+        "say": "This is the mistake almost everyone makes.",
+        "step": 8,
+        "why": "mistake and correction; teaches environment ids"
+      },
+      {
+        "on_screen": "Slide with the limitations and the Credentials API note",
+        "say": "A few honest caveats.",
+        "step": 9,
+        "why": "limitations"
+      }
+    ],
+    "difficulty": "beginner",
+    "estimated_recording_minutes": 12,
+    "hook": {
+      "seconds": 11,
+      "text": "In the next ten minutes you'll give a Gemini agent a messy spreadsheet, let it clean the data in its own sandbox, and download the fixed file."
+    },
+    "limitations": [
+      "preview service: names and limits can change",
+      "antigravity-preview-05-2026 is deprecated on October 5, 2026 (requests redirect to the new harness)",
+      "pricing and free-tier limits not confirmed from a Google source",
+      "do not upload sensitive data to a preview service"
+    ],
+    "opp_id": "t1",
+    "prerequisites": [
+      "Google account with AI Studio access",
+      "Gemini API key (for the Python part)",
+      "Python with the Google GenAI client installed",
+      "sales_messy.csv \u2014 a made-up file with blank rows, mixed date formats and prices typed as text"
+    ],
+    "problem": "cleaning and analysing files with an agent without building your own code-execution sandbox",
+    "produced_by": "teaching.recording_planner",
+    "proof": "The original CSV and the downloaded cleaned CSV side by side, plus the agent's written summary of every change, and the chart from the second request.",
+    "takeaway": "You can now hand a Gemini managed agent a file, let it do the work in its own sandbox, and pull the result back out, first in AI Studio and then from Python.",
+    "teaching_moments": [
+      {
+        "at_step": 2,
+        "explain": "what a sandbox is: a temporary Linux machine that exists only for this agent's task"
+      },
+      {
+        "at_step": 5,
+        "explain": "the plan-act-check loop, and why the agent can fix its own errors"
+      },
+      {
+        "at_step": 8,
+        "explain": "interaction id vs environment id: the environment id is what keeps your files between requests"
+      },
+      {
+        "at_step": 9,
+        "explain": "why secrets go in the Credentials API, never in the prompt"
+      }
+    ],
+    "title": "Let a Gemini agent clean your messy CSV \u2014 AI Studio, then Python",
+    "variation": "Reuse the same environment for a second request, a monthly sales chart built from the cleaned file.",
+    "verify_before_recording": [
+      "current pricing and free-tier limits for managed agents (only a blog claims free-tier access)",
+      "exact Python client method name for creating an interaction (the docs extract only says 'create an interaction')",
+      "where the file-attach control is in the AI Studio Agents playground",
+      "that antigravity-preview-09-2026 is still the current agent id on recording day"
+    ]
+  },
+  "run_id": "20260928T142940Z_71041c",
+  "score": 0.836,
+  "score_breakdown": {
+    "audience_interest": 0.5,
+    "business_value": 0.75,
+    "demonstrability": 1.0,
+    "educational_value": 1.0,
+    "evidence_quality": 0.779,
+    "meaningful_result": 1.0,
+    "newness": 0.8,
+    "practical_usefulness": 0.75
+  },
+  "score_notes": [
+    "newest verified date 2026-09-19 (9 days)",
+    "audience interest: NO DATA yet (neutral 0.5) \u2014 improves once published videos are analysed"
+  ],
+  "script": {
+    "artifact_id": "teaching.script_writer-1",
+    "blocked": false,
+    "claim_ids": [
+      "g1",
+      "g2",
+      "g3",
+      "g4",
+      "g5",
+      "g6",
+      "g7",
+      "g8"
+    ],
+    "opp_id": "t1",
+    "platform": "script",
+    "produced_by": "teaching.script_writer",
+    "sections": [
+      {
+        "section": "hook",
+        "step": 0,
+        "text": "In the next ten minutes you'll give a Gemini agent a messy spreadsheet, let it clean the data in its own sandbox, and download the fixed file."
+      },
+      {
+        "section": "context",
+        "step": 0,
+        "text": "Here's what changed. Google updated the managed agents in the Gemini API. The new version is called antigravity-preview-09-2026, it replaces the May version, and it runs on Gemini 3.8 Flash. Two new pieces matter for us. A Files API, so you can put files into the agent's sandbox and get results back out. And a Credentials API, so the agent can use your services without the model ever seeing your keys. A managed agent just means Google runs the agent for you. You send a task, and it plans, runs code, checks the result and keeps going until it's done."
+      },
+      {
+        "section": "demo",
+        "step": 1,
+        "text": "Let's start in Google AI Studio. I'm opening the Agents tab. You can see a list of templates here. They're the base Antigravity agent with some tools and settings already switched on."
+      },
+      {
+        "section": "demo",
+        "step": 2,
+        "text": "I'll open the base template. This panel is where the tools and the environment are set. The environment is the sandbox: think of it as a temporary Linux computer that exists only for this task."
+      },
+      {
+        "section": "demo",
+        "step": 3,
+        "text": "This is our starting point. It's a sales file I made up for this video. There are blank rows, dates written three different ways, and some prices typed as text. Nothing real in here, and that matters, because whatever you upload goes into the sandbox."
+      },
+      {
+        "section": "demo",
+        "step": 4,
+        "text": "I attach the file and give it one instruction: clean this file, make every date the same format, turn the prices into numbers, and tell me what you changed."
+      },
+      {
+        "section": "teaching_moment",
+        "step": 5,
+        "text": "Now watch the steps while it works. It wrote a small Python script, ran it, read the output, noticed one column was still text, and fixed it. That loop is the whole idea: plan, act, check, repeat. You didn't install anything on your machine."
+      },
+      {
+        "section": "proof",
+        "step": 6,
+        "text": "And here's the result. On the left, the original file with the gaps and the mixed dates. On the right, the cleaned file I just downloaded from the sandbox, and underneath, the agent's summary of every change it made."
+      },
+      {
+        "section": "demo",
+        "step": 7,
+        "text": "Now the same thing from code, because that's how you'd use this for real. You create an interaction, set the agent to antigravity-preview-09-2026, pass your input, and set the environment to remote. Then you print the final answer and the environment ID. Check the current docs for the exact client call, because this is still a preview."
+      },
+      {
+        "section": "mistake",
+        "step": 8,
+        "text": "Now I'll ask for a chart of monthly sales. And it can't find the file. That's my mistake, and it's the one almost everyone makes. I didn't pass the environment ID, so this request started a brand-new sandbox, and my file isn't in it. The docs say to store the interaction ID and the environment ID. So I pass the environment ID and run it again. There's the chart, built from the same cleaned file."
+      },
+      {
+        "section": "caveat",
+        "step": 9,
+        "text": "A few honest caveats. This is a preview, so names and limits can change. If you built on the older May version, it's deprecated on October 5, 2026, and requests get redirected to the new one. I haven't confirmed pricing or free-tier limits from Google, so check those before you rely on this. And never paste real keys into a prompt. That's exactly what the Credentials API is for."
+      },
+      {
+        "section": "takeaway",
+        "step": 9,
+        "text": "So now you can hand a Gemini managed agent a file, let it do the work in its own sandbox, and pull the result back out, first in AI Studio and then from Python. Try it on a messy file of your own, and keep that environment ID."
+      }
+    ],
+    "source_ids": [
+      "s1",
+      "s2",
+      "s3",
+      "s4"
+    ],
+    "text": "In the next ten minutes you'll give a Gemini agent a messy spreadsheet, let it clean the data in its own sandbox, and download the fixed file.\n\nHere's what changed. Google updated the managed agents in the Gemini API. The new version is called antigravity-preview-09-2026, it replaces the May version, and it runs on Gemini 3.8 Flash. Two new pieces matter for us. A Files API, so you can put files into the agent's sandbox and get results back out. And a Credentials API, so the agent can use your services without the model ever seeing your keys. A managed agent just means Google runs the agent for you. You send a task, and it plans, runs code, checks the result and keeps going until it's done.\n\nLet's start in Google AI Studio. I'm opening the Agents tab. You can see a list of templates here. They're the base Antigravity agent with some tools and settings already switched on.\n\nI'll open the base template. This panel is where the tools and the environment are set. The environment is the sandbox: think of it as a temporary Linux computer that exists only for this task.\n\nThis is our starting point. It's a sales file I made up for this video. There are blank rows, dates written three different ways, and some prices typed as text. Nothing real in here, and that matters, because whatever you upload goes into the sandbox.\n\nI attach the file and give it one instruction: clean this file, make every date the same format, turn the prices into numbers, and tell me what you changed.\n\nNow watch the steps while it works. It wrote a small Python script, ran it, read the output, noticed one column was still text, and fixed it. That loop is the whole idea: plan, act, check, repeat. You didn't install anything on your machine.\n\nAnd here's the result. On the left, the original file with the gaps and the mixed dates. On the right, the cleaned file I just downloaded from the sandbox, and underneath, the agent's summary of every change it made.\n\nNow the same thing from code, because that's how you'd use this for real. You create an interaction, set the agent to antigravity-preview-09-2026, pass your input, and set the environment to remote. Then you print the final answer and the environment ID. Check the current docs for the exact client call, because this is still a preview.\n\nNow I'll ask for a chart of monthly sales. And it can't find the file. That's my mistake, and it's the one almost everyone makes. I didn't pass the environment ID, so this request started a brand-new sandbox, and my file isn't in it. The docs say to store the interaction ID and the environment ID. So I pass the environment ID and run it again. There's the chart, built from the same cleaned file.\n\nA few honest caveats. This is a preview, so names and limits can change. If you built on the older May version, it's deprecated on October 5, 2026, and requests get redirected to the new one. I haven't confirmed pricing or free-tier limits from Google, so check those before you rely on this. And never paste real keys into a prompt. That's exactly what the Credentials API is for.\n\nSo now you can hand a Gemini managed agent a file, let it do the work in its own sandbox, and pull the result back out, first in AI Studio and then from Python. Try it on a messy file of your own, and keep that environment ID.",
+    "title": "Let a Gemini agent clean your messy CSV \u2014 AI Studio, then Python",
+    "value_statement": "After this video you can hand a Gemini managed agent a messy CSV and download a cleaned file from its sandbox."
+  },
+  "service_opportunity": [
+    {
+      "cheapest_test": "ask in the video description who has a weekly export they clean by hand",
+      "reasoning": "small teams that clean the same exports every week could have that job moved to a managed agent run on a schedule",
+      "type": "automation_service"
+    }
+  ],
+  "source_quality": {
+    "s1": 0.95,
+    "s2": 1.0,
+    "s3": 0.95,
+    "s4": 0.65
+  },
+  "sources": [
+    {
+      "notes": "Official Gemini API docs (antigravity agent + managed agents quickstart pages).",
+      "published": "",
+      "publisher": "Google",
+      "retrieved_at": "2026-09-28",
+      "retrieved_by": "WebSearch(allowed_domains=[ai.google.dev]) extract via Claude Code session",
+      "source_id": "s1",
+      "source_type": "official_docs",
+      "text": "The antigravity-preview-09-2026 version was released and replaces the previous antigravity-preview-05-2026. You can make a basic API call using curl with the agent set to \"antigravity-preview-09-2026\", provide input text, and set environment to \"remote\". You can use the Google GenAI Python client to create an interaction with the agent \"antigravity-preview-09-2026\", pass input text, and set environment to \"remote\". Each call can provision a Linux sandbox and starts a tool-use loop where the agent plans, acts, observes results, and repeats until the task is done. The agent can run Bash, Python, and Node.js commands, install packages, run tests, build apps, and read, write, edit, search, and list files in the sandbox. You should store interaction.id and interaction.environment_id to continue the conversation in the same sandbox, use interaction.output_text to access the agent's final response, and interaction.steps lists each step the agent took.",
+      "title": "Antigravity agent | Gemini API | Google AI for Developers",
+      "url": "https://ai.google.dev/gemini-api/docs/antigravity-agent"
+    },
+    {
+      "notes": "Google AI Studio's own announcement of the update.",
+      "published": "",
+      "publisher": "Google",
+      "retrieved_at": "2026-09-28",
+      "retrieved_by": "WebSearch(allowed_domains=[aistudio.google.com]) extract via Claude Code session",
+      "source_id": "s2",
+      "source_type": "primary",
+      "text": "Gemini managed agents are getting an updated harness with antigravity-preview-09-2026, which brings the agent's tools and behavior closer to what you get in the Antigravity Coding Agent, and runs on Gemini 3.8 Flash with the model configurable per interaction. Two new APIs make building with managed agents easier and more secure: a Files API for getting data in and out of the agent's environment, and a Credentials API so the agent can use the services you already use, from MCP servers to third-party APIs, in a secure way. Files API: You can upload into a running sandbox, list what the agent wrote, and download the files you need. Credentials API: You can register secrets once and attach them to an MCP server or a sandbox environment variable, and the model never sees them. Bearer tokens, environment variables, and OAuth2 credentials are never visible to the model. Backward Compatibility: Requests that work on antigravity-preview-05-2026 work unchanged on the new harness. However, antigravity-preview-05-2026 will be deprecated on October 5, 2026, after which requests to it are redirected to the updated harness.",
+      "title": "Gemini API Managed Agents Update",
+      "url": "https://aistudio.google.com/learn/managed-agents-updated-harness-files-credentials"
+    },
+    {
+      "notes": "Google blog + docs extract (multiple Google pages). Mentions Gemini 3.5 Flash for the original agent; the September update (s2) says 3.8 Flash.",
+      "published": "",
+      "publisher": "Google",
+      "retrieved_at": "2026-09-28",
+      "retrieved_by": "WebSearch(allowed_domains=[ai.google.dev, blog.google, developers.googleblog.com]) extract via Claude Code session",
+      "source_id": "s3",
+      "source_type": "official_docs",
+      "text": "Managed Agents in the Gemini API is rolling out in preview in the Gemini API. With a single call, you can spin up an agent that reasons, uses tools and executes code in an isolated, ephemeral Linux environment. The Antigravity agent is built on Gemini 3.5 Flash and available via the Interactions API and in Google AI Studio. Google AI Studio Playground provides a visual interface to prototype and learn how to build managed agents without having to create and write API calls. The Agents tab has a series of templates that pre-configure the base Antigravity Agent by setting tool and environment configurations. Credentials can be passed to managed agents through MCP servers or other tools using a credential parameter. File management allows reading, writing, editing, searching, and listing files in the sandbox, with files persisting across interactions.",
+      "title": "Introducing Managed Agents in the Gemini API",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/managed-agents-gemini-api/"
+    },
+    {
+      "notes": "Independent coverage. Published date taken from the URL slug (news-20260919).",
+      "published": "2026-09-19",
+      "publisher": "AICoder",
+      "retrieved_at": "2026-09-28",
+      "retrieved_by": "WebSearch(allowed_domains=[aicoder.com]) extract via Claude Code session",
+      "source_id": "s4",
+      "source_type": "news",
+      "text": "Google AI Studio shared Managed Agents for the Gemini API, adding an updated agent harness, a Files API, and managed credentials. The combination brings long-running agent execution, file context, and credential handling into a managed path instead of forcing developers to assemble each control plane themselves. Updated Agent Harness: The updated agent harness provides a more complete managed runtime for Gemini API agents. Files API: The Files API adds a dedicated file-context surface for agent workflows. Managed Credentials: Managed credentials reduce the operational burden of storing and rotating tool credentials in each app. antigravity-preview-09-2026 is live in the Interactions API and AI Studio, giving agents isolated Linux execution, filesystem tools, web search, persistent environments, and MCP connectivity. It is not a new Pro/Flash model but the Antigravity managed-agent endpoint: Linux sandbox with code execution, files, and browser, defaulting to Gemini 3.8 Flash.",
+      "title": "Google AI Studio introduces Managed Agents in the Gemini API with an updated harness, Files API, and managed credentials \u2014 AICoder",
+      "url": "https://aicoder.com/news/news-20260919-google-gemini-managed-agents"
+    }
+  ],
+  "status": "RECORDED",
+  "teaching_angle": "show the agent doing real work on a real file, not a chat demo",
+  "topic": "Build a Gemini managed agent that cleans a file in its own sandbox (AI Studio, then Python)",
+  "transcript": {
+    "duration_s": 240.0,
+    "format": "srt/vtt",
+    "source_file": "demo/teaching/SCRIPT_READTHROUGH_NOT_A_REAL_RECORDING.vtt",
+    "word_count": 601
+  },
+  "trend": "Gemini API managed agents: antigravity-preview-09-2026 harness + Files API + Credentials API",
+  "updated_at": "2026-09-28T14:29:41+00:00",
+  "value_answers": {
+    "build": "a small Python script that runs the agent on a file and asks follow-up questions in the same sandbox",
+    "can_do": "hand a Gemini managed agent a messy CSV and download a cleaned version from its sandbox",
+    "mistake": "avoid losing your files between requests by passing the stored environment id",
+    "understand": "what a managed agent sandbox is and why your keys belong in the Credentials API, not the prompt"
+  },
+  "what_changed": "Google updated its managed agents (antigravity-preview-09-2026, Gemini 3.8 Flash) and added a Files API and a Credentials API."
+}

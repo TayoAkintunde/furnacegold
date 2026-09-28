@@ -67,7 +67,8 @@ class SelectionTests(unittest.TestCase):
         self.assertTrue(any("team cap" in n for n in plan.notes))
 
     def test_pipelines_build(self):
-        for name in ("content_factory", "education_factory", "product_factory", "revenue_factory", "daily", "weekly"):
+        for name in ("content_factory", "education_factory", "product_factory", "revenue_factory", "daily_business", "weekly",
+                     "teach_today", "record", "content_from_recording", "teaching_analytics"):
             plan = self.sel.build_plan(f"run {name}", pipeline=name)
             self.assertTrue(plan.steps, name)
 

@@ -1,23 +1,24 @@
 # Run report — Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.
 
-- **Run id:** `20260928T134549Z_994e69`  ·  **Date:** 2026-09-28  ·  **Complexity:** complex
+- **Run id:** `20260928T143019Z_48321a`  ·  **Date:** 2026-09-28  ·  **Complexity:** complex
 - **Model backend:** scripted (scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json)
-- **Team:** 10 model-backed agents + 28 deterministic checks (out of 319 registered)
+- **Team:** 10 model-backed agents + 29 deterministic checks (out of 345 registered)
 - **Budget used:** 140.0 cost units, 0 model calls, $0.0000
 - **Published externally:** nothing. Drafts are in the approval queue.
+- **Business profile:** NOT_ANSWERED — agents are not yet tailored to your business (see docs/BUSINESS_QUESTIONNAIRE.md)
 
 ## Plan
 
 | # | Stage | Orchestrator | Agents | Why |
 |---|---|---|---|---|
 | 1 | SOURCE_SECURITY | orch.security | security.prompt_injection | always runs (safety/reporting); fixed stage team (complex) |
-| 2 | RESEARCH | orch.research | research.ai_news | objective mentions ['research', 'find', 'recent']; top 1 of 30 candidates by keyword/priority score (max 2) |
+| 2 | RESEARCH | orch.research | research.ai_news | objective mentions ['research', 'find', 'recent']; top 1 of 37 candidates by keyword/priority score (max 2) |
 | 3 | VERIFY | orch.quality | verification.source_quality, verification.citation, verification.primary_source, verification.quote, verification.statistics, verification.date, verification.cross_source, verification.contradiction | objective mentions ['verify']; fixed stage team (complex) |
 | 4 | KNOWLEDGE | orch.knowledge | knowledge.research_to_knowledge, knowledge.classifier, knowledge.gap | required by RESEARCH; fixed stage team (complex) |
 | 5 | TEACH | orch.education | education.beginner_teacher | objective mentions ['explain', 'beginner']; learner level(s) requested: ['beginner'] |
 | 6 | CONTENT_STRATEGY | orch.content | content_strategy.strategist | required by CONTENT; fixed stage team (complex) |
 | 7 | CONTENT | orch.content | social.linkedin, social.x_thread, social.newsletter | objective mentions ['content', 'pieces of content']; default platforms ['linkedin', 'x_thread', 'newsletter'] (none named) |
-| 8 | QUALITY | orch.quality | content_quality.factuality, content_quality.hallucination, content_quality.hype, content_quality.clickbait, content_quality.ai_slop, content_quality.platform_fit, content_quality.readability, content_quality.plagiarism, content_quality.educational_value | required by TEACH; fixed stage team (complex) |
+| 8 | QUALITY | orch.quality | content_quality.factuality, content_quality.hallucination, content_quality.hype, content_quality.clickbait, content_quality.ai_slop, content_quality.platform_fit, content_quality.readability, content_quality.plagiarism, content_quality.educational_value, content_quality.value_first | required by TEACH; fixed stage team (complex) |
 | 9 | OPPORTUNITY | orch.product | product_discovery.opportunity | objective mentions ['opportunity', 'opportunities', 'business']; top 1 of 3 candidates by keyword/priority score (max 1) |
 | 10 | PRODUCT | orch.product | product_discovery.mvp | objective mentions ['validation experiment']; fixed stage team (complex) |
 | 11 | REVENUE | orch.revenue | revenue.model_researcher | objective mentions ['business opportunities']; fixed stage team (complex) |
@@ -493,18 +494,19 @@ Thanks for reading.
 | knowledge.gap | OK | rule | 0.0 | 0.000 | 16 knowledge gaps |
 | education.beginner_teacher | OK | scripted | 5.0 | 0.001 | Beginner explanation written using verified claims c1, c2, c6, c7 only. |
 | content_strategy.strategist | OK | scripted | 20.0 | 0.001 | Three angles: a practical news explainer, an evergreen dependency-risk lesson, and a newsletter deep-dive. |
-| social.linkedin | OK | scripted | 5.0 | 0.007 | LinkedIn draft written: hook in first line, short paragraphs, primary source named, one question CTA. |
+| social.linkedin | OK | scripted | 5.0 | 0.013 | LinkedIn draft written: hook in first line, short paragraphs, primary source named, one question CTA. |
 | social.x_thread | OK | scripted | 5.0 | 0.001 | 7-part thread; each part under 280 characters; source link in the final post. |
 | social.newsletter | OK | scripted | 5.0 | 0.001 | Newsletter issue drafted: subject line, one main story, a how-to section, source list. |
 | content_quality.factuality | OK | rule | 0.0 | 0.000 | Factuality Evaluator: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
 | content_quality.hallucination | OK | rule | 0.0 | 0.001 | Hallucination Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
 | content_quality.hype | OK | rule | 0.0 | 0.000 | Hype Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
-| content_quality.clickbait | OK | rule | 0.0 | 0.001 | Clickbait Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
+| content_quality.clickbait | OK | rule | 0.0 | 0.000 | Clickbait Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
 | content_quality.ai_slop | OK | rule | 0.0 | 0.000 | AI-Slop Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
 | content_quality.platform_fit | OK | rule | 0.0 | 0.000 | Platform-Fit Checker: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
-| content_quality.readability | OK | rule | 0.0 | 0.002 | Readability Evaluator: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
+| content_quality.readability | OK | rule | 0.0 | 0.003 | Readability Evaluator: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
 | content_quality.plagiarism | OK | rule | 0.0 | 0.001 | Plagiarism-Risk Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
-| content_quality.educational_value | OK | rule | 0.0 | 0.000 | Educational-Value Evaluator: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
+| content_quality.educational_value | OK | rule | 0.0 | 0.001 | Educational-Value Evaluator: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
+| content_quality.value_first | OK | rule | 0.0 | 0.007 | Value-First Checker: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
 | product_discovery.opportunity | OK | scripted | 20.0 | 0.001 | Three opportunity hypotheses; the most durable is a general model-deprecation readiness offer, because the Sor |
 | product_discovery.mvp | OK | scripted | 20.0 | 0.001 | MVP: a free checklist behind a simple request form, plus a manual audit offer. No software is built until dema |
 | revenue.model_researcher | OK | scripted | 20.0 | 0.001 | Four candidate models; none is assumed to work. Order of testing: audit (fastest signal) -> template -> monito |
@@ -514,12 +516,12 @@ Thanks for reading.
 | security.secret_detector | OK | rule | 0.0 | 0.004 | 0 finding(s) |
 | security.privacy | OK | rule | 0.0 | 0.001 | 0 finding(s) |
 | security.external_action | OK | rule | 0.0 | 0.000 | no unapproved external actions; nothing was published |
-| automation.report_generation | OK | rule | 0.0 | 0.001 | report written (38470 chars) |
+| automation.report_generation | OK | rule | 0.0 | 0.013 | report written (38752 chars) |
 | learning.run_learner | OK | rule | 0.0 | 0.002 | verified 4/9 claims |
 
 ## Integration status
 
-- **anthropic**: PACKAGE REQUIRED — pip install anthropic
+- **anthropic**: CREDENTIAL REQUIRED — set ANTHROPIC_API_KEY
 - **http_fetch**: CONNECTED — adapter ready; network reachability is not pre-checked (a failed fetch is reported, never substituted)
 - **local_files**: CONNECTED — ready
 - **metrics_csv**: CONNECTED — ready

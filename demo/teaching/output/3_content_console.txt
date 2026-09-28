@@ -1,0 +1,10 @@
+CONTENT PACKAGE: 14 pieces (0 blocked) queued for your approval — nothing published
+  TRANSCRIPT             transcript_ingest=OK
+  TRANSCRIPT_ANALYSIS    transcript_analyst=OK
+  REPURPOSING            repurposer=OK
+  QUALITY                repurpose_quality=OK, factuality=OK, hallucination=OK, hype=OK, clickbait=OK, ai_slop=OK, plagiarism=OK, platform_fit=OK, value_first=OK
+  APPROVAL_QUEUE         —
+  SECURITY               secret_detector=OK, privacy=OK, external_action=OK
+  REPORT                 reporter=OK
+  LEARNING               run_learner=OK
+output: demo/teaching/data/runs/20260928T142941Z_42d6ad/content_package.md

@@ -26,7 +26,9 @@ EVIDENCE_DEPENDENT = {"TEACH", "CONTENT_STRATEGY", "CONTENT", "OPPORTUNITY", "PR
                       "INTERMEDIATE_EXPLANATION", "ADVANCED_EXPLANATION", "TUTORIAL", "PROJECT", "COURSE",
                       "WORKSHOP", "LEAD_MAGNET", "PRODUCT_OPPORTUNITIES", "CONTENT_OPPORTUNITIES",
                       "EDUCATION_OPPORTUNITIES", "IDENTIFY_OPPORTUNITIES", "PREPARE_DRAFTS",
-                      "TRENDS", "MARKET", "COMPETITION", "SERVICE", "SAAS"}
+                      "TRENDS", "MARKET", "COMPETITION", "SERVICE", "SAAS",
+                      "TEACHING_OPPORTUNITY", "SCREEN_RECORDING_PLAN", "SCRIPT", "REPURPOSING", "BUSINESS_OPPORTUNITY"}
+RESEARCH_STAGES = ("RESEARCH", "TECHNOLOGY_DISCOVERY", "RESEARCH_NEW_DEVELOPMENTS", "TREND_DISCOVERY")
 
 
 def _available(ctx: RunContext, key: str) -> bool:
@@ -85,7 +87,7 @@ class Hooks:
                     g["warnings"].append(msg)
         for aid, g in gate.items():
             g["score"] = round(sum(g["scores"]) / len(g["scores"]), 3) if g["scores"] else None
-        for key in ("content", "explanations"):
+        for key in ("content", "explanations", "scripts"):
             for a in ctx.board.get(key, []) or []:
                 g = gate.get(a.get("artifact_id"))
                 a["blocked"] = bool(g and g["blocking"])
@@ -131,6 +133,11 @@ class Hooks:
                                  payload=p, requested_by=p.get("produced_by", "?"), run_id=ctx.run_id, risk="HIGH")
 
     @staticmethod
+    def teaching_persist(ctx: RunContext, step: PlanStep) -> None:
+        from aibos.teaching_hooks import persist
+        persist(ctx)
+
+    @staticmethod
     def weekly_report(ctx: RunContext, step: PlanStep) -> None:
         md = weekly_report(ctx)
         ctx.board["weekly_report_md"] = md
@@ -164,20 +171,24 @@ class MasterOrchestrator:
         ctx.escalations.extend(f"PLAN: {n}" for n in plan.notes if "below the typical" not in n)
         ctx.board["plan_notes"] = list(plan.notes)
         stage_names = [s.stage for s in plan.steps]
-        research_planned = any(s in stage_names for s in ("RESEARCH", "TECHNOLOGY_DISCOVERY", "RESEARCH_NEW_DEVELOPMENTS"))
+        research_planned = any(s in stage_names for s in RESEARCH_STAGES)
         if research_planned and not len(ctx.sources):
             ctx.escalations.append("RESEARCH: no captured sources supplied and web_search is NOT CONNECTED — "
                                    "add sources with `aibos sources add` or pass --sources")
         for step in plan.steps:
             entry = {"stage": step.stage, "orchestrator": step.orchestrator, "agents": list(step.agents),
                      "reason": step.reason, "selection_scores": step.selection_scores}
-            if step.stage != "RESEARCH":
+            if step.stage not in RESEARCH_STAGES:
                 self._evidence_guard(ctx)
             if research_planned and step.stage in EVIDENCE_DEPENDENT and not ctx.verified_claims():
                 entry["status"] = "SKIPPED: INSUFFICIENT VERIFIED EVIDENCE"
                 for aid in step.agents:
                     ctx.outputs.append(AgentOutput(aid, objective, RunStatus.SKIPPED, backend="orchestrator",
                                                    errors=["skipped: no verified claims to build on"]))
+                ctx.stage_log.append(entry)
+                continue
+            if step.skip_if and all(_available(ctx, k) for k in step.skip_if):
+                entry["status"] = f"SKIPPED: already prepared ({', '.join(step.skip_if)})"
                 ctx.stage_log.append(entry)
                 continue
             missing = [r for r in step.requires if not _available(ctx, r)]

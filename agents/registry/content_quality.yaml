@@ -38,3 +38,4 @@ agents:
   - {id: hallucination, name: Hallucination Detector, executor: "rule:hallucination", focus: "Flag numbers and named entities in drafts that do not appear in verified claims or sources."}
   - {id: plagiarism, name: Plagiarism-Risk Detector, executor: "rule:plagiarism", focus: "Flag long verbatim runs copied from sources without quotation."}
   - {id: platform_fit, name: Platform-Fit Checker, level: 3, executor: "rule:platform_fit", focus: "Check each draft against its platform's length and format limits (config/platforms.yaml)."}
+  - {id: value_first, name: Value-First Checker, executor: "rule:value_first", focus: "Every piece of content must state specifically what the viewer can now do, solve, build, understand or avoid (config/teaching.yaml value_first_questions); vague or missing answers block the draft."}

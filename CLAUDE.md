@@ -2,6 +2,8 @@
 
 AI Business Operating System (`aibos`): a registry-driven multi-agent framework. Python 3.10+, stdlib + PyYAML; `anthropic` is optional.
 
+**Primary purpose: screen-recorded teaching.** The question is "What important thing happened in AI recently that I can demonstrate and teach people how to use?", not "what AI news can I post?". Main commands: `teach-today`, `record <id>`, `content-from-recording <id> --transcript FILE`, `teaching …`. Configuration is in `config/teaching.yaml`, and the guide is `docs/TEACHING.md`. Claude Code slash commands live in `.claude/commands/`.
+
 ## Commands
 - Tests: `python -m unittest discover -s tests -t .` (must stay green; tests isolate state via `AIBOS_DATA_DIR`)
 - CLI: `python -m aibos <command>`; see `docs/OPERATIONS.md`. Dry-run team selection: `python -m aibos plan "<objective>"`
@@ -22,4 +24,6 @@ AI Business Operating System (`aibos`): a registry-driven multi-agent framework.
 - Model agents may only write the blackboard keys listed in their registry `outputs`.
 - External actions (publish, spend, launch, contracts, deletion, production changes) go only through `ApprovalQueue`. Approval never marks an action executed without a real adapter.
 - Improvement proposals are never auto-applied. Agents marked `critical: true` are never auto-modified.
+- Teaching workflow: the system only sets RESEARCHED, READY_TO_RECORD and ANALYZED. SELECTED, RECORDED, EDITING, READY_TO_PUBLISH and PUBLISHED belong to the owner. Never write or invent a recording transcript.
+- Every piece of content needs a specific `value_statement` (`content_quality.value_first`).
 - Add agents by YAML, not code. A new rule needs `@rule("name")` in `aibos/rules/`. Registry tests check every reference.

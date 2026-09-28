@@ -1,0 +1,14 @@
+--- /record before approval (must refuse) ---
+tch_c187c188ff is RESEARCHED. /record needs a topic YOU approved: `python -m aibos teaching select tch_c187c188ff --by <you>`
+tch_c187c188ff -> SELECTED. Next: python -m aibos record tch_c187c188ff
+RECORDING PACKAGE: Build a Gemini managed agent that cleans a file in its own sandbox (AI Studio, then Python)  -> status READY_TO_RECORD
+  RECORDING_PLAN         SKIPPED: already prepared (recording_plans)
+  SCRIPT                 SKIPPED: already prepared (scripts)
+  MULTI_LEVEL            level_designer=OK
+  PRODUCTION             production_planner=OK
+  QUALITY                feasibility=OK, script_quality=OK, technical_check=OK, factuality=OK, hallucination=OK, hype=OK, ai_slop=OK, value_first=OK
+  PACKAGE                —
+  SECURITY               secret_detector=OK, privacy=OK, external_action=OK
+  REPORT                 reporter=OK
+  LEARNING               run_learner=OK
+output: demo/teaching/data/runs/20260928T142941Z_53a4d9/recording_package.md

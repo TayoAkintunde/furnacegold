@@ -102,3 +102,60 @@ platforms:
     format: outline
     norms: ["Segments with timings", "Sources in show notes"]
     integration: podcast_host
+
+  # --- screen-recorded teaching package formats (config/teaching.yaml package_formats) ---
+  youtube_video:
+    label: "YouTube tutorial (title + description + chapters)"
+    max_chars: 5000
+    min_words: 80
+    format: video_metadata
+    norms: ["Title states the result, under 70 chars", "Chapters match the recording plan", "Sources and resources linked"]
+    integration: youtube_api
+  instagram_reel:
+    label: "Instagram Reel script"
+    max_words: 180
+    format: video_script
+    norms: ["Show the result first", "On-screen text cues in [brackets]", "Under 90 seconds spoken"]
+    integration: instagram_api
+  newsletter_section:
+    label: "Newsletter section"
+    min_words: 80
+    max_words: 400
+    format: email_section
+    norms: ["One idea", "Link to the full tutorial"]
+    integration: email_provider
+  blog_tutorial:
+    label: "Blog tutorial"
+    min_words: 250
+    max_words: 3000
+    format: article
+    norms: ["Numbered steps matching the recording", "Code/config shown as text", "Caveats section"]
+    integration: cms
+  carousel_concept:
+    label: "Carousel concept (slide outline)"
+    max_slides: 10
+    max_chars_per_slide: 250
+    part_separator: "\n---\n"
+    format: slides
+    norms: ["One step per slide", "Final slide = what you can now do"]
+    integration: linkedin_api
+  faq:
+    label: "FAQ"
+    format: faq
+    norms: ["Questions the viewer will actually ask", "Answers grounded in the recording"]
+    integration: cms
+  checklist:
+    label: "Educational checklist"
+    format: checklist
+    norms: ["Actionable items", "Order matches the workflow"]
+    integration: cms
+  downloadable_resource:
+    label: "Downloadable resource"
+    format: resource
+    norms: ["Useful without the video", "No personal data"]
+    integration: cms
+  course_lesson:
+    label: "Future course lesson outline"
+    format: lesson
+    norms: ["Learning objective", "Exercise", "Check for understanding"]
+    integration: null

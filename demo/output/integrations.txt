@@ -1,4 +1,4 @@
-anthropic          PACKAGE REQUIRED     pip install anthropic   — Model backend for LLM agents
+anthropic          CREDENTIAL REQUIRED  set ANTHROPIC_API_KEY   — Model backend for LLM agents
 http_fetch         CONNECTED            adapter ready; network reachability is not pre-checked (a failed fetch is reported, never substituted)   — Fetch a URL into the source store (aibos sources add --url)
 local_files        CONNECTED            ready   — Read/write local stores under data/
 metrics_csv        CONNECTED            ready   — Import analytics exports from CSV (data/metrics/*.csv)

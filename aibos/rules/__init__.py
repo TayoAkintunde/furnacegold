@@ -61,7 +61,7 @@ def numbers_in(text: str) -> list[str]:
 def artifacts(ctx) -> list[dict]:
     """All draft artifacts that quality agents should score."""
     items = []
-    for key in ("content", "explanations"):
+    for key in ("content", "explanations", "scripts"):
         for a in ctx.board.get(key, []) or []:
             if isinstance(a, dict) and a.get("text"):
                 a.setdefault("artifact_id", f"{key}-{len(items) + 1}")
@@ -71,4 +71,4 @@ def artifacts(ctx) -> list[dict]:
 
 
 # Import rule modules so they register themselves.
-from aibos.rules import verification, knowledge, content_quality, security_rules, analytics_rules, ops  # noqa: E402,F401
+from aibos.rules import verification, knowledge, content_quality, security_rules, analytics_rules, ops, teaching  # noqa: E402,F401

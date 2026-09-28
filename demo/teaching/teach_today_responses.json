@@ -1,0 +1,907 @@
+{
+ "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no Anthropic API key in this environment); grounded only in demo/teaching/sources.json",
+ "responses": {
+  "research.trend_radar": {
+   "TASK": "see stage",
+   "FINDINGS": [
+    "Three candidate developments from the captured sources; the Gemini managed-agents update is the most demonstrable."
+   ],
+   "EVIDENCE": [],
+   "ASSUMPTIONS": [],
+   "UNCERTAINTIES": [
+    "Only search-engine extracts were available, not full pages.",
+    "s3 says the original Antigravity agent was built on Gemini 3.5 Flash; the September update (s2, s4) says 3.8 Flash. Claims use the update.",
+    "Performance and free-tier statements come from an unattributed digest (s9) and a blog (s5); they are recorded but not relied on."
+   ],
+   "RECOMMENDATIONS": [],
+   "NEXT_ACTION": "",
+   "CONFIDENCE": 0.8,
+   "SOURCES": [
+    "s1",
+    "s2",
+    "s3",
+    "s4",
+    "s5",
+    "s6",
+    "s7",
+    "s8",
+    "s9"
+   ],
+   "DATA": {
+    "claims": [
+     {
+      "claim_id": "g1",
+      "text": "Google released the antigravity-preview-09-2026 managed-agent harness, which replaces antigravity-preview-05-2026.",
+      "kind": "FACT",
+      "source_ids": [
+       "s1"
+      ],
+      "quotes": [
+       "The antigravity-preview-09-2026 version was released and replaces the previous antigravity-preview-05-2026"
+      ]
+     },
+     {
+      "claim_id": "g2",
+      "text": "The updated harness runs on Gemini 3.8 Flash, with the model configurable per interaction.",
+      "kind": "FACT",
+      "source_ids": [
+       "s2",
+       "s4"
+      ],
+      "quotes": [
+       "runs on Gemini 3.8 Flash with the model configurable per interaction",
+       "defaulting to Gemini 3.8 Flash"
+      ]
+     },
+     {
+      "claim_id": "g3",
+      "text": "A new Files API lets you upload into a running sandbox, list what the agent wrote, and download the files you need.",
+      "kind": "FACT",
+      "source_ids": [
+       "s2",
+       "s4"
+      ],
+      "quotes": [
+       "You can upload into a running sandbox, list what the agent wrote, and download the files you need",
+       "The Files API adds a dedicated file-context surface for agent workflows"
+      ]
+     },
+     {
+      "claim_id": "g4",
+      "text": "A new Credentials API lets you register secrets once and attach them to an MCP server or a sandbox environment variable without the model seeing them.",
+      "kind": "FACT",
+      "source_ids": [
+       "s2"
+      ],
+      "quotes": [
+       "You can register secrets once and attach them to an MCP server or a sandbox environment variable, and the model never sees them"
+      ]
+     },
+     {
+      "claim_id": "g5",
+      "text": "Google AI Studio's playground and Agents-tab templates let you prototype managed agents without writing API calls.",
+      "kind": "FACT",
+      "source_ids": [
+       "s3"
+      ],
+      "quotes": [
+       "Google AI Studio Playground provides a visual interface to prototype and learn how to build managed agents without having to create and write API calls",
+       "The Agents tab has a series of templates that pre-configure the base Antigravity Agent"
+      ]
+     },
+     {
+      "claim_id": "g6",
+      "text": "Each call can provision a Linux sandbox where the agent can run Bash, Python and Node.js commands, install packages and run tests.",
+      "kind": "FACT",
+      "source_ids": [
+       "s1"
+      ],
+      "quotes": [
+       "Each call can provision a Linux sandbox and starts a tool-use loop",
+       "The agent can run Bash, Python, and Node.js commands, install packages, run tests"
+      ]
+     },
+     {
+      "claim_id": "g7",
+      "text": "From code, you create an interaction with the agent set to antigravity-preview-09-2026 and the environment set to remote, and store interaction.environment_id to keep using the same sandbox.",
+      "kind": "FACT",
+      "source_ids": [
+       "s1"
+      ],
+      "quotes": [
+       "create an interaction with the agent \"antigravity-preview-09-2026\", pass input text, and set environment to \"remote\"",
+       "You should store interaction.id and interaction.environment_id to continue the conversation in the same sandbox"
+      ]
+     },
+     {
+      "claim_id": "g8",
+      "text": "antigravity-preview-05-2026 will be deprecated on October 5, 2026, after which requests to it are redirected to the updated harness.",
+      "kind": "FACT",
+      "source_ids": [
+       "s2"
+      ],
+      "quotes": [
+       "antigravity-preview-05-2026 will be deprecated on October 5, 2026, after which requests to it are redirected to the updated harness"
+      ]
+     },
+     {
+      "claim_id": "g9",
+      "text": "The new harness uses 40% fewer output tokens on file changes.",
+      "kind": "FACT",
+      "source_ids": [
+       "s9"
+      ],
+      "quotes": [
+       "The new harness uses 40% fewer output tokens on file changes"
+      ]
+     },
+     {
+      "claim_id": "g10",
+      "text": "NokiaPowerUser reports the new harness capabilities are included within the standard free tier limits in Google AI Studio.",
+      "kind": "OBSERVATION",
+      "source_ids": [
+       "s5"
+      ],
+      "quotes": [
+       "Google has included access to these new harness capabilities within the standard free tier limits in Google AI Studio"
+      ]
+     },
+     {
+      "claim_id": "f1",
+      "text": "Claude Fable 5.1 became available in Claude Code with a 1M-token context window.",
+      "kind": "FACT",
+      "source_ids": [
+       "s7",
+       "s6"
+      ],
+      "quotes": [
+       "Claude Fable 5.1 became available in Claude Code with a 1M-token context window",
+       "Fable 5.1 supports a 1 million token context window"
+      ]
+     },
+     {
+      "claim_id": "f2",
+      "text": "Fable 5.1 defaults to High effort in Claude Code.",
+      "kind": "FACT",
+      "source_ids": [
+       "s6"
+      ],
+      "quotes": [
+       "Fable 5.1 defaults to High effort in Claude Code"
+      ]
+     },
+     {
+      "claim_id": "f3",
+      "text": "When set to Low or Medium effort, Fable 5.1 achieves results similar to or better than Fable 5's at a much lower cost.",
+      "kind": "FACT",
+      "source_ids": [
+       "s6"
+      ],
+      "quotes": [
+       "When set to Low or Medium effort, Fable 5.1 achieves results similar to or better than Fable 5's at a much lower cost"
+      ]
+     },
+     {
+      "claim_id": "o1",
+      "text": "OpenAI discontinued the Sora API on September 24, 2026.",
+      "kind": "FACT",
+      "source_ids": [
+       "s8"
+      ],
+      "quotes": [
+       "The Sora API will be discontinued on September 24, 2026"
+      ]
+     }
+    ],
+    "radar": [
+     {
+      "rank": 1,
+      "development": "Gemini API managed agents: updated Antigravity harness (antigravity-preview-09-2026) plus new Files and Credentials APIs",
+      "category": "AI agents",
+      "newness": "covered by AICoder on 2026-09-19",
+      "why_teachable": "usable today in AI Studio and from Python; a real task can be run and its output file downloaded on screen",
+      "claim_ids": [
+       "g1",
+       "g2",
+       "g3",
+       "g4",
+       "g5",
+       "g6",
+       "g7",
+       "g8"
+      ]
+     },
+     {
+      "rank": 2,
+      "development": "Claude Fable 5.1 available in Claude Code (1M context, effort levels)",
+      "category": "Claude / Claude Code",
+      "newness": "Claude Code week 36 (Aug 31 – Sep 4)",
+      "why_teachable": "effort levels can be compared on one real coding task",
+      "claim_ids": [
+       "f1",
+       "f2",
+       "f3"
+      ]
+     },
+     {
+      "rank": 3,
+      "development": "Sora API shut down",
+      "category": "AI models",
+      "newness": "September 24, 2026",
+      "why_teachable": "important news, but there is nothing left to demonstrate",
+      "claim_ids": [
+       "o1"
+      ]
+     }
+    ],
+    "findings": [
+     {
+      "development": "Gemini API managed agents: updated Antigravity harness (antigravity-preview-09-2026) plus new Files and Credentials APIs",
+      "why_it_matters": "usable today in AI Studio and from Python; a real task can be run and its output file downloaded on screen",
+      "demonstrable": "yes",
+      "claim_ids": [
+       "g1",
+       "g2",
+       "g3",
+       "g4",
+       "g5",
+       "g6",
+       "g7",
+       "g8"
+      ]
+     },
+     {
+      "development": "Claude Fable 5.1 available in Claude Code (1M context, effort levels)",
+      "why_it_matters": "effort levels can be compared on one real coding task",
+      "demonstrable": "yes",
+      "claim_ids": [
+       "f1",
+       "f2",
+       "f3"
+      ]
+     },
+     {
+      "development": "Sora API shut down",
+      "why_it_matters": "important news, but there is nothing left to demonstrate",
+      "demonstrable": "no: the API is gone",
+      "claim_ids": [
+       "o1"
+      ]
+     }
+    ]
+   }
+  },
+  "teaching.opportunity_analyst": {
+   "TASK": "see stage",
+   "FINDINGS": [
+    "t1 (Gemini managed agents + Files API) is the most demonstrable and useful; t2 is a solid runner-up; t3 is news, not a tutorial."
+   ],
+   "EVIDENCE": [],
+   "ASSUMPTIONS": [
+    "Viewers have or can create a Google account for AI Studio."
+   ],
+   "UNCERTAINTIES": [
+    "Audience interest is unknown: the business profile is not configured and no videos have been analysed yet."
+   ],
+   "RECOMMENDATIONS": [],
+   "NEXT_ACTION": "",
+   "CONFIDENCE": 0.75,
+   "SOURCES": [],
+   "DATA": {
+    "teaching_opportunities": [
+     {
+      "opp_id": "t1",
+      "topic": "Build a Gemini managed agent that cleans a file in its own sandbox (AI Studio, then Python)",
+      "trend": "Gemini API managed agents: antigravity-preview-09-2026 harness + Files API + Credentials API",
+      "category": "AI agents",
+      "claim_ids": [
+       "g1",
+       "g2",
+       "g3",
+       "g4",
+       "g5",
+       "g6",
+       "g7",
+       "g8"
+      ],
+      "what_changed": "Google updated its managed agents (antigravity-preview-09-2026, Gemini 3.8 Flash) and added a Files API and a Credentials API.",
+      "why_it_matters": "You can now hand an agent a real file, let it run code in its own sandbox, and get the result back, without building the sandbox yourself.",
+      "who_should_care": "developers and technical operators who want an agent to process files, and no-code builders prototyping in AI Studio",
+      "what_can_do": "give an agent a file, have it clean or analyse the data with code in a sandbox, and download the output",
+      "demonstration": {
+       "possible": true,
+       "how": "AI Studio Agents tab template -> attach a made-up messy CSV -> task -> watch the steps -> download the cleaned file; then the same from Python with a second request in the same sandbox",
+       "setup": [
+        "Google account with AI Studio access",
+        "Gemini API key for the Python part",
+        "a fictional messy CSV"
+       ],
+       "accounts": [
+        "Google AI Studio"
+       ],
+       "cost": "check current pricing and free-tier limits before recording (not confirmed by a Google source)"
+      },
+      "problem_solved": "cleaning and analysing files with an agent without setting up your own code-execution sandbox",
+      "what_to_build": "an agent run that turns a messy sales CSV into a cleaned file plus a summary of changes, reusable from Python",
+      "beginner_mistakes": [
+       "not storing the environment id, so the second request starts a new sandbox and the file is gone",
+       "pasting real API keys into the prompt instead of using the Credentials API",
+       "uploading sensitive data into a preview service"
+      ],
+      "simplest_example": "AI Studio template + one CSV + one instruction + download the result",
+      "advanced_example": "a Python job that uploads a daily export, runs the agent, reuses the same environment for follow-up analysis, and uses the Credentials API for a connected service",
+      "what_makes_valuable": "the viewer sees a real file go in and a better file come out, and gets the one detail (environment id) that makes multi-step work possible",
+      "teaching_angle": "show the agent doing real work on a real file, not a chat demo",
+      "difficulty": "beginner",
+      "value_answers": {
+       "can_do": "hand a Gemini managed agent a messy CSV and download a cleaned version from its sandbox",
+       "build": "a small Python script that runs the agent on a file and asks follow-up questions in the same sandbox",
+       "mistake": "avoid losing your files between requests by passing the stored environment id",
+       "understand": "what a managed agent sandbox is and why your keys belong in the Credentials API, not the prompt"
+      },
+      "judgements": {
+       "practical_usefulness": {
+        "score": 4,
+        "justification": "file cleaning and analysis is a common everyday task and g3/g6 make it possible without your own sandbox"
+       },
+       "educational_value": {
+        "score": 5,
+        "justification": "teaches sandboxes, the plan-act-check loop, environment ids and credential handling in one workflow"
+       },
+       "demonstrability": {
+        "score": 5,
+        "justification": "every step happens in AI Studio and a terminal, with a before-and-after file as visible proof"
+       },
+       "meaningful_result": {
+        "score": 5,
+        "justification": "the viewer ends with a cleaned file, a change summary and a reusable Python script"
+       },
+       "business_value": {
+        "score": 4,
+        "justification": "file-processing agents are a plausible automation-service and template offer for small teams"
+       }
+      },
+      "reject_reason": null
+     },
+     {
+      "opp_id": "t2",
+      "topic": "Choose the right effort level for Claude Fable 5.1 in Claude Code on one real task",
+      "trend": "Claude Fable 5.1 in Claude Code",
+      "category": "Claude / Claude Code",
+      "claim_ids": [
+       "f1",
+       "f2",
+       "f3"
+      ],
+      "what_changed": "Claude Fable 5.1 is available in Claude Code with a 1M-token context window and defaults to High effort.",
+      "why_it_matters": "Lower effort can give similar results at much lower cost, so the default may not be the right choice for every task.",
+      "who_should_care": "developers using Claude Code daily",
+      "what_can_do": "compare effort levels on their own task and pick a sensible default",
+      "demonstration": {
+       "possible": true,
+       "how": "run the same bug-fix task at Low and High effort and compare the diffs, time and cost",
+       "setup": [
+        "Claude Code with Fable 5.1 access",
+        "a small repo with a known bug"
+       ],
+       "accounts": [
+        "Claude plan or API"
+       ],
+       "cost": "uses paid model calls"
+      },
+      "problem_solved": "overspending on effort for routine tasks",
+      "what_to_build": "a personal rule of thumb for effort per task type",
+      "beginner_mistakes": [
+       "judging effort levels on a single tiny task"
+      ],
+      "simplest_example": "one bug fix at two effort levels",
+      "advanced_example": "a small benchmark of five of your own tasks across effort levels",
+      "what_makes_valuable": "a side-by-side on the viewer's kind of work",
+      "teaching_angle": "measure before you change your defaults",
+      "difficulty": "intermediate",
+      "value_answers": {
+       "can_do": "compare Fable 5.1 effort levels on their own coding task and choose a default",
+       "mistake": "avoid paying for High effort on routine tasks without checking whether Low is enough"
+      },
+      "judgements": {
+       "practical_usefulness": {
+        "score": 4,
+        "justification": "effort choice affects cost on every Claude Code session according to f3"
+       },
+       "educational_value": {
+        "score": 4,
+        "justification": "teaches how to evaluate a model setting on your own work"
+       },
+       "demonstrability": {
+        "score": 3,
+        "justification": "demonstrable, but results vary run to run so one recording proves little"
+       },
+       "meaningful_result": {
+        "score": 3,
+        "justification": "the result is a judgement call rather than a built artefact"
+       },
+       "business_value": {
+        "score": 3,
+        "justification": "some consulting value for teams choosing defaults, but thin on its own"
+       }
+      },
+      "reject_reason": null
+     },
+     {
+      "opp_id": "t3",
+      "topic": "What the Sora API shutdown means",
+      "trend": "Sora API shut down",
+      "category": "AI models",
+      "claim_ids": [
+       "o1"
+      ],
+      "what_changed": "OpenAI discontinued the Sora API on September 24, 2026.",
+      "why_it_matters": "products built on it lost a feature",
+      "who_should_care": "teams that used Sora",
+      "what_can_do": "nothing new can be done with the Sora API",
+      "demonstration": {
+       "possible": false,
+       "how": ""
+      },
+      "problem_solved": "",
+      "what_to_build": "",
+      "beginner_mistakes": [],
+      "simplest_example": "",
+      "advanced_example": "",
+      "what_makes_valuable": "",
+      "teaching_angle": "news",
+      "difficulty": "beginner",
+      "value_answers": {
+       "understand": "understand the Sora shutdown news"
+      },
+      "judgements": {
+       "practical_usefulness": {
+        "score": 2,
+        "justification": "the API no longer exists so there is little to use"
+       },
+       "educational_value": {
+        "score": 2,
+        "justification": "news explainer only, no hands-on skill"
+       },
+       "demonstrability": {
+        "score": 1,
+        "justification": "nothing can be shown working"
+       },
+       "meaningful_result": {
+        "score": 1,
+        "justification": "no result to produce"
+       },
+       "business_value": {
+        "score": 2,
+        "justification": "no genuine offer from this topic"
+       }
+      },
+      "reject_reason": "important news, but there is nothing to demonstrate; not a screen-recording topic"
+     }
+    ]
+   }
+  },
+  "teaching.recording_planner": {
+   "TASK": "see stage",
+   "FINDINGS": [
+    "Plan for t1: 9 on-screen steps, 4 teaching moments, before/after proof."
+   ],
+   "EVIDENCE": [],
+   "ASSUMPTIONS": [],
+   "UNCERTAINTIES": [
+    "current pricing and free-tier limits for managed agents (only a blog claims free-tier access)",
+    "exact Python client method name for creating an interaction (the docs extract only says 'create an interaction')",
+    "where the file-attach control is in the AI Studio Agents playground",
+    "that antigravity-preview-09-2026 is still the current agent id on recording day"
+   ],
+   "RECOMMENDATIONS": [],
+   "NEXT_ACTION": "",
+   "CONFIDENCE": 0.8,
+   "SOURCES": [],
+   "DATA": {
+    "recording_plans": [
+     {
+      "opp_id": "t1",
+      "title": "Let a Gemini agent clean your messy CSV — AI Studio, then Python",
+      "audience": "developers and technical operators; no-code builders for the first half",
+      "problem": "cleaning and analysing files with an agent without building your own code-execution sandbox",
+      "hook": {
+       "text": "In the next ten minutes you'll give a Gemini agent a messy spreadsheet, let it clean the data in its own sandbox, and download the fixed file.",
+       "seconds": 11
+      },
+      "context": "Google updated the managed agents in the Gemini API (antigravity-preview-09-2026, on Gemini 3.8 Flash) and added a Files API and a Credentials API. A managed agent is one Google runs for you: it plans, runs code, checks the result and repeats until the task is done.",
+      "prerequisites": [
+       "Google account with AI Studio access",
+       "Gemini API key (for the Python part)",
+       "Python with the Google GenAI client installed",
+       "sales_messy.csv — a made-up file with blank rows, mixed date formats and prices typed as text"
+      ],
+      "verify_before_recording": [
+       "current pricing and free-tier limits for managed agents (only a blog claims free-tier access)",
+       "exact Python client method name for creating an interaction (the docs extract only says 'create an interaction')",
+       "where the file-attach control is in the AI Studio Agents playground",
+       "that antigravity-preview-09-2026 is still the current agent id on recording day"
+      ],
+      "demonstration": [
+       {
+        "step": 1,
+        "on_screen": "Google AI Studio home, then click the Agents tab and scroll the template list",
+        "say": "These templates are the base Antigravity agent with tools and settings pre-configured.",
+        "why": "orient beginners before any code"
+       },
+       {
+        "step": 2,
+        "on_screen": "Open the base Antigravity agent template and show its tool and environment settings",
+        "say": "This is where the agent's sandbox and tools are configured.",
+        "why": "makes the sandbox concrete"
+       },
+       {
+        "step": 3,
+        "on_screen": "Open sales_messy.csv in a spreadsheet: blank rows, three date formats, prices as text",
+        "say": "Here's our starting point, a file I made up for this video.",
+        "why": "starting state for the before/after proof"
+       },
+       {
+        "step": 4,
+        "on_screen": "Attach sales_messy.csv to the agent and type the task: clean it, standardise dates, convert prices, summarise the changes",
+        "say": "One file, one instruction.",
+        "why": "the simplest useful example"
+       },
+       {
+        "step": 5,
+        "on_screen": "Watch the agent's steps: it writes Python, runs it, reads the output and corrects itself",
+        "say": "Plan, act, check, repeat.",
+        "why": "teaching moment: the agent loop"
+       },
+       {
+        "step": 6,
+        "on_screen": "Download the cleaned file and the change summary; open both next to the original",
+        "say": "Same data, fixed.",
+        "why": "proof"
+       },
+       {
+        "step": 7,
+        "on_screen": "Terminal: a short Python script that creates an interaction with agent antigravity-preview-09-2026, environment remote, then prints `interaction.output_text` and `interaction.environment_id`; the client call shown as `client.interactions.create()`",
+        "say": "Now the same thing from code.",
+        "why": "moves the viewer from playground to something they can automate"
+       },
+       {
+        "step": 8,
+        "on_screen": "Second request asking for a monthly sales chart: first without the environment id (file not found), then with it (chart created)",
+        "say": "This is the mistake almost everyone makes.",
+        "why": "mistake and correction; teaches environment ids"
+       },
+       {
+        "step": 9,
+        "on_screen": "Slide with the limitations and the Credentials API note",
+        "say": "A few honest caveats.",
+        "why": "limitations"
+       }
+      ],
+      "teaching_moments": [
+       {
+        "at_step": 2,
+        "explain": "what a sandbox is: a temporary Linux machine that exists only for this agent's task"
+       },
+       {
+        "at_step": 5,
+        "explain": "the plan-act-check loop, and why the agent can fix its own errors"
+       },
+       {
+        "at_step": 8,
+        "explain": "interaction id vs environment id: the environment id is what keeps your files between requests"
+       },
+       {
+        "at_step": 9,
+        "explain": "why secrets go in the Credentials API, never in the prompt"
+       }
+      ],
+      "proof": "The original CSV and the downloaded cleaned CSV side by side, plus the agent's written summary of every change, and the chart from the second request.",
+      "variation": "Reuse the same environment for a second request, a monthly sales chart built from the cleaned file.",
+      "limitations": [
+       "preview service: names and limits can change",
+       "antigravity-preview-05-2026 is deprecated on October 5, 2026 (requests redirect to the new harness)",
+       "pricing and free-tier limits not confirmed from a Google source",
+       "do not upload sensitive data to a preview service"
+      ],
+      "takeaway": "You can now hand a Gemini managed agent a file, let it do the work in its own sandbox, and pull the result back out, first in AI Studio and then from Python.",
+      "estimated_recording_minutes": 12,
+      "difficulty": "beginner",
+      "claim_ids": [
+       "g1",
+       "g2",
+       "g3",
+       "g4",
+       "g5",
+       "g6",
+       "g7",
+       "g8"
+      ]
+     }
+    ]
+   }
+  },
+  "teaching.script_writer": {
+   "TASK": "see stage",
+   "FINDINGS": [
+    "Spoken script with a real mistake-and-fix moment (environment id) and caveats."
+   ],
+   "EVIDENCE": [],
+   "ASSUMPTIONS": [],
+   "UNCERTAINTIES": [],
+   "RECOMMENDATIONS": [],
+   "NEXT_ACTION": "",
+   "CONFIDENCE": 0.8,
+   "SOURCES": [],
+   "DATA": {
+    "scripts": [
+     {
+      "artifact_id": "teaching.script_writer-1",
+      "opp_id": "t1",
+      "platform": "script",
+      "title": "Let a Gemini agent clean your messy CSV — AI Studio, then Python",
+      "sections": [
+       {
+        "section": "hook",
+        "step": 0,
+        "text": "In the next ten minutes you'll give a Gemini agent a messy spreadsheet, let it clean the data in its own sandbox, and download the fixed file."
+       },
+       {
+        "section": "context",
+        "step": 0,
+        "text": "Here's what changed. Google updated the managed agents in the Gemini API. The new version is called antigravity-preview-09-2026, it replaces the May version, and it runs on Gemini 3.8 Flash. Two new pieces matter for us. A Files API, so you can put files into the agent's sandbox and get results back out. And a Credentials API, so the agent can use your services without the model ever seeing your keys. A managed agent just means Google runs the agent for you. You send a task, and it plans, runs code, checks the result and keeps going until it's done."
+       },
+       {
+        "section": "demo",
+        "step": 1,
+        "text": "Let's start in Google AI Studio. I'm opening the Agents tab. You can see a list of templates here. They're the base Antigravity agent with some tools and settings already switched on."
+       },
+       {
+        "section": "demo",
+        "step": 2,
+        "text": "I'll open the base template. This panel is where the tools and the environment are set. The environment is the sandbox: think of it as a temporary Linux computer that exists only for this task."
+       },
+       {
+        "section": "demo",
+        "step": 3,
+        "text": "This is our starting point. It's a sales file I made up for this video. There are blank rows, dates written three different ways, and some prices typed as text. Nothing real in here, and that matters, because whatever you upload goes into the sandbox."
+       },
+       {
+        "section": "demo",
+        "step": 4,
+        "text": "I attach the file and give it one instruction: clean this file, make every date the same format, turn the prices into numbers, and tell me what you changed."
+       },
+       {
+        "section": "teaching_moment",
+        "step": 5,
+        "text": "Now watch the steps while it works. It wrote a small Python script, ran it, read the output, noticed one column was still text, and fixed it. That loop is the whole idea: plan, act, check, repeat. You didn't install anything on your machine."
+       },
+       {
+        "section": "proof",
+        "step": 6,
+        "text": "And here's the result. On the left, the original file with the gaps and the mixed dates. On the right, the cleaned file I just downloaded from the sandbox, and underneath, the agent's summary of every change it made."
+       },
+       {
+        "section": "demo",
+        "step": 7,
+        "text": "Now the same thing from code, because that's how you'd use this for real. You create an interaction, set the agent to antigravity-preview-09-2026, pass your input, and set the environment to remote. Then you print the final answer and the environment ID. Check the current docs for the exact client call, because this is still a preview."
+       },
+       {
+        "section": "mistake",
+        "step": 8,
+        "text": "Now I'll ask for a chart of monthly sales. And it can't find the file. That's my mistake, and it's the one almost everyone makes. I didn't pass the environment ID, so this request started a brand-new sandbox, and my file isn't in it. The docs say to store the interaction ID and the environment ID. So I pass the environment ID and run it again. There's the chart, built from the same cleaned file."
+       },
+       {
+        "section": "caveat",
+        "step": 9,
+        "text": "A few honest caveats. This is a preview, so names and limits can change. If you built on the older May version, it's deprecated on October 5, 2026, and requests get redirected to the new one. I haven't confirmed pricing or free-tier limits from Google, so check those before you rely on this. And never paste real keys into a prompt. That's exactly what the Credentials API is for."
+       },
+       {
+        "section": "takeaway",
+        "step": 9,
+        "text": "So now you can hand a Gemini managed agent a file, let it do the work in its own sandbox, and pull the result back out, first in AI Studio and then from Python. Try it on a messy file of your own, and keep that environment ID."
+       }
+      ],
+      "text": "In the next ten minutes you'll give a Gemini agent a messy spreadsheet, let it clean the data in its own sandbox, and download the fixed file.\n\nHere's what changed. Google updated the managed agents in the Gemini API. The new version is called antigravity-preview-09-2026, it replaces the May version, and it runs on Gemini 3.8 Flash. Two new pieces matter for us. A Files API, so you can put files into the agent's sandbox and get results back out. And a Credentials API, so the agent can use your services without the model ever seeing your keys. A managed agent just means Google runs the agent for you. You send a task, and it plans, runs code, checks the result and keeps going until it's done.\n\nLet's start in Google AI Studio. I'm opening the Agents tab. You can see a list of templates here. They're the base Antigravity agent with some tools and settings already switched on.\n\nI'll open the base template. This panel is where the tools and the environment are set. The environment is the sandbox: think of it as a temporary Linux computer that exists only for this task.\n\nThis is our starting point. It's a sales file I made up for this video. There are blank rows, dates written three different ways, and some prices typed as text. Nothing real in here, and that matters, because whatever you upload goes into the sandbox.\n\nI attach the file and give it one instruction: clean this file, make every date the same format, turn the prices into numbers, and tell me what you changed.\n\nNow watch the steps while it works. It wrote a small Python script, ran it, read the output, noticed one column was still text, and fixed it. That loop is the whole idea: plan, act, check, repeat. You didn't install anything on your machine.\n\nAnd here's the result. On the left, the original file with the gaps and the mixed dates. On the right, the cleaned file I just downloaded from the sandbox, and underneath, the agent's summary of every change it made.\n\nNow the same thing from code, because that's how you'd use this for real. You create an interaction, set the agent to antigravity-preview-09-2026, pass your input, and set the environment to remote. Then you print the final answer and the environment ID. Check the current docs for the exact client call, because this is still a preview.\n\nNow I'll ask for a chart of monthly sales. And it can't find the file. That's my mistake, and it's the one almost everyone makes. I didn't pass the environment ID, so this request started a brand-new sandbox, and my file isn't in it. The docs say to store the interaction ID and the environment ID. So I pass the environment ID and run it again. There's the chart, built from the same cleaned file.\n\nA few honest caveats. This is a preview, so names and limits can change. If you built on the older May version, it's deprecated on October 5, 2026, and requests get redirected to the new one. I haven't confirmed pricing or free-tier limits from Google, so check those before you rely on this. And never paste real keys into a prompt. That's exactly what the Credentials API is for.\n\nSo now you can hand a Gemini managed agent a file, let it do the work in its own sandbox, and pull the result back out, first in AI Studio and then from Python. Try it on a messy file of your own, and keep that environment ID.",
+      "claim_ids": [
+       "g1",
+       "g2",
+       "g3",
+       "g4",
+       "g5",
+       "g6",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2",
+       "s3",
+       "s4"
+      ],
+      "value_statement": "After this video you can hand a Gemini managed agent a messy CSV and download a cleaned file from its sandbox."
+     }
+    ]
+   }
+  },
+  "teaching.repurposer": {
+   "TASK": "see stage",
+   "FINDINGS": [
+    "Repurposing plan only; the package is written from the real recording via /content-from-recording."
+   ],
+   "EVIDENCE": [],
+   "ASSUMPTIONS": [],
+   "UNCERTAINTIES": [],
+   "RECOMMENDATIONS": [],
+   "NEXT_ACTION": "",
+   "CONFIDENCE": 0.8,
+   "SOURCES": [],
+   "DATA": {
+    "content": [],
+    "repurposing_plan": [
+     {
+      "format": "youtube_tutorial",
+      "angle": "the full 12-minute walkthrough with chapters",
+      "purpose": "the complete lesson",
+      "audience": "people who want to do it"
+     },
+     {
+      "format": "youtube_short",
+      "angle": "messy CSV in, clean CSV out, in one shot",
+      "purpose": "show the result fast; point to the tutorial",
+      "audience": "scrollers curious about agents"
+     },
+     {
+      "format": "tiktok",
+      "angle": "the environment-ID mistake and fix",
+      "purpose": "one memorable lesson",
+      "audience": "developers"
+     },
+     {
+      "format": "instagram_reel",
+      "angle": "before/after of the spreadsheet",
+      "purpose": "visual proof",
+      "audience": "no-code builders"
+     },
+     {
+      "format": "linkedin_post",
+      "angle": "what managed agents change for teams that process files",
+      "purpose": "professional relevance",
+      "audience": "operators and team leads"
+     },
+     {
+      "format": "x_post",
+      "angle": "the one detail that keeps your files between agent requests",
+      "purpose": "single sharp tip",
+      "audience": "developers"
+     },
+     {
+      "format": "x_thread",
+      "angle": "step-by-step of the Python flow",
+      "purpose": "text version of the demo",
+      "audience": "developers"
+     },
+     {
+      "format": "newsletter_section",
+      "angle": "why sandboxes matter and where to start",
+      "purpose": "context and link",
+      "audience": "subscribers"
+     },
+     {
+      "format": "blog_tutorial",
+      "angle": "written tutorial with the code and caveats",
+      "purpose": "searchable reference",
+      "audience": "developers"
+     },
+     {
+      "format": "carousel_concept",
+      "angle": "5 steps from AI Studio to Python",
+      "purpose": "save-able summary",
+      "audience": "LinkedIn readers"
+     },
+     {
+      "format": "faq",
+      "angle": "questions about sandboxes, files, keys and cost",
+      "purpose": "answer objections",
+      "audience": "all"
+     },
+     {
+      "format": "checklist",
+      "angle": "before you give an agent your files",
+      "purpose": "actionable safety and setup list",
+      "audience": "all"
+     },
+     {
+      "format": "downloadable_resource",
+      "angle": "the fictional messy CSV + task prompt to practise with",
+      "purpose": "hands-on practice",
+      "audience": "learners"
+     },
+     {
+      "format": "course_lesson",
+      "angle": "lesson 1 of a managed-agents module",
+      "purpose": "future course",
+      "audience": "course students"
+     }
+    ]
+   }
+  },
+  "teaching.business_analyst": {
+   "TASK": "see stage",
+   "FINDINGS": [
+    "Two genuine, low-cost opportunities; the rest are not forced."
+   ],
+   "EVIDENCE": [],
+   "ASSUMPTIONS": [],
+   "UNCERTAINTIES": [
+    "No audience or revenue data exists yet."
+   ],
+   "RECOMMENDATIONS": [],
+   "NEXT_ACTION": "",
+   "CONFIDENCE": 0.6,
+   "SOURCES": [],
+   "DATA": {
+    "teaching_business": [
+     {
+      "type": "digital_product",
+      "genuine": true,
+      "reasoning": "a practice pack (messy sample files, task prompts, a reusable Python script) directly supports the tutorial and costs little to test",
+      "evidence_claim_ids": [
+       "g3",
+       "g6",
+       "g7"
+      ],
+      "assumptions": [
+       "viewers want ready-made practice material"
+      ],
+      "cheapest_test": "offer the free practice pack under the video and count downloads"
+     },
+     {
+      "type": "automation_service",
+      "genuine": true,
+      "reasoning": "small teams that clean the same exports every week could have that job moved to a managed agent run on a schedule",
+      "evidence_claim_ids": [
+       "g3",
+       "g6"
+      ],
+      "assumptions": [
+       "teams have repetitive file-cleaning work",
+       "they will trust a preview service"
+      ],
+      "cheapest_test": "ask in the video description who has a weekly export they clean by hand"
+     },
+     {
+      "type": "course",
+      "genuine": false,
+      "reasoning": "one tutorial is not a course yet; revisit after the beginner/intermediate/advanced videos show demand"
+     },
+     {
+      "type": "workshop",
+      "genuine": false,
+      "reasoning": "too early; no audience data"
+     },
+     {
+      "type": "consulting",
+      "genuine": false,
+      "reasoning": "no evidence yet that anyone would pay for advice on this specific tool"
+     },
+     {
+      "type": "implementation_service",
+      "genuine": false,
+      "reasoning": "overlaps with the automation service; do not split before any demand is seen"
+     },
+     {
+      "type": "saas",
+      "genuine": false,
+      "reasoning": "Google already provides the managed runtime; a thin wrapper has little defensible value"
+     },
+     {
+      "type": "affiliate",
+      "genuine": false,
+      "reasoning": "no affiliate programme identified in the sources"
+     }
+    ]
+   }
+  }
+ }
+}

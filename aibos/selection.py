@@ -32,6 +32,7 @@ class PlanStep:
     description: str = ""
     post: str | None = None
     requires: list[str] = field(default_factory=list)
+    skip_if: list[str] = field(default_factory=list)
     selection_scores: dict[str, float] = field(default_factory=dict)
 
 
@@ -165,22 +166,25 @@ class Selector:
                     agents, scores, why = self.select_stage(s["ref"], st, prof)
                     steps.append(PlanStep(s["name"], st["orchestrator"], agents, f"{s['ref']}: {why}",
                                           st.get("description", ""), s.get("post", st.get("post")),
-                                          st.get("requires", []), scores))
+                                          s.get("requires", st.get("requires", [])), s.get("skip_if", []),
+                                          selection_scores=scores))
                 else:
                     agents = [a for a in s.get("agents", []) if a in self.reg]
                     missing = [a for a in s.get("agents", []) if a not in self.reg]
                     if missing:
                         notes.append(f"step {s['name']}: unknown agents {missing}")
-                    orch = self.reg.get(agents[0]).domain if agents else "master"
-                    steps.append(PlanStep(s["name"], f"orch.{orch}" if f"orch.{orch}" in self.reg else "orch.master",
-                                          agents, "pipeline step", "", s.get("post")))
+                    orch = s.get("orchestrator") or (f"orch.{self.reg.get(agents[0]).domain}" if agents else "orch.master")
+                    steps.append(PlanStep(s["name"], orch if orch in self.reg else "orch.master",
+                                          agents, "pipeline step", s.get("description", ""), s.get("post"),
+                                          s.get("requires", []), s.get("skip_if", [])))
         else:
             stages, reasons = detect_stages(objective)
             for name in stages:
                 st = lib[name]
                 agents, scores, why = self.select_stage(name, st, prof)
                 steps.append(PlanStep(name, st["orchestrator"], agents, f"{reasons[name]}; {why}",
-                                      st.get("description", ""), st.get("post"), st.get("requires", []), scores))
+                                      st.get("description", ""), st.get("post"), st.get("requires", []),
+                                      selection_scores=scores))
         self._enforce_team_size(prof, steps, notes)
         return Plan(prof, steps, notes)
 

@@ -1,0 +1,52 @@
+WEBVTT
+
+NOTE This is a timed read-through of the GENERATED SCRIPT, made to demonstrate /content-from-recording.
+NOTE It is NOT a transcript of a real screen recording.
+
+1
+00:00:00.000 --> 00:00:10.800
+In the next ten minutes you'll give a Gemini agent a messy spreadsheet, let it clean the data in its own sandbox, and download the fixed file.
+
+2
+00:00:10.800 --> 00:00:50.800
+Here's what changed. Google updated the managed agents in the Gemini API. The new version is called antigravity-preview-09-2026, it replaces the May version, and it runs on Gemini 3.8 Flash. Two new pieces matter for us. A Files API, so you can put files into the agent's sandbox and get results back out. And a Credentials API, so the agent can use your services without the model ever seeing your keys. A managed agent just means Google runs the agent for you. You send a task, and it plans, runs code, checks the result and keeps going until it's done.
+
+3
+00:00:50.800 --> 00:01:03.600
+Let's start in Google AI Studio. I'm opening the Agents tab. You can see a list of templates here. They're the base Antigravity agent with some tools and settings already switched on.
+
+4
+00:01:03.600 --> 00:01:17.600
+I'll open the base template. This panel is where the tools and the environment are set. The environment is the sandbox: think of it as a temporary Linux computer that exists only for this task.
+
+5
+00:01:17.600 --> 00:01:35.600
+This is our starting point. It's a sales file I made up for this video. There are blank rows, dates written three different ways, and some prices typed as text. Nothing real in here, and that matters, because whatever you upload goes into the sandbox.
+
+6
+00:01:35.600 --> 00:01:47.200
+I attach the file and give it one instruction: clean this file, make every date the same format, turn the prices into numbers, and tell me what you changed.
+
+7
+00:01:47.200 --> 00:02:04.800
+Now watch the steps while it works. It wrote a small Python script, ran it, read the output, noticed one column was still text, and fixed it. That loop is the whole idea: plan, act, check, repeat. You didn't install anything on your machine.
+
+8
+00:02:04.800 --> 00:02:20.400
+And here's the result. On the left, the original file with the gaps and the mixed dates. On the right, the cleaned file I just downloaded from the sandbox, and underneath, the agent's summary of every change it made.
+
+9
+00:02:20.400 --> 00:02:43.200
+Now the same thing from code, because that's how you'd use this for real. You create an interaction, set the agent to antigravity-preview-09-2026, pass your input, and set the environment to remote. Then you print the final answer and the environment ID. Check the current docs for the exact client call, because this is still a preview.
+
+10
+00:02:43.200 --> 00:03:13.200
+Now I'll ask for a chart of monthly sales. And it can't find the file. That's my mistake, and it's the one almost everyone makes. I didn't pass the environment ID, so this request started a brand-new sandbox, and my file isn't in it. The docs say to store the interaction ID and the environment ID. So I pass the environment ID and run it again. There's the chart, built from the same cleaned file.
+
+11
+00:03:13.200 --> 00:03:40.800
+A few honest caveats. This is a preview, so names and limits can change. If you built on the older May version, it's deprecated on October 5, 2026, and requests get redirected to the new one. I haven't confirmed pricing or free-tier limits from Google, so check those before you rely on this. And never paste real keys into a prompt. That's exactly what the Credentials API is for.
+
+12
+00:03:40.800 --> 00:03:60.000
+So now you can hand a Gemini managed agent a file, let it do the work in its own sandbox, and pull the result back out, first in AI Studio and then from Python. Try it on a messy file of your own, and keep that environment ID.

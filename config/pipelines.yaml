@@ -2,6 +2,80 @@
 # spec, the agents that perform it, and optional hooks. `ref` reuses a stage
 # from config/stages.yaml (with its selection logic).
 pipelines:
+  # ---------------------------------------------------------------------------------------------
+  # PRIMARY PURPOSE: screen-recorded teaching (config/teaching.yaml).
+  # "What important thing happened in AI recently that I can demonstrate and teach people how to use?"
+  # ---------------------------------------------------------------------------------------------
+  teach_today:
+    description: "TREND DISCOVERY -> VERIFICATION -> TEACHING OPPORTUNITY -> SCREEN RECORDING PLAN -> SCRIPT -> REPURPOSING -> BUSINESS OPPORTUNITY -> APPROVAL QUEUE"
+    complexity: complex
+    steps:
+      - {name: SOURCE_SECURITY, ref: SOURCE_SECURITY}
+      - {name: TREND_DISCOVERY, agents: [research.trend_radar], orchestrator: orch.research,
+         description: "Today's AI radar: important, new, teachable developments from captured sources"}
+      - {name: VERIFICATION, ref: VERIFY}
+      - {name: KNOWLEDGE, agents: [knowledge.research_to_knowledge], requires: [claims]}
+      - {name: TEACHING_OPPORTUNITY, agents: [teaching.opportunity_analyst, teaching.value_gate, teaching.scorer],
+         orchestrator: orch.teaching, description: "Can I teach this? Analyse, value-gate and score every verified development"}
+      - {name: SCREEN_RECORDING_PLAN, agents: [teaching.recording_planner, teaching.feasibility], orchestrator: orch.teaching,
+         requires: [teaching_selection], description: "Step-by-step screen-recording plan for today's single best topic"}
+      - {name: SCRIPT, agents: [teaching.script_writer, teaching.script_quality, teaching.technical_check],
+         orchestrator: orch.teaching, requires: [teaching_selection], description: "Natural spoken teaching script"}
+      - {name: REPURPOSING, agents: [teaching.repurposer], orchestrator: orch.teaching, requires: [teaching_selection],
+         description: "Repurposing PLAN only (the package is produced from the real recording later)"}
+      - {name: BUSINESS_OPPORTUNITY, agents: [teaching.business_analyst], orchestrator: orch.teaching,
+         requires: [teaching_selection], description: "Genuine business opportunities only; never forced"}
+      - {name: QUALITY, agents: [content_quality.factuality, content_quality.hallucination, content_quality.hype,
+                                 content_quality.clickbait, content_quality.ai_slop, content_quality.originality,
+                                 content_quality.readability, content_quality.value_first],
+         orchestrator: orch.quality, requires: [artifacts], post: quality_gate}
+      - {name: APPROVAL_QUEUE, agents: [], orchestrator: orch.teaching, post: teaching_persist}
+      - {name: SECURITY, ref: SECURITY}
+      - {name: REPORT, agents: [teaching.reporter], orchestrator: orch.teaching}
+      - {name: LEARNING, ref: LEARN}
+
+  record:
+    description: "Approved (SELECTED) topic -> complete screen-recording package -> READY_TO_RECORD"
+    complexity: medium
+    steps:
+      - {name: RECORDING_PLAN, agents: [teaching.recording_planner], orchestrator: orch.teaching, skip_if: [recording_plans]}
+      - {name: SCRIPT, agents: [teaching.script_writer], orchestrator: orch.teaching, skip_if: [scripts]}
+      - {name: MULTI_LEVEL, agents: [teaching.level_designer], orchestrator: orch.teaching,
+         description: "Beginner / intermediate / advanced versions of the same discovery"}
+      - {name: PRODUCTION, agents: [teaching.production_planner], orchestrator: orch.teaching}
+      - {name: QUALITY, agents: [teaching.feasibility, teaching.script_quality, teaching.technical_check,
+                                 content_quality.factuality, content_quality.hallucination, content_quality.hype,
+                                 content_quality.ai_slop, content_quality.value_first],
+         orchestrator: orch.quality, post: quality_gate}
+      - {name: PACKAGE, agents: [], orchestrator: orch.teaching, post: teaching_persist}
+      - {name: SECURITY, ref: SECURITY}
+      - {name: REPORT, agents: [teaching.reporter], orchestrator: orch.teaching}
+      - {name: LEARNING, ref: LEARN}
+
+  content_from_recording:
+    description: "Completed recording transcript -> transcript analysis -> full repurposed content package -> approval queue"
+    complexity: medium
+    steps:
+      - {name: TRANSCRIPT, agents: [teaching.transcript_ingest], orchestrator: orch.teaching}
+      - {name: TRANSCRIPT_ANALYSIS, agents: [teaching.transcript_analyst], orchestrator: orch.teaching, requires: [transcript]}
+      - {name: REPURPOSING, agents: [teaching.repurposer], orchestrator: orch.teaching, requires: [transcript],
+         description: "Full content package grounded in what the recording actually showed"}
+      - {name: QUALITY, agents: [teaching.repurpose_quality, content_quality.factuality, content_quality.hallucination,
+                                 content_quality.hype, content_quality.clickbait, content_quality.ai_slop,
+                                 content_quality.plagiarism, content_quality.platform_fit, content_quality.value_first],
+         orchestrator: orch.quality, requires: [artifacts], post: quality_gate}
+      - {name: APPROVAL_QUEUE, agents: [], orchestrator: orch.teaching, post: teaching_persist}
+      - {name: SECURITY, ref: SECURITY}
+      - {name: REPORT, agents: [teaching.reporter], orchestrator: orch.teaching}
+      - {name: LEARNING, ref: LEARN}
+
+  teaching_analytics:
+    description: "Learning loop: published videos' metrics and questions -> what worked -> topic selection"
+    complexity: simple
+    steps:
+      - {name: LEARNING_LOOP, agents: [teaching.performance_analyst], orchestrator: orch.teaching}
+      - {name: REPORT, agents: [teaching.reporter], orchestrator: orch.teaching}
+
   content_factory:
     description: "TREND -> RESEARCH -> VERIFICATION -> KNOWLEDGE -> CONTENT ANGLES -> PLATFORM CONTENT -> QUALITY REVIEW -> HUMAN APPROVAL -> DISTRIBUTION -> ANALYTICS -> LEARNING"
     complexity: medium
@@ -83,8 +157,8 @@ pipelines:
       - {name: REPORT, ref: REPORT}
       - {name: LEARNING, ref: LEARN}
 
-  daily:
-    description: "Part 37 daily orchestrated workflow. Prepares an approval queue; never publishes."
+  daily_business:
+    description: "General daily business workflow (research, opportunities, drafts). The primary daily run is now teach_today."
     complexity: complex
     steps:
       - {name: SOURCE_SECURITY, ref: SOURCE_SECURITY}

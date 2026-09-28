@@ -1,4 +1,4 @@
-apr_963086d31c8e2014  [PENDING] publish_content        Publish linkedin draft: Every AI feature has a vendor dependency  (linkedin_api: NOT CONNECTED)
-apr_79ba37f9d81eddc7  [PENDING] publish_content        Publish x_thread draft: The Sora API is off  (x_api: NOT CONNECTED)
-apr_49d1b91db154417b  [PENDING] publish_content        Publish newsletter draft: Subject: The Sora API just closed. Is your p  (email_provider: NOT CONNECTED)
-apr_b0b941b85a008774  [PENDING] publish_content        experiments: Readiness Kit demand test  (None: N/A)
+apr_c39758ba69d4623c  [PENDING] publish_content        Publish linkedin draft: Every AI feature has a vendor dependency  (linkedin_api: NOT CONNECTED)
+apr_ad7394d4fba8f3e0  [PENDING] publish_content        Publish x_thread draft: The Sora API is off  (x_api: NOT CONNECTED)
+apr_cb1fb016749f0859  [PENDING] publish_content        Publish newsletter draft: Subject: The Sora API just closed. Is your p  (email_provider: NOT CONNECTED)
+apr_b0744139ffc34660  [PENDING] publish_content        experiments: Readiness Kit demand test  (None: N/A)

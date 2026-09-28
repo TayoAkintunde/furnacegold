@@ -28,6 +28,12 @@ CTA = [r"\bsubscribe\b", r"\bfollow\b", r"\bsign up\b", r"\bjoin\b", r"\bcomment
        r"\bdownload\b", r"\bregister\b", r"\bbook a\b", r"\bread more\b", r"\bshare\b"]
 
 
+STRUCTURAL_NUMBERS = re.compile(
+    r"\b\d{1,2}:\d{2}(?::\d{2})?\b"
+    r"|\b(?:step|part|slide|chapter|lesson|module|level|option|tip|mistake|shot|section|day|week)s?[ \t]+\d+\b"
+    r"|\b\d+[ \t]*(?:seconds?|secs?|minutes?|mins?|hours?|hrs?|s|m)\b", re.I)
+
+
 def _report(spec, ctx, reports: list[dict]):
     blocking = sum(1 for r in reports for i in r["issues"] if i["severity"] == "BLOCKING")
     warns = sum(1 for r in reports for i in r["issues"] if i["severity"] == "WARN")
@@ -300,10 +306,13 @@ def hallucination(ctx, spec):
         for sid in c.source_ids:
             if (s := ctx.sources.get(sid)):
                 allowed_nums |= set(numbers_in(normalize(s.text).replace(",", "")))
+    transcript = (ctx.board.get("transcript") or {}).get("text", "")
+    allowed_nums |= set(numbers_in(normalize(transcript).replace(",", "")))   # said on the real recording
     reps = []
     for a in artifacts(ctx):
         text = re.sub(r"https?://\S+", " ", a["text"])            # URLs are not claims
         text = re.sub(r"(?m)^\s*\d+[/.)]\s*", " ", text)            # list / thread numbering "1/" "2."
+        text = STRUCTURAL_NUMBERS.sub(" ", text)                    # "step 3", "10 seconds", "02:15": structure, not facts
         nums = [n for n in numbers_in(text) if n not in allowed_nums]
         issues = [_issue("BLOCKING", f"numbers not found in verified claims or their sources: {sorted(set(nums))}")] if nums else []
         reps.append(_rep(spec, a, 0.0 if nums else 1.0, issues))
@@ -364,4 +373,16 @@ def platform_fit(ctx, spec):
                 issues.append(_issue("BLOCKING", f"{len(parts)} parts > {mx}"))
         blocking = any(i["severity"] == "BLOCKING" for i in issues)
         reps.append(_rep(spec, a, 0.0 if blocking else 1 - 0.1 * len(issues), issues))
+    return _report(spec, ctx, reps)
+
+
+@rule("value_first")
+def value_first(ctx, spec):
+    """Every piece of content must say specifically what the viewer can now do/solve/build/understand/avoid."""
+    from aibos.rules.teaching import value_answer_ok
+    reps = []
+    for a in artifacts(ctx):
+        ok, why = value_answer_ok(a.get("value_statement"))
+        issues = [] if ok else [_issue("BLOCKING", f"value-first: value_statement {why} — what can the viewer now do?")]
+        reps.append(_rep(spec, a, 1.0 if ok else 0.0, issues))
     return _report(spec, ctx, reps)

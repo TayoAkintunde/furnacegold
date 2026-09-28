@@ -1,0 +1,99 @@
+# Screen-recorded teaching: the system's primary purpose.
+# Trend -> Understanding -> Demonstration -> Teaching -> Distribution -> Audience learning -> Monetization
+#
+# The guiding question is NOT "what AI news can I post today?" but
+# "what important thing happened in AI recently that I can demonstrate and teach people to use?"
+
+# Trend-discovery focus areas (research.trend_radar covers these; the capture step needs sources for them).
+focus_areas:
+  - AI models
+  - AI agents
+  - Claude / Claude Code
+  - ChatGPT
+  - Gemini
+  - coding agents
+  - AI developer tools
+  - automation
+  - no-code / low-code AI
+  - research tools
+  - productivity AI
+  - AI workflows
+  - emerging AI companies
+  - new AI capabilities
+  - new software and major product launches
+  - useful open-source projects
+  - important AI research
+  - new APIs
+  - AI business opportunities
+
+# Prioritisation criteria, in the owner's order of importance. Weights sum to 1.
+# "computed" criteria come from evidence or data; "judged" criteria are model judgements that
+# must carry a written justification, or they score 0.
+scoring:
+  weights:
+    newness:               0.18   # computed: newest verified event/source date
+    practical_usefulness:  0.17   # judged
+    educational_value:     0.15   # judged + structure (mistakes, simple and advanced examples)
+    demonstrability:       0.15   # judged + plan structure; 0 when it cannot be shown on screen
+    audience_interest:     0.10   # computed from the learning loop and business profile; NO DATA = neutral 0.5
+    meaningful_result:     0.10   # judged; requires a concrete "what you will build"
+    business_value:        0.07   # judged
+    evidence_quality:      0.08   # computed from verification of the cited claims
+  newness_days: {fresh: 7, recent: 30, aging: 90}
+  min_total_score: 0.55          # below this, not recommended for recording
+  min_evidence_quality: 0.5      # hard gate
+  min_verified_claims: 1         # hard gate
+  min_demonstrability: 0.4       # hard gate
+  duplicate_similarity: 0.6      # topics this similar to an existing teaching item count as duplicates
+
+# Section 7: every piece of content must answer at least one of these, specifically.
+value_first_questions:
+  can_do: "What can the viewer now do that they could not do before?"
+  problem: "What problem can they now solve?"
+  build: "What can they now build?"
+  understand: "What do they now understand?"
+  mistake: "What mistake can they now avoid?"
+min_value_answer_words: 6
+generic_value_phrases: ["learn about ai", "stay ahead", "stay up to date", "understand ai better", "be more productive",
+                        "unlock", "level up", "everything you need to know", "game changer"]
+
+recording:
+  words_per_minute: 150          # conversational screen-recording pace
+  hook_seconds: [5, 15]
+  demo_min_steps: 4
+  required_plan_sections: [hook, context, demonstration, teaching_moments, proof, takeaway]
+  required_script_elements: [hook, takeaway, caveat, correction]   # a caveat and a real mistake-and-fix moment
+
+# Section 6: one recording becomes a content package. key -> platform rules key (config/platforms.yaml)
+package_formats:
+  youtube_tutorial: youtube_video
+  youtube_short: youtube_shorts
+  tiktok: tiktok
+  instagram_reel: instagram_reel
+  linkedin_post: linkedin
+  x_post: x_post
+  x_thread: x_thread
+  newsletter_section: newsletter_section
+  blog_tutorial: blog_tutorial
+  carousel_concept: carousel_concept
+  faq: faq
+  checklist: checklist
+  downloadable_resource: downloadable_resource
+  course_lesson: course_lesson
+max_cross_format_overlap: 0.35   # share of 6-grams two formats may have in common; above = duplicated, not adapted
+
+# Section 9: the business opportunity types considered (never forced).
+business_opportunity_types: [digital_product, course, workshop, consulting, automation_service,
+                             implementation_service, saas, affiliate]
+
+# Section 11: workflow. System transitions vs human transitions (the system never publishes).
+workflow:
+  states: [RESEARCHED, SELECTED, READY_TO_RECORD, RECORDED, EDITING, READY_TO_PUBLISH, PUBLISHED, ANALYZED]
+  terminal: [ANALYZED, REJECTED]
+  human_only: [SELECTED, RECORDED, EDITING, READY_TO_PUBLISH, PUBLISHED, REJECTED]
+  system_only: [RESEARCHED, READY_TO_RECORD, ANALYZED]
+
+# Section 12: learning loop metrics (from data/metrics/*.csv, asset_id = teaching item id).
+performance_metrics: [views, retention_rate, avg_view_duration_s, watch_time_h, saves, shares, comments,
+                      clicks, followers_gained, leads, conversions]
+retention_curve_prefix: "retention_at_"          # e.g. retention_at_15s, retention_at_60s

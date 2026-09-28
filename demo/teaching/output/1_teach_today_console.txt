@@ -1,0 +1,17 @@
+TODAY'S SCREEN RECORDING: Build a Gemini managed agent that cleans a file in its own sandbox (AI Studio, then Python)  [item tch_c187c188ff, score 0.836]
+  SOURCE_SECURITY        prompt_injection=OK
+  TREND_DISCOVERY        trend_radar=OK
+  VERIFICATION           source_quality=OK, citation=OK, primary_source=OK, quote=OK, statistics=OK, date=OK, cross_source=OK, contradiction=OK
+  KNOWLEDGE              research_to_knowledge=OK
+  TEACHING_OPPORTUNITY   opportunity_analyst=OK, value_gate=OK, scorer=OK
+  SCREEN_RECORDING_PLAN  recording_planner=OK, feasibility=OK
+  SCRIPT                 script_writer=OK, script_quality=OK, technical_check=OK
+  REPURPOSING            repurposer=OK
+  BUSINESS_OPPORTUNITY   business_analyst=OK
+  QUALITY                factuality=OK, hallucination=OK, hype=OK, clickbait=OK, ai_slop=OK, originality=OK, readability=OK, value_first=OK
+  APPROVAL_QUEUE         —
+  SECURITY               secret_detector=OK, privacy=OK, external_action=OK
+  REPORT                 reporter=OK
+  LEARNING               run_learner=OK
+  ESCALATION: VERIFY: 2 of 14 claims not fully supported; excluded from factual use
+output: demo/teaching/data/runs/20260928T142940Z_71041c/teach_today.md

@@ -1,5 +1,5 @@
 {
-  "run_id": "20260928T134549Z_994e69",
+  "run_id": "20260928T143019Z_48321a",
   "objective": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.",
   "profile": {
     "objective": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.",
@@ -109,6 +109,7 @@
       "description": "Scan captured sources for prompt injection before any agent reads them.",
       "post": null,
       "requires": [],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -117,16 +118,17 @@
       "agents": [
         "research.ai_news"
       ],
-      "reason": "objective mentions ['research', 'find', 'recent']; top 1 of 30 candidates by keyword/priority score (max 2)",
+      "reason": "objective mentions ['research', 'find', 'recent']; top 1 of 37 candidates by keyword/priority score (max 2)",
       "description": "Discover and summarize developments from captured sources.",
       "post": null,
       "requires": [],
+      "skip_if": [],
       "selection_scores": {
         "research.ai_news": 4.8,
+        "research.trend_radar": 0.9,
         "research.ai_agent": 0.7,
         "research.ai_model": 0.7,
-        "research.academic": 0.5,
-        "research.ai_coding": 0.5
+        "research.academic": 0.5
       }
     },
     {
@@ -148,6 +150,7 @@
       "requires": [
         "claims"
       ],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -164,6 +167,7 @@
       "requires": [
         "claims"
       ],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -176,6 +180,7 @@
       "description": "Explain the development at the requested learner level(s).",
       "post": null,
       "requires": [],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -188,6 +193,7 @@
       "description": "Choose content angles from verified knowledge.",
       "post": null,
       "requires": [],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -202,6 +208,7 @@
       "description": "Write platform-native drafts.",
       "post": null,
       "requires": [],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -216,7 +223,8 @@
         "content_quality.platform_fit",
         "content_quality.readability",
         "content_quality.plagiarism",
-        "content_quality.educational_value"
+        "content_quality.educational_value",
+        "content_quality.value_first"
       ],
       "reason": "required by TEACH; fixed stage team (complex)",
       "description": "Score drafts; block anything with blocking issues.",
@@ -224,6 +232,7 @@
       "requires": [
         "artifacts"
       ],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -236,6 +245,7 @@
       "description": "Identify business opportunities as hypotheses with evidence.",
       "post": null,
       "requires": [],
+      "skip_if": [],
       "selection_scores": {
         "product_discovery.opportunity": 7.9,
         "business_intel.emerging_opportunity": 5.5,
@@ -252,6 +262,7 @@
       "description": "Shape the most promising opportunity into an MVP concept.",
       "post": null,
       "requires": [],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -264,6 +275,7 @@
       "description": "Map candidate revenue models and their assumptions.",
       "post": null,
       "requires": [],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -277,6 +289,7 @@
       "description": "Design and pre-register a validation experiment.",
       "post": null,
       "requires": [],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -289,6 +302,7 @@
       "description": "Define how results will be measured and which integrations that needs.",
       "post": null,
       "requires": [],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -299,6 +313,7 @@
       "description": "Queue drafts and external actions for human approval. Nothing is published.",
       "post": "approval_queue",
       "requires": [],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -313,6 +328,7 @@
       "description": "Scan all outputs for secrets, credentials, personal data and unapproved external actions.",
       "post": null,
       "requires": [],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -325,6 +341,7 @@
       "description": "Assemble the run into a report.",
       "post": null,
       "requires": [],
+      "skip_if": [],
       "selection_scores": {}
     },
     {
@@ -337,6 +354,7 @@
       "description": "Record lessons and agent performance.",
       "post": null,
       "requires": [],
+      "skip_if": [],
       "selection_scores": {}
     }
   ],
@@ -1279,6 +1297,7 @@
         "source_ids": [
           "s1"
         ],
+        "value_statement": "After this lesson you can explain what an API dependency is and why keeping copies of your work matters.",
         "produced_by": "education.beginner_teacher",
         "platform": "beginner",
         "blocked": false
@@ -1354,6 +1373,7 @@
           "s1"
         ],
         "cta": "Reply with your riskiest dependency",
+        "value_statement": "After reading you can list your product's model dependencies and plan a fallback for the riskiest one.",
         "produced_by": "social.linkedin",
         "blocked": false
       },
@@ -1372,6 +1392,7 @@
           "s1"
         ],
         "cta": "Reply below",
+        "value_statement": "After reading you can check which of your AI features depend on a single vendor's API.",
         "produced_by": "social.x_thread",
         "blocked": false
       },
@@ -1390,6 +1411,7 @@
           "s1"
         ],
         "cta": "none (informational issue)",
+        "value_statement": "After reading you can run a ten-minute dependency check on the outside AI services your product calls.",
         "produced_by": "social.newsletter",
         "blocked": false
       }
@@ -1671,11 +1693,40 @@
         "score": 1.0,
         "issues": [],
         "produced_by": "content_quality.educational_value"
+      },
+      {
+        "artifact_id": "social.linkedin-1",
+        "agent_id": "content_quality.value_first",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.value_first"
+      },
+      {
+        "artifact_id": "social.x_thread-1",
+        "agent_id": "content_quality.value_first",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.value_first"
+      },
+      {
+        "artifact_id": "social.newsletter-1",
+        "agent_id": "content_quality.value_first",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.value_first"
+      },
+      {
+        "artifact_id": "education.beginner_teacher-1",
+        "agent_id": "content_quality.value_first",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.value_first"
       }
     ],
     "quality_gate": {
       "social.linkedin-1": {
         "scores": [
+          1.0,
           1.0,
           1.0,
           1.0,
@@ -1700,6 +1751,7 @@
           1.0,
           1.0,
           1.0,
+          1.0,
           1.0
         ],
         "blocking": [],
@@ -1716,6 +1768,7 @@
           1.0,
           1.0,
           1.0,
+          1.0,
           1.0
         ],
         "blocking": [],
@@ -1724,6 +1777,7 @@
       },
       "education.beginner_teacher-1": {
         "scores": [
+          1.0,
           1.0,
           1.0,
           1.0,
@@ -1999,13 +2053,13 @@
       "data_import": "data/metrics/*.csv"
     },
     "approval_items": [
-      "apr_963086d31c8e2014",
-      "apr_79ba37f9d81eddc7",
-      "apr_49d1b91db154417b",
-      "apr_b0b941b85a008774"
+      "apr_c39758ba69d4623c",
+      "apr_ad7394d4fba8f3e0",
+      "apr_cb1fb016749f0859",
+      "apr_b0744139ffc34660"
     ],
     "weekly_report_md": "## Weekly strategy report — week ending 2026-09-28\n\n### IMPORTANT TECHNOLOGY DEVELOPMENTS\n\n- OpenAI discontinued the Sora API on September 24, 2026. (confidence 0.9)\n- The Sora web and app experiences were discontinued earlier, on April 26, 2026. (confidence 0.9)\n- OpenAI recommends exporting Sora content as soon as possible via sora.chatgpt.com/sunset. (confidence 0.729)\n- After Sora is discontinued and any final export window passes, OpenAI will permanently delete data associated with Sora use. (confidence 0.729)\n\n### IMPORTANT AUDIENCE DEVELOPMENTS\n\n- NO DATA — no audience data supplied.\n\n### CONTENT PERFORMANCE\n\n- content: NO DATA — no analytics were supplied; nothing was fabricated.\n- social: NO DATA — no analytics were supplied; nothing was fabricated.\n- email: NO DATA — no analytics were supplied; nothing was fabricated.\n\n### PRODUCT EXPERIMENTS\n\n- Readiness Kit demand test [DESIGNED]: If we offer a free Model-Deprecation Readiness Kit to visitors arriving from the Sora-shutdown posts, at least 5% of landing-page visitors will request it and at least 3 requesters will book a review call within 14 days.\n\n### REVENUE DATA\n\n- revenue: NO DATA — no analytics were supplied; nothing was fabricated.\n\n### CUSTOMER FEEDBACK\n\n- NO DATA — no feedback files in data/feedback/.\n\n### FAILED EXPERIMENTS\n\n- none completed\n\n### SUCCESSFUL EXPERIMENTS\n\n- none completed\n\n### NEW OPPORTUNITIES\n\n- Sora-to-alternative video migration guide/sprint — HYPOTHESIS\n- AI model-deprecation readiness kit + audit — HYPOTHESIS\n- Model deprecation watch newsletter — HYPOTHESIS\n\n### RISKS\n\n- VERIFY: 5 of 9 claims not fully supported; excluded from factual use\n- Window is closing fast: the shutdown already happened\n- Free migration guides already exist (s3)\n- Small, one-off market\n- Interest may fade as the news ages\n- Hard to prove ROI of risk reduction\n- Consulting does not scale\n- Needs reliable monitoring of many vendors (integration NOT CONNECTED)\n- Slow to monetize\n\n### OPEN QUESTIONS\n\n- The shutdown removed the Videos API and every alias of the Sora 2 models, such as sora-2 and sora-2-pro.\n- OpenAI's deprecations documentation named no replacement model for Sora 2.\n- Developers had six months of notice, from March 24 to September 24.\n- Competing video models remain available via API, including Kling AI and Luma Ray 2, alongside multi-model aggregators such as Higgsfield AI.\n- Kingy AI reports an unattributed estimate that Sora cost about $1 million per day to operate.\n\n### RECOMMENDED EXPERIMENTS\n\n- Readiness Kit demand test: If we offer a free Model-Deprecation Readiness Kit to visitors arriving from the Sora-shutdown posts, at least 5% of landing-page visitors will request it and at least 3 requesters will book a review call within 14 days.\n",
-    "report_path": "/home/user/furnacegold/demo/data/runs/20260928T134549Z_994e69/report.md",
+    "report_path": "demo/data/runs/20260928T143019Z_48321a/report.md",
     "lessons": [
       "verified 4/9 claims"
     ]
@@ -2043,7 +2097,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:prompt_injection",
       "cost_units": 0.0,
-      "duration_s": 0.0005126949999976205,
+      "duration_s": 0.0006056929998976557,
       "errors": []
     },
     {
@@ -2233,7 +2287,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 20.0,
-      "duration_s": 0.002304770999671746,
+      "duration_s": 0.0021665540000412875,
       "errors": []
     },
     {
@@ -2333,7 +2387,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:source_quality",
       "cost_units": 0.0,
-      "duration_s": 6.891500015626661e-05,
+      "duration_s": 9.2507999852387e-05,
       "errors": []
     },
     {
@@ -2402,7 +2456,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:citation",
       "cost_units": 0.0,
-      "duration_s": 7.484199977625394e-05,
+      "duration_s": 5.175599994799995e-05,
       "errors": []
     },
     {
@@ -2471,7 +2525,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:primary_source",
       "cost_units": 0.0,
-      "duration_s": 0.0007209739997051656,
+      "duration_s": 0.0008283909999136085,
       "errors": []
     },
     {
@@ -2540,7 +2594,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:quote",
       "cost_units": 0.0,
-      "duration_s": 0.000826606000373431,
+      "duration_s": 0.0009164100001726183,
       "errors": []
     },
     {
@@ -2609,7 +2663,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:statistics",
       "cost_units": 0.0,
-      "duration_s": 0.000850443999752315,
+      "duration_s": 0.0011624709998159233,
       "errors": []
     },
     {
@@ -2678,7 +2732,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:date",
       "cost_units": 0.0,
-      "duration_s": 5.584500013355864e-05,
+      "duration_s": 5.3352999884737073e-05,
       "errors": []
     },
     {
@@ -2747,7 +2801,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:cross_source",
       "cost_units": 0.0,
-      "duration_s": 0.0005718780003007851,
+      "duration_s": 0.0005881810000119003,
       "errors": []
     },
     {
@@ -2817,7 +2871,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:contradiction",
       "cost_units": 0.0,
-      "duration_s": 0.0008192569998755062,
+      "duration_s": 0.0009040620000178023,
       "errors": []
     },
     {
@@ -3035,7 +3089,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:research_to_knowledge",
       "cost_units": 0.0,
-      "duration_s": 0.008904490000077203,
+      "duration_s": 0.00930190400003994,
       "errors": []
     },
     {
@@ -3086,7 +3140,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:knowledge_classify",
       "cost_units": 0.0,
-      "duration_s": 0.00019406599994908902,
+      "duration_s": 0.00022581500002161192,
       "errors": []
     },
     {
@@ -3176,7 +3230,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:knowledge_gap",
       "cost_units": 0.0,
-      "duration_s": 3.382700015208684e-05,
+      "duration_s": 3.9695999930700054e-05,
       "errors": []
     },
     {
@@ -3231,7 +3285,8 @@
             ],
             "source_ids": [
               "s1"
-            ]
+            ],
+            "value_statement": "After this lesson you can explain what an API dependency is and why keeping copies of your work matters."
           }
         ]
       },
@@ -3241,7 +3296,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 5.0,
-      "duration_s": 0.0009657489999881363,
+      "duration_s": 0.0010565419997874415,
       "errors": []
     },
     {
@@ -3331,7 +3386,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 20.0,
-      "duration_s": 0.0007900660002633231,
+      "duration_s": 0.0008892280000054598,
       "errors": []
     },
     {
@@ -3375,7 +3430,8 @@
             "source_ids": [
               "s1"
             ],
-            "cta": "Reply with your riskiest dependency"
+            "cta": "Reply with your riskiest dependency",
+            "value_statement": "After reading you can list your product's model dependencies and plan a fallback for the riskiest one."
           }
         ]
       },
@@ -3385,7 +3441,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 5.0,
-      "duration_s": 0.00720625799976915,
+      "duration_s": 0.01255649299992001,
       "errors": []
     },
     {
@@ -3427,7 +3483,8 @@
             "source_ids": [
               "s1"
             ],
-            "cta": "Reply below"
+            "cta": "Reply below",
+            "value_statement": "After reading you can check which of your AI features depend on a single vendor's API."
           }
         ]
       },
@@ -3437,7 +3494,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 5.0,
-      "duration_s": 0.0007794630000717007,
+      "duration_s": 0.0010883570000714826,
       "errors": []
     },
     {
@@ -3483,7 +3540,8 @@
             "source_ids": [
               "s1"
             ],
-            "cta": "none (informational issue)"
+            "cta": "none (informational issue)",
+            "value_statement": "After reading you can run a ten-minute dependency check on the outside AI services your product calls."
           }
         ]
       },
@@ -3493,7 +3551,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 5.0,
-      "duration_s": 0.0010460309999871242,
+      "duration_s": 0.0011947819998567866,
       "errors": []
     },
     {
@@ -3545,7 +3603,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:factuality",
       "cost_units": 0.0,
-      "duration_s": 6.768899993403465e-05,
+      "duration_s": 5.4305000048771035e-05,
       "errors": []
     },
     {
@@ -3597,7 +3655,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:hallucination",
       "cost_units": 0.0,
-      "duration_s": 0.0007638390002284723,
+      "duration_s": 0.0014943249998395913,
       "errors": []
     },
     {
@@ -3649,7 +3707,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:hype",
       "cost_units": 0.0,
-      "duration_s": 0.0003714389999913692,
+      "duration_s": 0.0004085129999111814,
       "errors": []
     },
     {
@@ -3701,7 +3759,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:clickbait",
       "cost_units": 0.0,
-      "duration_s": 0.0005335599998943508,
+      "duration_s": 0.00046773700000812823,
       "errors": []
     },
     {
@@ -3753,7 +3811,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:ai_slop",
       "cost_units": 0.0,
-      "duration_s": 0.00018524899996918975,
+      "duration_s": 0.0001768040001479676,
       "errors": []
     },
     {
@@ -3810,7 +3868,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:platform_fit",
       "cost_units": 0.0,
-      "duration_s": 0.00020360100006655557,
+      "duration_s": 0.0004614519998540345,
       "errors": []
     },
     {
@@ -3882,7 +3940,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:readability",
       "cost_units": 0.0,
-      "duration_s": 0.0022192500000528526,
+      "duration_s": 0.002942450999853463,
       "errors": []
     },
     {
@@ -3934,7 +3992,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:plagiarism",
       "cost_units": 0.0,
-      "duration_s": 0.0009427269997104304,
+      "duration_s": 0.0013442680001389817,
       "errors": []
     },
     {
@@ -3986,7 +4044,59 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:educational_value",
       "cost_units": 0.0,
-      "duration_s": 0.0004998789995624975,
+      "duration_s": 0.0005965119999018498,
+      "errors": []
+    },
+    {
+      "agent_id": "content_quality.value_first",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: QUALITY — Score drafts; block anything with blocking issues.\nYOUR ROLE: Value-First Checker: Every piece of content must state specifically what the viewer can now do, solve, build, understand or avoid (config/teaching.yaml value_first_questions); vague or missing answers block the draft.",
+      "status": "OK",
+      "findings": [
+        "Value-First Checker: 4 drafts, 0 blocking, 0 warnings, avg score 1.0"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "quality_reports": [
+          {
+            "artifact_id": "social.linkedin-1",
+            "agent_id": "content_quality.value_first",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.x_thread-1",
+            "agent_id": "content_quality.value_first",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.newsletter-1",
+            "agent_id": "content_quality.value_first",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "education.beginner_teacher-1",
+            "agent_id": "content_quality.value_first",
+            "score": 1.0,
+            "issues": []
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Every piece of content must state specifically what the viewer can now do, solve, build, understand or avoid (config/teaching.yaml value_first_questions); vague or missing answers block the draft."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:value_first",
+      "cost_units": 0.0,
+      "duration_s": 0.007218277999982092,
       "errors": []
     },
     {
@@ -4122,7 +4232,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 20.0,
-      "duration_s": 0.0010917750000771775,
+      "duration_s": 0.001089267999986987,
       "errors": []
     },
     {
@@ -4181,7 +4291,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 20.0,
-      "duration_s": 0.0008361089999198157,
+      "duration_s": 0.0006526600000142935,
       "errors": []
     },
     {
@@ -4261,7 +4371,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 20.0,
-      "duration_s": 0.000657683000099496,
+      "duration_s": 0.0005561259999922186,
       "errors": []
     },
     {
@@ -4317,7 +4427,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 20.0,
-      "duration_s": 0.0007960849998198682,
+      "duration_s": 0.000642176999917865,
       "errors": []
     },
     {
@@ -4342,7 +4452,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:experiment_registrar",
       "cost_units": 0.0,
-      "duration_s": 0.0002467839999553689,
+      "duration_s": 0.0002076399998713896,
       "errors": []
     },
     {
@@ -4424,7 +4534,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:analytics_plan",
       "cost_units": 0.0,
-      "duration_s": 0.006461075000061101,
+      "duration_s": 0.005865683000138233,
       "errors": []
     },
     {
@@ -4449,7 +4559,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:secret_scan",
       "cost_units": 0.0,
-      "duration_s": 0.004477779999888298,
+      "duration_s": 0.004340135999882477,
       "errors": []
     },
     {
@@ -4474,7 +4584,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:privacy",
       "cost_units": 0.0,
-      "duration_s": 0.0007240259997161047,
+      "duration_s": 0.0007325039998704597,
       "errors": []
     },
     {
@@ -4499,7 +4609,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:external_action",
       "cost_units": 0.0,
-      "duration_s": 0.00023452200002793688,
+      "duration_s": 0.00027344399995854474,
       "errors": []
     },
     {
@@ -4507,7 +4617,7 @@
       "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: REPORT — Assemble the run into a report.\nYOUR ROLE: Report-Generation Agent: Assemble run outputs into a markdown report.",
       "status": "OK",
       "findings": [
-        "report written (38470 chars)"
+        "report written (38752 chars)"
       ],
       "evidence": [],
       "assumptions": [],
@@ -4516,17 +4626,17 @@
       "next_action": "",
       "sources": [],
       "data": {
-        "report_path": "/home/user/furnacegold/demo/data/runs/20260928T134549Z_994e69/report.md"
+        "report_path": "demo/data/runs/20260928T143019Z_48321a/report.md"
       },
       "files_changed": [
-        "demo/data/runs/20260928T134549Z_994e69/report.md"
+        "demo/data/runs/20260928T143019Z_48321a/report.md"
       ],
       "tests_performed": [],
       "confidence": 1.0,
       "backend": "rule",
       "provenance": "deterministic rule rule:report",
       "cost_units": 0.0,
-      "duration_s": 0.0008421520001320459,
+      "duration_s": 0.012997130000030666,
       "errors": []
     },
     {
@@ -4553,7 +4663,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:run_learning",
       "cost_units": 0.0,
-      "duration_s": 0.0020783549998668605,
+      "duration_s": 0.0022161500000947854,
       "errors": []
     }
   ]

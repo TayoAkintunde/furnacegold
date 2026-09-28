@@ -47,3 +47,7 @@ def taxonomy() -> dict[str, list[str]]:
 
 def revenue_streams() -> dict[str, Any]:
     return load("revenue_streams").get("revenue_streams", {})
+
+
+def teaching() -> dict[str, Any]:
+    return load("teaching")

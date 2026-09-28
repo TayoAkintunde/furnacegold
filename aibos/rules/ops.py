@@ -64,7 +64,7 @@ def integration_check(ctx, spec):
 @rule("schedule")
 def schedule(ctx, spec):
     lines = [f"# m h dom mon dow  command  (NOT installed — add with `crontab -e` after review)",
-             f"30 6 * * *  cd {ROOT} && python -m aibos daily --sources data/sources/sources.json",
+             f"30 6 * * *  cd {ROOT} && python -m aibos teach-today",
              f"0 8 * * 1  cd {ROOT} && python -m aibos weekly"]
     return out(spec, ctx, findings=lines, data={"schedule": lines}, confidence=1.0,
                next_action="human installs the schedule; the system does not modify crontab")

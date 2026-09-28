@@ -1,6 +1,6 @@
-total_agents: 319
-specialists: 303
-unused_agents: 265
+total_agents: 345
+specialists: 328
+unused_agents: 289
     - analytics.anomaly
     - analytics.attribution
     - analytics.cohort
@@ -18,17 +18,17 @@ duplicate_agents: 6
     - {'agents': ['product_discovery.pricing', 'revenue.pricing'], 'reason': "same subject ['pricing'] and role 'analysis'", 'recommendation': 'merge or document the distinct scope'}
 poor_performing_agents: 0
 outdated_agents: 0
-never_reviewed_count: 319
+never_reviewed_count: 345
 missing_agents_or_capabilities: 0
 expensive_agents: 10
-    - {'agent_id': 'product_discovery.mvp', 'cost_units': 20.0}
-    - {'agent_id': 'product_discovery.opportunity', 'cost_units': 20.0}
     - {'agent_id': 'revenue.model_researcher', 'cost_units': 20.0}
-    - {'agent_id': 'content_strategy.strategist', 'cost_units': 20.0}
     - {'agent_id': 'research.ai_news', 'cost_units': 20.0}
+    - {'agent_id': 'product_discovery.mvp', 'cost_units': 20.0}
+    - {'agent_id': 'content_strategy.strategist', 'cost_units': 20.0}
+    - {'agent_id': 'product_discovery.opportunity', 'cost_units': 20.0}
     - {'agent_id': 'experiments.design', 'cost_units': 20.0}
     - {'agent_id': 'social.x_thread', 'cost_units': 5.0}
     - {'agent_id': 'social.newsletter', 'cost_units': 5.0}
-high_cost_llm_agents: 80
+high_cost_llm_agents: 91
 frequently_failing_agents: 0
 agents_needing_human_review: 0

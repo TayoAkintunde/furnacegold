@@ -1,0 +1,373 @@
+{
+ "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no Anthropic API key in this environment); grounded only in demo/teaching/sources.json",
+ "responses": {
+  "teaching.transcript_analyst": {
+   "TASK": "see stage",
+   "FINDINGS": [
+    "Transcript analysed; it is a read-through of the script, not a recording."
+   ],
+   "EVIDENCE": [],
+   "ASSUMPTIONS": [],
+   "UNCERTAINTIES": [
+    "No real screen footage exists; clip timestamps are from the read-through timing."
+   ],
+   "RECOMMENDATIONS": [],
+   "NEXT_ACTION": "",
+   "CONFIDENCE": 0.8,
+   "SOURCES": [],
+   "DATA": {
+    "transcript_analysis": [
+     {
+      "what_was_shown": [
+       "AI Studio Agents tab and the base Antigravity template",
+       "a fictional messy CSV being cleaned by the agent",
+       "before/after comparison with the agent's change summary",
+       "the same task from Python",
+       "the environment-ID mistake and its fix",
+       "caveats: preview status, May harness deprecation, pricing unconfirmed"
+      ],
+      "key_moments": [
+       {
+        "time": "00:00",
+        "description": "hook: messy spreadsheet in, fixed file out",
+        "clip_candidate": true
+       },
+       {
+        "time": "01:32",
+        "description": "agent writes, runs and corrects its own Python",
+        "clip_candidate": true
+       },
+       {
+        "time": "03:02",
+        "description": "the environment-ID mistake and fix",
+        "clip_candidate": true
+       }
+      ],
+      "claims_made": [
+       {
+        "text": "the new version is antigravity-preview-09-2026 and runs on Gemini 3.8 Flash",
+        "claim_id": "g2"
+       },
+       {
+        "text": "Files API puts files into the sandbox and gets results out",
+        "claim_id": "g3"
+       },
+       {
+        "text": "the May version is deprecated on October 5, 2026",
+        "claim_id": "g8"
+       }
+      ],
+      "questions_answered": [
+       "what is a managed agent",
+       "why the second request lost the file"
+      ],
+      "mistakes_shown": [
+       "missing environment ID on the follow-up request"
+      ],
+      "differences_from_plan": [
+       "this is a script read-through, so nothing was actually shown on screen"
+      ]
+     }
+    ]
+   }
+  },
+  "teaching.repurposer": {
+   "TASK": "see stage",
+   "FINDINGS": [
+    "14 formats, each adapted to its platform and purpose."
+   ],
+   "EVIDENCE": [],
+   "ASSUMPTIONS": [],
+   "UNCERTAINTIES": [],
+   "RECOMMENDATIONS": [],
+   "NEXT_ACTION": "",
+   "CONFIDENCE": 0.8,
+   "SOURCES": [],
+   "DATA": {
+    "content": [
+     {
+      "artifact_id": "pkg-youtube_tutorial",
+      "format": "youtube_tutorial",
+      "platform": "youtube_video",
+      "title": "Let a Gemini agent clean your messy CSV (AI Studio + Python)",
+      "purpose": "the complete lesson",
+      "audience": "people who want to do it",
+      "text": "Let a Gemini agent clean your messy CSV (AI Studio + Python)\n\nIn this tutorial you hand a Gemini managed agent a spreadsheet full of blank rows, mixed date formats and prices stored as text, watch it fix the data inside its own sandbox, and then fetch the cleaned file. After that we repeat the job from Python and keep working in the same sandbox for a monthly chart.\n\nChapters\n00:00 The result\n00:15 What Google changed\n01:10 Agent templates in AI Studio\n03:00 Cleaning the file\n05:30 Before and after\n06:30 The same job in Python\n08:30 The environment ID mistake\n10:00 Caveats\n\nNotes: the service is a preview; check pricing and free-tier limits yourself. Keep API keys out of prompts and use the Credentials API.\nDocs: https://ai.google.dev/gemini-api/docs/antigravity-agent",
+      "value_statement": "After watching you can hand a Gemini managed agent a messy CSV and get a cleaned file back, from AI Studio or Python.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "artifact_id": "pkg-youtube_short",
+      "format": "youtube_short",
+      "platform": "youtube_shorts",
+      "title": "Messy CSV in, clean CSV out",
+      "purpose": "fast proof; points to the tutorial",
+      "audience": "curious scrollers",
+      "text": "[screen: messy spreadsheet] This file has blank rows, three date styles and prices typed as text.\n[screen: AI Studio agent] I hand it to a Gemini managed agent with one instruction.\n[screen: steps running] It writes code, runs it in its own sandbox, and checks its own work.\n[screen: side by side] And here's the clean version I pulled back out.\nFull walkthrough, including the Python version, is on the channel.",
+      "value_statement": "After this short you know a Gemini agent can clean a spreadsheet inside its own sandbox for you.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "artifact_id": "pkg-tiktok",
+      "format": "tiktok",
+      "platform": "tiktok",
+      "title": "The environment ID trap",
+      "purpose": "one memorable lesson",
+      "audience": "developers",
+      "text": "[text: my agent lost my file] So I asked a Gemini managed agent for a chart of the data it had just cleaned. It said the file didn't exist.\n[text: why] Every request without an environment ID gets a brand-new sandbox. New sandbox, no file.\n[text: the fix] Store the environment ID from the first response and send it with every follow-up. Same sandbox, same files, chart done.\n[text: save this] Tiny detail, saves an hour of confusion.",
+      "value_statement": "After this clip you can avoid losing your files between Gemini agent requests by reusing the environment ID.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "artifact_id": "pkg-instagram_reel",
+      "format": "instagram_reel",
+      "platform": "instagram_reel",
+      "title": "Before and after: an agent cleans my spreadsheet",
+      "purpose": "visual proof",
+      "audience": "no-code builders",
+      "text": "[show the messy sheet] Blank rows. Dates written three ways. Prices as text.\n[show AI Studio] No code: an agent template in Google AI Studio, one instruction.\n[show the agent working] It runs its own code in a sandbox and double-checks.\n[show before and after] Clean data, plus a list of every change it made.\n[caption] Try it with fake data first.",
+      "value_statement": "After this reel you can clean a messy spreadsheet with an AI Studio agent template, no code needed.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "artifact_id": "pkg-linkedin_post",
+      "format": "linkedin_post",
+      "platform": "linkedin",
+      "title": "Agents that work on files, not just chat",
+      "purpose": "professional relevance",
+      "audience": "operators and team leads",
+      "text": "Most AI demos are chat. This one changes a file.\n\nGoogle updated the managed agents in the Gemini API and added a Files API. I recorded a short test: a sales export with blank rows, inconsistent dates and prices stored as text went in, and a cleaned file plus a change log came out. The agent wrote and ran its own Python in a sandbox Google hosts, so nothing was installed on my laptop.\n\nWhat matters for teams:\n- repetitive clean-up jobs can move to an agent run, first in the AI Studio playground, then from a script\n- follow-up work only sees your files if you pass the environment ID from the first request\n- secrets belong in the new Credentials API, not in prompts\n\nCaveats: it is a preview, and I could not confirm pricing from Google, so test with made-up data first.\n\nWhich weekly export would you hand to an agent first? Reply below.",
+      "value_statement": "After reading you can judge whether a recurring file clean-up job at work could move to a Gemini managed agent.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "artifact_id": "pkg-x_post",
+      "format": "x_post",
+      "platform": "x_post",
+      "title": "One detail for Gemini managed agents",
+      "purpose": "single sharp tip",
+      "audience": "developers",
+      "text": "Using Gemini managed agents from code? Store the environment ID from your first request. Without it, the next request gets a fresh sandbox and your files are gone.",
+      "value_statement": "After reading you can keep files between Gemini agent requests by passing the stored environment ID.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "artifact_id": "pkg-x_thread",
+      "format": "x_thread",
+      "platform": "x_thread",
+      "title": "Gemini managed agents, file in and file out",
+      "purpose": "text version of the demo",
+      "audience": "developers",
+      "text": "1/ Google updated Gemini API managed agents. I gave one a messy sales CSV and got a clean file back, without setting up any sandbox myself. Here's the flow:\n---\n2/ In AI Studio, open the Agents tab. The templates are the base Antigravity agent with tools already configured. Attach your file and give one instruction.\n---\n3/ The agent writes Python, runs it inside its own temporary Linux sandbox, checks the output and fixes what's still wrong. You install nothing locally.\n---\n4/ From code: create an interaction with agent antigravity-preview-09-2026 and environment remote. Print the answer and keep the environment ID.\n---\n5/ The trap: a second request without that environment ID lands in a fresh sandbox, and your file is gone. Pass the ID and it picks up where it left off.\n---\n6/ Caveats: it's a preview, the old May harness is deprecated on October 5, 2026, and I couldn't confirm pricing. Keep secrets in the Credentials API, not in prompts.",
+      "value_statement": "After reading you can run a Gemini managed agent on a file and continue in the same sandbox from Python.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "artifact_id": "pkg-newsletter_section",
+      "format": "newsletter_section",
+      "platform": "newsletter_section",
+      "title": "This week: an agent that edits files",
+      "purpose": "context and link",
+      "audience": "subscribers",
+      "text": "This week's tutorial is about agents that do work on files instead of just answering questions.\n\nGoogle's managed agents in the Gemini API now come with a Files API. You upload into the agent's sandbox, it runs its own code, and you fetch what it produced. I tested it on a deliberately messy sales file and walked through both the no-code route in AI Studio and the Python route.\n\nThe most useful lesson was a mistake: follow-up requests only see your earlier files if you pass the environment ID you stored the first time. The video shows the failure and the fix.\n\nTwo cautions before you try it: this is a preview, and pricing wasn't something I could confirm from Google.",
+      "value_statement": "After reading you know when a Gemini managed agent with the Files API fits a file-processing job and how to start.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "artifact_id": "pkg-blog_tutorial",
+      "format": "blog_tutorial",
+      "platform": "blog_tutorial",
+      "title": "How to let a Gemini managed agent clean a messy CSV",
+      "purpose": "searchable reference",
+      "audience": "developers",
+      "text": "How to let a Gemini managed agent clean a messy CSV\n\nGoogle recently updated the managed agents in the Gemini API. The new harness is called antigravity-preview-09-2026, it runs on Gemini 3.8 Flash, and it arrived together with a Files API and a Credentials API. In practice that means you can give an agent a file, let it run code in a temporary Linux sandbox that Google hosts, and fetch the output afterwards.\n\nWhat you need\n- A Google account with access to AI Studio\n- A Gemini API key if you want the Python part\n- A practice file with made-up data. Never upload anything sensitive to a preview service.\n\nStep 1: Start from a template in AI Studio\nOpen the Agents tab. Each template is the base Antigravity agent with some tools and environment settings switched on. Pick the base one and look at the environment settings: that environment is the sandbox your agent will work in.\n\nStep 2: Give it a file and one instruction\nAttach your messy CSV. Ask for three things in plain language: remove blank rows, put every date in one format, turn text prices into numbers, and list the changes.\n\nStep 3: Read the steps, not just the answer\nThe step list shows the agent writing a short Python script, running it, reading the output and correcting itself when a column is still text. This loop of planning, acting and checking is what separates an agent from a chat reply.\n\nStep 4: Compare before and after\nPut the original next to the cleaned file. The change summary should match what you see. If it doesn't, ask the agent to explain the difference.\n\nStep 5: Do it from Python\nCreate an interaction with the agent set to antigravity-preview-09-2026 and the environment set to remote. Print the final answer and store the environment ID. Check the current docs for the exact client method, because the service is still a preview.\n\nThe mistake to avoid\nIf a second request doesn't include the environment ID, it runs in a brand-new sandbox and cannot see your earlier files. Store the ID after the first request and pass it every time you continue the same job.\n\nCaveats\n- It is a preview, so names and limits may change.\n- The older May harness (antigravity-preview-05-2026) is deprecated on October 5, 2026, and its requests are redirected to the new harness.\n- I could not confirm pricing or free-tier limits from a Google source. Check them before building on this.\n- Register secrets with the Credentials API instead of pasting keys into prompts.\n",
+      "value_statement": "After reading you can run a Gemini managed agent on a CSV in AI Studio and from Python without losing its sandbox.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "artifact_id": "pkg-carousel_concept",
+      "format": "carousel_concept",
+      "platform": "carousel_concept",
+      "title": "From messy CSV to clean file",
+      "purpose": "save-able summary",
+      "audience": "LinkedIn readers",
+      "text": "From messy CSV to clean file with a Gemini managed agent\n---\nStep 1: AI Studio → Agents tab → pick the base Antigravity template\n---\nStep 2: attach a file with fake data and give one clear instruction\n---\nStep 3: watch it plan, run code, check and repeat inside its sandbox\n---\nStep 4: grab the cleaned file and its change summary\n---\nStep 5: in Python, keep the environment ID so follow-up requests see the same files\n---\nYou can now let an agent do file clean-up for you, from the browser or from code",
+      "value_statement": "After swiping through you can repeat the five steps from AI Studio template to Python follow-up requests.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "artifact_id": "pkg-faq",
+      "format": "faq",
+      "platform": "faq",
+      "title": "Gemini managed agents: common questions",
+      "purpose": "answer the questions viewers will ask",
+      "audience": "all",
+      "text": "Q: Do I need to install anything?\nA: Not for the AI Studio route. The agent runs code in a sandbox Google hosts.\n\nQ: Where do my files go?\nA: Into the agent's sandbox via the Files API. Use made-up data while testing.\n\nQ: Why did my second request lose the file?\nA: It started a new sandbox. Pass the environment ID from the first request.\n\nQ: How should I give it API keys?\nA: Register them with the Credentials API. The model never sees them.\n\nQ: What does it cost?\nA: I couldn't confirm pricing or free-tier limits from Google. Check the current pricing page.\n\nQ: Will this keep working?\nA: It's a preview. The older May harness is deprecated on October 5, 2026.",
+      "value_statement": "After reading you can answer the setup, file, key and cost questions that come up before trying a Gemini agent.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "artifact_id": "pkg-checklist",
+      "format": "checklist",
+      "platform": "checklist",
+      "title": "Before you give an agent your files",
+      "purpose": "actionable safety and setup list",
+      "audience": "all",
+      "text": "[ ] Use a practice file with fictional data first\n[ ] Check current pricing and free-tier limits\n[ ] Load your API key from an environment variable, never type it into a prompt\n[ ] Register real secrets with the Credentials API\n[ ] Store the environment ID after the first request\n[ ] Compare the output with the original before trusting it\n[ ] Note that the service is a preview and names may change",
+      "value_statement": "After using this checklist you can try a Gemini managed agent on files without exposing keys or real data.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "artifact_id": "pkg-downloadable_resource",
+      "format": "downloadable_resource",
+      "platform": "downloadable_resource",
+      "title": "Practice pack: messy CSV + task prompt",
+      "purpose": "hands-on practice",
+      "audience": "learners",
+      "text": "Practice pack contents (to be created before publishing):\n- sales_messy.csv with fictional rows: blank lines, three date styles, prices typed as text\n- task_prompt.txt: clean the file, standardise dates, convert prices to numbers, list every change\n- followup_prompt.txt: build a monthly sales chart from the cleaned file\n- notes.md: where the environment ID goes, and why keys belong in the Credentials API",
+      "value_statement": "After downloading you can practise the whole tutorial on safe sample data in about ten minutes.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     },
+     {
+      "artifact_id": "pkg-course_lesson",
+      "format": "course_lesson",
+      "platform": "course_lesson",
+      "title": "Module: managed agents, lesson one",
+      "purpose": "future course",
+      "audience": "course students",
+      "text": "Learning objective: run a managed agent on a file and continue work in the same sandbox.\nConcepts: sandbox, plan-act-check loop, environment ID, credential handling.\nExercise: clean the practice CSV in AI Studio, then repeat from Python and request a chart in a second call.\nCheck for understanding: why does a second request without the environment ID fail to find the file?\nNext lesson: scheduling the job and using the Credentials API for a connected service.",
+      "value_statement": "After this lesson you can explain and use sandboxes and environment IDs when running a managed agent on files.",
+      "claim_ids": [
+       "g2",
+       "g3",
+       "g7",
+       "g8"
+      ],
+      "source_ids": [
+       "s1",
+       "s2"
+      ]
+     }
+    ],
+    "repurposing_plan": []
+   }
+  }
+ }
+}

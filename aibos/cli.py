@@ -104,8 +104,9 @@ def cmd_pipeline(args):
 
 
 def cmd_daily(args):
-    return _run_objective(args, "Daily run: research new developments in " + (" ".join(args.topic) or "AI")
-                          + ", verify, update knowledge, and prepare opportunities and drafts.", pipeline="daily")
+    """The daily run is the teaching pipeline (the system's primary purpose)."""
+    from aibos.teaching_cli import cmd_teach_today
+    return cmd_teach_today(args)
 
 
 def cmd_weekly(args):
@@ -340,7 +341,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.set_defaults(func=cmd_plan)
     p = runopts(sub.add_parser("pipeline", help="list or run factory pipelines"))
     p.add_argument("name", nargs="?"); p.add_argument("topic", nargs="*"); p.set_defaults(func=cmd_pipeline)
-    p = runopts(sub.add_parser("daily", help="daily autonomous workflow (Part 37)"))
+    p = runopts(sub.add_parser("daily", help="daily teaching pipeline (same as teach-today)"))
     p.add_argument("topic", nargs="*"); p.set_defaults(func=cmd_daily)
     runopts(sub.add_parser("weekly", help="weekly strategy report (Part 38)")).set_defaults(func=cmd_weekly)
     runopts(sub.add_parser("analytics", help="analyse supplied metrics")).set_defaults(func=cmd_analytics)
@@ -377,6 +378,8 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("agent_id"); p.add_argument("run_id"); p.add_argument("note", nargs="+")
     p.add_argument("--severity", default="minor"); p.set_defaults(func=cmd_correct)
     runopts(sub.add_parser("demo", help="run the Part 45 demonstration")).set_defaults(func=cmd_demo)
+    from aibos.teaching_cli import add_parsers
+    add_parsers(sub, runopts)
     p = sub.add_parser("profile", help="business profile completeness and validation")
     p.add_argument("--file", help="profile YAML (default: config/business_profile.yaml)")
     p.set_defaults(func=cmd_profile)
