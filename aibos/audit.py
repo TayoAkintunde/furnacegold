@@ -18,6 +18,16 @@ ROLE_WORDS = {"agent", "analyst", "strategist", "researcher", "evaluator", "dete
               "a", "-", "service", "revenue", "sales", "analytics"}
 
 
+ROLE_GROUP = {"analyst": "analysis", "analytics": "analysis", "researcher": "analysis",
+              "strategist": "strategy", "architect": "design", "designer": "design", "builder": "design",
+              "creator": "design", "evaluator": "check", "detector": "check", "verifier": "check"}
+
+
+def _role(name: str) -> str:
+    groups = {ROLE_GROUP[w] for w in name.lower().replace("-", " ").split() if w in ROLE_GROUP}
+    return ",".join(sorted(groups)) or "agent"
+
+
 def _core(name: str) -> set[str]:
     return {w for w in name.lower().replace("-", " ").replace("/", " ").split() if w not in ROLE_WORDS}
 
@@ -54,8 +64,9 @@ def run_audit(reg: Registry, log: PerformanceLog | None = None, review_days: int
     duplicates = []
     for a, b in combinations(specialists, 2):
         ca, cb = _core(a.name), _core(b.name)
-        if ca and cb and len(ca & cb) / len(ca | cb) >= 0.99 and a.family != b.family:
-            duplicates.append({"agents": [a.agent_id, b.agent_id], "reason": f"same core name {sorted(ca)}",
+        if ca and cb and ca == cb and a.family != b.family and _role(a.name) == _role(b.name):
+            duplicates.append({"agents": [a.agent_id, b.agent_id],
+                               "reason": f"same subject {sorted(ca)} and role '{_role(a.name)}'",
                                "recommendation": "merge or document the distinct scope"})
 
     poor = sorted(k for k, s in scores.items() if "LOW_QUALITY" in s.flags)

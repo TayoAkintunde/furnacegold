@@ -184,6 +184,8 @@ class MasterOrchestrator:
                 ctx.stage_log.append(entry)
                 continue
             ctx.stage_log.append(entry)
+            if step.stage == "REPORT" and "weekly" in objective.lower():
+                Hooks.weekly_report(ctx, step)      # objective asked for a weekly-style report
             orch = DomainOrchestrator(step.orchestrator, self.reg, self.runner)
             outs = orch.run_stage(step, ctx)
             entry["statuses"] = {o.agent_id: o.status.value for o in outs}

@@ -48,6 +48,9 @@ def status(name: str) -> IntegrationStatus:
     if env and not all(os.environ.get(e) for e in env) and not (alt and any(os.environ.get(e) for e in alt)):
         missing = [e for e in env if not os.environ.get(e)]
         return IntegrationStatus(name, CREDENTIAL_REQUIRED, purpose, f"set {', '.join(missing)}")
+    if spec.get("network"):
+        return IntegrationStatus(name, CONNECTED, purpose,
+                                 "adapter ready; network reachability is not pre-checked (a failed fetch is reported, never substituted)")
     return IntegrationStatus(name, CONNECTED, purpose, "ready")
 
 

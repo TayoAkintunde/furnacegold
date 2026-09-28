@@ -52,6 +52,8 @@ class EndToEndTests(IsolatedTestCase):
                         "7. PRODUCT", "8. EXPERIMENT", "9. ANALYTICS PLAN", "Evidence chain"):
             self.assertIn(section, report)
         self.assertIn("Published externally:** nothing", report)
+        self.assertIn("Weekly strategy report", report)          # objective asked for a weekly-style report
+        self.assertIn("NO DATA", report)                          # no analytics supplied -> nothing invented
         run = json.loads((ctx.run_dir / "run.json").read_text())
         self.assertEqual(run["run_id"], ctx.run_id)
 

@@ -1,0 +1,4559 @@
+{
+  "run_id": "20260928T133546Z_07e64d",
+  "objective": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.",
+  "profile": {
+    "objective": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.",
+    "task_type": "multi_stage:research+education+content+opportunity+product+revenue+experiment",
+    "domains": [
+      "security",
+      "research",
+      "quality",
+      "knowledge",
+      "education",
+      "content",
+      "product",
+      "revenue",
+      "analytics",
+      "master",
+      "automation",
+      "learning"
+    ],
+    "required_expertise": [
+      "beginner",
+      "business",
+      "content",
+      "design",
+      "development",
+      "experiment",
+      "explain",
+      "find",
+      "identify",
+      "important",
+      "into",
+      "opportunities",
+      "opportunity",
+      "pieces",
+      "potential",
+      "produce",
+      "recent",
+      "report",
+      "research",
+      "several",
+      "turn",
+      "validation",
+      "verify",
+      "weekly-style"
+    ],
+    "required_tools": [
+      "source_store",
+      "web_search",
+      "platform_rules"
+    ],
+    "risk_level": "MEDIUM",
+    "complexity": "complex",
+    "output_type": "report",
+    "stages": [
+      "SOURCE_SECURITY",
+      "RESEARCH",
+      "VERIFY",
+      "KNOWLEDGE",
+      "TEACH",
+      "CONTENT_STRATEGY",
+      "CONTENT",
+      "QUALITY",
+      "OPPORTUNITY",
+      "PRODUCT",
+      "REVENUE",
+      "EXPERIMENT",
+      "ANALYTICS_PLAN",
+      "APPROVAL",
+      "SECURITY",
+      "REPORT",
+      "LEARN"
+    ],
+    "keywords": [
+      "find",
+      "important",
+      "recent",
+      "development",
+      "research",
+      "verify",
+      "explain",
+      "beginner",
+      "turn",
+      "into",
+      "several",
+      "pieces",
+      "content",
+      "identify",
+      "potential",
+      "business",
+      "opportunities",
+      "design",
+      "validation",
+      "experiment",
+      "produce",
+      "weekly-style",
+      "opportunity",
+      "report"
+    ]
+  },
+  "plan": [
+    {
+      "stage": "SOURCE_SECURITY",
+      "orchestrator": "orch.security",
+      "agents": [
+        "security.prompt_injection"
+      ],
+      "reason": "always runs (safety/reporting); fixed stage team (complex)",
+      "description": "Scan captured sources for prompt injection before any agent reads them.",
+      "post": null,
+      "requires": [],
+      "selection_scores": {}
+    },
+    {
+      "stage": "RESEARCH",
+      "orchestrator": "orch.research",
+      "agents": [
+        "research.ai_news"
+      ],
+      "reason": "objective mentions ['research', 'find', 'recent']; top 1 of 30 candidates by keyword/priority score (max 2)",
+      "description": "Discover and summarize developments from captured sources.",
+      "post": null,
+      "requires": [],
+      "selection_scores": {
+        "research.ai_news": 4.8,
+        "research.ai_agent": 0.7,
+        "research.ai_model": 0.7,
+        "research.academic": 0.5,
+        "research.ai_coding": 0.5
+      }
+    },
+    {
+      "stage": "VERIFY",
+      "orchestrator": "orch.quality",
+      "agents": [
+        "verification.source_quality",
+        "verification.citation",
+        "verification.primary_source",
+        "verification.quote",
+        "verification.statistics",
+        "verification.date",
+        "verification.cross_source",
+        "verification.contradiction"
+      ],
+      "reason": "objective mentions ['verify']; fixed stage team (complex)",
+      "description": "Verify every claim against captured source text.",
+      "post": "aggregate_verification",
+      "requires": [
+        "claims"
+      ],
+      "selection_scores": {}
+    },
+    {
+      "stage": "KNOWLEDGE",
+      "orchestrator": "orch.knowledge",
+      "agents": [
+        "knowledge.research_to_knowledge",
+        "knowledge.classifier",
+        "knowledge.gap"
+      ],
+      "reason": "required by RESEARCH; fixed stage team (complex)",
+      "description": "Persist verified claims as knowledge with evidence chains.",
+      "post": null,
+      "requires": [
+        "claims"
+      ],
+      "selection_scores": {}
+    },
+    {
+      "stage": "TEACH",
+      "orchestrator": "orch.education",
+      "agents": [
+        "education.beginner_teacher"
+      ],
+      "reason": "objective mentions ['explain', 'beginner']; learner level(s) requested: ['beginner']",
+      "description": "Explain the development at the requested learner level(s).",
+      "post": null,
+      "requires": [],
+      "selection_scores": {}
+    },
+    {
+      "stage": "CONTENT_STRATEGY",
+      "orchestrator": "orch.content",
+      "agents": [
+        "content_strategy.strategist"
+      ],
+      "reason": "required by CONTENT; fixed stage team (complex)",
+      "description": "Choose content angles from verified knowledge.",
+      "post": null,
+      "requires": [],
+      "selection_scores": {}
+    },
+    {
+      "stage": "CONTENT",
+      "orchestrator": "orch.content",
+      "agents": [
+        "social.linkedin",
+        "social.x_thread",
+        "social.newsletter"
+      ],
+      "reason": "objective mentions ['content', 'pieces of content']; default platforms ['linkedin', 'x_thread', 'newsletter'] (none named)",
+      "description": "Write platform-native drafts.",
+      "post": null,
+      "requires": [],
+      "selection_scores": {}
+    },
+    {
+      "stage": "QUALITY",
+      "orchestrator": "orch.quality",
+      "agents": [
+        "content_quality.factuality",
+        "content_quality.hallucination",
+        "content_quality.hype",
+        "content_quality.clickbait",
+        "content_quality.ai_slop",
+        "content_quality.platform_fit",
+        "content_quality.readability",
+        "content_quality.plagiarism",
+        "content_quality.educational_value"
+      ],
+      "reason": "required by TEACH; fixed stage team (complex)",
+      "description": "Score drafts; block anything with blocking issues.",
+      "post": "quality_gate",
+      "requires": [
+        "artifacts"
+      ],
+      "selection_scores": {}
+    },
+    {
+      "stage": "OPPORTUNITY",
+      "orchestrator": "orch.product",
+      "agents": [
+        "product_discovery.opportunity"
+      ],
+      "reason": "objective mentions ['opportunity', 'opportunities', 'business']; top 1 of 3 candidates by keyword/priority score (max 1)",
+      "description": "Identify business opportunities as hypotheses with evidence.",
+      "post": null,
+      "requires": [],
+      "selection_scores": {
+        "product_discovery.opportunity": 7.9,
+        "business_intel.emerging_opportunity": 5.5,
+        "software.saas_idea": 0.5
+      }
+    },
+    {
+      "stage": "PRODUCT",
+      "orchestrator": "orch.product",
+      "agents": [
+        "product_discovery.mvp"
+      ],
+      "reason": "objective mentions ['validation experiment']; fixed stage team (complex)",
+      "description": "Shape the most promising opportunity into an MVP concept.",
+      "post": null,
+      "requires": [],
+      "selection_scores": {}
+    },
+    {
+      "stage": "REVENUE",
+      "orchestrator": "orch.revenue",
+      "agents": [
+        "revenue.model_researcher"
+      ],
+      "reason": "objective mentions ['business opportunities']; fixed stage team (complex)",
+      "description": "Map candidate revenue models and their assumptions.",
+      "post": null,
+      "requires": [],
+      "selection_scores": {}
+    },
+    {
+      "stage": "EXPERIMENT",
+      "orchestrator": "orch.analytics",
+      "agents": [
+        "experiments.design",
+        "experiments.registrar"
+      ],
+      "reason": "objective mentions ['experiment', 'validation']; fixed stage team (complex)",
+      "description": "Design and pre-register a validation experiment.",
+      "post": null,
+      "requires": [],
+      "selection_scores": {}
+    },
+    {
+      "stage": "ANALYTICS_PLAN",
+      "orchestrator": "orch.analytics",
+      "agents": [
+        "analytics.analytics_planner"
+      ],
+      "reason": "required by EXPERIMENT; fixed stage team (complex)",
+      "description": "Define how results will be measured and which integrations that needs.",
+      "post": null,
+      "requires": [],
+      "selection_scores": {}
+    },
+    {
+      "stage": "APPROVAL",
+      "orchestrator": "orch.master",
+      "agents": [],
+      "reason": "required by CONTENT; fixed stage team (complex)",
+      "description": "Queue drafts and external actions for human approval. Nothing is published.",
+      "post": "approval_queue",
+      "requires": [],
+      "selection_scores": {}
+    },
+    {
+      "stage": "SECURITY",
+      "orchestrator": "orch.security",
+      "agents": [
+        "security.secret_detector",
+        "security.privacy",
+        "security.external_action"
+      ],
+      "reason": "always runs (safety/reporting); fixed stage team (complex)",
+      "description": "Scan all outputs for secrets, credentials, personal data and unapproved external actions.",
+      "post": null,
+      "requires": [],
+      "selection_scores": {}
+    },
+    {
+      "stage": "REPORT",
+      "orchestrator": "orch.automation",
+      "agents": [
+        "automation.report_generation"
+      ],
+      "reason": "always runs (safety/reporting); fixed stage team (complex)",
+      "description": "Assemble the run into a report.",
+      "post": null,
+      "requires": [],
+      "selection_scores": {}
+    },
+    {
+      "stage": "LEARN",
+      "orchestrator": "orch.learning",
+      "agents": [
+        "learning.run_learner"
+      ],
+      "reason": "always runs (safety/reporting); fixed stage team (complex)",
+      "description": "Record lessons and agent performance.",
+      "post": null,
+      "requires": [],
+      "selection_scores": {}
+    }
+  ],
+  "plan_notes": [],
+  "claims": [
+    {
+      "claim_id": "c1",
+      "text": "OpenAI discontinued the Sora API on September 24, 2026.",
+      "kind": "FACT",
+      "source_ids": [
+        "s1",
+        "s2"
+      ],
+      "quotes": [
+        "The Sora API will be discontinued on September 24, 2026",
+        "On September 24, 2026, OpenAI switched off the Sora 2 API"
+      ],
+      "confidence": 0.9,
+      "verification": "SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: PASS — best source score 1.00",
+        "verification.citation: PASS — cites ['s1', 's2']",
+        "verification.primary_source: PASS — quote found in primary source s1 (OpenAI)",
+        "verification.quote: PASS — 2 quotation(s) verbatim",
+        "verification.statistics: PASS — numbers ['24', '2026'] found in sources",
+        "verification.date: WARN — no parseable publication date on cited sources",
+        "verification.cross_source: PASS — 2 independent publishers: ['OpenAI', 'pasqualepillitteri.it']",
+        "verification.contradiction: PASS — no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "c2",
+      "text": "The Sora web and app experiences were discontinued earlier, on April 26, 2026.",
+      "kind": "FACT",
+      "source_ids": [
+        "s1",
+        "s3"
+      ],
+      "quotes": [
+        "The Sora web and app experiences were discontinued on April 26, 2026",
+        "The Sora app/web product was no longer available as of April 26, 2026"
+      ],
+      "confidence": 0.9,
+      "verification": "SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: PASS — best source score 1.00",
+        "verification.citation: PASS — cites ['s1', 's3']",
+        "verification.primary_source: PASS — quote found in primary source s1 (OpenAI)",
+        "verification.quote: PASS — 2 quotation(s) verbatim",
+        "verification.statistics: PASS — numbers ['26', '2026'] found in sources",
+        "verification.date: WARN — no parseable publication date on cited sources",
+        "verification.cross_source: PASS — 2 independent publishers: ['Kingy AI', 'OpenAI']",
+        "verification.contradiction: PASS — no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "c3",
+      "text": "The shutdown removed the Videos API and every alias of the Sora 2 models, such as sora-2 and sora-2-pro.",
+      "kind": "ASSUMPTION",
+      "source_ids": [
+        "s2"
+      ],
+      "quotes": [
+        "The Videos API and the Sora 2 models were removed from the OpenAI platform on September 24, 2026, including every alias of the Sora 2 models such as sora-2, sora-2-pro and their dated versions"
+      ],
+      "confidence": 0.207,
+      "verification": "PARTIALLY_SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: WARN — best source score 0.45",
+        "verification.citation: PASS — cites ['s2']",
+        "verification.primary_source: WARN — quote found, but only in secondary sources",
+        "verification.quote: PASS — 1 quotation(s) verbatim",
+        "verification.statistics: PASS — numbers ['2'] found in sources",
+        "verification.date: WARN — no parseable publication date on cited sources",
+        "verification.cross_source: WARN — only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent",
+        "verification.contradiction: PASS — no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "c4",
+      "text": "OpenAI's deprecations documentation named no replacement model for Sora 2.",
+      "kind": "ASSUMPTION",
+      "source_ids": [
+        "s2"
+      ],
+      "quotes": [
+        "in the official deprecations documentation, the column that usually points to a migration target stays blank for Sora 2",
+        "No replacement model was named"
+      ],
+      "confidence": 0.207,
+      "verification": "PARTIALLY_SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: WARN — best source score 0.45",
+        "verification.citation: PASS — cites ['s2']",
+        "verification.primary_source: WARN — quote found, but only in secondary sources",
+        "verification.quote: PASS — 2 quotation(s) verbatim",
+        "verification.statistics: PASS — numbers ['2'] found in sources",
+        "verification.date: WARN — no parseable publication date on cited sources",
+        "verification.cross_source: WARN — only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent",
+        "verification.contradiction: PASS — no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "c5",
+      "text": "Developers had six months of notice, from March 24 to September 24.",
+      "kind": "ASSUMPTION",
+      "source_ids": [
+        "s2"
+      ],
+      "quotes": [
+        "The six months of notice OpenAI granted (from March 24 to September 24)"
+      ],
+      "confidence": 0.207,
+      "verification": "PARTIALLY_SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: WARN — best source score 0.45",
+        "verification.citation: PASS — cites ['s2']",
+        "verification.primary_source: WARN — quote found, but only in secondary sources",
+        "verification.quote: PASS — 1 quotation(s) verbatim",
+        "verification.statistics: PASS — numbers ['24', '24'] found in sources",
+        "verification.date: WARN — no parseable publication date on cited sources",
+        "verification.cross_source: WARN — only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent",
+        "verification.contradiction: PASS — no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "c6",
+      "text": "OpenAI recommends exporting Sora content as soon as possible via sora.chatgpt.com/sunset.",
+      "kind": "FACT",
+      "source_ids": [
+        "s1"
+      ],
+      "quotes": [
+        "it's recommended you export your Sora content as soon as possible",
+        "going to sora.chatgpt.com/sunset and clicking on Export"
+      ],
+      "confidence": 0.729,
+      "verification": "SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: PASS — best source score 1.00",
+        "verification.citation: PASS — cites ['s1']",
+        "verification.primary_source: PASS — quote found in primary source s1 (OpenAI)",
+        "verification.quote: PASS — 2 quotation(s) verbatim",
+        "verification.statistics: NA — no numbers",
+        "verification.date: WARN — no parseable publication date on cited sources",
+        "verification.cross_source: WARN — only 1 publisher(s) ['OpenAI']; independent corroboration absent",
+        "verification.contradiction: PASS — no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "c7",
+      "text": "After Sora is discontinued and any final export window passes, OpenAI will permanently delete data associated with Sora use.",
+      "kind": "FACT",
+      "source_ids": [
+        "s1"
+      ],
+      "quotes": [
+        "OpenAI will permanently delete any data associated with your use of Sora"
+      ],
+      "confidence": 0.729,
+      "verification": "SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: PASS — best source score 1.00",
+        "verification.citation: PASS — cites ['s1']",
+        "verification.primary_source: PASS — quote found in primary source s1 (OpenAI)",
+        "verification.quote: PASS — 1 quotation(s) verbatim",
+        "verification.statistics: NA — no numbers",
+        "verification.date: WARN — no parseable publication date on cited sources",
+        "verification.cross_source: WARN — only 1 publisher(s) ['OpenAI']; independent corroboration absent",
+        "verification.contradiction: PASS — no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "c8",
+      "text": "Competing video models remain available via API, including Kling AI and Luma Ray 2, alongside multi-model aggregators such as Higgsfield AI.",
+      "kind": "OBSERVATION",
+      "source_ids": [
+        "s2"
+      ],
+      "quotes": [
+        "Competing models remain active on the market, including Kling AI from Kuaishou and Luma Ray 2, both accessible via API, alongside aggregator platforms like Higgsfield AI"
+      ],
+      "confidence": 0.207,
+      "verification": "PARTIALLY_SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: WARN — best source score 0.45",
+        "verification.citation: PASS — cites ['s2']",
+        "verification.primary_source: WARN — quote found, but only in secondary sources",
+        "verification.quote: PASS — 1 quotation(s) verbatim",
+        "verification.statistics: PASS — numbers ['2'] found in sources",
+        "verification.date: WARN — no parseable publication date on cited sources",
+        "verification.cross_source: WARN — only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent",
+        "verification.contradiction: PASS — no contradiction detected"
+      ]
+    },
+    {
+      "claim_id": "c9",
+      "text": "Kingy AI reports an unattributed estimate that Sora cost about $1 million per day to operate.",
+      "kind": "ASSUMPTION",
+      "source_ids": [
+        "s3"
+      ],
+      "quotes": [
+        "The service cost an estimated $1 million per day to operate"
+      ],
+      "confidence": 0.207,
+      "verification": "PARTIALLY_SUPPORTED",
+      "verification_notes": [
+        "verification.source_quality: WARN — best source score 0.45",
+        "verification.citation: PASS — cites ['s3']",
+        "verification.primary_source: WARN — quote found, but only in secondary sources",
+        "verification.quote: PASS — 1 quotation(s) verbatim",
+        "verification.statistics: PASS — numbers ['1'] found in sources",
+        "verification.date: WARN — no parseable publication date on cited sources",
+        "verification.cross_source: WARN — only 1 publisher(s) ['Kingy AI']; independent corroboration absent",
+        "verification.contradiction: PASS — no contradiction detected"
+      ]
+    }
+  ],
+  "board": {
+    "security_findings": [],
+    "findings": [
+      {
+        "development": "OpenAI shut down the Sora API (September 24, 2026), completing a two-stage Sora discontinuation",
+        "why_it_matters": "A product feature built on one vendor's model API can stop working on the vendor's schedule, regardless of the product's own code quality.",
+        "implications": [
+          "Teams using Sora for video must migrate to another model and re-test quality and cost (HYPOTHESIS: scale unknown)",
+          "Model/API retirement is a business risk for every AI product, not only video tools (OPINION)",
+          "User data export and deletion timelines create a compliance and content-archiving task (from c6, c7)"
+        ],
+        "opportunity_hypotheses": [
+          "Education content on AI vendor-dependency risk",
+          "A model-deprecation readiness checklist and audit service",
+          "Migration guides for video-generation features"
+        ],
+        "claim_ids": [
+          "c1",
+          "c2",
+          "c3",
+          "c4",
+          "c6",
+          "c7"
+        ],
+        "produced_by": "research.ai_news"
+      }
+    ],
+    "verification_reports": [
+      {
+        "agent_id": "verification.source_quality",
+        "results": {
+          "c1": {
+            "verdict": "pass",
+            "note": "best source score 1.00"
+          },
+          "c2": {
+            "verdict": "pass",
+            "note": "best source score 1.00"
+          },
+          "c3": {
+            "verdict": "warn",
+            "note": "best source score 0.45"
+          },
+          "c4": {
+            "verdict": "warn",
+            "note": "best source score 0.45"
+          },
+          "c5": {
+            "verdict": "warn",
+            "note": "best source score 0.45"
+          },
+          "c6": {
+            "verdict": "pass",
+            "note": "best source score 1.00"
+          },
+          "c7": {
+            "verdict": "pass",
+            "note": "best source score 1.00"
+          },
+          "c8": {
+            "verdict": "warn",
+            "note": "best source score 0.45"
+          },
+          "c9": {
+            "verdict": "warn",
+            "note": "best source score 0.45"
+          }
+        },
+        "produced_by": "verification.source_quality"
+      },
+      {
+        "agent_id": "verification.citation",
+        "results": {
+          "c1": {
+            "verdict": "pass",
+            "note": "cites ['s1', 's2']"
+          },
+          "c2": {
+            "verdict": "pass",
+            "note": "cites ['s1', 's3']"
+          },
+          "c3": {
+            "verdict": "pass",
+            "note": "cites ['s2']"
+          },
+          "c4": {
+            "verdict": "pass",
+            "note": "cites ['s2']"
+          },
+          "c5": {
+            "verdict": "pass",
+            "note": "cites ['s2']"
+          },
+          "c6": {
+            "verdict": "pass",
+            "note": "cites ['s1']"
+          },
+          "c7": {
+            "verdict": "pass",
+            "note": "cites ['s1']"
+          },
+          "c8": {
+            "verdict": "pass",
+            "note": "cites ['s2']"
+          },
+          "c9": {
+            "verdict": "pass",
+            "note": "cites ['s3']"
+          }
+        },
+        "produced_by": "verification.citation"
+      },
+      {
+        "agent_id": "verification.primary_source",
+        "results": {
+          "c1": {
+            "verdict": "pass",
+            "note": "quote found in primary source s1 (OpenAI)"
+          },
+          "c2": {
+            "verdict": "pass",
+            "note": "quote found in primary source s1 (OpenAI)"
+          },
+          "c3": {
+            "verdict": "warn",
+            "note": "quote found, but only in secondary sources"
+          },
+          "c4": {
+            "verdict": "warn",
+            "note": "quote found, but only in secondary sources"
+          },
+          "c5": {
+            "verdict": "warn",
+            "note": "quote found, but only in secondary sources"
+          },
+          "c6": {
+            "verdict": "pass",
+            "note": "quote found in primary source s1 (OpenAI)"
+          },
+          "c7": {
+            "verdict": "pass",
+            "note": "quote found in primary source s1 (OpenAI)"
+          },
+          "c8": {
+            "verdict": "warn",
+            "note": "quote found, but only in secondary sources"
+          },
+          "c9": {
+            "verdict": "warn",
+            "note": "quote found, but only in secondary sources"
+          }
+        },
+        "produced_by": "verification.primary_source"
+      },
+      {
+        "agent_id": "verification.quote",
+        "results": {
+          "c1": {
+            "verdict": "pass",
+            "note": "2 quotation(s) verbatim"
+          },
+          "c2": {
+            "verdict": "pass",
+            "note": "2 quotation(s) verbatim"
+          },
+          "c3": {
+            "verdict": "pass",
+            "note": "1 quotation(s) verbatim"
+          },
+          "c4": {
+            "verdict": "pass",
+            "note": "2 quotation(s) verbatim"
+          },
+          "c5": {
+            "verdict": "pass",
+            "note": "1 quotation(s) verbatim"
+          },
+          "c6": {
+            "verdict": "pass",
+            "note": "2 quotation(s) verbatim"
+          },
+          "c7": {
+            "verdict": "pass",
+            "note": "1 quotation(s) verbatim"
+          },
+          "c8": {
+            "verdict": "pass",
+            "note": "1 quotation(s) verbatim"
+          },
+          "c9": {
+            "verdict": "pass",
+            "note": "1 quotation(s) verbatim"
+          }
+        },
+        "produced_by": "verification.quote"
+      },
+      {
+        "agent_id": "verification.statistics",
+        "results": {
+          "c1": {
+            "verdict": "pass",
+            "note": "numbers ['24', '2026'] found in sources"
+          },
+          "c2": {
+            "verdict": "pass",
+            "note": "numbers ['26', '2026'] found in sources"
+          },
+          "c3": {
+            "verdict": "pass",
+            "note": "numbers ['2'] found in sources"
+          },
+          "c4": {
+            "verdict": "pass",
+            "note": "numbers ['2'] found in sources"
+          },
+          "c5": {
+            "verdict": "pass",
+            "note": "numbers ['24', '24'] found in sources"
+          },
+          "c6": {
+            "verdict": "na",
+            "note": "no numbers"
+          },
+          "c7": {
+            "verdict": "na",
+            "note": "no numbers"
+          },
+          "c8": {
+            "verdict": "pass",
+            "note": "numbers ['2'] found in sources"
+          },
+          "c9": {
+            "verdict": "pass",
+            "note": "numbers ['1'] found in sources"
+          }
+        },
+        "produced_by": "verification.statistics"
+      },
+      {
+        "agent_id": "verification.date",
+        "results": {
+          "c1": {
+            "verdict": "warn",
+            "note": "no parseable publication date on cited sources"
+          },
+          "c2": {
+            "verdict": "warn",
+            "note": "no parseable publication date on cited sources"
+          },
+          "c3": {
+            "verdict": "warn",
+            "note": "no parseable publication date on cited sources"
+          },
+          "c4": {
+            "verdict": "warn",
+            "note": "no parseable publication date on cited sources"
+          },
+          "c5": {
+            "verdict": "warn",
+            "note": "no parseable publication date on cited sources"
+          },
+          "c6": {
+            "verdict": "warn",
+            "note": "no parseable publication date on cited sources"
+          },
+          "c7": {
+            "verdict": "warn",
+            "note": "no parseable publication date on cited sources"
+          },
+          "c8": {
+            "verdict": "warn",
+            "note": "no parseable publication date on cited sources"
+          },
+          "c9": {
+            "verdict": "warn",
+            "note": "no parseable publication date on cited sources"
+          }
+        },
+        "produced_by": "verification.date"
+      },
+      {
+        "agent_id": "verification.cross_source",
+        "results": {
+          "c1": {
+            "verdict": "pass",
+            "note": "2 independent publishers: ['OpenAI', 'pasqualepillitteri.it']"
+          },
+          "c2": {
+            "verdict": "pass",
+            "note": "2 independent publishers: ['Kingy AI', 'OpenAI']"
+          },
+          "c3": {
+            "verdict": "warn",
+            "note": "only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent"
+          },
+          "c4": {
+            "verdict": "warn",
+            "note": "only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent"
+          },
+          "c5": {
+            "verdict": "warn",
+            "note": "only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent"
+          },
+          "c6": {
+            "verdict": "warn",
+            "note": "only 1 publisher(s) ['OpenAI']; independent corroboration absent"
+          },
+          "c7": {
+            "verdict": "warn",
+            "note": "only 1 publisher(s) ['OpenAI']; independent corroboration absent"
+          },
+          "c8": {
+            "verdict": "warn",
+            "note": "only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent"
+          },
+          "c9": {
+            "verdict": "warn",
+            "note": "only 1 publisher(s) ['Kingy AI']; independent corroboration absent"
+          }
+        },
+        "produced_by": "verification.cross_source"
+      },
+      {
+        "agent_id": "verification.contradiction",
+        "results": {
+          "c1": {
+            "verdict": "pass",
+            "note": "no contradiction detected"
+          },
+          "c2": {
+            "verdict": "pass",
+            "note": "no contradiction detected"
+          },
+          "c3": {
+            "verdict": "pass",
+            "note": "no contradiction detected"
+          },
+          "c4": {
+            "verdict": "pass",
+            "note": "no contradiction detected"
+          },
+          "c5": {
+            "verdict": "pass",
+            "note": "no contradiction detected"
+          },
+          "c6": {
+            "verdict": "pass",
+            "note": "no contradiction detected"
+          },
+          "c7": {
+            "verdict": "pass",
+            "note": "no contradiction detected"
+          },
+          "c8": {
+            "verdict": "pass",
+            "note": "no contradiction detected"
+          },
+          "c9": {
+            "verdict": "pass",
+            "note": "no contradiction detected"
+          }
+        },
+        "produced_by": "verification.contradiction"
+      }
+    ],
+    "source_scores": {
+      "s1": {
+        "type": "primary",
+        "publisher": "OpenAI",
+        "score": 1.0,
+        "has_date": false,
+        "has_text": true
+      },
+      "s2": {
+        "type": "blog",
+        "publisher": "pasqualepillitteri.it",
+        "score": 0.45,
+        "has_date": false,
+        "has_text": true
+      },
+      "s3": {
+        "type": "blog",
+        "publisher": "Kingy AI",
+        "score": 0.45,
+        "has_date": false,
+        "has_text": true
+      },
+      "s4": {
+        "type": "unknown",
+        "publisher": "WebSearch digest (multiple outlets)",
+        "score": 0.2,
+        "has_date": false,
+        "has_text": true
+      }
+    },
+    "contradictions": [],
+    "knowledge": [
+      {
+        "entry_id": "k_c1",
+        "title": "OpenAI discontinued the Sora API on September 24, 2026.",
+        "summary": "OpenAI discontinued the Sora API on September 24, 2026.",
+        "claim_ids": [
+          "c1"
+        ],
+        "tags": [
+          "developer_tools"
+        ],
+        "confidence": 0.9,
+        "status": "VERIFIED",
+        "evidence_chain": [
+          {
+            "claim": "OpenAI discontinued the Sora API on September 24, 2026.",
+            "source": "OpenAI — What to know about the Sora discontinuation | OpenAI Help Center (https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation, date unknown)",
+            "evidence": "The Sora API will be discontinued on September 24, 2026",
+            "confidence": 0.9,
+            "interpretation": "SUPPORTED; kind=FACT",
+            "decision": "usable as fact"
+          },
+          {
+            "claim": "OpenAI discontinued the Sora API on September 24, 2026.",
+            "source": "pasqualepillitteri.it — OpenAI shuts down the Sora 2 API, developers left without a fallback (https://pasqualepillitteri.it/en/news/18764/openai-sora2-api-dismessa-en, date unknown)",
+            "evidence": "On September 24, 2026, OpenAI switched off the Sora 2 API",
+            "confidence": 0.9,
+            "interpretation": "SUPPORTED; kind=FACT",
+            "decision": "usable as fact"
+          }
+        ],
+        "as_of": "2026-09-28",
+        "produced_by": "knowledge.research_to_knowledge"
+      },
+      {
+        "entry_id": "k_c2",
+        "title": "The Sora web and app experiences were discontinued earlier, on April 26, 2026.",
+        "summary": "The Sora web and app experiences were discontinued earlier, on April 26, 2026.",
+        "claim_ids": [
+          "c2"
+        ],
+        "tags": [],
+        "confidence": 0.9,
+        "status": "VERIFIED",
+        "evidence_chain": [
+          {
+            "claim": "The Sora web and app experiences were discontinued earlier, on April 26, 2026.",
+            "source": "OpenAI — What to know about the Sora discontinuation | OpenAI Help Center (https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation, date unknown)",
+            "evidence": "The Sora web and app experiences were discontinued on April 26, 2026",
+            "confidence": 0.9,
+            "interpretation": "SUPPORTED; kind=FACT",
+            "decision": "usable as fact"
+          },
+          {
+            "claim": "The Sora web and app experiences were discontinued earlier, on April 26, 2026.",
+            "source": "Kingy AI — Sora API Shutdown September 24: Export & Alternatives (https://kingy.ai/blog/sora-api-shutdown-september-24-export-alternatives/, date unknown)",
+            "evidence": "The Sora app/web product was no longer available as of April 26, 2026",
+            "confidence": 0.9,
+            "interpretation": "SUPPORTED; kind=FACT",
+            "decision": "usable as fact"
+          }
+        ],
+        "as_of": "2026-09-28",
+        "produced_by": "knowledge.research_to_knowledge"
+      },
+      {
+        "entry_id": "k_c6",
+        "title": "OpenAI recommends exporting Sora content as soon as possible via sora.chatgpt.com/sunset.",
+        "summary": "OpenAI recommends exporting Sora content as soon as possible via sora.chatgpt.com/sunset.",
+        "claim_ids": [
+          "c6"
+        ],
+        "tags": [],
+        "confidence": 0.729,
+        "status": "VERIFIED",
+        "evidence_chain": [
+          {
+            "claim": "OpenAI recommends exporting Sora content as soon as possible via sora.chatgpt.com/sunset.",
+            "source": "OpenAI — What to know about the Sora discontinuation | OpenAI Help Center (https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation, date unknown)",
+            "evidence": "it's recommended you export your Sora content as soon as possible",
+            "confidence": 0.729,
+            "interpretation": "SUPPORTED; kind=FACT",
+            "decision": "usable as fact"
+          }
+        ],
+        "as_of": "2026-09-28",
+        "produced_by": "knowledge.research_to_knowledge"
+      },
+      {
+        "entry_id": "k_c7",
+        "title": "After Sora is discontinued and any final export window passes, OpenAI will permanently del",
+        "summary": "After Sora is discontinued and any final export window passes, OpenAI will permanently delete data associated with Sora use.",
+        "claim_ids": [
+          "c7"
+        ],
+        "tags": [],
+        "confidence": 0.729,
+        "status": "VERIFIED",
+        "evidence_chain": [
+          {
+            "claim": "After Sora is discontinued and any final export window passes, OpenAI will permanently delete data associated with Sora use.",
+            "source": "OpenAI — What to know about the Sora discontinuation | OpenAI Help Center (https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation, date unknown)",
+            "evidence": "OpenAI will permanently delete any data associated with your use of Sora",
+            "confidence": 0.729,
+            "interpretation": "SUPPORTED; kind=FACT",
+            "decision": "usable as fact"
+          }
+        ],
+        "as_of": "2026-09-28",
+        "produced_by": "knowledge.research_to_knowledge"
+      }
+    ],
+    "open_questions": [
+      {
+        "claim_id": "c3",
+        "text": "The shutdown removed the Videos API and every alias of the Sora 2 models, such as sora-2 and sora-2-pro.",
+        "verification": "PARTIALLY_SUPPORTED",
+        "notes": [
+          "verification.source_quality: WARN — best source score 0.45",
+          "verification.citation: PASS — cites ['s2']",
+          "verification.primary_source: WARN — quote found, but only in secondary sources",
+          "verification.quote: PASS — 1 quotation(s) verbatim",
+          "verification.statistics: PASS — numbers ['2'] found in sources",
+          "verification.date: WARN — no parseable publication date on cited sources",
+          "verification.cross_source: WARN — only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent",
+          "verification.contradiction: PASS — no contradiction detected"
+        ],
+        "produced_by": "knowledge.research_to_knowledge"
+      },
+      {
+        "claim_id": "c4",
+        "text": "OpenAI's deprecations documentation named no replacement model for Sora 2.",
+        "verification": "PARTIALLY_SUPPORTED",
+        "notes": [
+          "verification.source_quality: WARN — best source score 0.45",
+          "verification.citation: PASS — cites ['s2']",
+          "verification.primary_source: WARN — quote found, but only in secondary sources",
+          "verification.quote: PASS — 2 quotation(s) verbatim",
+          "verification.statistics: PASS — numbers ['2'] found in sources",
+          "verification.date: WARN — no parseable publication date on cited sources",
+          "verification.cross_source: WARN — only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent",
+          "verification.contradiction: PASS — no contradiction detected"
+        ],
+        "produced_by": "knowledge.research_to_knowledge"
+      },
+      {
+        "claim_id": "c5",
+        "text": "Developers had six months of notice, from March 24 to September 24.",
+        "verification": "PARTIALLY_SUPPORTED",
+        "notes": [
+          "verification.source_quality: WARN — best source score 0.45",
+          "verification.citation: PASS — cites ['s2']",
+          "verification.primary_source: WARN — quote found, but only in secondary sources",
+          "verification.quote: PASS — 1 quotation(s) verbatim",
+          "verification.statistics: PASS — numbers ['24', '24'] found in sources",
+          "verification.date: WARN — no parseable publication date on cited sources",
+          "verification.cross_source: WARN — only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent",
+          "verification.contradiction: PASS — no contradiction detected"
+        ],
+        "produced_by": "knowledge.research_to_knowledge"
+      },
+      {
+        "claim_id": "c8",
+        "text": "Competing video models remain available via API, including Kling AI and Luma Ray 2, alongside multi-model aggregators such as Higgsfield AI.",
+        "verification": "PARTIALLY_SUPPORTED",
+        "notes": [
+          "verification.source_quality: WARN — best source score 0.45",
+          "verification.citation: PASS — cites ['s2']",
+          "verification.primary_source: WARN — quote found, but only in secondary sources",
+          "verification.quote: PASS — 1 quotation(s) verbatim",
+          "verification.statistics: PASS — numbers ['2'] found in sources",
+          "verification.date: WARN — no parseable publication date on cited sources",
+          "verification.cross_source: WARN — only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent",
+          "verification.contradiction: PASS — no contradiction detected"
+        ],
+        "produced_by": "knowledge.research_to_knowledge"
+      },
+      {
+        "claim_id": "c9",
+        "text": "Kingy AI reports an unattributed estimate that Sora cost about $1 million per day to operate.",
+        "verification": "PARTIALLY_SUPPORTED",
+        "notes": [
+          "verification.source_quality: WARN — best source score 0.45",
+          "verification.citation: PASS — cites ['s3']",
+          "verification.primary_source: WARN — quote found, but only in secondary sources",
+          "verification.quote: PASS — 1 quotation(s) verbatim",
+          "verification.statistics: PASS — numbers ['1'] found in sources",
+          "verification.date: WARN — no parseable publication date on cited sources",
+          "verification.cross_source: WARN — only 1 publisher(s) ['Kingy AI']; independent corroboration absent",
+          "verification.contradiction: PASS — no contradiction detected"
+        ],
+        "produced_by": "knowledge.research_to_knowledge"
+      }
+    ],
+    "classifications": {
+      "c1": [
+        "developer_tools"
+      ],
+      "c2": [],
+      "c3": [
+        "developer_tools",
+        "ai_models"
+      ],
+      "c4": [
+        "ai_models"
+      ],
+      "c5": [
+        "developer_tools"
+      ],
+      "c6": [],
+      "c7": [],
+      "c8": [
+        "developer_tools",
+        "ai_models"
+      ],
+      "c9": [
+        "infrastructure"
+      ]
+    },
+    "knowledge_gaps": [
+      {
+        "claim_id": "c3",
+        "gap": "verification=PARTIALLY_SUPPORTED",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "claim_id": "c3",
+        "gap": "single publisher; needs independent corroboration",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "claim_id": "c4",
+        "gap": "verification=PARTIALLY_SUPPORTED",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "claim_id": "c4",
+        "gap": "single publisher; needs independent corroboration",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "claim_id": "c5",
+        "gap": "verification=PARTIALLY_SUPPORTED",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "claim_id": "c5",
+        "gap": "single publisher; needs independent corroboration",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "claim_id": "c6",
+        "gap": "single publisher; needs independent corroboration",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "claim_id": "c7",
+        "gap": "single publisher; needs independent corroboration",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "claim_id": "c8",
+        "gap": "verification=PARTIALLY_SUPPORTED",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "claim_id": "c8",
+        "gap": "single publisher; needs independent corroboration",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "claim_id": "c9",
+        "gap": "verification=PARTIALLY_SUPPORTED",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "claim_id": "c9",
+        "gap": "single publisher; needs independent corroboration",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "source_id": "s1",
+        "gap": "missing publication date",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "source_id": "s2",
+        "gap": "missing publication date",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "source_id": "s3",
+        "gap": "missing publication date",
+        "produced_by": "knowledge.gap"
+      },
+      {
+        "source_id": "s4",
+        "gap": "missing publication date",
+        "produced_by": "knowledge.gap"
+      }
+    ],
+    "explanations": [
+      {
+        "artifact_id": "education.beginner_teacher-1",
+        "level": "beginner",
+        "title": "Why an app can lose a feature overnight: the Sora API shutdown",
+        "text": "Sora was a tool from OpenAI that made short videos from text. On April 26, 2026, OpenAI closed the Sora app and website. On September 24, 2026, it also closed the Sora API.\n\nWhat is an API? An API is a way for one program to ask another program to do a job. Think of it as a service window at a bakery. You do not bake the bread. You ask at the window, and the bakery hands it over. Many apps used the Sora window to make videos for their own users.\n\nWhen the window closes, the app cannot get videos any more. Its own code can be perfect, and the feature still stops. This is called a dependency: your product depends on something you do not control.\n\nFor example, imagine a small shop app that turned product photos into short clips with Sora. From September 24, those clip requests fail. The owner now has to pick a new video tool, check the results look good, and check the new price.\n\nOpenAI told Sora users to export their content as soon as possible. It also said it will permanently delete data linked to Sora use after any final export window ends.\n\nKey takeaways:\n- Every AI feature you use may rely on a company's API.\n- Services can be switched off. Keep copies of the work that matters to you.\n- Before building on a tool, ask: what is my plan if it goes away?",
+        "glossary": {
+          "API": "a way for one program to ask another program to do a job",
+          "dependency": "something your product needs but does not control",
+          "export": "downloading a copy of your data to keep"
+        },
+        "takeaways": [
+          "Every AI feature may rely on a company's API.",
+          "Services can be switched off; keep copies of important work.",
+          "Plan for what happens if a tool goes away."
+        ],
+        "claim_ids": [
+          "c1",
+          "c2",
+          "c6",
+          "c7"
+        ],
+        "source_ids": [
+          "s1"
+        ],
+        "produced_by": "education.beginner_teacher",
+        "platform": "beginner",
+        "blocked": false
+      }
+    ],
+    "content_angles": [
+      {
+        "angle_id": "a1",
+        "title": "The Sora API is off: what happened and what to do with your content",
+        "audience": "creators and builders who used Sora",
+        "audience_evidence": "HYPOTHESIS",
+        "promise": "A dated timeline and the two actions OpenAI recommends",
+        "key_claim_ids": [
+          "c1",
+          "c2",
+          "c6",
+          "c7"
+        ],
+        "format_suggestions": [
+          "x_thread",
+          "linkedin"
+        ],
+        "why_now": "The API shut down on September 24, 2026.",
+        "produced_by": "content_strategy.strategist"
+      },
+      {
+        "angle_id": "a2",
+        "title": "Every AI feature has a vendor dependency",
+        "audience": "founders and product teams using third-party model APIs",
+        "audience_evidence": "HYPOTHESIS",
+        "promise": "A simple way to list and de-risk the models your product depends on",
+        "key_claim_ids": [
+          "c1",
+          "c2"
+        ],
+        "format_suggestions": [
+          "linkedin",
+          "newsletter"
+        ],
+        "why_now": "A concrete, recent example makes an abstract risk tangible.",
+        "produced_by": "content_strategy.strategist"
+      },
+      {
+        "angle_id": "a3",
+        "title": "What an API is, explained through the Sora shutdown",
+        "audience": "beginners",
+        "audience_evidence": "HYPOTHESIS",
+        "promise": "Understand APIs and dependencies in five minutes",
+        "key_claim_ids": [
+          "c1",
+          "c6"
+        ],
+        "format_suggestions": [
+          "newsletter"
+        ],
+        "why_now": "News hook.",
+        "produced_by": "content_strategy.strategist"
+      }
+    ],
+    "content": [
+      {
+        "artifact_id": "social.linkedin-1",
+        "platform": "linkedin",
+        "title": "Every AI feature has a vendor dependency",
+        "text": "OpenAI switched off the Sora API on September 24, 2026. If your product made video through it, those calls now fail.\n\nThe timeline, according to the OpenAI Help Center:\n- April 26, 2026: the Sora web and app experiences closed.\n- September 24, 2026: the API closed too.\n- Next: data tied to Sora use is permanently deleted once any final export window ends.\n\nIn plain terms, an API is a door that lets your software use a model someone else runs. When the owner closes the door, your feature stops, however good your own code is.\n\nFor example, a marketing tool that turned product photos into short clips through Sora now has to pick a new video model, re-test output quality, and rework its pricing.\n\nThree things worth doing this week, even if you never touched Sora:\n1. List every external model your product calls.\n2. Write down what users lose if each one disappears.\n3. Keep prompts, settings and outputs somewhere you control.\n\nOpenAI's own advice to Sora users was to export their content as soon as possible.\n\nWhich model dependency in your stack would hurt most if it were retired? Reply and tell me.",
+        "claim_ids": [
+          "c1",
+          "c2",
+          "c6",
+          "c7"
+        ],
+        "source_ids": [
+          "s1"
+        ],
+        "cta": "Reply with your riskiest dependency",
+        "produced_by": "social.linkedin",
+        "blocked": false
+      },
+      {
+        "artifact_id": "social.x_thread-1",
+        "platform": "x_thread",
+        "title": "The Sora API is off",
+        "text": "1/ OpenAI switched off the Sora API on September 24, 2026.\n\nApps that made video through it now get failed requests. What happened, and what builders can learn:\n---\n2/ The timeline, per OpenAI's Help Center: the Sora web and app experiences ended on April 26, 2026. The API followed on September 24, 2026.\n---\n3/ Quick definition. An API is a service window: your software asks, another company's model does the work. If the window closes, your feature stops, even when your own code is fine.\n---\n4/ For example: a tool that turns product photos into clips via Sora must now choose a new model, re-check quality and rethink costs.\n---\n5/ OpenAI's advice to users: export your Sora content as soon as possible. It says data linked to Sora use will be permanently deleted after any final export window.\n---\n6/ Takeaway for any AI product: keep a list of the models you rely on, store your own prompts and outputs, and pick a fallback before you need one.\n---\n7/ Source: https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation\n\nWhich dependency would you least like to lose? Reply below.",
+        "claim_ids": [
+          "c1",
+          "c2",
+          "c6",
+          "c7"
+        ],
+        "source_ids": [
+          "s1"
+        ],
+        "cta": "Reply below",
+        "produced_by": "social.x_thread",
+        "blocked": false
+      },
+      {
+        "artifact_id": "social.newsletter-1",
+        "platform": "newsletter",
+        "title": "Subject: The Sora API just closed. Is your product next?",
+        "text": "Subject: The Sora API just closed. Is your product next?\n\nHi,\n\nThis week's story is short, but the lesson behind it applies to almost every AI product.\n\nWhat happened\n\nOpenAI has closed Sora, its text-to-video tool, in two steps. The Sora app and website went away on April 26, 2026. Then, on September 24, 2026, the Sora API went dark as well. That second date matters most to builders, because the API is what other apps used to create videos inside their own products.\n\nOpenAI's Help Center tells users to download their Sora work quickly. It also says that once any final export window is over, the company will permanently delete the data linked to people's Sora use.\n\nWhy it matters to you\n\nAn API is a way for your software to borrow another company's model. That is a great deal while it lasts. You skip years of research and pay only for what you use. The trade-off is control. The company that runs the model decides when it changes, what it costs, and when it ends.\n\nFor example, picture a small design app that offered one-click product videos through Sora. Nothing in that app broke on its own. Yet on September 24 its best feature stopped working, and the team now has to find, test and price a replacement.\n\nA ten-minute check for your own stack\n\n- Write down each outside model or AI service your product calls.\n- Next to each, note what your users lose if it disappears tomorrow.\n- Keep your prompts, settings and generated outputs in storage you own.\n- For your most important feature, name a second option you could switch to.\n\nIf you do only one thing, do the list. Most teams are surprised by how long it is.\n\nNext week we will look at how to design a product so one vendor's decision cannot take a whole feature offline.\n\nSource: OpenAI Help Center, What to know about the Sora discontinuation, https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation\n\nThanks for reading.",
+        "claim_ids": [
+          "c1",
+          "c2",
+          "c6",
+          "c7"
+        ],
+        "source_ids": [
+          "s1"
+        ],
+        "cta": "none (informational issue)",
+        "produced_by": "social.newsletter",
+        "blocked": false
+      }
+    ],
+    "quality_reports": [
+      {
+        "artifact_id": "social.linkedin-1",
+        "agent_id": "content_quality.factuality",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.factuality"
+      },
+      {
+        "artifact_id": "social.x_thread-1",
+        "agent_id": "content_quality.factuality",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.factuality"
+      },
+      {
+        "artifact_id": "social.newsletter-1",
+        "agent_id": "content_quality.factuality",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.factuality"
+      },
+      {
+        "artifact_id": "education.beginner_teacher-1",
+        "agent_id": "content_quality.factuality",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.factuality"
+      },
+      {
+        "artifact_id": "social.linkedin-1",
+        "agent_id": "content_quality.hallucination",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.hallucination"
+      },
+      {
+        "artifact_id": "social.x_thread-1",
+        "agent_id": "content_quality.hallucination",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.hallucination"
+      },
+      {
+        "artifact_id": "social.newsletter-1",
+        "agent_id": "content_quality.hallucination",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.hallucination"
+      },
+      {
+        "artifact_id": "education.beginner_teacher-1",
+        "agent_id": "content_quality.hallucination",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.hallucination"
+      },
+      {
+        "artifact_id": "social.linkedin-1",
+        "agent_id": "content_quality.hype",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.hype"
+      },
+      {
+        "artifact_id": "social.x_thread-1",
+        "agent_id": "content_quality.hype",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.hype"
+      },
+      {
+        "artifact_id": "social.newsletter-1",
+        "agent_id": "content_quality.hype",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.hype"
+      },
+      {
+        "artifact_id": "education.beginner_teacher-1",
+        "agent_id": "content_quality.hype",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.hype"
+      },
+      {
+        "artifact_id": "social.linkedin-1",
+        "agent_id": "content_quality.clickbait",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.clickbait"
+      },
+      {
+        "artifact_id": "social.x_thread-1",
+        "agent_id": "content_quality.clickbait",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.clickbait"
+      },
+      {
+        "artifact_id": "social.newsletter-1",
+        "agent_id": "content_quality.clickbait",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.clickbait"
+      },
+      {
+        "artifact_id": "education.beginner_teacher-1",
+        "agent_id": "content_quality.clickbait",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.clickbait"
+      },
+      {
+        "artifact_id": "social.linkedin-1",
+        "agent_id": "content_quality.ai_slop",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.ai_slop"
+      },
+      {
+        "artifact_id": "social.x_thread-1",
+        "agent_id": "content_quality.ai_slop",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.ai_slop"
+      },
+      {
+        "artifact_id": "social.newsletter-1",
+        "agent_id": "content_quality.ai_slop",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.ai_slop"
+      },
+      {
+        "artifact_id": "education.beginner_teacher-1",
+        "agent_id": "content_quality.ai_slop",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.ai_slop"
+      },
+      {
+        "artifact_id": "social.linkedin-1",
+        "agent_id": "content_quality.platform_fit",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.platform_fit"
+      },
+      {
+        "artifact_id": "social.x_thread-1",
+        "agent_id": "content_quality.platform_fit",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.platform_fit"
+      },
+      {
+        "artifact_id": "social.newsletter-1",
+        "agent_id": "content_quality.platform_fit",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.platform_fit"
+      },
+      {
+        "artifact_id": "education.beginner_teacher-1",
+        "agent_id": "content_quality.platform_fit",
+        "score": 1.0,
+        "issues": [
+          {
+            "severity": "INFO",
+            "message": "no platform rules for 'beginner'"
+          }
+        ],
+        "produced_by": "content_quality.platform_fit"
+      },
+      {
+        "artifact_id": "social.linkedin-1",
+        "agent_id": "content_quality.readability",
+        "score": 1.0,
+        "issues": [
+          {
+            "severity": "INFO",
+            "message": "Flesch reading ease 73.3, grade 6.0 (target >= 40 for general)"
+          }
+        ],
+        "produced_by": "content_quality.readability"
+      },
+      {
+        "artifact_id": "social.x_thread-1",
+        "agent_id": "content_quality.readability",
+        "score": 1.0,
+        "issues": [
+          {
+            "severity": "INFO",
+            "message": "Flesch reading ease 66.0, grade 7.4 (target >= 40 for general)"
+          }
+        ],
+        "produced_by": "content_quality.readability"
+      },
+      {
+        "artifact_id": "social.newsletter-1",
+        "agent_id": "content_quality.readability",
+        "score": 1.0,
+        "issues": [
+          {
+            "severity": "INFO",
+            "message": "Flesch reading ease 72.6, grade 6.1 (target >= 40 for general)"
+          }
+        ],
+        "produced_by": "content_quality.readability"
+      },
+      {
+        "artifact_id": "education.beginner_teacher-1",
+        "agent_id": "content_quality.readability",
+        "score": 1.0,
+        "issues": [
+          {
+            "severity": "INFO",
+            "message": "Flesch reading ease 79.2, grade 5.1 (target >= 55 for beginner)"
+          }
+        ],
+        "produced_by": "content_quality.readability"
+      },
+      {
+        "artifact_id": "social.linkedin-1",
+        "agent_id": "content_quality.plagiarism",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.plagiarism"
+      },
+      {
+        "artifact_id": "social.x_thread-1",
+        "agent_id": "content_quality.plagiarism",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.plagiarism"
+      },
+      {
+        "artifact_id": "social.newsletter-1",
+        "agent_id": "content_quality.plagiarism",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.plagiarism"
+      },
+      {
+        "artifact_id": "education.beginner_teacher-1",
+        "agent_id": "content_quality.plagiarism",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.plagiarism"
+      },
+      {
+        "artifact_id": "social.linkedin-1",
+        "agent_id": "content_quality.educational_value",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.educational_value"
+      },
+      {
+        "artifact_id": "social.x_thread-1",
+        "agent_id": "content_quality.educational_value",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.educational_value"
+      },
+      {
+        "artifact_id": "social.newsletter-1",
+        "agent_id": "content_quality.educational_value",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.educational_value"
+      },
+      {
+        "artifact_id": "education.beginner_teacher-1",
+        "agent_id": "content_quality.educational_value",
+        "score": 1.0,
+        "issues": [],
+        "produced_by": "content_quality.educational_value"
+      }
+    ],
+    "quality_gate": {
+      "social.linkedin-1": {
+        "scores": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "blocking": [],
+        "warnings": [],
+        "score": 1.0
+      },
+      "social.x_thread-1": {
+        "scores": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "blocking": [],
+        "warnings": [],
+        "score": 1.0
+      },
+      "social.newsletter-1": {
+        "scores": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "blocking": [],
+        "warnings": [],
+        "score": 1.0
+      },
+      "education.beginner_teacher-1": {
+        "scores": [
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "blocking": [],
+        "warnings": [],
+        "score": 1.0
+      }
+    },
+    "opportunities": [
+      {
+        "id": "o1",
+        "title": "Sora-to-alternative video migration guide/sprint",
+        "type": "service + guide",
+        "target_customer": "teams whose product used the Sora API (HYPOTHESIS)",
+        "problem": "Video features fail from September 24; a new model must be chosen and tested",
+        "why_now": "Shutdown happened September 24, 2026 (c1)",
+        "evidence_claim_ids": [
+          "c1",
+          "c3",
+          "c4",
+          "c8"
+        ],
+        "assumptions": [
+          "Enough teams have not migrated yet",
+          "They prefer paying for help over free guides"
+        ],
+        "risks": [
+          "Window is closing fast: the shutdown already happened",
+          "Free migration guides already exist (s3)",
+          "Small, one-off market"
+        ],
+        "revenue_models": [
+          "fixed-fee migration sprint",
+          "paid guide",
+          "disclosed affiliate links to alternatives"
+        ],
+        "cheapest_test": "Post the migration checklist and count requests over 7 days",
+        "confidence": 0.3,
+        "produced_by": "product_discovery.opportunity"
+      },
+      {
+        "id": "o2",
+        "title": "AI model-deprecation readiness kit + audit",
+        "type": "lead magnet + consulting",
+        "target_customer": "founders and product teams that depend on third-party model APIs (HYPOTHESIS)",
+        "problem": "Products can lose core features when a vendor retires a model or API, and most teams have no inventory or fallback plan (HYPOTHESIS)",
+        "why_now": "A concrete, recent retirement (c1, c2) makes the risk tangible",
+        "evidence_claim_ids": [
+          "c1",
+          "c2",
+          "c4",
+          "c5"
+        ],
+        "assumptions": [
+          "Teams recognise the risk after a real example",
+          "They will trade an email for a checklist",
+          "Some will pay for an audit"
+        ],
+        "risks": [
+          "Interest may fade as the news ages",
+          "Hard to prove ROI of risk reduction",
+          "Consulting does not scale"
+        ],
+        "revenue_models": [
+          "fixed-fee dependency audit",
+          "paid template/runbook",
+          "subscription deprecation-monitoring digest"
+        ],
+        "cheapest_test": "Landing page offering a free checklist; measure request rate and audit-call bookings",
+        "confidence": 0.45,
+        "produced_by": "product_discovery.opportunity"
+      },
+      {
+        "id": "o3",
+        "title": "Model deprecation watch newsletter",
+        "type": "content/audience",
+        "target_customer": "AI builders (HYPOTHESIS)",
+        "problem": "Deprecation notices are scattered across vendor docs",
+        "why_now": "Six-month notice periods (c5, partially verified) mean early warning has value",
+        "evidence_claim_ids": [
+          "c5",
+          "c1"
+        ],
+        "assumptions": [
+          "People want a single digest",
+          "Sponsorship could follow audience growth"
+        ],
+        "risks": [
+          "Needs reliable monitoring of many vendors (integration NOT CONNECTED)",
+          "Slow to monetize"
+        ],
+        "revenue_models": [
+          "sponsorship (with disclosure)",
+          "paid tier"
+        ],
+        "cheapest_test": "Add a 'deprecation watch' section to the existing newsletter and track clicks",
+        "confidence": 0.35,
+        "produced_by": "product_discovery.opportunity"
+      }
+    ],
+    "products": [
+      {
+        "id": "p1",
+        "title": "Model-Deprecation Readiness Kit (MVP)",
+        "type": "lead magnet + concierge audit",
+        "target_customer": "product teams depending on third-party model APIs (HYPOTHESIS)",
+        "contents": [
+          "one-page dependency inventory template",
+          "fallback-plan worksheet",
+          "export/backup checklist",
+          "optional 30-minute review call"
+        ],
+        "problem": "No inventory or fallback for vendor model retirements",
+        "evidence_claim_ids": [
+          "c1",
+          "c2"
+        ],
+        "assumptions": [
+          "Checklist is useful on its own",
+          "Calls convert to paid audits"
+        ],
+        "risks": [
+          "Low perceived urgency",
+          "Audit delivery time"
+        ],
+        "cheapest_test": "Landing page + manual delivery by email",
+        "requires_approval": false,
+        "produced_by": "product_discovery.mvp"
+      }
+    ],
+    "revenue_models": [
+      {
+        "title": "Fixed-fee dependency audit (consulting)",
+        "description": "Manual review of a team's model dependencies and fallback plan",
+        "assumptions": [
+          "Teams will pay for expert review"
+        ],
+        "risks": [
+          "does not scale"
+        ],
+        "evidence_needed": "3+ discovery calls from the experiment",
+        "requires_approval": false,
+        "produced_by": "revenue.model_researcher"
+      },
+      {
+        "title": "Paid runbook/template pack (digital product)",
+        "description": "Productized version of the audit",
+        "assumptions": [
+          "Self-serve buyers exist"
+        ],
+        "risks": [
+          "low price point"
+        ],
+        "evidence_needed": "checklist request rate above target",
+        "requires_approval": false,
+        "produced_by": "revenue.model_researcher"
+      },
+      {
+        "title": "Deprecation-monitoring digest (subscription)",
+        "description": "Recurring alerts on vendor model retirements",
+        "assumptions": [
+          "Recurring value"
+        ],
+        "risks": [
+          "monitoring integrations NOT CONNECTED"
+        ],
+        "evidence_needed": "newsletter section click-through",
+        "requires_approval": false,
+        "produced_by": "revenue.model_researcher"
+      },
+      {
+        "title": "Disclosed affiliate links to alternative providers",
+        "description": "Only where genuinely recommended",
+        "assumptions": [
+          "Programmes exist"
+        ],
+        "risks": [
+          "trust erosion if overused"
+        ],
+        "evidence_needed": "genuine product fit",
+        "requires_approval": false,
+        "produced_by": "revenue.model_researcher"
+      }
+    ],
+    "experiments": [
+      {
+        "name": "Readiness Kit demand test",
+        "experiment_type": "validation",
+        "hypothesis": "If we offer a free Model-Deprecation Readiness Kit to visitors arriving from the Sora-shutdown posts, at least 5% of landing-page visitors will request it and at least 3 requesters will book a review call within 14 days.",
+        "method": "Single landing page (no paid traffic). Link from the approved LinkedIn post, X thread and newsletter with UTM tags. Deliver the kit manually by email. Offer an optional review call in the delivery email.",
+        "metric": "kit_request_rate = requests / unique landing-page visitors; secondary: review_calls_booked",
+        "success_criteria": "kit_request_rate >= 5% with >= 200 unique visitors AND >= 3 review calls booked within 14 days",
+        "failure_criteria": "kit_request_rate < 2% with >= 200 visitors, OR 0 review calls; fewer than 200 visitors = INCONCLUSIVE (extend once, then stop)",
+        "variants": [
+          "single variant (no A/B until baseline known)"
+        ],
+        "min_sample_per_variant": 200,
+        "duration": "14 days from first post",
+        "cost_and_approvals": "No spend. Requires approval to publish the three drafts and the landing page.",
+        "next_action_if_success": "Run a pricing test for the paid audit (approval required before any live price).",
+        "next_action_if_failure": "Record the failure; test angle o3 (deprecation-watch newsletter section) instead.",
+        "requires_approval": true,
+        "approval_category": "publish_content",
+        "result": "NOT RUN",
+        "data": {
+          "baseline_rate": 0.03,
+          "mde_abs": 0.02
+        },
+        "produced_by": "experiments.design",
+        "experiment_id": "exp_1182be8924b81bdf",
+        "registration": "PRE-REGISTERED (criteria fixed before running)"
+      }
+    ],
+    "analytics_plan": {
+      "content_metrics": [
+        {
+          "artifact_id": "social.linkedin-1",
+          "platform": "linkedin",
+          "metrics": [
+            "impressions",
+            "engagement_rate",
+            "profile_visits",
+            "link_clicks"
+          ],
+          "integration": "linkedin_api",
+          "integration_status": "NOT CONNECTED"
+        },
+        {
+          "artifact_id": "social.x_thread-1",
+          "platform": "x_thread",
+          "metrics": [
+            "impressions",
+            "engagement_rate",
+            "profile_visits",
+            "link_clicks"
+          ],
+          "integration": "x_api",
+          "integration_status": "NOT CONNECTED"
+        },
+        {
+          "artifact_id": "social.newsletter-1",
+          "platform": "newsletter",
+          "metrics": [
+            "opens",
+            "open_rate",
+            "clicks",
+            "unsubscribes"
+          ],
+          "integration": "email_provider",
+          "integration_status": "NOT CONNECTED"
+        }
+      ],
+      "experiment_metrics": [
+        {
+          "experiment": "Readiness Kit demand test",
+          "metric": "kit_request_rate = requests / unique landing-page visitors; secondary: review_calls_booked",
+          "success": "kit_request_rate >= 5% with >= 200 unique visitors AND >= 3 review calls booked within 14 days",
+          "failure": "kit_request_rate < 2% with >= 200 visitors, OR 0 review calls; fewer than 200 visitors = INCONCLUSIVE (extend once, then stop)"
+        }
+      ],
+      "integrations_needed": {
+        "linkedin_api": "NOT CONNECTED",
+        "x_api": "NOT CONNECTED",
+        "email_provider": "NOT CONNECTED"
+      },
+      "data_import": "data/metrics/*.csv"
+    },
+    "approval_items": [
+      "apr_63ce3b5214c33d9a",
+      "apr_94a2baad64deb4c7",
+      "apr_ac4c5f7e168c07d8",
+      "apr_702dde6ceb8952d8"
+    ],
+    "weekly_report_md": "## Weekly strategy report — week ending 2026-09-28\n\n### IMPORTANT TECHNOLOGY DEVELOPMENTS\n\n- OpenAI discontinued the Sora API on September 24, 2026. (confidence 0.9)\n- The Sora web and app experiences were discontinued earlier, on April 26, 2026. (confidence 0.9)\n- OpenAI recommends exporting Sora content as soon as possible via sora.chatgpt.com/sunset. (confidence 0.729)\n- After Sora is discontinued and any final export window passes, OpenAI will permanently delete data associated with Sora use. (confidence 0.729)\n\n### IMPORTANT AUDIENCE DEVELOPMENTS\n\n- NO DATA — no audience data supplied.\n\n### CONTENT PERFORMANCE\n\n- content: NO DATA — no analytics were supplied; nothing was fabricated.\n- social: NO DATA — no analytics were supplied; nothing was fabricated.\n- email: NO DATA — no analytics were supplied; nothing was fabricated.\n\n### PRODUCT EXPERIMENTS\n\n- Readiness Kit demand test [DESIGNED]: If we offer a free Model-Deprecation Readiness Kit to visitors arriving from the Sora-shutdown posts, at least 5% of landing-page visitors will request it and at least 3 requesters will book a review call within 14 days.\n\n### REVENUE DATA\n\n- revenue: NO DATA — no analytics were supplied; nothing was fabricated.\n\n### CUSTOMER FEEDBACK\n\n- NO DATA — no feedback files in data/feedback/.\n\n### FAILED EXPERIMENTS\n\n- none completed\n\n### SUCCESSFUL EXPERIMENTS\n\n- none completed\n\n### NEW OPPORTUNITIES\n\n- Sora-to-alternative video migration guide/sprint — HYPOTHESIS\n- AI model-deprecation readiness kit + audit — HYPOTHESIS\n- Model deprecation watch newsletter — HYPOTHESIS\n\n### RISKS\n\n- VERIFY: 5 of 9 claims not fully supported; excluded from factual use\n- Window is closing fast: the shutdown already happened\n- Free migration guides already exist (s3)\n- Small, one-off market\n- Interest may fade as the news ages\n- Hard to prove ROI of risk reduction\n- Consulting does not scale\n- Needs reliable monitoring of many vendors (integration NOT CONNECTED)\n- Slow to monetize\n\n### OPEN QUESTIONS\n\n- The shutdown removed the Videos API and every alias of the Sora 2 models, such as sora-2 and sora-2-pro.\n- OpenAI's deprecations documentation named no replacement model for Sora 2.\n- Developers had six months of notice, from March 24 to September 24.\n- Competing video models remain available via API, including Kling AI and Luma Ray 2, alongside multi-model aggregators such as Higgsfield AI.\n- Kingy AI reports an unattributed estimate that Sora cost about $1 million per day to operate.\n\n### RECOMMENDED EXPERIMENTS\n\n- Readiness Kit demand test: If we offer a free Model-Deprecation Readiness Kit to visitors arriving from the Sora-shutdown posts, at least 5% of landing-page visitors will request it and at least 3 requesters will book a review call within 14 days.\n",
+    "report_path": "/home/user/furnacegold/demo/data/runs/20260928T133546Z_07e64d/report.md",
+    "lessons": [
+      "verified 4/9 claims"
+    ]
+  },
+  "conflicts": [],
+  "escalations": [
+    "VERIFY: 5 of 9 claims not fully supported; excluded from factual use"
+  ],
+  "quarantined_sources": [],
+  "budget": {
+    "units": 140.0,
+    "llm_calls": 0,
+    "usd": 0.0
+  },
+  "outputs": [
+    {
+      "agent_id": "security.prompt_injection",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: SOURCE_SECURITY — Scan captured sources for prompt injection before any agent reads them.\nYOUR ROLE: Prompt-Injection Detector: Detect instructions embedded in untrusted sources that try to redirect agents.",
+      "status": "OK",
+      "findings": [
+        "0 finding(s)"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "none",
+      "sources": [],
+      "data": {
+        "security_findings": []
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:prompt_injection",
+      "cost_units": 0.0,
+      "duration_s": 0.0005433040000752953,
+      "errors": []
+    },
+    {
+      "agent_id": "research.ai_news",
+      "task": "Find an important recent AI development in the captured sources and summarize it as checkable claims.",
+      "status": "OK",
+      "findings": [
+        "Selected development: OpenAI discontinued the Sora video-generation API on September 24, 2026, after discontinuing the Sora web and app experiences on April 26, 2026.",
+        "Chosen over the model releases listed in s4 because it has a primary source (OpenAI Help Center, s1), is independently reported (s2, s3), and has direct, actionable consequences for builders who depend on third-party model APIs."
+      ],
+      "evidence": [
+        {
+          "claim_id": "c1",
+          "source_id": "s1",
+          "quote": "The Sora API will be discontinued on September 24, 2026"
+        },
+        {
+          "claim_id": "c1",
+          "source_id": "s2",
+          "quote": "On September 24, 2026, OpenAI switched off the Sora 2 API"
+        }
+      ],
+      "assumptions": [
+        "The help-center extract reflects the current article text (we only have a search-engine extract, not the full page)."
+      ],
+      "uncertainties": [
+        "Publication dates of all three pages were not visible in the captured extracts.",
+        "How many products depended on the Sora API is unknown; no source quantifies it.",
+        "The cost and user figures in s3 are unattributed estimates."
+      ],
+      "recommendations": [
+        "Treat only claims backed by the OpenAI source as facts; treat blog-only details (removed aliases, blank migration target, alternatives) as partially supported.",
+        "Re-capture the full OpenAI deprecations page once network access allows, to verify the 'no replacement named' detail from the primary source."
+      ],
+      "next_action": "Send claims to verification.",
+      "sources": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "data": {
+        "claims": [
+          {
+            "claim_id": "c1",
+            "text": "OpenAI discontinued the Sora API on September 24, 2026.",
+            "kind": "FACT",
+            "source_ids": [
+              "s1",
+              "s2"
+            ],
+            "quotes": [
+              "The Sora API will be discontinued on September 24, 2026",
+              "On September 24, 2026, OpenAI switched off the Sora 2 API"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "claim_id": "c2",
+            "text": "The Sora web and app experiences were discontinued earlier, on April 26, 2026.",
+            "kind": "FACT",
+            "source_ids": [
+              "s1",
+              "s3"
+            ],
+            "quotes": [
+              "The Sora web and app experiences were discontinued on April 26, 2026",
+              "The Sora app/web product was no longer available as of April 26, 2026"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "claim_id": "c3",
+            "text": "The shutdown removed the Videos API and every alias of the Sora 2 models, such as sora-2 and sora-2-pro.",
+            "kind": "FACT",
+            "source_ids": [
+              "s2"
+            ],
+            "quotes": [
+              "The Videos API and the Sora 2 models were removed from the OpenAI platform on September 24, 2026, including every alias of the Sora 2 models such as sora-2, sora-2-pro and their dated versions"
+            ],
+            "confidence": 0.7
+          },
+          {
+            "claim_id": "c4",
+            "text": "OpenAI's deprecations documentation named no replacement model for Sora 2.",
+            "kind": "FACT",
+            "source_ids": [
+              "s2"
+            ],
+            "quotes": [
+              "in the official deprecations documentation, the column that usually points to a migration target stays blank for Sora 2",
+              "No replacement model was named"
+            ],
+            "confidence": 0.6
+          },
+          {
+            "claim_id": "c5",
+            "text": "Developers had six months of notice, from March 24 to September 24.",
+            "kind": "FACT",
+            "source_ids": [
+              "s2"
+            ],
+            "quotes": [
+              "The six months of notice OpenAI granted (from March 24 to September 24)"
+            ],
+            "confidence": 0.6
+          },
+          {
+            "claim_id": "c6",
+            "text": "OpenAI recommends exporting Sora content as soon as possible via sora.chatgpt.com/sunset.",
+            "kind": "FACT",
+            "source_ids": [
+              "s1"
+            ],
+            "quotes": [
+              "it's recommended you export your Sora content as soon as possible",
+              "going to sora.chatgpt.com/sunset and clicking on Export"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "claim_id": "c7",
+            "text": "After Sora is discontinued and any final export window passes, OpenAI will permanently delete data associated with Sora use.",
+            "kind": "FACT",
+            "source_ids": [
+              "s1"
+            ],
+            "quotes": [
+              "OpenAI will permanently delete any data associated with your use of Sora"
+            ],
+            "confidence": 0.9
+          },
+          {
+            "claim_id": "c8",
+            "text": "Competing video models remain available via API, including Kling AI and Luma Ray 2, alongside multi-model aggregators such as Higgsfield AI.",
+            "kind": "OBSERVATION",
+            "source_ids": [
+              "s2"
+            ],
+            "quotes": [
+              "Competing models remain active on the market, including Kling AI from Kuaishou and Luma Ray 2, both accessible via API, alongside aggregator platforms like Higgsfield AI"
+            ],
+            "confidence": 0.6
+          },
+          {
+            "claim_id": "c9",
+            "text": "Kingy AI reports an unattributed estimate that Sora cost about $1 million per day to operate.",
+            "kind": "ASSUMPTION",
+            "source_ids": [
+              "s3"
+            ],
+            "quotes": [
+              "The service cost an estimated $1 million per day to operate"
+            ],
+            "confidence": 0.3
+          }
+        ],
+        "findings": [
+          {
+            "development": "OpenAI shut down the Sora API (September 24, 2026), completing a two-stage Sora discontinuation",
+            "why_it_matters": "A product feature built on one vendor's model API can stop working on the vendor's schedule, regardless of the product's own code quality.",
+            "implications": [
+              "Teams using Sora for video must migrate to another model and re-test quality and cost (HYPOTHESIS: scale unknown)",
+              "Model/API retirement is a business risk for every AI product, not only video tools (OPINION)",
+              "User data export and deletion timelines create a compliance and content-archiving task (from c6, c7)"
+            ],
+            "opportunity_hypotheses": [
+              "Education content on AI vendor-dependency risk",
+              "A model-deprecation readiness checklist and audit service",
+              "Migration guides for video-generation features"
+            ],
+            "claim_ids": [
+              "c1",
+              "c2",
+              "c3",
+              "c4",
+              "c6",
+              "c7"
+            ]
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 0.8,
+      "backend": "scripted",
+      "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
+      "cost_units": 20.0,
+      "duration_s": 0.002595282000129373,
+      "errors": []
+    },
+    {
+      "agent_id": "verification.source_quality",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: VERIFY — Verify every claim against captured source text.\nYOUR ROLE: Source-Quality Evaluator: Score each source by type (primary, official docs, paper, repository, news, blog, social).",
+      "status": "OK",
+      "findings": [
+        "Source-Quality Evaluator: {'pass': 4, 'warn': 5}",
+        "weak sources: ['s2: blog (0.45)', 's3: blog (0.45)', 's4: unknown (0.2)']"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "aggregate verdicts",
+      "sources": [],
+      "data": {
+        "verification_reports": [
+          {
+            "agent_id": "verification.source_quality",
+            "results": {
+              "c1": {
+                "verdict": "pass",
+                "note": "best source score 1.00"
+              },
+              "c2": {
+                "verdict": "pass",
+                "note": "best source score 1.00"
+              },
+              "c3": {
+                "verdict": "warn",
+                "note": "best source score 0.45"
+              },
+              "c4": {
+                "verdict": "warn",
+                "note": "best source score 0.45"
+              },
+              "c5": {
+                "verdict": "warn",
+                "note": "best source score 0.45"
+              },
+              "c6": {
+                "verdict": "pass",
+                "note": "best source score 1.00"
+              },
+              "c7": {
+                "verdict": "pass",
+                "note": "best source score 1.00"
+              },
+              "c8": {
+                "verdict": "warn",
+                "note": "best source score 0.45"
+              },
+              "c9": {
+                "verdict": "warn",
+                "note": "best source score 0.45"
+              }
+            }
+          }
+        ],
+        "source_scores": {
+          "s1": {
+            "type": "primary",
+            "publisher": "OpenAI",
+            "score": 1.0,
+            "has_date": false,
+            "has_text": true
+          },
+          "s2": {
+            "type": "blog",
+            "publisher": "pasqualepillitteri.it",
+            "score": 0.45,
+            "has_date": false,
+            "has_text": true
+          },
+          "s3": {
+            "type": "blog",
+            "publisher": "Kingy AI",
+            "score": 0.45,
+            "has_date": false,
+            "has_text": true
+          },
+          "s4": {
+            "type": "unknown",
+            "publisher": "WebSearch digest (multiple outlets)",
+            "score": 0.2,
+            "has_date": false,
+            "has_text": true
+          }
+        }
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Score each source by type (primary, official docs, paper, repository, news, blog, social)."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:source_quality",
+      "cost_units": 0.0,
+      "duration_s": 6.819999998697313e-05,
+      "errors": []
+    },
+    {
+      "agent_id": "verification.citation",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: VERIFY — Verify every claim against captured source text.\nYOUR ROLE: Citation Verifier: Check every claim cites at least one captured source that exists in the source store.",
+      "status": "OK",
+      "findings": [
+        "Citation Verifier: {'pass': 9}"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "aggregate verdicts",
+      "sources": [],
+      "data": {
+        "verification_reports": [
+          {
+            "agent_id": "verification.citation",
+            "results": {
+              "c1": {
+                "verdict": "pass",
+                "note": "cites ['s1', 's2']"
+              },
+              "c2": {
+                "verdict": "pass",
+                "note": "cites ['s1', 's3']"
+              },
+              "c3": {
+                "verdict": "pass",
+                "note": "cites ['s2']"
+              },
+              "c4": {
+                "verdict": "pass",
+                "note": "cites ['s2']"
+              },
+              "c5": {
+                "verdict": "pass",
+                "note": "cites ['s2']"
+              },
+              "c6": {
+                "verdict": "pass",
+                "note": "cites ['s1']"
+              },
+              "c7": {
+                "verdict": "pass",
+                "note": "cites ['s1']"
+              },
+              "c8": {
+                "verdict": "pass",
+                "note": "cites ['s2']"
+              },
+              "c9": {
+                "verdict": "pass",
+                "note": "cites ['s3']"
+              }
+            }
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Check every claim cites at least one captured source that exists in the source store."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:citation",
+      "cost_units": 0.0,
+      "duration_s": 4.810500013263663e-05,
+      "errors": []
+    },
+    {
+      "agent_id": "verification.primary_source",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: VERIFY — Verify every claim against captured source text.\nYOUR ROLE: Primary-Source Verifier: Check each claim is backed by a primary or official source and that its quoted evidence appears verbatim in that source.",
+      "status": "OK",
+      "findings": [
+        "Primary-Source Verifier: {'pass': 4, 'warn': 5}"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "aggregate verdicts",
+      "sources": [],
+      "data": {
+        "verification_reports": [
+          {
+            "agent_id": "verification.primary_source",
+            "results": {
+              "c1": {
+                "verdict": "pass",
+                "note": "quote found in primary source s1 (OpenAI)"
+              },
+              "c2": {
+                "verdict": "pass",
+                "note": "quote found in primary source s1 (OpenAI)"
+              },
+              "c3": {
+                "verdict": "warn",
+                "note": "quote found, but only in secondary sources"
+              },
+              "c4": {
+                "verdict": "warn",
+                "note": "quote found, but only in secondary sources"
+              },
+              "c5": {
+                "verdict": "warn",
+                "note": "quote found, but only in secondary sources"
+              },
+              "c6": {
+                "verdict": "pass",
+                "note": "quote found in primary source s1 (OpenAI)"
+              },
+              "c7": {
+                "verdict": "pass",
+                "note": "quote found in primary source s1 (OpenAI)"
+              },
+              "c8": {
+                "verdict": "warn",
+                "note": "quote found, but only in secondary sources"
+              },
+              "c9": {
+                "verdict": "warn",
+                "note": "quote found, but only in secondary sources"
+              }
+            }
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Check each claim is backed by a primary or official source and that its quoted evidence appears verbatim in that source."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:primary_source",
+      "cost_units": 0.0,
+      "duration_s": 0.0006082939999032533,
+      "errors": []
+    },
+    {
+      "agent_id": "verification.quote",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: VERIFY — Verify every claim against captured source text.\nYOUR ROLE: Quote Verifier: Check every quotation attributed to a source appears verbatim in that source.",
+      "status": "OK",
+      "findings": [
+        "Quote Verifier: {'pass': 9}"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "aggregate verdicts",
+      "sources": [],
+      "data": {
+        "verification_reports": [
+          {
+            "agent_id": "verification.quote",
+            "results": {
+              "c1": {
+                "verdict": "pass",
+                "note": "2 quotation(s) verbatim"
+              },
+              "c2": {
+                "verdict": "pass",
+                "note": "2 quotation(s) verbatim"
+              },
+              "c3": {
+                "verdict": "pass",
+                "note": "1 quotation(s) verbatim"
+              },
+              "c4": {
+                "verdict": "pass",
+                "note": "2 quotation(s) verbatim"
+              },
+              "c5": {
+                "verdict": "pass",
+                "note": "1 quotation(s) verbatim"
+              },
+              "c6": {
+                "verdict": "pass",
+                "note": "2 quotation(s) verbatim"
+              },
+              "c7": {
+                "verdict": "pass",
+                "note": "1 quotation(s) verbatim"
+              },
+              "c8": {
+                "verdict": "pass",
+                "note": "1 quotation(s) verbatim"
+              },
+              "c9": {
+                "verdict": "pass",
+                "note": "1 quotation(s) verbatim"
+              }
+            }
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Check every quotation attributed to a source appears verbatim in that source."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:quote",
+      "cost_units": 0.0,
+      "duration_s": 0.000748511999972834,
+      "errors": []
+    },
+    {
+      "agent_id": "verification.statistics",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: VERIFY — Verify every claim against captured source text.\nYOUR ROLE: Statistics Verifier: Check every number in a claim appears in its cited source text.",
+      "status": "OK",
+      "findings": [
+        "Statistics Verifier: {'pass': 7, 'na': 2}"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "aggregate verdicts",
+      "sources": [],
+      "data": {
+        "verification_reports": [
+          {
+            "agent_id": "verification.statistics",
+            "results": {
+              "c1": {
+                "verdict": "pass",
+                "note": "numbers ['24', '2026'] found in sources"
+              },
+              "c2": {
+                "verdict": "pass",
+                "note": "numbers ['26', '2026'] found in sources"
+              },
+              "c3": {
+                "verdict": "pass",
+                "note": "numbers ['2'] found in sources"
+              },
+              "c4": {
+                "verdict": "pass",
+                "note": "numbers ['2'] found in sources"
+              },
+              "c5": {
+                "verdict": "pass",
+                "note": "numbers ['24', '24'] found in sources"
+              },
+              "c6": {
+                "verdict": "na",
+                "note": "no numbers"
+              },
+              "c7": {
+                "verdict": "na",
+                "note": "no numbers"
+              },
+              "c8": {
+                "verdict": "pass",
+                "note": "numbers ['2'] found in sources"
+              },
+              "c9": {
+                "verdict": "pass",
+                "note": "numbers ['1'] found in sources"
+              }
+            }
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Check every number in a claim appears in its cited source text."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:statistics",
+      "cost_units": 0.0,
+      "duration_s": 0.0008717499999875145,
+      "errors": []
+    },
+    {
+      "agent_id": "verification.date",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: VERIFY — Verify every claim against captured source text.\nYOUR ROLE: Date Verifier: Check source publication dates are present, parseable, not in the future, and within the recency window.",
+      "status": "OK",
+      "findings": [
+        "Date Verifier: {'warn': 9}"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "aggregate verdicts",
+      "sources": [],
+      "data": {
+        "verification_reports": [
+          {
+            "agent_id": "verification.date",
+            "results": {
+              "c1": {
+                "verdict": "warn",
+                "note": "no parseable publication date on cited sources"
+              },
+              "c2": {
+                "verdict": "warn",
+                "note": "no parseable publication date on cited sources"
+              },
+              "c3": {
+                "verdict": "warn",
+                "note": "no parseable publication date on cited sources"
+              },
+              "c4": {
+                "verdict": "warn",
+                "note": "no parseable publication date on cited sources"
+              },
+              "c5": {
+                "verdict": "warn",
+                "note": "no parseable publication date on cited sources"
+              },
+              "c6": {
+                "verdict": "warn",
+                "note": "no parseable publication date on cited sources"
+              },
+              "c7": {
+                "verdict": "warn",
+                "note": "no parseable publication date on cited sources"
+              },
+              "c8": {
+                "verdict": "warn",
+                "note": "no parseable publication date on cited sources"
+              },
+              "c9": {
+                "verdict": "warn",
+                "note": "no parseable publication date on cited sources"
+              }
+            }
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Check source publication dates are present, parseable, not in the future, and within the recency window."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:date",
+      "cost_units": 0.0,
+      "duration_s": 4.457499971977086e-05,
+      "errors": []
+    },
+    {
+      "agent_id": "verification.cross_source",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: VERIFY — Verify every claim against captured source text.\nYOUR ROLE: Cross-Source Verifier: Check important claims are supported by independent publishers.",
+      "status": "OK",
+      "findings": [
+        "Cross-Source Verifier: {'pass': 2, 'warn': 7}"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "aggregate verdicts",
+      "sources": [],
+      "data": {
+        "verification_reports": [
+          {
+            "agent_id": "verification.cross_source",
+            "results": {
+              "c1": {
+                "verdict": "pass",
+                "note": "2 independent publishers: ['OpenAI', 'pasqualepillitteri.it']"
+              },
+              "c2": {
+                "verdict": "pass",
+                "note": "2 independent publishers: ['Kingy AI', 'OpenAI']"
+              },
+              "c3": {
+                "verdict": "warn",
+                "note": "only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent"
+              },
+              "c4": {
+                "verdict": "warn",
+                "note": "only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent"
+              },
+              "c5": {
+                "verdict": "warn",
+                "note": "only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent"
+              },
+              "c6": {
+                "verdict": "warn",
+                "note": "only 1 publisher(s) ['OpenAI']; independent corroboration absent"
+              },
+              "c7": {
+                "verdict": "warn",
+                "note": "only 1 publisher(s) ['OpenAI']; independent corroboration absent"
+              },
+              "c8": {
+                "verdict": "warn",
+                "note": "only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent"
+              },
+              "c9": {
+                "verdict": "warn",
+                "note": "only 1 publisher(s) ['Kingy AI']; independent corroboration absent"
+              }
+            }
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Check important claims are supported by independent publishers."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:cross_source",
+      "cost_units": 0.0,
+      "duration_s": 0.00048175600022659637,
+      "errors": []
+    },
+    {
+      "agent_id": "verification.contradiction",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: VERIFY — Verify every claim against captured source text.\nYOUR ROLE: Contradiction Detector: Detect numeric or categorical disagreements between sources or claims.",
+      "status": "OK",
+      "findings": [
+        "Contradiction Detector: {'pass': 9}"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "aggregate verdicts",
+      "sources": [],
+      "data": {
+        "verification_reports": [
+          {
+            "agent_id": "verification.contradiction",
+            "results": {
+              "c1": {
+                "verdict": "pass",
+                "note": "no contradiction detected"
+              },
+              "c2": {
+                "verdict": "pass",
+                "note": "no contradiction detected"
+              },
+              "c3": {
+                "verdict": "pass",
+                "note": "no contradiction detected"
+              },
+              "c4": {
+                "verdict": "pass",
+                "note": "no contradiction detected"
+              },
+              "c5": {
+                "verdict": "pass",
+                "note": "no contradiction detected"
+              },
+              "c6": {
+                "verdict": "pass",
+                "note": "no contradiction detected"
+              },
+              "c7": {
+                "verdict": "pass",
+                "note": "no contradiction detected"
+              },
+              "c8": {
+                "verdict": "pass",
+                "note": "no contradiction detected"
+              },
+              "c9": {
+                "verdict": "pass",
+                "note": "no contradiction detected"
+              }
+            }
+          }
+        ],
+        "contradictions": []
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Detect numeric or categorical disagreements between sources or claims."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:contradiction",
+      "cost_units": 0.0,
+      "duration_s": 0.0008869709999999031,
+      "errors": []
+    },
+    {
+      "agent_id": "knowledge.research_to_knowledge",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: KNOWLEDGE — Persist verified claims as knowledge with evidence chains.\nYOUR ROLE: Research-to-Knowledge Agent: Convert verified research claims into persisted knowledge entries with evidence chains.",
+      "status": "OK",
+      "findings": [
+        "4 verified knowledge entries; 5 open questions"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [
+        "c3 not verified (PARTIALLY_SUPPORTED)",
+        "c4 not verified (PARTIALLY_SUPPORTED)",
+        "c5 not verified (PARTIALLY_SUPPORTED)",
+        "c8 not verified (PARTIALLY_SUPPORTED)",
+        "c9 not verified (PARTIALLY_SUPPORTED)"
+      ],
+      "recommendations": [],
+      "next_action": "use VERIFIED entries as facts; research open questions further",
+      "sources": [],
+      "data": {
+        "knowledge": [
+          {
+            "entry_id": "k_c1",
+            "title": "OpenAI discontinued the Sora API on September 24, 2026.",
+            "summary": "OpenAI discontinued the Sora API on September 24, 2026.",
+            "claim_ids": [
+              "c1"
+            ],
+            "tags": [
+              "developer_tools"
+            ],
+            "confidence": 0.9,
+            "status": "VERIFIED",
+            "evidence_chain": [
+              {
+                "claim": "OpenAI discontinued the Sora API on September 24, 2026.",
+                "source": "OpenAI — What to know about the Sora discontinuation | OpenAI Help Center (https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation, date unknown)",
+                "evidence": "The Sora API will be discontinued on September 24, 2026",
+                "confidence": 0.9,
+                "interpretation": "SUPPORTED; kind=FACT",
+                "decision": "usable as fact"
+              },
+              {
+                "claim": "OpenAI discontinued the Sora API on September 24, 2026.",
+                "source": "pasqualepillitteri.it — OpenAI shuts down the Sora 2 API, developers left without a fallback (https://pasqualepillitteri.it/en/news/18764/openai-sora2-api-dismessa-en, date unknown)",
+                "evidence": "On September 24, 2026, OpenAI switched off the Sora 2 API",
+                "confidence": 0.9,
+                "interpretation": "SUPPORTED; kind=FACT",
+                "decision": "usable as fact"
+              }
+            ],
+            "as_of": "2026-09-28"
+          },
+          {
+            "entry_id": "k_c2",
+            "title": "The Sora web and app experiences were discontinued earlier, on April 26, 2026.",
+            "summary": "The Sora web and app experiences were discontinued earlier, on April 26, 2026.",
+            "claim_ids": [
+              "c2"
+            ],
+            "tags": [],
+            "confidence": 0.9,
+            "status": "VERIFIED",
+            "evidence_chain": [
+              {
+                "claim": "The Sora web and app experiences were discontinued earlier, on April 26, 2026.",
+                "source": "OpenAI — What to know about the Sora discontinuation | OpenAI Help Center (https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation, date unknown)",
+                "evidence": "The Sora web and app experiences were discontinued on April 26, 2026",
+                "confidence": 0.9,
+                "interpretation": "SUPPORTED; kind=FACT",
+                "decision": "usable as fact"
+              },
+              {
+                "claim": "The Sora web and app experiences were discontinued earlier, on April 26, 2026.",
+                "source": "Kingy AI — Sora API Shutdown September 24: Export & Alternatives (https://kingy.ai/blog/sora-api-shutdown-september-24-export-alternatives/, date unknown)",
+                "evidence": "The Sora app/web product was no longer available as of April 26, 2026",
+                "confidence": 0.9,
+                "interpretation": "SUPPORTED; kind=FACT",
+                "decision": "usable as fact"
+              }
+            ],
+            "as_of": "2026-09-28"
+          },
+          {
+            "entry_id": "k_c6",
+            "title": "OpenAI recommends exporting Sora content as soon as possible via sora.chatgpt.com/sunset.",
+            "summary": "OpenAI recommends exporting Sora content as soon as possible via sora.chatgpt.com/sunset.",
+            "claim_ids": [
+              "c6"
+            ],
+            "tags": [],
+            "confidence": 0.729,
+            "status": "VERIFIED",
+            "evidence_chain": [
+              {
+                "claim": "OpenAI recommends exporting Sora content as soon as possible via sora.chatgpt.com/sunset.",
+                "source": "OpenAI — What to know about the Sora discontinuation | OpenAI Help Center (https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation, date unknown)",
+                "evidence": "it's recommended you export your Sora content as soon as possible",
+                "confidence": 0.729,
+                "interpretation": "SUPPORTED; kind=FACT",
+                "decision": "usable as fact"
+              }
+            ],
+            "as_of": "2026-09-28"
+          },
+          {
+            "entry_id": "k_c7",
+            "title": "After Sora is discontinued and any final export window passes, OpenAI will permanently del",
+            "summary": "After Sora is discontinued and any final export window passes, OpenAI will permanently delete data associated with Sora use.",
+            "claim_ids": [
+              "c7"
+            ],
+            "tags": [],
+            "confidence": 0.729,
+            "status": "VERIFIED",
+            "evidence_chain": [
+              {
+                "claim": "After Sora is discontinued and any final export window passes, OpenAI will permanently delete data associated with Sora use.",
+                "source": "OpenAI — What to know about the Sora discontinuation | OpenAI Help Center (https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation, date unknown)",
+                "evidence": "OpenAI will permanently delete any data associated with your use of Sora",
+                "confidence": 0.729,
+                "interpretation": "SUPPORTED; kind=FACT",
+                "decision": "usable as fact"
+              }
+            ],
+            "as_of": "2026-09-28"
+          }
+        ],
+        "open_questions": [
+          {
+            "claim_id": "c3",
+            "text": "The shutdown removed the Videos API and every alias of the Sora 2 models, such as sora-2 and sora-2-pro.",
+            "verification": "PARTIALLY_SUPPORTED",
+            "notes": [
+              "verification.source_quality: WARN — best source score 0.45",
+              "verification.citation: PASS — cites ['s2']",
+              "verification.primary_source: WARN — quote found, but only in secondary sources",
+              "verification.quote: PASS — 1 quotation(s) verbatim",
+              "verification.statistics: PASS — numbers ['2'] found in sources",
+              "verification.date: WARN — no parseable publication date on cited sources",
+              "verification.cross_source: WARN — only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent",
+              "verification.contradiction: PASS — no contradiction detected"
+            ]
+          },
+          {
+            "claim_id": "c4",
+            "text": "OpenAI's deprecations documentation named no replacement model for Sora 2.",
+            "verification": "PARTIALLY_SUPPORTED",
+            "notes": [
+              "verification.source_quality: WARN — best source score 0.45",
+              "verification.citation: PASS — cites ['s2']",
+              "verification.primary_source: WARN — quote found, but only in secondary sources",
+              "verification.quote: PASS — 2 quotation(s) verbatim",
+              "verification.statistics: PASS — numbers ['2'] found in sources",
+              "verification.date: WARN — no parseable publication date on cited sources",
+              "verification.cross_source: WARN — only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent",
+              "verification.contradiction: PASS — no contradiction detected"
+            ]
+          },
+          {
+            "claim_id": "c5",
+            "text": "Developers had six months of notice, from March 24 to September 24.",
+            "verification": "PARTIALLY_SUPPORTED",
+            "notes": [
+              "verification.source_quality: WARN — best source score 0.45",
+              "verification.citation: PASS — cites ['s2']",
+              "verification.primary_source: WARN — quote found, but only in secondary sources",
+              "verification.quote: PASS — 1 quotation(s) verbatim",
+              "verification.statistics: PASS — numbers ['24', '24'] found in sources",
+              "verification.date: WARN — no parseable publication date on cited sources",
+              "verification.cross_source: WARN — only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent",
+              "verification.contradiction: PASS — no contradiction detected"
+            ]
+          },
+          {
+            "claim_id": "c8",
+            "text": "Competing video models remain available via API, including Kling AI and Luma Ray 2, alongside multi-model aggregators such as Higgsfield AI.",
+            "verification": "PARTIALLY_SUPPORTED",
+            "notes": [
+              "verification.source_quality: WARN — best source score 0.45",
+              "verification.citation: PASS — cites ['s2']",
+              "verification.primary_source: WARN — quote found, but only in secondary sources",
+              "verification.quote: PASS — 1 quotation(s) verbatim",
+              "verification.statistics: PASS — numbers ['2'] found in sources",
+              "verification.date: WARN — no parseable publication date on cited sources",
+              "verification.cross_source: WARN — only 1 publisher(s) ['pasqualepillitteri.it']; independent corroboration absent",
+              "verification.contradiction: PASS — no contradiction detected"
+            ]
+          },
+          {
+            "claim_id": "c9",
+            "text": "Kingy AI reports an unattributed estimate that Sora cost about $1 million per day to operate.",
+            "verification": "PARTIALLY_SUPPORTED",
+            "notes": [
+              "verification.source_quality: WARN — best source score 0.45",
+              "verification.citation: PASS — cites ['s3']",
+              "verification.primary_source: WARN — quote found, but only in secondary sources",
+              "verification.quote: PASS — 1 quotation(s) verbatim",
+              "verification.statistics: PASS — numbers ['1'] found in sources",
+              "verification.date: WARN — no parseable publication date on cited sources",
+              "verification.cross_source: WARN — only 1 publisher(s) ['Kingy AI']; independent corroboration absent",
+              "verification.contradiction: PASS — no contradiction detected"
+            ]
+          }
+        ]
+      },
+      "files_changed": [
+        "data/memory/global.jsonl",
+        "data/memory/project.jsonl"
+      ],
+      "tests_performed": [],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:research_to_knowledge",
+      "cost_units": 0.0,
+      "duration_s": 0.009601083000234212,
+      "errors": []
+    },
+    {
+      "agent_id": "knowledge.classifier",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: KNOWLEDGE — Persist verified claims as knowledge with evidence chains.\nYOUR ROLE: Knowledge Classifier: Classify claims and knowledge entries into the taxonomy.",
+      "status": "OK",
+      "findings": [
+        "classified 6/9 claims"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [
+        "unclassified: ['c2', 'c6', 'c7']"
+      ],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "classifications": {
+          "c1": [
+            "developer_tools"
+          ],
+          "c2": [],
+          "c3": [
+            "developer_tools",
+            "ai_models"
+          ],
+          "c4": [
+            "ai_models"
+          ],
+          "c5": [
+            "developer_tools"
+          ],
+          "c6": [],
+          "c7": [],
+          "c8": [
+            "developer_tools",
+            "ai_models"
+          ],
+          "c9": [
+            "infrastructure"
+          ]
+        }
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 0.8,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:knowledge_classify",
+      "cost_units": 0.0,
+      "duration_s": 0.000196969999706198,
+      "errors": []
+    },
+    {
+      "agent_id": "knowledge.gap",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: KNOWLEDGE — Persist verified claims as knowledge with evidence chains.\nYOUR ROLE: Knowledge-Gap Detector: Detect open questions: unverified claims, single-source claims, missing dates.",
+      "status": "OK",
+      "findings": [
+        "16 knowledge gaps"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "research the gaps before relying on those claims",
+      "sources": [],
+      "data": {
+        "knowledge_gaps": [
+          {
+            "claim_id": "c3",
+            "gap": "verification=PARTIALLY_SUPPORTED"
+          },
+          {
+            "claim_id": "c3",
+            "gap": "single publisher; needs independent corroboration"
+          },
+          {
+            "claim_id": "c4",
+            "gap": "verification=PARTIALLY_SUPPORTED"
+          },
+          {
+            "claim_id": "c4",
+            "gap": "single publisher; needs independent corroboration"
+          },
+          {
+            "claim_id": "c5",
+            "gap": "verification=PARTIALLY_SUPPORTED"
+          },
+          {
+            "claim_id": "c5",
+            "gap": "single publisher; needs independent corroboration"
+          },
+          {
+            "claim_id": "c6",
+            "gap": "single publisher; needs independent corroboration"
+          },
+          {
+            "claim_id": "c7",
+            "gap": "single publisher; needs independent corroboration"
+          },
+          {
+            "claim_id": "c8",
+            "gap": "verification=PARTIALLY_SUPPORTED"
+          },
+          {
+            "claim_id": "c8",
+            "gap": "single publisher; needs independent corroboration"
+          },
+          {
+            "claim_id": "c9",
+            "gap": "verification=PARTIALLY_SUPPORTED"
+          },
+          {
+            "claim_id": "c9",
+            "gap": "single publisher; needs independent corroboration"
+          },
+          {
+            "source_id": "s1",
+            "gap": "missing publication date"
+          },
+          {
+            "source_id": "s2",
+            "gap": "missing publication date"
+          },
+          {
+            "source_id": "s3",
+            "gap": "missing publication date"
+          },
+          {
+            "source_id": "s4",
+            "gap": "missing publication date"
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 0.9,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:knowledge_gap",
+      "cost_units": 0.0,
+      "duration_s": 3.6906000332237454e-05,
+      "errors": []
+    },
+    {
+      "agent_id": "education.beginner_teacher",
+      "task": "Explain the Sora API shutdown to a complete beginner.",
+      "status": "OK",
+      "findings": [
+        "Beginner explanation written using verified claims c1, c2, c6, c7 only."
+      ],
+      "evidence": [
+        {
+          "claim_id": "c1",
+          "source_id": "s1",
+          "quote": "The Sora API will be discontinued on September 24, 2026"
+        }
+      ],
+      "assumptions": [
+        "Reader has used an app but has not built software."
+      ],
+      "uncertainties": [
+        "Whether a replacement model will be named is not verified from the primary source, so the lesson does not claim either way."
+      ],
+      "recommendations": [
+        "Pair with a follow-up lesson on how to list the services a product depends on."
+      ],
+      "next_action": "Quality review.",
+      "sources": [
+        "s1"
+      ],
+      "data": {
+        "explanations": [
+          {
+            "artifact_id": "education.beginner_teacher-1",
+            "level": "beginner",
+            "title": "Why an app can lose a feature overnight: the Sora API shutdown",
+            "text": "Sora was a tool from OpenAI that made short videos from text. On April 26, 2026, OpenAI closed the Sora app and website. On September 24, 2026, it also closed the Sora API.\n\nWhat is an API? An API is a way for one program to ask another program to do a job. Think of it as a service window at a bakery. You do not bake the bread. You ask at the window, and the bakery hands it over. Many apps used the Sora window to make videos for their own users.\n\nWhen the window closes, the app cannot get videos any more. Its own code can be perfect, and the feature still stops. This is called a dependency: your product depends on something you do not control.\n\nFor example, imagine a small shop app that turned product photos into short clips with Sora. From September 24, those clip requests fail. The owner now has to pick a new video tool, check the results look good, and check the new price.\n\nOpenAI told Sora users to export their content as soon as possible. It also said it will permanently delete data linked to Sora use after any final export window ends.\n\nKey takeaways:\n- Every AI feature you use may rely on a company's API.\n- Services can be switched off. Keep copies of the work that matters to you.\n- Before building on a tool, ask: what is my plan if it goes away?",
+            "glossary": {
+              "API": "a way for one program to ask another program to do a job",
+              "dependency": "something your product needs but does not control",
+              "export": "downloading a copy of your data to keep"
+            },
+            "takeaways": [
+              "Every AI feature may rely on a company's API.",
+              "Services can be switched off; keep copies of important work.",
+              "Plan for what happens if a tool goes away."
+            ],
+            "claim_ids": [
+              "c1",
+              "c2",
+              "c6",
+              "c7"
+            ],
+            "source_ids": [
+              "s1"
+            ]
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 0.8,
+      "backend": "scripted",
+      "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
+      "cost_units": 5.0,
+      "duration_s": 0.000984087999768235,
+      "errors": []
+    },
+    {
+      "agent_id": "content_strategy.strategist",
+      "task": "Choose content angles from verified knowledge about the Sora API shutdown.",
+      "status": "OK",
+      "findings": [
+        "Three angles: a practical news explainer, an evergreen dependency-risk lesson, and a newsletter deep-dive."
+      ],
+      "evidence": [
+        {
+          "claim_id": "c1",
+          "source_id": "s1",
+          "quote": "The Sora API will be discontinued on September 24, 2026"
+        }
+      ],
+      "assumptions": [
+        "Audience = people who build or buy AI-powered tools (HYPOTHESIS: no audience data supplied)."
+      ],
+      "uncertainties": [
+        "No performance data exists to say which angle works best; this is what the analytics plan will measure."
+      ],
+      "recommendations": [
+        "Lead with facts from the primary source; keep blog-only details out of the drafts until verified."
+      ],
+      "next_action": "Hand angles to platform agents.",
+      "sources": [
+        "s1",
+        "s2"
+      ],
+      "data": {
+        "content_angles": [
+          {
+            "angle_id": "a1",
+            "title": "The Sora API is off: what happened and what to do with your content",
+            "audience": "creators and builders who used Sora",
+            "audience_evidence": "HYPOTHESIS",
+            "promise": "A dated timeline and the two actions OpenAI recommends",
+            "key_claim_ids": [
+              "c1",
+              "c2",
+              "c6",
+              "c7"
+            ],
+            "format_suggestions": [
+              "x_thread",
+              "linkedin"
+            ],
+            "why_now": "The API shut down on September 24, 2026."
+          },
+          {
+            "angle_id": "a2",
+            "title": "Every AI feature has a vendor dependency",
+            "audience": "founders and product teams using third-party model APIs",
+            "audience_evidence": "HYPOTHESIS",
+            "promise": "A simple way to list and de-risk the models your product depends on",
+            "key_claim_ids": [
+              "c1",
+              "c2"
+            ],
+            "format_suggestions": [
+              "linkedin",
+              "newsletter"
+            ],
+            "why_now": "A concrete, recent example makes an abstract risk tangible."
+          },
+          {
+            "angle_id": "a3",
+            "title": "What an API is, explained through the Sora shutdown",
+            "audience": "beginners",
+            "audience_evidence": "HYPOTHESIS",
+            "promise": "Understand APIs and dependencies in five minutes",
+            "key_claim_ids": [
+              "c1",
+              "c6"
+            ],
+            "format_suggestions": [
+              "newsletter"
+            ],
+            "why_now": "News hook."
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 0.7,
+      "backend": "scripted",
+      "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
+      "cost_units": 20.0,
+      "duration_s": 0.0009473210002397536,
+      "errors": []
+    },
+    {
+      "agent_id": "social.linkedin",
+      "task": "Write a LinkedIn post for angle a2.",
+      "status": "OK",
+      "findings": [
+        "LinkedIn draft written: hook in first line, short paragraphs, primary source named, one question CTA."
+      ],
+      "evidence": [
+        {
+          "claim_id": "c1",
+          "source_id": "s1",
+          "quote": "The Sora API will be discontinued on September 24, 2026"
+        }
+      ],
+      "assumptions": [
+        "The example shop tool is illustrative, labelled 'for example', not a real customer."
+      ],
+      "uncertainties": [],
+      "recommendations": [
+        "Put the source link in the first comment if the platform suppresses links."
+      ],
+      "next_action": "Quality review, then human approval.",
+      "sources": [
+        "s1"
+      ],
+      "data": {
+        "content": [
+          {
+            "artifact_id": "social.linkedin-1",
+            "platform": "linkedin",
+            "title": "Every AI feature has a vendor dependency",
+            "text": "OpenAI switched off the Sora API on September 24, 2026. If your product made video through it, those calls now fail.\n\nThe timeline, according to the OpenAI Help Center:\n- April 26, 2026: the Sora web and app experiences closed.\n- September 24, 2026: the API closed too.\n- Next: data tied to Sora use is permanently deleted once any final export window ends.\n\nIn plain terms, an API is a door that lets your software use a model someone else runs. When the owner closes the door, your feature stops, however good your own code is.\n\nFor example, a marketing tool that turned product photos into short clips through Sora now has to pick a new video model, re-test output quality, and rework its pricing.\n\nThree things worth doing this week, even if you never touched Sora:\n1. List every external model your product calls.\n2. Write down what users lose if each one disappears.\n3. Keep prompts, settings and outputs somewhere you control.\n\nOpenAI's own advice to Sora users was to export their content as soon as possible.\n\nWhich model dependency in your stack would hurt most if it were retired? Reply and tell me.",
+            "claim_ids": [
+              "c1",
+              "c2",
+              "c6",
+              "c7"
+            ],
+            "source_ids": [
+              "s1"
+            ],
+            "cta": "Reply with your riskiest dependency"
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 0.8,
+      "backend": "scripted",
+      "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
+      "cost_units": 5.0,
+      "duration_s": 0.007479461999992054,
+      "errors": []
+    },
+    {
+      "agent_id": "social.x_thread",
+      "task": "Write an X thread for angle a1.",
+      "status": "OK",
+      "findings": [
+        "7-part thread; each part under 280 characters; source link in the final post."
+      ],
+      "evidence": [
+        {
+          "claim_id": "c2",
+          "source_id": "s1",
+          "quote": "The Sora web and app experiences were discontinued on April 26, 2026"
+        }
+      ],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [
+        "Post the first part as a standalone if the thread is not approved."
+      ],
+      "next_action": "Quality review, then human approval.",
+      "sources": [
+        "s1"
+      ],
+      "data": {
+        "content": [
+          {
+            "artifact_id": "social.x_thread-1",
+            "platform": "x_thread",
+            "title": "The Sora API is off",
+            "text": "1/ OpenAI switched off the Sora API on September 24, 2026.\n\nApps that made video through it now get failed requests. What happened, and what builders can learn:\n---\n2/ The timeline, per OpenAI's Help Center: the Sora web and app experiences ended on April 26, 2026. The API followed on September 24, 2026.\n---\n3/ Quick definition. An API is a service window: your software asks, another company's model does the work. If the window closes, your feature stops, even when your own code is fine.\n---\n4/ For example: a tool that turns product photos into clips via Sora must now choose a new model, re-check quality and rethink costs.\n---\n5/ OpenAI's advice to users: export your Sora content as soon as possible. It says data linked to Sora use will be permanently deleted after any final export window.\n---\n6/ Takeaway for any AI product: keep a list of the models you rely on, store your own prompts and outputs, and pick a fallback before you need one.\n---\n7/ Source: https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation\n\nWhich dependency would you least like to lose? Reply below.",
+            "claim_ids": [
+              "c1",
+              "c2",
+              "c6",
+              "c7"
+            ],
+            "source_ids": [
+              "s1"
+            ],
+            "cta": "Reply below"
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 0.8,
+      "backend": "scripted",
+      "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
+      "cost_units": 5.0,
+      "duration_s": 0.0007959240001582657,
+      "errors": []
+    },
+    {
+      "agent_id": "social.newsletter",
+      "task": "Write a newsletter issue for angle a3 plus a2.",
+      "status": "OK",
+      "findings": [
+        "Newsletter issue drafted: subject line, one main story, a how-to section, source list."
+      ],
+      "evidence": [
+        {
+          "claim_id": "c7",
+          "source_id": "s1",
+          "quote": "OpenAI will permanently delete any data associated with your use of Sora"
+        }
+      ],
+      "assumptions": [
+        "Subscribers are a mix of beginners and builders (HYPOTHESIS)."
+      ],
+      "uncertainties": [
+        "Blog-reported details (removed model aliases, no named replacement) are left out because they are only partially verified."
+      ],
+      "recommendations": [
+        "Link the beginner explainer as a follow-up piece."
+      ],
+      "next_action": "Quality review, then human approval.",
+      "sources": [
+        "s1"
+      ],
+      "data": {
+        "content": [
+          {
+            "artifact_id": "social.newsletter-1",
+            "platform": "newsletter",
+            "title": "Subject: The Sora API just closed. Is your product next?",
+            "text": "Subject: The Sora API just closed. Is your product next?\n\nHi,\n\nThis week's story is short, but the lesson behind it applies to almost every AI product.\n\nWhat happened\n\nOpenAI has closed Sora, its text-to-video tool, in two steps. The Sora app and website went away on April 26, 2026. Then, on September 24, 2026, the Sora API went dark as well. That second date matters most to builders, because the API is what other apps used to create videos inside their own products.\n\nOpenAI's Help Center tells users to download their Sora work quickly. It also says that once any final export window is over, the company will permanently delete the data linked to people's Sora use.\n\nWhy it matters to you\n\nAn API is a way for your software to borrow another company's model. That is a great deal while it lasts. You skip years of research and pay only for what you use. The trade-off is control. The company that runs the model decides when it changes, what it costs, and when it ends.\n\nFor example, picture a small design app that offered one-click product videos through Sora. Nothing in that app broke on its own. Yet on September 24 its best feature stopped working, and the team now has to find, test and price a replacement.\n\nA ten-minute check for your own stack\n\n- Write down each outside model or AI service your product calls.\n- Next to each, note what your users lose if it disappears tomorrow.\n- Keep your prompts, settings and generated outputs in storage you own.\n- For your most important feature, name a second option you could switch to.\n\nIf you do only one thing, do the list. Most teams are surprised by how long it is.\n\nNext week we will look at how to design a product so one vendor's decision cannot take a whole feature offline.\n\nSource: OpenAI Help Center, What to know about the Sora discontinuation, https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation\n\nThanks for reading.",
+            "claim_ids": [
+              "c1",
+              "c2",
+              "c6",
+              "c7"
+            ],
+            "source_ids": [
+              "s1"
+            ],
+            "cta": "none (informational issue)"
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 0.8,
+      "backend": "scripted",
+      "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
+      "cost_units": 5.0,
+      "duration_s": 0.00093837899976279,
+      "errors": []
+    },
+    {
+      "agent_id": "content_quality.factuality",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: QUALITY — Score drafts; block anything with blocking issues.\nYOUR ROLE: Factuality Evaluator: Check every claim id referenced by a draft is VERIFIED/SUPPORTED.",
+      "status": "OK",
+      "findings": [
+        "Factuality Evaluator: 4 drafts, 0 blocking, 0 warnings, avg score 1.0"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "quality_reports": [
+          {
+            "artifact_id": "social.linkedin-1",
+            "agent_id": "content_quality.factuality",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.x_thread-1",
+            "agent_id": "content_quality.factuality",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.newsletter-1",
+            "agent_id": "content_quality.factuality",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "education.beginner_teacher-1",
+            "agent_id": "content_quality.factuality",
+            "score": 1.0,
+            "issues": []
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Check every claim id referenced by a draft is VERIFIED/SUPPORTED."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:factuality",
+      "cost_units": 0.0,
+      "duration_s": 4.781900042871712e-05,
+      "errors": []
+    },
+    {
+      "agent_id": "content_quality.hallucination",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: QUALITY — Score drafts; block anything with blocking issues.\nYOUR ROLE: Hallucination Detector: Flag numbers and named entities in drafts that do not appear in verified claims or sources.",
+      "status": "OK",
+      "findings": [
+        "Hallucination Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "quality_reports": [
+          {
+            "artifact_id": "social.linkedin-1",
+            "agent_id": "content_quality.hallucination",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.x_thread-1",
+            "agent_id": "content_quality.hallucination",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.newsletter-1",
+            "agent_id": "content_quality.hallucination",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "education.beginner_teacher-1",
+            "agent_id": "content_quality.hallucination",
+            "score": 1.0,
+            "issues": []
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Flag numbers and named entities in drafts that do not appear in verified claims or sources."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:hallucination",
+      "cost_units": 0.0,
+      "duration_s": 0.0007355939997069072,
+      "errors": []
+    },
+    {
+      "agent_id": "content_quality.hype",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: QUALITY — Score drafts; block anything with blocking issues.\nYOUR ROLE: Hype Detector: Detect unsupported superlatives and financial-success promises.",
+      "status": "OK",
+      "findings": [
+        "Hype Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "quality_reports": [
+          {
+            "artifact_id": "social.linkedin-1",
+            "agent_id": "content_quality.hype",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.x_thread-1",
+            "agent_id": "content_quality.hype",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.newsletter-1",
+            "agent_id": "content_quality.hype",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "education.beginner_teacher-1",
+            "agent_id": "content_quality.hype",
+            "score": 1.0,
+            "issues": []
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Detect unsupported superlatives and financial-success promises."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:hype",
+      "cost_units": 0.0,
+      "duration_s": 0.0003621619998739334,
+      "errors": []
+    },
+    {
+      "agent_id": "content_quality.clickbait",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: QUALITY — Score drafts; block anything with blocking issues.\nYOUR ROLE: Clickbait Detector: Detect curiosity-gap and misleading headline patterns.",
+      "status": "OK",
+      "findings": [
+        "Clickbait Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "quality_reports": [
+          {
+            "artifact_id": "social.linkedin-1",
+            "agent_id": "content_quality.clickbait",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.x_thread-1",
+            "agent_id": "content_quality.clickbait",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.newsletter-1",
+            "agent_id": "content_quality.clickbait",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "education.beginner_teacher-1",
+            "agent_id": "content_quality.clickbait",
+            "score": 1.0,
+            "issues": []
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Detect curiosity-gap and misleading headline patterns."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:clickbait",
+      "cost_units": 0.0,
+      "duration_s": 0.00046669799985465943,
+      "errors": []
+    },
+    {
+      "agent_id": "content_quality.ai_slop",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: QUALITY — Score drafts; block anything with blocking issues.\nYOUR ROLE: AI-Slop Detector: Detect generic AI filler phrases and empty intensifiers.",
+      "status": "OK",
+      "findings": [
+        "AI-Slop Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "quality_reports": [
+          {
+            "artifact_id": "social.linkedin-1",
+            "agent_id": "content_quality.ai_slop",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.x_thread-1",
+            "agent_id": "content_quality.ai_slop",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.newsletter-1",
+            "agent_id": "content_quality.ai_slop",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "education.beginner_teacher-1",
+            "agent_id": "content_quality.ai_slop",
+            "score": 1.0,
+            "issues": []
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Detect generic AI filler phrases and empty intensifiers."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:ai_slop",
+      "cost_units": 0.0,
+      "duration_s": 0.0001681050002844131,
+      "errors": []
+    },
+    {
+      "agent_id": "content_quality.platform_fit",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: QUALITY — Score drafts; block anything with blocking issues.\nYOUR ROLE: Platform-Fit Checker: Check each draft against its platform's length and format limits (config/platforms.yaml).",
+      "status": "OK",
+      "findings": [
+        "Platform-Fit Checker: 4 drafts, 0 blocking, 0 warnings, avg score 1.0"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "quality_reports": [
+          {
+            "artifact_id": "social.linkedin-1",
+            "agent_id": "content_quality.platform_fit",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.x_thread-1",
+            "agent_id": "content_quality.platform_fit",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.newsletter-1",
+            "agent_id": "content_quality.platform_fit",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "education.beginner_teacher-1",
+            "agent_id": "content_quality.platform_fit",
+            "score": 1.0,
+            "issues": [
+              {
+                "severity": "INFO",
+                "message": "no platform rules for 'beginner'"
+              }
+            ]
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Check each draft against its platform's length and format limits (config/platforms.yaml)."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:platform_fit",
+      "cost_units": 0.0,
+      "duration_s": 0.00018928700001197285,
+      "errors": []
+    },
+    {
+      "agent_id": "content_quality.readability",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: QUALITY — Score drafts; block anything with blocking issues.\nYOUR ROLE: Readability Evaluator: Compute Flesch reading ease and grade level against the target audience level.",
+      "status": "OK",
+      "findings": [
+        "Readability Evaluator: 4 drafts, 0 blocking, 0 warnings, avg score 1.0"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "quality_reports": [
+          {
+            "artifact_id": "social.linkedin-1",
+            "agent_id": "content_quality.readability",
+            "score": 1.0,
+            "issues": [
+              {
+                "severity": "INFO",
+                "message": "Flesch reading ease 73.3, grade 6.0 (target >= 40 for general)"
+              }
+            ]
+          },
+          {
+            "artifact_id": "social.x_thread-1",
+            "agent_id": "content_quality.readability",
+            "score": 1.0,
+            "issues": [
+              {
+                "severity": "INFO",
+                "message": "Flesch reading ease 66.0, grade 7.4 (target >= 40 for general)"
+              }
+            ]
+          },
+          {
+            "artifact_id": "social.newsletter-1",
+            "agent_id": "content_quality.readability",
+            "score": 1.0,
+            "issues": [
+              {
+                "severity": "INFO",
+                "message": "Flesch reading ease 72.6, grade 6.1 (target >= 40 for general)"
+              }
+            ]
+          },
+          {
+            "artifact_id": "education.beginner_teacher-1",
+            "agent_id": "content_quality.readability",
+            "score": 1.0,
+            "issues": [
+              {
+                "severity": "INFO",
+                "message": "Flesch reading ease 79.2, grade 5.1 (target >= 55 for beginner)"
+              }
+            ]
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Compute Flesch reading ease and grade level against the target audience level."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:readability",
+      "cost_units": 0.0,
+      "duration_s": 0.002051683999980014,
+      "errors": []
+    },
+    {
+      "agent_id": "content_quality.plagiarism",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: QUALITY — Score drafts; block anything with blocking issues.\nYOUR ROLE: Plagiarism-Risk Detector: Flag long verbatim runs copied from sources without quotation.",
+      "status": "OK",
+      "findings": [
+        "Plagiarism-Risk Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "quality_reports": [
+          {
+            "artifact_id": "social.linkedin-1",
+            "agent_id": "content_quality.plagiarism",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.x_thread-1",
+            "agent_id": "content_quality.plagiarism",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.newsletter-1",
+            "agent_id": "content_quality.plagiarism",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "education.beginner_teacher-1",
+            "agent_id": "content_quality.plagiarism",
+            "score": 1.0,
+            "issues": []
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Flag long verbatim runs copied from sources without quotation."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:plagiarism",
+      "cost_units": 0.0,
+      "duration_s": 0.0007231560002765036,
+      "errors": []
+    },
+    {
+      "agent_id": "content_quality.educational_value",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: QUALITY — Score drafts; block anything with blocking issues.\nYOUR ROLE: Educational-Value Evaluator: Check content teaches something concrete: definitions, examples, steps, or takeaways.",
+      "status": "OK",
+      "findings": [
+        "Educational-Value Evaluator: 4 drafts, 0 blocking, 0 warnings, avg score 1.0"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "quality_reports": [
+          {
+            "artifact_id": "social.linkedin-1",
+            "agent_id": "content_quality.educational_value",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.x_thread-1",
+            "agent_id": "content_quality.educational_value",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "social.newsletter-1",
+            "agent_id": "content_quality.educational_value",
+            "score": 1.0,
+            "issues": []
+          },
+          {
+            "artifact_id": "education.beginner_teacher-1",
+            "agent_id": "content_quality.educational_value",
+            "score": 1.0,
+            "issues": []
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [
+        "Check content teaches something concrete: definitions, examples, steps, or takeaways."
+      ],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:educational_value",
+      "cost_units": 0.0,
+      "duration_s": 0.00044257899980948423,
+      "errors": []
+    },
+    {
+      "agent_id": "product_discovery.opportunity",
+      "task": "Identify business opportunities created by the Sora API shutdown.",
+      "status": "OK",
+      "findings": [
+        "Three opportunity hypotheses; the most durable is a general model-deprecation readiness offer, because the Sora-specific migration window has already passed (the API closed four days before this run)."
+      ],
+      "evidence": [
+        {
+          "claim_id": "c1",
+          "source_id": "s1",
+          "quote": "The Sora API will be discontinued on September 24, 2026"
+        },
+        {
+          "claim_id": "c4",
+          "source_id": "s2",
+          "quote": "No replacement model was named"
+        }
+      ],
+      "assumptions": [
+        "Other model/API retirements will follow (HYPOTHESIS based on one case; not evidenced here).",
+        "Product teams will pay to reduce vendor-dependency risk (untested)."
+      ],
+      "uncertainties": [
+        "No data on how many products depended on Sora.",
+        "No evidence yet of willingness to pay; that is what the validation experiment tests."
+      ],
+      "recommendations": [
+        "Validate o2 first with a free checklist before building any paid offer."
+      ],
+      "next_action": "Hand o2 to the MVP architect and experiment designer.",
+      "sources": [
+        "s1",
+        "s2",
+        "s3"
+      ],
+      "data": {
+        "opportunities": [
+          {
+            "id": "o1",
+            "title": "Sora-to-alternative video migration guide/sprint",
+            "type": "service + guide",
+            "target_customer": "teams whose product used the Sora API (HYPOTHESIS)",
+            "problem": "Video features fail from September 24; a new model must be chosen and tested",
+            "why_now": "Shutdown happened September 24, 2026 (c1)",
+            "evidence_claim_ids": [
+              "c1",
+              "c3",
+              "c4",
+              "c8"
+            ],
+            "assumptions": [
+              "Enough teams have not migrated yet",
+              "They prefer paying for help over free guides"
+            ],
+            "risks": [
+              "Window is closing fast: the shutdown already happened",
+              "Free migration guides already exist (s3)",
+              "Small, one-off market"
+            ],
+            "revenue_models": [
+              "fixed-fee migration sprint",
+              "paid guide",
+              "disclosed affiliate links to alternatives"
+            ],
+            "cheapest_test": "Post the migration checklist and count requests over 7 days",
+            "confidence": 0.3
+          },
+          {
+            "id": "o2",
+            "title": "AI model-deprecation readiness kit + audit",
+            "type": "lead magnet + consulting",
+            "target_customer": "founders and product teams that depend on third-party model APIs (HYPOTHESIS)",
+            "problem": "Products can lose core features when a vendor retires a model or API, and most teams have no inventory or fallback plan (HYPOTHESIS)",
+            "why_now": "A concrete, recent retirement (c1, c2) makes the risk tangible",
+            "evidence_claim_ids": [
+              "c1",
+              "c2",
+              "c4",
+              "c5"
+            ],
+            "assumptions": [
+              "Teams recognise the risk after a real example",
+              "They will trade an email for a checklist",
+              "Some will pay for an audit"
+            ],
+            "risks": [
+              "Interest may fade as the news ages",
+              "Hard to prove ROI of risk reduction",
+              "Consulting does not scale"
+            ],
+            "revenue_models": [
+              "fixed-fee dependency audit",
+              "paid template/runbook",
+              "subscription deprecation-monitoring digest"
+            ],
+            "cheapest_test": "Landing page offering a free checklist; measure request rate and audit-call bookings",
+            "confidence": 0.45
+          },
+          {
+            "id": "o3",
+            "title": "Model deprecation watch newsletter",
+            "type": "content/audience",
+            "target_customer": "AI builders (HYPOTHESIS)",
+            "problem": "Deprecation notices are scattered across vendor docs",
+            "why_now": "Six-month notice periods (c5, partially verified) mean early warning has value",
+            "evidence_claim_ids": [
+              "c5",
+              "c1"
+            ],
+            "assumptions": [
+              "People want a single digest",
+              "Sponsorship could follow audience growth"
+            ],
+            "risks": [
+              "Needs reliable monitoring of many vendors (integration NOT CONNECTED)",
+              "Slow to monetize"
+            ],
+            "revenue_models": [
+              "sponsorship (with disclosure)",
+              "paid tier"
+            ],
+            "cheapest_test": "Add a 'deprecation watch' section to the existing newsletter and track clicks",
+            "confidence": 0.35
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 0.5,
+      "backend": "scripted",
+      "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
+      "cost_units": 20.0,
+      "duration_s": 0.0010571759999038477,
+      "errors": []
+    },
+    {
+      "agent_id": "product_discovery.mvp",
+      "task": "Design the smallest product that tests the riskiest assumption of o2.",
+      "status": "OK",
+      "findings": [
+        "MVP: a free checklist behind a simple request form, plus a manual audit offer. No software is built until demand is shown."
+      ],
+      "evidence": [],
+      "assumptions": [
+        "Riskiest assumption: teams care enough to act (request the checklist) and some will talk to us about a paid audit."
+      ],
+      "uncertainties": [
+        "Price for the audit is not set; pricing needs its own experiment."
+      ],
+      "recommendations": [
+        "Deliver audits manually (concierge) before productizing."
+      ],
+      "next_action": "Experiment design.",
+      "sources": [],
+      "data": {
+        "products": [
+          {
+            "id": "p1",
+            "title": "Model-Deprecation Readiness Kit (MVP)",
+            "type": "lead magnet + concierge audit",
+            "target_customer": "product teams depending on third-party model APIs (HYPOTHESIS)",
+            "contents": [
+              "one-page dependency inventory template",
+              "fallback-plan worksheet",
+              "export/backup checklist",
+              "optional 30-minute review call"
+            ],
+            "problem": "No inventory or fallback for vendor model retirements",
+            "evidence_claim_ids": [
+              "c1",
+              "c2"
+            ],
+            "assumptions": [
+              "Checklist is useful on its own",
+              "Calls convert to paid audits"
+            ],
+            "risks": [
+              "Low perceived urgency",
+              "Audit delivery time"
+            ],
+            "cheapest_test": "Landing page + manual delivery by email",
+            "requires_approval": false
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 0.6,
+      "backend": "scripted",
+      "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
+      "cost_units": 20.0,
+      "duration_s": 0.0006791630003135651,
+      "errors": []
+    },
+    {
+      "agent_id": "revenue.model_researcher",
+      "task": "Map candidate revenue models for o2 with assumptions and evidence needed.",
+      "status": "OK",
+      "findings": [
+        "Four candidate models; none is assumed to work. Order of testing: audit (fastest signal) -> template -> monitoring subscription."
+      ],
+      "evidence": [],
+      "assumptions": [
+        "No revenue data exists; all figures would be hypothetical, so none are given."
+      ],
+      "uncertainties": [
+        "Willingness to pay is unknown."
+      ],
+      "recommendations": [
+        "Do not set prices publicly until the validation experiment passes; price changes require approval."
+      ],
+      "next_action": "Validation experiment.",
+      "sources": [],
+      "data": {
+        "revenue_models": [
+          {
+            "title": "Fixed-fee dependency audit (consulting)",
+            "description": "Manual review of a team's model dependencies and fallback plan",
+            "assumptions": [
+              "Teams will pay for expert review"
+            ],
+            "risks": [
+              "does not scale"
+            ],
+            "evidence_needed": "3+ discovery calls from the experiment",
+            "requires_approval": false
+          },
+          {
+            "title": "Paid runbook/template pack (digital product)",
+            "description": "Productized version of the audit",
+            "assumptions": [
+              "Self-serve buyers exist"
+            ],
+            "risks": [
+              "low price point"
+            ],
+            "evidence_needed": "checklist request rate above target",
+            "requires_approval": false
+          },
+          {
+            "title": "Deprecation-monitoring digest (subscription)",
+            "description": "Recurring alerts on vendor model retirements",
+            "assumptions": [
+              "Recurring value"
+            ],
+            "risks": [
+              "monitoring integrations NOT CONNECTED"
+            ],
+            "evidence_needed": "newsletter section click-through",
+            "requires_approval": false
+          },
+          {
+            "title": "Disclosed affiliate links to alternative providers",
+            "description": "Only where genuinely recommended",
+            "assumptions": [
+              "Programmes exist"
+            ],
+            "risks": [
+              "trust erosion if overused"
+            ],
+            "evidence_needed": "genuine product fit",
+            "requires_approval": false
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 0.5,
+      "backend": "scripted",
+      "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
+      "cost_units": 20.0,
+      "duration_s": 0.0005696339999303746,
+      "errors": []
+    },
+    {
+      "agent_id": "experiments.design",
+      "task": "Design one validation experiment for o2 / p1.",
+      "status": "OK",
+      "findings": [
+        "Fake-door style validation: landing page offering the free kit, traffic only from the approved organic drafts. No spend."
+      ],
+      "evidence": [],
+      "assumptions": [
+        "The three drafts will be approved and published by a human; otherwise the experiment cannot start."
+      ],
+      "uncertainties": [
+        "Organic reach is unknown, so the 14-day window may not reach the minimum sample; if so the result is INCONCLUSIVE, not a success."
+      ],
+      "recommendations": [
+        "Pre-register the criteria now; do not change them after seeing data."
+      ],
+      "next_action": "Register the experiment; request approval to publish the landing page.",
+      "sources": [],
+      "data": {
+        "experiments": [
+          {
+            "name": "Readiness Kit demand test",
+            "experiment_type": "validation",
+            "hypothesis": "If we offer a free Model-Deprecation Readiness Kit to visitors arriving from the Sora-shutdown posts, at least 5% of landing-page visitors will request it and at least 3 requesters will book a review call within 14 days.",
+            "method": "Single landing page (no paid traffic). Link from the approved LinkedIn post, X thread and newsletter with UTM tags. Deliver the kit manually by email. Offer an optional review call in the delivery email.",
+            "metric": "kit_request_rate = requests / unique landing-page visitors; secondary: review_calls_booked",
+            "success_criteria": "kit_request_rate >= 5% with >= 200 unique visitors AND >= 3 review calls booked within 14 days",
+            "failure_criteria": "kit_request_rate < 2% with >= 200 visitors, OR 0 review calls; fewer than 200 visitors = INCONCLUSIVE (extend once, then stop)",
+            "variants": [
+              "single variant (no A/B until baseline known)"
+            ],
+            "min_sample_per_variant": 200,
+            "duration": "14 days from first post",
+            "cost_and_approvals": "No spend. Requires approval to publish the three drafts and the landing page.",
+            "next_action_if_success": "Run a pricing test for the paid audit (approval required before any live price).",
+            "next_action_if_failure": "Record the failure; test angle o3 (deprecation-watch newsletter section) instead.",
+            "requires_approval": true,
+            "approval_category": "publish_content",
+            "result": "NOT RUN",
+            "data": {
+              "baseline_rate": 0.03,
+              "mde_abs": 0.02
+            }
+          }
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 0.7,
+      "backend": "scripted",
+      "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
+      "cost_units": 20.0,
+      "duration_s": 0.0006255829998735862,
+      "errors": []
+    },
+    {
+      "agent_id": "experiments.registrar",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: EXPERIMENT — Design and pre-register a validation experiment.\nYOUR ROLE: Experiment Registrar: Validate that experiments contain all required fields and pre-registered criteria, then record them.",
+      "status": "OK",
+      "findings": [
+        "registered ['Readiness Kit demand test']"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {},
+      "files_changed": [
+        "data/experiments/experiments.jsonl"
+      ],
+      "tests_performed": [],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:experiment_registrar",
+      "cost_units": 0.0,
+      "duration_s": 0.0002501200001461257,
+      "errors": []
+    },
+    {
+      "agent_id": "analytics.analytics_planner",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: ANALYTICS_PLAN — Define how results will be measured and which integrations that needs.\nYOUR ROLE: Analytics-Plan Agent: Produce a measurement plan (metrics, sources, integration status) for content and experiments. Uses only supplied metric data; reports NO DATA when none exists.",
+      "status": "OK",
+      "findings": [
+        "3 content items and 1 experiments to measure"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [
+        "linkedin_api: NOT CONNECTED — results must be exported manually to data/metrics/",
+        "x_api: NOT CONNECTED — results must be exported manually to data/metrics/",
+        "email_provider: NOT CONNECTED — results must be exported manually to data/metrics/"
+      ],
+      "recommendations": [],
+      "next_action": "after publishing (with approval), export metrics weekly and run `aibos analytics`",
+      "sources": [],
+      "data": {
+        "analytics_plan": {
+          "content_metrics": [
+            {
+              "artifact_id": "social.linkedin-1",
+              "platform": "linkedin",
+              "metrics": [
+                "impressions",
+                "engagement_rate",
+                "profile_visits",
+                "link_clicks"
+              ],
+              "integration": "linkedin_api",
+              "integration_status": "NOT CONNECTED"
+            },
+            {
+              "artifact_id": "social.x_thread-1",
+              "platform": "x_thread",
+              "metrics": [
+                "impressions",
+                "engagement_rate",
+                "profile_visits",
+                "link_clicks"
+              ],
+              "integration": "x_api",
+              "integration_status": "NOT CONNECTED"
+            },
+            {
+              "artifact_id": "social.newsletter-1",
+              "platform": "newsletter",
+              "metrics": [
+                "opens",
+                "open_rate",
+                "clicks",
+                "unsubscribes"
+              ],
+              "integration": "email_provider",
+              "integration_status": "NOT CONNECTED"
+            }
+          ],
+          "experiment_metrics": [
+            {
+              "experiment": "Readiness Kit demand test",
+              "metric": "kit_request_rate = requests / unique landing-page visitors; secondary: review_calls_booked",
+              "success": "kit_request_rate >= 5% with >= 200 unique visitors AND >= 3 review calls booked within 14 days",
+              "failure": "kit_request_rate < 2% with >= 200 visitors, OR 0 review calls; fewer than 200 visitors = INCONCLUSIVE (extend once, then stop)"
+            }
+          ],
+          "integrations_needed": {
+            "linkedin_api": "NOT CONNECTED",
+            "x_api": "NOT CONNECTED",
+            "email_provider": "NOT CONNECTED"
+          },
+          "data_import": "data/metrics/*.csv"
+        }
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:analytics_plan",
+      "cost_units": 0.0,
+      "duration_s": 0.0057534319998922,
+      "errors": []
+    },
+    {
+      "agent_id": "security.secret_detector",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: SECURITY — Scan all outputs for secrets, credentials, personal data and unapproved external actions.\nYOUR ROLE: Secret Detector: Detect API keys, tokens and private keys in any text the system handles.",
+      "status": "OK",
+      "findings": [
+        "0 finding(s)"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "none",
+      "sources": [],
+      "data": {
+        "security_findings": []
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:secret_scan",
+      "cost_units": 0.0,
+      "duration_s": 0.003855658999782463,
+      "errors": []
+    },
+    {
+      "agent_id": "security.privacy",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: SECURITY — Scan all outputs for secrets, credentials, personal data and unapproved external actions.\nYOUR ROLE: Data-Privacy Reviewer: Detect personal data (emails, phone numbers) in content and memory writes.",
+      "status": "OK",
+      "findings": [
+        "0 finding(s)"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "none",
+      "sources": [],
+      "data": {
+        "security_findings": []
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:privacy",
+      "cost_units": 0.0,
+      "duration_s": 0.0007421220002470363,
+      "errors": []
+    },
+    {
+      "agent_id": "security.external_action",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: SECURITY — Scan all outputs for secrets, credentials, personal data and unapproved external actions.\nYOUR ROLE: External-Action Reviewer: Ensure external actions are queued for approval, never executed directly.",
+      "status": "OK",
+      "findings": [
+        "no unapproved external actions; nothing was published"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "security_findings": []
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:external_action",
+      "cost_units": 0.0,
+      "duration_s": 0.0002625199999783945,
+      "errors": []
+    },
+    {
+      "agent_id": "automation.report_generation",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: REPORT — Assemble the run into a report.\nYOUR ROLE: Report-Generation Agent: Assemble run outputs into a markdown report.",
+      "status": "OK",
+      "findings": [
+        "report written (38373 chars)"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "report_path": "/home/user/furnacegold/demo/data/runs/20260928T133546Z_07e64d/report.md"
+      },
+      "files_changed": [
+        "demo/data/runs/20260928T133546Z_07e64d/report.md"
+      ],
+      "tests_performed": [],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:report",
+      "cost_units": 0.0,
+      "duration_s": 0.0007610070001646818,
+      "errors": []
+    },
+    {
+      "agent_id": "learning.run_learner",
+      "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: LEARN — Record lessons and agent performance.\nYOUR ROLE: Run Learner: Record what a run produced, what failed, and lessons into agent-learning memory.",
+      "status": "OK",
+      "findings": [
+        "verified 4/9 claims"
+      ],
+      "evidence": [],
+      "assumptions": [],
+      "uncertainties": [],
+      "recommendations": [],
+      "next_action": "",
+      "sources": [],
+      "data": {
+        "lessons": [
+          "verified 4/9 claims"
+        ]
+      },
+      "files_changed": [],
+      "tests_performed": [],
+      "confidence": 1.0,
+      "backend": "rule",
+      "provenance": "deterministic rule rule:run_learning",
+      "cost_units": 0.0,
+      "duration_s": 0.0021505419999812148,
+      "errors": []
+    }
+  ]
+}

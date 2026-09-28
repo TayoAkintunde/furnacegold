@@ -1,0 +1,34 @@
+total_agents: 319
+specialists: 303
+unused_agents: 265
+    - analytics.anomaly
+    - analytics.attribution
+    - analytics.cohort
+    - analytics.content
+    - analytics.conversion
+    - analytics.customer
+    - analytics.email
+    - analytics.experiment
+duplicate_agents: 6
+    - {'agents': ['analytics.funnel', 'revenue.sales_funnel'], 'reason': "same subject ['funnel'] and role 'analysis'", 'recommendation': 'merge or document the distinct scope'}
+    - {'agents': ['analytics.retention', 'audience.retention'], 'reason': "same subject ['retention'] and role 'analysis'", 'recommendation': 'merge or document the distinct scope'}
+    - {'agents': ['analytics.conversion', 'revenue.conversion'], 'reason': "same subject ['conversion'] and role 'analysis'", 'recommendation': 'merge or document the distinct scope'}
+    - {'agents': ['audience.objections', 'sales.objections'], 'reason': "same subject ['objection'] and role 'analysis'", 'recommendation': 'merge or document the distinct scope'}
+    - {'agents': ['content_strategy.case_study', 'services.case_study'], 'reason': "same subject ['case', 'study'] and role 'agent'", 'recommendation': 'merge or document the distinct scope'}
+    - {'agents': ['product_discovery.pricing', 'revenue.pricing'], 'reason': "same subject ['pricing'] and role 'analysis'", 'recommendation': 'merge or document the distinct scope'}
+poor_performing_agents: 0
+outdated_agents: 0
+never_reviewed_count: 319
+missing_agents_or_capabilities: 0
+expensive_agents: 10
+    - {'agent_id': 'product_discovery.opportunity', 'cost_units': 20.0}
+    - {'agent_id': 'product_discovery.mvp', 'cost_units': 20.0}
+    - {'agent_id': 'revenue.model_researcher', 'cost_units': 20.0}
+    - {'agent_id': 'experiments.design', 'cost_units': 20.0}
+    - {'agent_id': 'research.ai_news', 'cost_units': 20.0}
+    - {'agent_id': 'content_strategy.strategist', 'cost_units': 20.0}
+    - {'agent_id': 'social.x_thread', 'cost_units': 5.0}
+    - {'agent_id': 'education.beginner_teacher', 'cost_units': 5.0}
+high_cost_llm_agents: 80
+frequently_failing_agents: 0
+agents_needing_human_review: 0

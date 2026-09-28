@@ -1,0 +1,24 @@
+anthropic          PACKAGE REQUIRED     pip install anthropic   — Model backend for LLM agents
+http_fetch         CONNECTED            adapter ready; network reachability is not pre-checked (a failed fetch is reported, never substituted)   — Fetch a URL into the source store (aibos sources add --url)
+local_files        CONNECTED            ready   — Read/write local stores under data/
+metrics_csv        CONNECTED            ready   — Import analytics exports from CSV (data/metrics/*.csv)
+web_search         NOT CONNECTED        no adapter implemented yet   — Search the web for new developments
+arxiv              NOT CONNECTED        no adapter implemented yet   — Query arXiv
+github             NOT CONNECTED        no adapter implemented yet   — Read live repository data
+x_api              NOT CONNECTED        no adapter implemented yet   — Publish/read X posts
+linkedin_api       NOT CONNECTED        no adapter implemented yet   — Publish/read LinkedIn posts
+instagram_api      NOT CONNECTED        no adapter implemented yet   — Publish/read Instagram
+tiktok_api         NOT CONNECTED        no adapter implemented yet   — Publish/read TikTok
+youtube_api        NOT CONNECTED        no adapter implemented yet   — Publish/read YouTube
+facebook_api       NOT CONNECTED        no adapter implemented yet   — Publish/read Facebook
+reddit_api         NOT CONNECTED        no adapter implemented yet   — Publish/read Reddit
+community_webhook  NOT CONNECTED        no adapter implemented yet   — Post to Discord/Slack communities
+email_provider     NOT CONNECTED        no adapter implemented yet   — Send newsletters
+cms                NOT CONNECTED        no adapter implemented yet   — Publish blog/SEO articles
+podcast_host       NOT CONNECTED        no adapter implemented yet   — Publish podcast episodes
+web_analytics      NOT CONNECTED        no adapter implemented yet   — Website analytics API
+search_console     NOT CONNECTED        no adapter implemented yet   — Search analytics API
+payments           NOT CONNECTED        no adapter implemented yet   — Revenue data / checkout
+crm                NOT CONNECTED        no adapter implemented yet   — CRM pipeline data
+ads                NOT CONNECTED        no adapter implemented yet   — Paid advertising (always approval-gated)
+notifications      NOT CONNECTED        no adapter implemented yet   — Push/email notifications to the operator

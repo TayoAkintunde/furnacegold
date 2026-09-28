@@ -46,7 +46,9 @@ class Plan:
 
 
 def _intent_hit(objective: str, intent: str) -> bool:
-    return re.search(r"(?<![a-z])" + re.escape(intent.lower()), objective.lower()) is not None
+    # whole-word match (plural allowed) so short keywords like "ide" don't match "identify"
+    pattern = r"(?<![a-z0-9])" + re.escape(intent.lower()) + r"(?:s|es)?(?![a-z0-9])"
+    return re.search(pattern, objective.lower()) is not None
 
 
 def detect_stages(objective: str) -> tuple[list[str], dict[str, str]]:
@@ -132,9 +134,11 @@ class Selector:
             picked = [a.agent_id for p in defaults for a in cands if a.params.get("platform") == p][:count]
             return picked, {}, f"default platforms {defaults[:count]} (none named)"
         scored = sorted(((score_agent(a, obj), a) for a in cands), key=lambda x: (-x[0], x[1].agent_id))
-        top = scored[:count]
+        # The best candidate always runs; extra agents are added only if they match the objective
+        # (a score above their priority baseline) — never to fill a quota.
+        top = scored[:1] + [(sc, a) for sc, a in scored[1:count] if sc > a.priority / 10.0]
         return [a.agent_id for _, a in top], {a.agent_id: round(s, 2) for s, a in scored[:5]}, \
-            f"top {count} of {len(cands)} candidates by keyword/priority score"
+            f"top {len(top)} of {len(cands)} candidates by keyword/priority score (max {count})"
 
     def build_plan(self, objective: str, complexity: str | None = None, pipeline: str | None = None) -> Plan:
         prof = profile(objective, complexity)

@@ -1,0 +1,20 @@
+run 20260928T133626Z_368a2e  complexity=complex  backend=offline
+  SOURCE_SECURITY        prompt_injection=OK
+  RESEARCH               ai_news=NO_MODEL
+  VERIFY                 SKIPPED: nothing to process (no claims)
+  KNOWLEDGE              SKIPPED: nothing to process (no claims)
+  TEACH                  SKIPPED: INSUFFICIENT VERIFIED EVIDENCE
+  CONTENT_STRATEGY       SKIPPED: INSUFFICIENT VERIFIED EVIDENCE
+  CONTENT                SKIPPED: INSUFFICIENT VERIFIED EVIDENCE
+  QUALITY                SKIPPED: nothing to process (no artifacts)
+  OPPORTUNITY            SKIPPED: INSUFFICIENT VERIFIED EVIDENCE
+  PRODUCT                SKIPPED: INSUFFICIENT VERIFIED EVIDENCE
+  REVENUE                SKIPPED: INSUFFICIENT VERIFIED EVIDENCE
+  EXPERIMENT             SKIPPED: INSUFFICIENT VERIFIED EVIDENCE
+  ANALYTICS_PLAN         analytics_planner=OK
+  APPROVAL               —
+  SECURITY               secret_detector=OK, privacy=OK, external_action=OK
+  REPORT                 report_generation=OK
+  LEARN                  run_learner=OK
+claims verified: 0/0   budget: 0.0 units, 0 model calls
+report: <data>/runs/20260928T133626Z_368a2e/report.md

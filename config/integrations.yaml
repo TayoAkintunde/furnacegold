@@ -4,7 +4,7 @@
 #   NOT CONNECTED       no adapter implemented in this codebase yet
 integrations:
   anthropic:       {purpose: "Model backend for LLM agents", adapter: anthropic, env: [ANTHROPIC_API_KEY], alt_env: [ANTHROPIC_AUTH_TOKEN], python_package: anthropic}
-  http_fetch:      {purpose: "Fetch a URL into the source store (aibos sources add --url)", adapter: http_fetch, env: []}
+  http_fetch:      {purpose: "Fetch a URL into the source store (aibos sources add --url)", adapter: http_fetch, env: [], network: true}
   local_files:     {purpose: "Read/write local stores under data/", adapter: local_files, env: []}
   metrics_csv:     {purpose: "Import analytics exports from CSV (data/metrics/*.csv)", adapter: metrics_csv, env: []}
   web_search:      {purpose: "Search the web for new developments", adapter: null, env: [SEARCH_API_KEY]}

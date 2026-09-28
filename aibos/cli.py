@@ -9,8 +9,8 @@ from pathlib import Path
 
 from aibos import integrations
 from aibos.backends import get_backend
-from aibos.evidence import SourceStore, claim_from_dict, source_from_dict
-from aibos.schemas import Source, stable_hash, to_jsonable
+from aibos.evidence import SourceStore, claim_from_dict
+from aibos.schemas import Source, stable_hash
 
 OBJECTIVES = {
     "research": "Research and verify recent developments in {topic}.",
@@ -83,7 +83,6 @@ def cmd_plan(args):
     p = plan.profile
     print(f"TASK TYPE: {p.task_type}\nDOMAINS: {p.domains}\nRISK: {p.risk_level.value}\nCOMPLEXITY: {p.complexity}\n"
           f"OUTPUT: {p.output_type}\nTOOLS: {p.required_tools}")
-    n_llm = 0
     for s in plan.steps:
         print(f"- {s.stage:<20} [{s.orchestrator}] {', '.join(s.agents) or '—'}\n    why: {s.reason}")
     from aibos.registry import Registry
@@ -238,7 +237,6 @@ def cmd_sources(args):
         print(f"imported {len(new)} sources -> {store.save_persistent()}")
         return
     if args.url:
-        st = integrations.status("http_fetch")
         try:
             got = integrations.fetch_url(args.url)
         except Exception as exc:  # report, never invent

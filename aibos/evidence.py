@@ -108,15 +108,18 @@ def aggregate_verification(claims: list[Claim], reports: list[dict[str, Any]],
                            sources: SourceStore) -> list[Claim]:
     """Combine verifier verdicts into one verification status per claim.
 
-    Verdicts per verifier: pass | fail | warn | na.
-    - any 'contradiction' fail           -> CONTRADICTED
-    - any hard fail (citation, primary quote, quote, statistics) -> UNSUPPORTED
-    - no hard fails, >=1 pass, no warns  -> SUPPORTED
-    - otherwise                          -> PARTIALLY_SUPPORTED
-    Only SUPPORTED claims become FACT; confidence blends source tier and verdicts.
+    Content checks (citation, primary-source quote, quote, statistics, claim wording,
+    contradiction) decide support; metadata checks (date, cross-source, source quality,
+    outdated) only lower confidence. Verdicts: pass | fail | warn | na.
+    - contradiction fail                         -> CONTRADICTED
+    - any content-check fail                     -> UNSUPPORTED
+    - any content-check warn (e.g. secondary only) -> PARTIALLY_SUPPORTED
+    - content checks all pass (>=1 ran)          -> SUPPORTED (confidence x0.9 per soft warning)
+    - no content check ran                       -> UNVERIFIED
+    Only SUPPORTED claims become FACT.
     """
-    hard = {"verification.citation", "verification.primary_source", "verification.quote",
-            "verification.statistics", "verification.claim"}
+    content = {"verification.citation", "verification.primary_source", "verification.quote",
+               "verification.statistics", "verification.claim", "verification.contradiction"}
     per_claim: dict[str, list[tuple[str, str, str]]] = {c.claim_id: [] for c in claims}
     for rep in reports:
         agent = rep.get("agent_id", "")
@@ -126,17 +129,16 @@ def aggregate_verification(claims: list[Claim], reports: list[dict[str, Any]],
     for c in claims:
         verdicts = per_claim.get(c.claim_id, [])
         c.verification_notes = [f"{a}: {v.upper()} — {n}" for a, v, n in verdicts]
-        fails = [(a, v) for a, v, _ in verdicts if v == "fail"]
-        warns = [a for a, v, _ in verdicts if v == "warn"]
-        passes = [a for a, v, _ in verdicts if v == "pass"]
-        if any(a == "verification.contradiction" for a, _ in fails):
+        hard = [(a, v) for a, v, _ in verdicts if a in content and v != "na"]
+        soft_issues = [a for a, v, _ in verdicts if a not in content and v in ("warn", "fail")]
+        if any(a == "verification.contradiction" and v == "fail" for a, v in hard):
             c.verification = Verification.CONTRADICTED
-        elif any(a in hard for a, _ in fails):
+        elif any(v == "fail" for _, v in hard):
             c.verification = Verification.UNSUPPORTED
-        elif passes and not warns and not fails:
-            c.verification = Verification.SUPPORTED
-        elif passes:
+        elif any(v == "warn" for _, v in hard):
             c.verification = Verification.PARTIALLY_SUPPORTED
+        elif hard:
+            c.verification = Verification.SUPPORTED
         else:
             c.verification = Verification.UNVERIFIED
         tiers = [SOURCE_TIER.get(s.source_type, 0.2) for sid in c.source_ids if (s := sources.get(sid))]
@@ -146,7 +148,7 @@ def aggregate_verification(claims: list[Claim], reports: list[dict[str, Any]],
         factor = {Verification.SUPPORTED: 1.0, Verification.PARTIALLY_SUPPORTED: 0.7,
                   Verification.UNVERIFIED: 0.3, Verification.UNSUPPORTED: 0.1,
                   Verification.CONTRADICTED: 0.05}[c.verification]
-        c.confidence = round(base * corroboration * factor, 3)
+        c.confidence = round(base * corroboration * factor * (0.9 ** len(soft_issues)), 3)
         if c.verification == Verification.SUPPORTED:
             c.kind = ClaimKind.FACT
         elif c.kind == ClaimKind.FACT:

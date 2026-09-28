@@ -171,7 +171,7 @@ def weekly_sections(ctx=None, days: int = 7) -> dict[str, list[str]]:
     def analytics_lines(kw: str) -> list[str]:
         rows = no_data(kw)
         if not rows:
-            return ["NO DATA — no analytics were supplied; nothing was fabricated."]
+            return [f"{kw}: NO DATA — no analytics were supplied; nothing was fabricated."]
         return [f"{r['agent_id']}: {_val({k: v for k, v in r.items() if k not in ('agent_id', 'produced_by')})}" for r in rows]
 
     sec = {

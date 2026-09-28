@@ -44,7 +44,7 @@ agents:
   - {id: dev_ecosystem, name: Developer Ecosystem Researcher, focus: "developer ecosystems, communities and adoption", keywords: [ecosystem, developer, community, adoption]}
   - {id: enterprise_ai, name: Enterprise AI Researcher, focus: "enterprise AI adoption, procurement and governance", keywords: [enterprise, adoption, governance, b2b, compliance]}
   - {id: consumer_ai, name: Consumer AI Researcher, focus: "consumer AI products and behaviour", keywords: [consumer, app, assistant, chatbot, mobile]}
-  - {id: creator_tech, name: Creator Technology Researcher, focus: "technology for creators", keywords: [creator, video, youtube, content, audio]}
+  - {id: creator_tech, name: Creator Technology Researcher, focus: "technology for creators", keywords: [creator, creators, video, youtube, audio]}
   - {id: martech, name: Marketing Technology Researcher, focus: "marketing technology", keywords: [marketing, martech, seo, ads, crm]}
   - {id: ecommerce_tech, name: Ecommerce Technology Researcher, focus: "ecommerce technology", keywords: [ecommerce, shop, retail, checkout]}
   - {id: productivity_tech, name: Productivity Technology Researcher, focus: "productivity software", keywords: [productivity, notes, office, workflow]}

@@ -1,0 +1,283 @@
+{
+  "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
+  "responses": {
+    "research.ai_news": {
+      "TASK": "Find an important recent AI development in the captured sources and summarize it as checkable claims.",
+      "FINDINGS": [
+        "Selected development: OpenAI discontinued the Sora video-generation API on September 24, 2026, after discontinuing the Sora web and app experiences on April 26, 2026.",
+        "Chosen over the model releases listed in s4 because it has a primary source (OpenAI Help Center, s1), is independently reported (s2, s3), and has direct, actionable consequences for builders who depend on third-party model APIs."
+      ],
+      "EVIDENCE": [
+        {"claim_id": "c1", "source_id": "s1", "quote": "The Sora API will be discontinued on September 24, 2026"},
+        {"claim_id": "c1", "source_id": "s2", "quote": "On September 24, 2026, OpenAI switched off the Sora 2 API"}
+      ],
+      "ASSUMPTIONS": [
+        "The help-center extract reflects the current article text (we only have a search-engine extract, not the full page)."
+      ],
+      "UNCERTAINTIES": [
+        "Publication dates of all three pages were not visible in the captured extracts.",
+        "How many products depended on the Sora API is unknown; no source quantifies it.",
+        "The cost and user figures in s3 are unattributed estimates."
+      ],
+      "RECOMMENDATIONS": [
+        "Treat only claims backed by the OpenAI source as facts; treat blog-only details (removed aliases, blank migration target, alternatives) as partially supported.",
+        "Re-capture the full OpenAI deprecations page once network access allows, to verify the 'no replacement named' detail from the primary source."
+      ],
+      "NEXT_ACTION": "Send claims to verification.",
+      "CONFIDENCE": 0.8,
+      "SOURCES": ["s1", "s2", "s3", "s4"],
+      "DATA": {
+        "claims": [
+          {"claim_id": "c1", "text": "OpenAI discontinued the Sora API on September 24, 2026.", "kind": "FACT", "source_ids": ["s1", "s2"],
+           "quotes": ["The Sora API will be discontinued on September 24, 2026", "On September 24, 2026, OpenAI switched off the Sora 2 API"], "confidence": 0.9},
+          {"claim_id": "c2", "text": "The Sora web and app experiences were discontinued earlier, on April 26, 2026.", "kind": "FACT", "source_ids": ["s1", "s3"],
+           "quotes": ["The Sora web and app experiences were discontinued on April 26, 2026", "The Sora app/web product was no longer available as of April 26, 2026"], "confidence": 0.9},
+          {"claim_id": "c3", "text": "The shutdown removed the Videos API and every alias of the Sora 2 models, such as sora-2 and sora-2-pro.", "kind": "FACT", "source_ids": ["s2"],
+           "quotes": ["The Videos API and the Sora 2 models were removed from the OpenAI platform on September 24, 2026, including every alias of the Sora 2 models such as sora-2, sora-2-pro and their dated versions"], "confidence": 0.7},
+          {"claim_id": "c4", "text": "OpenAI's deprecations documentation named no replacement model for Sora 2.", "kind": "FACT", "source_ids": ["s2"],
+           "quotes": ["in the official deprecations documentation, the column that usually points to a migration target stays blank for Sora 2", "No replacement model was named"], "confidence": 0.6},
+          {"claim_id": "c5", "text": "Developers had six months of notice, from March 24 to September 24.", "kind": "FACT", "source_ids": ["s2"],
+           "quotes": ["The six months of notice OpenAI granted (from March 24 to September 24)"], "confidence": 0.6},
+          {"claim_id": "c6", "text": "OpenAI recommends exporting Sora content as soon as possible via sora.chatgpt.com/sunset.", "kind": "FACT", "source_ids": ["s1"],
+           "quotes": ["it's recommended you export your Sora content as soon as possible", "going to sora.chatgpt.com/sunset and clicking on Export"], "confidence": 0.9},
+          {"claim_id": "c7", "text": "After Sora is discontinued and any final export window passes, OpenAI will permanently delete data associated with Sora use.", "kind": "FACT", "source_ids": ["s1"],
+           "quotes": ["OpenAI will permanently delete any data associated with your use of Sora"], "confidence": 0.9},
+          {"claim_id": "c8", "text": "Competing video models remain available via API, including Kling AI and Luma Ray 2, alongside multi-model aggregators such as Higgsfield AI.", "kind": "OBSERVATION", "source_ids": ["s2"],
+           "quotes": ["Competing models remain active on the market, including Kling AI from Kuaishou and Luma Ray 2, both accessible via API, alongside aggregator platforms like Higgsfield AI"], "confidence": 0.6},
+          {"claim_id": "c9", "text": "Kingy AI reports an unattributed estimate that Sora cost about $1 million per day to operate.", "kind": "ASSUMPTION", "source_ids": ["s3"],
+           "quotes": ["The service cost an estimated $1 million per day to operate"], "confidence": 0.3}
+        ],
+        "findings": [
+          {"development": "OpenAI shut down the Sora API (September 24, 2026), completing a two-stage Sora discontinuation",
+           "why_it_matters": "A product feature built on one vendor's model API can stop working on the vendor's schedule, regardless of the product's own code quality.",
+           "implications": ["Teams using Sora for video must migrate to another model and re-test quality and cost (HYPOTHESIS: scale unknown)",
+                            "Model/API retirement is a business risk for every AI product, not only video tools (OPINION)",
+                            "User data export and deletion timelines create a compliance and content-archiving task (from c6, c7)"],
+           "opportunity_hypotheses": ["Education content on AI vendor-dependency risk", "A model-deprecation readiness checklist and audit service", "Migration guides for video-generation features"],
+           "claim_ids": ["c1", "c2", "c3", "c4", "c6", "c7"]}
+        ]
+      }
+    },
+
+    "education.beginner_teacher": {
+      "TASK": "Explain the Sora API shutdown to a complete beginner.",
+      "FINDINGS": ["Beginner explanation written using verified claims c1, c2, c6, c7 only."],
+      "EVIDENCE": [{"claim_id": "c1", "source_id": "s1", "quote": "The Sora API will be discontinued on September 24, 2026"}],
+      "ASSUMPTIONS": ["Reader has used an app but has not built software."],
+      "UNCERTAINTIES": ["Whether a replacement model will be named is not verified from the primary source, so the lesson does not claim either way."],
+      "RECOMMENDATIONS": ["Pair with a follow-up lesson on how to list the services a product depends on."],
+      "NEXT_ACTION": "Quality review.",
+      "CONFIDENCE": 0.8,
+      "SOURCES": ["s1"],
+      "DATA": {
+        "explanations": [
+          {"artifact_id": "education.beginner_teacher-1", "level": "beginner",
+           "title": "Why an app can lose a feature overnight: the Sora API shutdown",
+           "text": "Sora was a tool from OpenAI that made short videos from text. On April 26, 2026, OpenAI closed the Sora app and website. On September 24, 2026, it also closed the Sora API.\n\nWhat is an API? An API is a way for one program to ask another program to do a job. Think of it as a service window at a bakery. You do not bake the bread. You ask at the window, and the bakery hands it over. Many apps used the Sora window to make videos for their own users.\n\nWhen the window closes, the app cannot get videos any more. Its own code can be perfect, and the feature still stops. This is called a dependency: your product depends on something you do not control.\n\nFor example, imagine a small shop app that turned product photos into short clips with Sora. From September 24, those clip requests fail. The owner now has to pick a new video tool, check the results look good, and check the new price.\n\nOpenAI told Sora users to export their content as soon as possible. It also said it will permanently delete data linked to Sora use after any final export window ends.\n\nKey takeaways:\n- Every AI feature you use may rely on a company's API.\n- Services can be switched off. Keep copies of the work that matters to you.\n- Before building on a tool, ask: what is my plan if it goes away?",
+           "glossary": {"API": "a way for one program to ask another program to do a job", "dependency": "something your product needs but does not control", "export": "downloading a copy of your data to keep"},
+           "takeaways": ["Every AI feature may rely on a company's API.", "Services can be switched off; keep copies of important work.", "Plan for what happens if a tool goes away."],
+           "claim_ids": ["c1", "c2", "c6", "c7"], "source_ids": ["s1"]}
+        ]
+      }
+    },
+
+    "content_strategy.strategist": {
+      "TASK": "Choose content angles from verified knowledge about the Sora API shutdown.",
+      "FINDINGS": ["Three angles: a practical news explainer, an evergreen dependency-risk lesson, and a newsletter deep-dive."],
+      "EVIDENCE": [{"claim_id": "c1", "source_id": "s1", "quote": "The Sora API will be discontinued on September 24, 2026"}],
+      "ASSUMPTIONS": ["Audience = people who build or buy AI-powered tools (HYPOTHESIS: no audience data supplied)."],
+      "UNCERTAINTIES": ["No performance data exists to say which angle works best; this is what the analytics plan will measure."],
+      "RECOMMENDATIONS": ["Lead with facts from the primary source; keep blog-only details out of the drafts until verified."],
+      "NEXT_ACTION": "Hand angles to platform agents.",
+      "CONFIDENCE": 0.7,
+      "SOURCES": ["s1", "s2"],
+      "DATA": {
+        "content_angles": [
+          {"angle_id": "a1", "title": "The Sora API is off: what happened and what to do with your content", "audience": "creators and builders who used Sora", "audience_evidence": "HYPOTHESIS",
+           "promise": "A dated timeline and the two actions OpenAI recommends", "key_claim_ids": ["c1", "c2", "c6", "c7"], "format_suggestions": ["x_thread", "linkedin"], "why_now": "The API shut down on September 24, 2026."},
+          {"angle_id": "a2", "title": "Every AI feature has a vendor dependency", "audience": "founders and product teams using third-party model APIs", "audience_evidence": "HYPOTHESIS",
+           "promise": "A simple way to list and de-risk the models your product depends on", "key_claim_ids": ["c1", "c2"], "format_suggestions": ["linkedin", "newsletter"], "why_now": "A concrete, recent example makes an abstract risk tangible."},
+          {"angle_id": "a3", "title": "What an API is, explained through the Sora shutdown", "audience": "beginners", "audience_evidence": "HYPOTHESIS",
+           "promise": "Understand APIs and dependencies in five minutes", "key_claim_ids": ["c1", "c6"], "format_suggestions": ["newsletter"], "why_now": "News hook."}
+        ]
+      }
+    },
+
+    "social.linkedin": {
+      "TASK": "Write a LinkedIn post for angle a2.",
+      "FINDINGS": ["LinkedIn draft written: hook in first line, short paragraphs, primary source named, one question CTA."],
+      "EVIDENCE": [{"claim_id": "c1", "source_id": "s1", "quote": "The Sora API will be discontinued on September 24, 2026"}],
+      "ASSUMPTIONS": ["The example shop tool is illustrative, labelled 'for example', not a real customer."],
+      "UNCERTAINTIES": [],
+      "RECOMMENDATIONS": ["Put the source link in the first comment if the platform suppresses links."],
+      "NEXT_ACTION": "Quality review, then human approval.",
+      "CONFIDENCE": 0.8,
+      "SOURCES": ["s1"],
+      "DATA": {
+        "content": [
+          {"artifact_id": "social.linkedin-1", "platform": "linkedin", "title": "Every AI feature has a vendor dependency",
+           "text": "OpenAI switched off the Sora API on September 24, 2026. If your product made video through it, those calls now fail.\n\nThe timeline, according to the OpenAI Help Center:\n- April 26, 2026: the Sora web and app experiences closed.\n- September 24, 2026: the API closed too.\n- Next: data tied to Sora use is permanently deleted once any final export window ends.\n\nIn plain terms, an API is a door that lets your software use a model someone else runs. When the owner closes the door, your feature stops, however good your own code is.\n\nFor example, a marketing tool that turned product photos into short clips through Sora now has to pick a new video model, re-test output quality, and rework its pricing.\n\nThree things worth doing this week, even if you never touched Sora:\n1. List every external model your product calls.\n2. Write down what users lose if each one disappears.\n3. Keep prompts, settings and outputs somewhere you control.\n\nOpenAI's own advice to Sora users was to export their content as soon as possible.\n\nWhich model dependency in your stack would hurt most if it were retired? Reply and tell me.",
+           "claim_ids": ["c1", "c2", "c6", "c7"], "source_ids": ["s1"], "cta": "Reply with your riskiest dependency"}
+        ]
+      }
+    },
+
+    "social.x_thread": {
+      "TASK": "Write an X thread for angle a1.",
+      "FINDINGS": ["7-part thread; each part under 280 characters; source link in the final post."],
+      "EVIDENCE": [{"claim_id": "c2", "source_id": "s1", "quote": "The Sora web and app experiences were discontinued on April 26, 2026"}],
+      "ASSUMPTIONS": [],
+      "UNCERTAINTIES": [],
+      "RECOMMENDATIONS": ["Post the first part as a standalone if the thread is not approved."],
+      "NEXT_ACTION": "Quality review, then human approval.",
+      "CONFIDENCE": 0.8,
+      "SOURCES": ["s1"],
+      "DATA": {
+        "content": [
+          {"artifact_id": "social.x_thread-1", "platform": "x_thread", "title": "The Sora API is off",
+           "text": "1/ OpenAI switched off the Sora API on September 24, 2026.\n\nApps that made video through it now get failed requests. What happened, and what builders can learn:\n---\n2/ The timeline, per OpenAI's Help Center: the Sora web and app experiences ended on April 26, 2026. The API followed on September 24, 2026.\n---\n3/ Quick definition. An API is a service window: your software asks, another company's model does the work. If the window closes, your feature stops, even when your own code is fine.\n---\n4/ For example: a tool that turns product photos into clips via Sora must now choose a new model, re-check quality and rethink costs.\n---\n5/ OpenAI's advice to users: export your Sora content as soon as possible. It says data linked to Sora use will be permanently deleted after any final export window.\n---\n6/ Takeaway for any AI product: keep a list of the models you rely on, store your own prompts and outputs, and pick a fallback before you need one.\n---\n7/ Source: https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation\n\nWhich dependency would you least like to lose? Reply below.",
+           "claim_ids": ["c1", "c2", "c6", "c7"], "source_ids": ["s1"], "cta": "Reply below"}
+        ]
+      }
+    },
+
+    "social.newsletter": {
+      "TASK": "Write a newsletter issue for angle a3 plus a2.",
+      "FINDINGS": ["Newsletter issue drafted: subject line, one main story, a how-to section, source list."],
+      "EVIDENCE": [{"claim_id": "c7", "source_id": "s1", "quote": "OpenAI will permanently delete any data associated with your use of Sora"}],
+      "ASSUMPTIONS": ["Subscribers are a mix of beginners and builders (HYPOTHESIS)."],
+      "UNCERTAINTIES": ["Blog-reported details (removed model aliases, no named replacement) are left out because they are only partially verified."],
+      "RECOMMENDATIONS": ["Link the beginner explainer as a follow-up piece."],
+      "NEXT_ACTION": "Quality review, then human approval.",
+      "CONFIDENCE": 0.8,
+      "SOURCES": ["s1"],
+      "DATA": {
+        "content": [
+          {"artifact_id": "social.newsletter-1", "platform": "newsletter", "title": "Subject: The Sora API just closed. Is your product next?",
+           "text": "Subject: The Sora API just closed. Is your product next?\n\nHi,\n\nThis week's story is short, but the lesson behind it applies to almost every AI product.\n\nWhat happened\n\nOpenAI has closed Sora, its text-to-video tool, in two steps. The Sora app and website went away on April 26, 2026. Then, on September 24, 2026, the Sora API went dark as well. That second date matters most to builders, because the API is what other apps used to create videos inside their own products.\n\nOpenAI's Help Center tells users to download their Sora work quickly. It also says that once any final export window is over, the company will permanently delete the data linked to people's Sora use.\n\nWhy it matters to you\n\nAn API is a way for your software to borrow another company's model. That is a great deal while it lasts. You skip years of research and pay only for what you use. The trade-off is control. The company that runs the model decides when it changes, what it costs, and when it ends.\n\nFor example, picture a small design app that offered one-click product videos through Sora. Nothing in that app broke on its own. Yet on September 24 its best feature stopped working, and the team now has to find, test and price a replacement.\n\nA ten-minute check for your own stack\n\n- Write down each outside model or AI service your product calls.\n- Next to each, note what your users lose if it disappears tomorrow.\n- Keep your prompts, settings and generated outputs in storage you own.\n- For your most important feature, name a second option you could switch to.\n\nIf you do only one thing, do the list. Most teams are surprised by how long it is.\n\nNext week we will look at how to design a product so one vendor's decision cannot take a whole feature offline.\n\nSource: OpenAI Help Center, What to know about the Sora discontinuation, https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation\n\nThanks for reading.",
+           "claim_ids": ["c1", "c2", "c6", "c7"], "source_ids": ["s1"], "cta": "none (informational issue)"}
+        ]
+      }
+    },
+
+    "product_discovery.opportunity": {
+      "TASK": "Identify business opportunities created by the Sora API shutdown.",
+      "FINDINGS": [
+        "Three opportunity hypotheses; the most durable is a general model-deprecation readiness offer, because the Sora-specific migration window has already passed (the API closed four days before this run)."
+      ],
+      "EVIDENCE": [
+        {"claim_id": "c1", "source_id": "s1", "quote": "The Sora API will be discontinued on September 24, 2026"},
+        {"claim_id": "c4", "source_id": "s2", "quote": "No replacement model was named"}
+      ],
+      "ASSUMPTIONS": [
+        "Other model/API retirements will follow (HYPOTHESIS based on one case; not evidenced here).",
+        "Product teams will pay to reduce vendor-dependency risk (untested)."
+      ],
+      "UNCERTAINTIES": [
+        "No data on how many products depended on Sora.",
+        "No evidence yet of willingness to pay; that is what the validation experiment tests."
+      ],
+      "RECOMMENDATIONS": ["Validate o2 first with a free checklist before building any paid offer."],
+      "NEXT_ACTION": "Hand o2 to the MVP architect and experiment designer.",
+      "CONFIDENCE": 0.5,
+      "SOURCES": ["s1", "s2", "s3"],
+      "DATA": {
+        "opportunities": [
+          {"id": "o1", "title": "Sora-to-alternative video migration guide/sprint", "type": "service + guide",
+           "target_customer": "teams whose product used the Sora API (HYPOTHESIS)", "problem": "Video features fail from September 24; a new model must be chosen and tested",
+           "why_now": "Shutdown happened September 24, 2026 (c1)", "evidence_claim_ids": ["c1", "c3", "c4", "c8"],
+           "assumptions": ["Enough teams have not migrated yet", "They prefer paying for help over free guides"],
+           "risks": ["Window is closing fast: the shutdown already happened", "Free migration guides already exist (s3)", "Small, one-off market"],
+           "revenue_models": ["fixed-fee migration sprint", "paid guide", "disclosed affiliate links to alternatives"],
+           "cheapest_test": "Post the migration checklist and count requests over 7 days", "confidence": 0.3},
+          {"id": "o2", "title": "AI model-deprecation readiness kit + audit", "type": "lead magnet + consulting",
+           "target_customer": "founders and product teams that depend on third-party model APIs (HYPOTHESIS)",
+           "problem": "Products can lose core features when a vendor retires a model or API, and most teams have no inventory or fallback plan (HYPOTHESIS)",
+           "why_now": "A concrete, recent retirement (c1, c2) makes the risk tangible", "evidence_claim_ids": ["c1", "c2", "c4", "c5"],
+           "assumptions": ["Teams recognise the risk after a real example", "They will trade an email for a checklist", "Some will pay for an audit"],
+           "risks": ["Interest may fade as the news ages", "Hard to prove ROI of risk reduction", "Consulting does not scale"],
+           "revenue_models": ["fixed-fee dependency audit", "paid template/runbook", "subscription deprecation-monitoring digest"],
+           "cheapest_test": "Landing page offering a free checklist; measure request rate and audit-call bookings", "confidence": 0.45},
+          {"id": "o3", "title": "Model deprecation watch newsletter", "type": "content/audience",
+           "target_customer": "AI builders (HYPOTHESIS)", "problem": "Deprecation notices are scattered across vendor docs",
+           "why_now": "Six-month notice periods (c5, partially verified) mean early warning has value", "evidence_claim_ids": ["c5", "c1"],
+           "assumptions": ["People want a single digest", "Sponsorship could follow audience growth"],
+           "risks": ["Needs reliable monitoring of many vendors (integration NOT CONNECTED)", "Slow to monetize"],
+           "revenue_models": ["sponsorship (with disclosure)", "paid tier"], "cheapest_test": "Add a 'deprecation watch' section to the existing newsletter and track clicks", "confidence": 0.35}
+        ]
+      }
+    },
+
+    "product_discovery.mvp": {
+      "TASK": "Design the smallest product that tests the riskiest assumption of o2.",
+      "FINDINGS": ["MVP: a free checklist behind a simple request form, plus a manual audit offer. No software is built until demand is shown."],
+      "EVIDENCE": [],
+      "ASSUMPTIONS": ["Riskiest assumption: teams care enough to act (request the checklist) and some will talk to us about a paid audit."],
+      "UNCERTAINTIES": ["Price for the audit is not set; pricing needs its own experiment."],
+      "RECOMMENDATIONS": ["Deliver audits manually (concierge) before productizing."],
+      "NEXT_ACTION": "Experiment design.",
+      "CONFIDENCE": 0.6,
+      "SOURCES": [],
+      "DATA": {
+        "products": [
+          {"id": "p1", "title": "Model-Deprecation Readiness Kit (MVP)", "type": "lead magnet + concierge audit",
+           "target_customer": "product teams depending on third-party model APIs (HYPOTHESIS)",
+           "contents": ["one-page dependency inventory template", "fallback-plan worksheet", "export/backup checklist", "optional 30-minute review call"],
+           "problem": "No inventory or fallback for vendor model retirements", "evidence_claim_ids": ["c1", "c2"],
+           "assumptions": ["Checklist is useful on its own", "Calls convert to paid audits"],
+           "risks": ["Low perceived urgency", "Audit delivery time"],
+           "cheapest_test": "Landing page + manual delivery by email", "requires_approval": false}
+        ]
+      }
+    },
+
+    "revenue.model_researcher": {
+      "TASK": "Map candidate revenue models for o2 with assumptions and evidence needed.",
+      "FINDINGS": ["Four candidate models; none is assumed to work. Order of testing: audit (fastest signal) -> template -> monitoring subscription."],
+      "EVIDENCE": [],
+      "ASSUMPTIONS": ["No revenue data exists; all figures would be hypothetical, so none are given."],
+      "UNCERTAINTIES": ["Willingness to pay is unknown."],
+      "RECOMMENDATIONS": ["Do not set prices publicly until the validation experiment passes; price changes require approval."],
+      "NEXT_ACTION": "Validation experiment.",
+      "CONFIDENCE": 0.5,
+      "SOURCES": [],
+      "DATA": {
+        "revenue_models": [
+          {"title": "Fixed-fee dependency audit (consulting)", "description": "Manual review of a team's model dependencies and fallback plan", "assumptions": ["Teams will pay for expert review"], "risks": ["does not scale"], "evidence_needed": "3+ discovery calls from the experiment", "requires_approval": false},
+          {"title": "Paid runbook/template pack (digital product)", "description": "Productized version of the audit", "assumptions": ["Self-serve buyers exist"], "risks": ["low price point"], "evidence_needed": "checklist request rate above target", "requires_approval": false},
+          {"title": "Deprecation-monitoring digest (subscription)", "description": "Recurring alerts on vendor model retirements", "assumptions": ["Recurring value"], "risks": ["monitoring integrations NOT CONNECTED"], "evidence_needed": "newsletter section click-through", "requires_approval": false},
+          {"title": "Disclosed affiliate links to alternative providers", "description": "Only where genuinely recommended", "assumptions": ["Programmes exist"], "risks": ["trust erosion if overused"], "evidence_needed": "genuine product fit", "requires_approval": false}
+        ]
+      }
+    },
+
+    "experiments.design": {
+      "TASK": "Design one validation experiment for o2 / p1.",
+      "FINDINGS": ["Fake-door style validation: landing page offering the free kit, traffic only from the approved organic drafts. No spend."],
+      "EVIDENCE": [],
+      "ASSUMPTIONS": ["The three drafts will be approved and published by a human; otherwise the experiment cannot start."],
+      "UNCERTAINTIES": ["Organic reach is unknown, so the 14-day window may not reach the minimum sample; if so the result is INCONCLUSIVE, not a success."],
+      "RECOMMENDATIONS": ["Pre-register the criteria now; do not change them after seeing data."],
+      "NEXT_ACTION": "Register the experiment; request approval to publish the landing page.",
+      "CONFIDENCE": 0.7,
+      "SOURCES": [],
+      "DATA": {
+        "experiments": [
+          {"name": "Readiness Kit demand test", "experiment_type": "validation",
+           "hypothesis": "If we offer a free Model-Deprecation Readiness Kit to visitors arriving from the Sora-shutdown posts, at least 5% of landing-page visitors will request it and at least 3 requesters will book a review call within 14 days.",
+           "method": "Single landing page (no paid traffic). Link from the approved LinkedIn post, X thread and newsletter with UTM tags. Deliver the kit manually by email. Offer an optional review call in the delivery email.",
+           "metric": "kit_request_rate = requests / unique landing-page visitors; secondary: review_calls_booked",
+           "success_criteria": "kit_request_rate >= 5% with >= 200 unique visitors AND >= 3 review calls booked within 14 days",
+           "failure_criteria": "kit_request_rate < 2% with >= 200 visitors, OR 0 review calls; fewer than 200 visitors = INCONCLUSIVE (extend once, then stop)",
+           "variants": ["single variant (no A/B until baseline known)"], "min_sample_per_variant": 200,
+           "duration": "14 days from first post", "cost_and_approvals": "No spend. Requires approval to publish the three drafts and the landing page.",
+           "next_action_if_success": "Run a pricing test for the paid audit (approval required before any live price).",
+           "next_action_if_failure": "Record the failure; test angle o3 (deprecation-watch newsletter section) instead.",
+           "requires_approval": true, "approval_category": "publish_content",
+           "result": "NOT RUN",
+           "data": {"baseline_rate": 0.03, "mde_abs": 0.02}}
+        ]
+      }
+    }
+  }
+}

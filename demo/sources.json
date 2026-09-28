@@ -1,0 +1,53 @@
+{
+  "_capture_note": "Captured 2026-09-28 by the Claude Code session operator. This environment's network policy blocked direct page fetches (shell urllib and WebFetch both returned 403/EGRESS_BLOCKED for help.openai.com, en.wikipedia.org, pasqualepillitteri.it). Each source's `text` is therefore the verbatim extract returned by a WebSearch query restricted to that publisher's domain (allowed_domains=[<domain>]) — a search-engine extract of that publisher's pages, NOT the full page text. Verification checks quotes against these extracts. Publication dates were not visible in the extracts and are left blank rather than guessed.",
+  "sources": [
+    {
+      "source_id": "s1",
+      "url": "https://help.openai.com/en/articles/20001152-what-to-know-about-the-sora-discontinuation",
+      "title": "What to know about the Sora discontinuation | OpenAI Help Center",
+      "publisher": "OpenAI",
+      "source_type": "primary",
+      "published": "",
+      "retrieved_at": "2026-09-28",
+      "retrieved_by": "WebSearch(allowed_domains=[help.openai.com]) extract via Claude Code session",
+      "notes": "Company's own help-center article. Extract, not full page.",
+      "text": "The Sora web and app experiences were discontinued on April 26, 2026. The Sora API will be discontinued on September 24, 2026. You can export your data, and it's recommended you export your Sora content as soon as possible. You can export content you created in Sora by going to sora.chatgpt.com/sunset and clicking on Export. You'll get an email when it's ready. If a final export window is offered, OpenAI will notify you by email before it begins. After Sora is discontinued, and after the period of time of any final export window passes (if one is offered), OpenAI will permanently delete any data associated with your use of Sora."
+    },
+    {
+      "source_id": "s2",
+      "url": "https://pasqualepillitteri.it/en/news/18764/openai-sora2-api-dismessa-en",
+      "title": "OpenAI shuts down the Sora 2 API, developers left without a fallback",
+      "publisher": "pasqualepillitteri.it",
+      "source_type": "blog",
+      "published": "",
+      "retrieved_at": "2026-09-28",
+      "retrieved_by": "WebSearch(allowed_domains=[pasqualepillitteri.it]) extract via Claude Code session",
+      "notes": "Independent tech-news blog. Extract, not full page.",
+      "text": "On September 24, 2026, OpenAI switched off the Sora 2 API, the programming interface that let third-party developers generate video with the Sora 2. The Videos API and the Sora 2 models were removed from the OpenAI platform on September 24, 2026, including every alias of the Sora 2 models such as sora-2, sora-2-pro and their dated versions. The shutdown was indeed problematic for developers because in the official deprecations documentation, the column that usually points to a migration target stays blank for Sora 2. No replacement model was named, and no equivalent function was offered by default. Anyone who had integrated those API calls into a product, plugin or live service now sees those requests start failing from September 24 onward. The six months of notice OpenAI granted (from March 24 to September 24) line up with standard industry practice, but they don't shrink the migration work for anyone who built a video feature around Sora 2. Competing models remain active on the market, including Kling AI from Kuaishou and Luma Ray 2, both accessible via API, alongside aggregator platforms like Higgsfield AI that give access to multiple models under a single API."
+    },
+    {
+      "source_id": "s3",
+      "url": "https://kingy.ai/blog/sora-api-shutdown-september-24-export-alternatives/",
+      "title": "Sora API Shutdown September 24: Export & Alternatives",
+      "publisher": "Kingy AI",
+      "source_type": "blog",
+      "published": "",
+      "retrieved_at": "2026-09-28",
+      "retrieved_by": "WebSearch(allowed_domains=[kingy.ai]) extract via Claude Code session",
+      "notes": "AI-tools blog. Extract, not full page. Its cost/user figures are unattributed estimates.",
+      "text": "OpenAI's video API docs say the Sora API is scheduled to shut down on September 24, 2026. The Sora app/web product was no longer available as of April 26, 2026. The service cost an estimated $1 million per day to operate. User numbers peaked around one million before declining to fewer than 500,000. Open Sora's export page, sign in, and click Export. OpenAI says it will email you when it is ready. Download API outputs separately. Copy completed videos into storage you control. For premium ads and high-end generation, start with Veo 3.1 and Runway. Use Veo for high-end generation and Runway for the broader creative workflow. If product references are central, add Kling 3.0 and Vidu. The physics simulation capabilities are most closely matched by Hailuo 02 and Kling 3.0. The character consistency and prompt adherence find parallels in Veo 3.1 and Seedance 2.0."
+    },
+    {
+      "source_id": "s4",
+      "url": "https://www.digitalapplied.com/blog/ai-model-releases-september-2026-tracker",
+      "title": "WebSearch digest: 'AI announcement September 2026' (multiple outlets)",
+      "publisher": "WebSearch digest (multiple outlets)",
+      "source_type": "unknown",
+      "published": "",
+      "retrieved_at": "2026-09-28",
+      "retrieved_by": "WebSearch (unrestricted) via Claude Code session",
+      "notes": "Search-engine digest across several sites; used only to choose which development to research. Sentences are not attributable to a single publisher.",
+      "text": "Anthropic shipped Claude Fable 5.1 and Mythos 5.1 on September 1, while Google released Gemini 3.8 Flash on September 2, and Meta released Muse Spark 1.3. Additionally, xAI announced Grok 4.7 on September 21. Elon Musk said the Memphis-area Colossus 2 AI supercomputer may more than double its current Nvidia chip count by the end of 2026, and OpenAI discontinued the Sora API on September 24."
+    }
+  ]
+}
