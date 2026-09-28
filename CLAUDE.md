@@ -13,6 +13,9 @@ AI Business Operating System (`aibos`): a registry-driven multi-agent framework.
 - `config/`: settings (models, budgets, team sizes, approval categories), stages, pipelines, platforms, integrations, brand, taxonomy, revenue streams
 - `data/`: runtime state (git-ignored). `demo/`: Part 45 demonstration (`demo/data/` is git-ignored)
 
+## Business profile
+`config/business_profile.yaml` holds the owner's real business context, and `aibos/profile.py` validates it. Never fill it with assumed values: only transcribe the owner's answers to `docs/BUSINESS_QUESTIONNAIRE.md`, and have the owner confirm them before applying.
+
 ## Invariants (do not break)
 - Never fabricate sources, metrics, customers, results or actions. Missing capability → `NO_MODEL` / `NOT CONNECTED` / `CREDENTIAL REQUIRED` / `NO DATA`.
 - Claims enter UNVERIFIED. Only verification makes a claim FACT (`evidence.aggregate_verification`).

@@ -35,6 +35,12 @@ def render_items(items: list[Any], skip: tuple[str, ...] = ("produced_by",), tit
     return "\n".join(lines) or "_none_"
 
 
+def _profile_status() -> str:
+    from aibos import profile
+    st = profile.check(profile.load()).status
+    return st if st == "ANSWERED" else f"{st} — agents are not yet tailored to your business (see docs/BUSINESS_QUESTIONNAIRE.md)"
+
+
 def run_report(ctx) -> str:
     b = ctx.board
     L: list[str] = []
@@ -46,7 +52,8 @@ def run_report(ctx) -> str:
           f"- **Team:** {len(llm)} model-backed agents + {len(rules)} deterministic checks "
           f"(out of {len(ctx.registry) if ctx.registry else '?'} registered)",
           f"- **Budget used:** {ctx.budget.spent_units} cost units, {ctx.budget.llm_calls} model calls, ${ctx.budget.usd:.4f}",
-          f"- **Published externally:** nothing. Drafts are in the approval queue.", ""]
+          f"- **Published externally:** nothing. Drafts are in the approval queue.",
+          f"- **Business profile:** {_profile_status()}", ""]
 
     L += ["## Plan", "", "| # | Stage | Orchestrator | Agents | Why |", "|---|---|---|---|---|"]
     for i, s in enumerate(ctx.stage_log, 1):

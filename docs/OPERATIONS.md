@@ -14,6 +14,16 @@ python -m aibos integrations              # shows what is actually connected
 
 Without a model backend the system still runs. Rule agents do real work; model agents report `NO_MODEL` and save their prompts to `data/runs/<run>/prompts/`. Evidence-dependent stages are skipped and the run says so.
 
+## Business profile
+
+The agents are not tailored to your business until you answer `docs/BUSINESS_QUESTIONNAIRE.md`. Answer it in chat, or edit `config/business_profile.yaml` directly.
+
+```bash
+python -m aibos profile          # which sections are answered, plus validation errors and warnings
+```
+
+Empty fields mean UNKNOWN and are never guessed. Every run report shows the profile status.
+
 ## Feeding it sources
 
 Research agents only use **captured sources**. No web-search adapter is connected yet.

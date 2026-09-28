@@ -286,6 +286,26 @@ def cmd_correct(args):
     print("correction recorded")
 
 
+def cmd_profile(args):
+    from aibos import profile
+    p = profile.load(args.file)
+    if not p:
+        print(f"no profile found at {args.file or profile.PROFILE_PATH}")
+        return 1
+    rep = profile.check(p)
+    print(f"business profile: {rep.status}  ({len(rep.sections) - len(rep.missing_sections)}/{len(rep.sections)} sections answered)")
+    for sec, v in rep.sections.items():
+        mark = "answered" if v["filled"] else "NOT ANSWERED"
+        print(f"  {sec:<28} {mark:<13} {v['filled']}/{v['total']} fields")
+    for e in rep.errors:
+        print(f"  ERROR: {e}")
+    for w in rep.warnings:
+        print(f"  WARNING: {w}")
+    if rep.status == "NOT_ANSWERED":
+        print("answer docs/BUSINESS_QUESTIONNAIRE.md (in chat, or by editing config/business_profile.yaml)")
+    return 1 if rep.errors else 0
+
+
 def cmd_demo(args):
     root = Path(__file__).resolve().parent.parent / "demo"
     args.sources = args.sources or str(root / "sources.json")
@@ -357,6 +377,9 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("agent_id"); p.add_argument("run_id"); p.add_argument("note", nargs="+")
     p.add_argument("--severity", default="minor"); p.set_defaults(func=cmd_correct)
     runopts(sub.add_parser("demo", help="run the Part 45 demonstration")).set_defaults(func=cmd_demo)
+    p = sub.add_parser("profile", help="business profile completeness and validation")
+    p.add_argument("--file", help="profile YAML (default: config/business_profile.yaml)")
+    p.set_defaults(func=cmd_profile)
     return ap
 
 

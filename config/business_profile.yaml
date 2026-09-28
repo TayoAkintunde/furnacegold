@@ -1,0 +1,143 @@
+# BUSINESS PROFILE — the owner's real business context.
+#
+# Every value below is intentionally EMPTY. Nothing here is assumed or invented.
+# Fill it in from docs/BUSINESS_QUESTIONNAIRE.md (question numbers are in the
+# comments), or answer the questionnaire in chat and have it transcribed here.
+#
+# Rules:
+#   - Leave a field empty (null / []) if you do not know or do not want to say.
+#     Empty means UNKNOWN; agents will treat it as unknown, never guess it.
+#   - Mark how you know audience facts: evidence: data | conversations | assumption
+#   - Do not put personal data (emails, phone numbers, client names) here.
+#     The memory system refuses to store personal data.
+#   - Allowed values for platforms and business models are listed next to the field.
+#
+# Check completeness at any time:  python -m aibos profile
+
+profile_version: 1
+profile_status: NOT_ANSWERED      # NOT_ANSWERED | PARTIAL | ANSWERED (`aibos profile` reports the actual status)
+last_updated: null                # YYYY-MM-DD
+
+business:                         # Q0
+  name: null
+  one_line_description: null
+  stage: null                     # idea | side_project | early (<1 yr revenue) | established | other
+
+expertise:                        # Q1 — one entry per area
+  areas: []                       # - {area: "", level: beginner|intermediate|advanced|expert, years: null, evidence: ""}
+
+interests:                        # Q2
+  topics: []                      # - "..."
+
+target_audience:                  # Q3 — one entry per segment, most important first
+  segments: []
+  # - name: ""
+  #   description: ""
+  #   roles: []                   # job titles / types of people
+  #   sophistication: null        # beginner | intermediate | advanced | mixed
+  #   problems: []                # in their words, if you know them
+  #   desired_outcomes: []
+  #   where_they_gather: []       # platforms, communities, events
+  #   buying_power: null          # individual | small_business | mid_market | enterprise | mixed
+  #   evidence: null              # data | conversations | assumption
+
+geographic_market:                # Q4
+  primary_regions: []             # countries / regions you sell to
+  secondary_regions: []
+  languages: []
+  timezone: null                  # IANA name, e.g. Europe/London
+  currency: null                  # ISO code, e.g. USD
+  regulatory_considerations: []   # e.g. data-protection or advertising rules you must follow
+
+content_platforms:                # Q5 — allowed platform keys: blog, community, facebook, instagram, instagram_carousel,
+  platforms: []                   #   linkedin, linkedin_carousel, newsletter, podcast, reddit, seo_article, tiktok,
+  # - platform: ""                #   x_post, x_thread, youtube_shorts
+  #   priority: null              # 1 (highest) .. 5
+  #   account_exists: null        # true | false
+  #   current_audience: null      # only if you know it (from the platform's analytics)
+  #   target_frequency: null      # e.g. "2 per week"
+  platforms_to_avoid: []
+
+content_style:                    # Q6
+  tone: []                        # e.g. calm, direct, playful, technical
+  formality: null                 # casual | conversational | professional | academic
+  person: null                    # I | we | brand name
+  humour: null                    # none | light | frequent
+  emoji: null                     # none | sparing | frequent
+  preferred_length: null          # short | medium | long | varies_by_platform
+  phrases_to_avoid: []
+  phrases_you_use: []
+  reference_creators: []          # creators whose style you admire (optional)
+  disclosure_policy: null         # how you disclose sponsorships/affiliates
+
+business_goals:                   # Q7
+  next_90_days: []
+  next_12_months: []
+  three_years: null
+  success_measures: []            # how you will judge progress
+
+revenue_goals:                    # Q8 — targets, not forecasts. The system never promises results.
+  current_monthly_revenue: null   # only if you want to share it
+  target_monthly_revenue_12m: null
+  minimum_viable_monthly_revenue: null
+  currency: null
+  notes: null
+
+current_products:                 # Q9
+  products: []
+  # - {name: "", type: "", price: null, currency: null, audience: "", status: live|paused|retired, url: null, results_so_far: null}
+
+planned_products:                 # Q10
+  products: []
+  # - {name: "", type: "", stage: idea|validating|building|ready, target_date: null, audience: "", notes: ""}
+
+services:                         # Q11
+  offered: []
+  # - {name: "", description: "", pricing_model: fixed|hourly|retainer|value|other, price: null, currency: null,
+  #    capacity_per_month: null, delivery: remote|in_person|both}
+
+technology_preferences:           # Q12
+  tools_in_use: []
+  preferred_stack: []
+  ai_providers_preferred: []
+  ai_providers_avoided: []
+  build_approach: null            # no_code | low_code | code | mixed
+  tools_to_avoid: []
+
+strengths:                        # Q13
+  items: []
+
+weaknesses:                       # Q14
+  items: []
+  delegate_or_automate: []        # what you would like the system/others to take over
+
+available_time:                   # Q15
+  hours_per_week_total: null
+  hours_per_week:                 # split, if known
+    content: null
+    client_work: null
+    product_building: null
+    learning_research: null
+  days_available: []
+  constraints: []                 # e.g. employment, non-compete, family commitments
+
+budget:                           # Q16 — every spend still requires human approval
+  currency: null
+  monthly_total: null
+  tools: null
+  paid_advertising: null          # 0 = no paid ads
+  contractors: null
+  max_per_experiment: null
+
+preferred_business_models:        # Q17 — allowed keys: affiliate, ai_automation_services, consulting, courses,
+  ranked: []                      #   digital_products, licensing, memberships, prompt_workflow_products, saas,
+  excluded: []                    #   sponsorship, subscriptions, templates, workshops
+
+topics_to_be_known_for:           # Q18 — most important first
+  topics: []
+
+topics_to_avoid:                  # Q19
+  topics: []                      # - {topic: "", reason: ""}
+  sensitive_categories_to_avoid: []   # e.g. medical advice, legal advice, personal financial advice, politics
+
+other_notes: null                 # Q20
