@@ -160,7 +160,9 @@ class MasterOrchestrator:
                                                                 if getattr(self.backend, "provenance", "") else ""))
         ctx.board.update(board or {})
         ctx.claims.extend(claims or [])          # seeded claims keep their verification status
-        ctx.escalations.extend(f"PLAN: {n}" for n in plan.notes)
+        # Only notes that changed the plan (caps, unknown agents) are escalations; the rest are informational.
+        ctx.escalations.extend(f"PLAN: {n}" for n in plan.notes if "below the typical" not in n)
+        ctx.board["plan_notes"] = list(plan.notes)
         stage_names = [s.stage for s in plan.steps]
         research_planned = any(s in stage_names for s in ("RESEARCH", "TECHNOLOGY_DISCOVERY", "RESEARCH_NEW_DEVELOPMENTS"))
         if research_planned and not len(ctx.sources):

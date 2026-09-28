@@ -126,7 +126,15 @@ class Selector:
             picked = [a.agent_id for lv in wanted for a in cands if a.params.get("level") == lv]
             return picked, {}, f"learner level(s) requested: {wanted}"
         if st.get("platform_select"):
-            named = [a for a in cands if any(_intent_hit(obj, k) for k in a.keywords)]
+            # keywords name the platform (linkedin, x, tiktok); params.format_keywords name a format
+            # (thread, carousel). A format variant is chosen only when its format is named, and it
+            # then replaces the plain variant of the same platform group.
+            named = [a for a in cands
+                     if any(_intent_hit(obj, k) for k in a.keywords)
+                     and (not a.params.get("format_keywords")
+                          or any(_intent_hit(obj, f) for f in a.params["format_keywords"]))]
+            formatted = {a.params.get("group") for a in named if a.params.get("format_keywords")}
+            named = [a for a in named if a.params.get("format_keywords") or a.params.get("group") not in formatted]
             if named:
                 named.sort(key=lambda a: -score_agent(a, obj))
                 return [a.agent_id for a in named[:max(count, len(named))]], {}, "platforms named in objective"

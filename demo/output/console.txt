@@ -1,4 +1,4 @@
-run 20260928T133546Z_07e64d  complexity=complex  backend=scripted (scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json)
+run 20260928T134549Z_994e69  complexity=complex  backend=scripted (scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json)
   SOURCE_SECURITY        prompt_injection=OK
   RESEARCH               ai_news=OK
   VERIFY                 source_quality=OK, citation=OK, primary_source=OK, quote=OK, statistics=OK, date=OK, cross_source=OK, contradiction=OK
@@ -18,4 +18,4 @@ run 20260928T133546Z_07e64d  complexity=complex  backend=scripted (scripted: aut
   LEARN                  run_learner=OK
 claims verified: 4/9   budget: 140.0 units, 0 model calls
   ESCALATION: VERIFY: 5 of 9 claims not fully supported; excluded from factual use
-report: /home/user/furnacegold/demo/data/runs/20260928T133546Z_07e64d/report.md
+report: /home/user/furnacegold/demo/data/runs/20260928T134549Z_994e69/report.md

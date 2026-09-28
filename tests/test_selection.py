@@ -47,6 +47,14 @@ class SelectionTests(unittest.TestCase):
         self.assertIn("social.tiktok", plan.agent_ids())
         self.assertNotIn("social.linkedin", plan.agent_ids())
 
+    def test_platform_formats_selected_precisely(self):
+        social = lambda obj: sorted(a for a in self.sel.build_plan(obj).agent_ids() if a.startswith("social."))  # noqa: E731
+        self.assertEqual(social("Research MCP servers and write a LinkedIn post"), ["social.linkedin"])
+        self.assertEqual(social("Write an X thread about AI agents"), ["social.x_thread"])
+        self.assertEqual(social("Make a LinkedIn carousel about RAG"), ["social.linkedin_carousel"])
+        self.assertEqual(social("Create an Instagram carousel and a TikTok about robots"),
+                         ["social.instagram_carousel", "social.tiktok"])
+
     def test_learner_level_selected(self):
         plan = self.sel.build_plan("Research vector databases and explain them to an advanced audience")
         self.assertIn("education.advanced_teacher", plan.agent_ids())

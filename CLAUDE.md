@@ -1,0 +1,22 @@
+# CLAUDE.md
+
+AI Business Operating System (`aibos`): a registry-driven multi-agent framework. Python 3.10+, stdlib + PyYAML; `anthropic` is optional.
+
+## Commands
+- Tests: `python -m unittest discover -s tests -t .` (must stay green; tests isolate state via `AIBOS_DATA_DIR`)
+- CLI: `python -m aibos <command>`; see `docs/OPERATIONS.md`. Dry-run team selection: `python -m aibos plan "<objective>"`
+- Registry sanity: `python -m aibos agents`, `python -m aibos audit`
+
+## Layout
+- `aibos/`: framework. `orchestrator.py` (master + domain orchestrators, stage hooks), `selection.py` (profiling + team selection), `runtime.py` (runs one agent), `backends.py` (anthropic/offline/scripted), `rules/` (deterministic agents), `evidence.py`, `memory.py`, `approval.py`, `reports.py`, `cli.py`
+- `agents/registry/*.yaml`: agent definitions (family `defaults` + one line per agent). `agents/prompts/`: the output contract and family templates
+- `config/`: settings (models, budgets, team sizes, approval categories), stages, pipelines, platforms, integrations, brand, taxonomy, revenue streams
+- `data/`: runtime state (git-ignored). `demo/`: Part 45 demonstration (`demo/data/` is git-ignored)
+
+## Invariants (do not break)
+- Never fabricate sources, metrics, customers, results or actions. Missing capability → `NO_MODEL` / `NOT CONNECTED` / `CREDENTIAL REQUIRED` / `NO DATA`.
+- Claims enter UNVERIFIED. Only verification makes a claim FACT (`evidence.aggregate_verification`).
+- Model agents may only write the blackboard keys listed in their registry `outputs`.
+- External actions (publish, spend, launch, contracts, deletion, production changes) go only through `ApprovalQueue`. Approval never marks an action executed without a real adapter.
+- Improvement proposals are never auto-applied. Agents marked `critical: true` are never auto-modified.
+- Add agents by YAML, not code. A new rule needs `@rule("name")` in `aibos/rules/`. Registry tests check every reference.

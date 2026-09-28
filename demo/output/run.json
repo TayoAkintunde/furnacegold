@@ -1,5 +1,5 @@
 {
-  "run_id": "20260928T133546Z_07e64d",
+  "run_id": "20260928T134549Z_994e69",
   "objective": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.",
   "profile": {
     "objective": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.",
@@ -557,6 +557,7 @@
     }
   ],
   "board": {
+    "plan_notes": [],
     "security_findings": [],
     "findings": [
       {
@@ -1998,13 +1999,13 @@
       "data_import": "data/metrics/*.csv"
     },
     "approval_items": [
-      "apr_63ce3b5214c33d9a",
-      "apr_94a2baad64deb4c7",
-      "apr_ac4c5f7e168c07d8",
-      "apr_702dde6ceb8952d8"
+      "apr_963086d31c8e2014",
+      "apr_79ba37f9d81eddc7",
+      "apr_49d1b91db154417b",
+      "apr_b0b941b85a008774"
     ],
     "weekly_report_md": "## Weekly strategy report — week ending 2026-09-28\n\n### IMPORTANT TECHNOLOGY DEVELOPMENTS\n\n- OpenAI discontinued the Sora API on September 24, 2026. (confidence 0.9)\n- The Sora web and app experiences were discontinued earlier, on April 26, 2026. (confidence 0.9)\n- OpenAI recommends exporting Sora content as soon as possible via sora.chatgpt.com/sunset. (confidence 0.729)\n- After Sora is discontinued and any final export window passes, OpenAI will permanently delete data associated with Sora use. (confidence 0.729)\n\n### IMPORTANT AUDIENCE DEVELOPMENTS\n\n- NO DATA — no audience data supplied.\n\n### CONTENT PERFORMANCE\n\n- content: NO DATA — no analytics were supplied; nothing was fabricated.\n- social: NO DATA — no analytics were supplied; nothing was fabricated.\n- email: NO DATA — no analytics were supplied; nothing was fabricated.\n\n### PRODUCT EXPERIMENTS\n\n- Readiness Kit demand test [DESIGNED]: If we offer a free Model-Deprecation Readiness Kit to visitors arriving from the Sora-shutdown posts, at least 5% of landing-page visitors will request it and at least 3 requesters will book a review call within 14 days.\n\n### REVENUE DATA\n\n- revenue: NO DATA — no analytics were supplied; nothing was fabricated.\n\n### CUSTOMER FEEDBACK\n\n- NO DATA — no feedback files in data/feedback/.\n\n### FAILED EXPERIMENTS\n\n- none completed\n\n### SUCCESSFUL EXPERIMENTS\n\n- none completed\n\n### NEW OPPORTUNITIES\n\n- Sora-to-alternative video migration guide/sprint — HYPOTHESIS\n- AI model-deprecation readiness kit + audit — HYPOTHESIS\n- Model deprecation watch newsletter — HYPOTHESIS\n\n### RISKS\n\n- VERIFY: 5 of 9 claims not fully supported; excluded from factual use\n- Window is closing fast: the shutdown already happened\n- Free migration guides already exist (s3)\n- Small, one-off market\n- Interest may fade as the news ages\n- Hard to prove ROI of risk reduction\n- Consulting does not scale\n- Needs reliable monitoring of many vendors (integration NOT CONNECTED)\n- Slow to monetize\n\n### OPEN QUESTIONS\n\n- The shutdown removed the Videos API and every alias of the Sora 2 models, such as sora-2 and sora-2-pro.\n- OpenAI's deprecations documentation named no replacement model for Sora 2.\n- Developers had six months of notice, from March 24 to September 24.\n- Competing video models remain available via API, including Kling AI and Luma Ray 2, alongside multi-model aggregators such as Higgsfield AI.\n- Kingy AI reports an unattributed estimate that Sora cost about $1 million per day to operate.\n\n### RECOMMENDED EXPERIMENTS\n\n- Readiness Kit demand test: If we offer a free Model-Deprecation Readiness Kit to visitors arriving from the Sora-shutdown posts, at least 5% of landing-page visitors will request it and at least 3 requesters will book a review call within 14 days.\n",
-    "report_path": "/home/user/furnacegold/demo/data/runs/20260928T133546Z_07e64d/report.md",
+    "report_path": "/home/user/furnacegold/demo/data/runs/20260928T134549Z_994e69/report.md",
     "lessons": [
       "verified 4/9 claims"
     ]
@@ -2042,7 +2043,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:prompt_injection",
       "cost_units": 0.0,
-      "duration_s": 0.0005433040000752953,
+      "duration_s": 0.0005126949999976205,
       "errors": []
     },
     {
@@ -2232,7 +2233,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 20.0,
-      "duration_s": 0.002595282000129373,
+      "duration_s": 0.002304770999671746,
       "errors": []
     },
     {
@@ -2332,7 +2333,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:source_quality",
       "cost_units": 0.0,
-      "duration_s": 6.819999998697313e-05,
+      "duration_s": 6.891500015626661e-05,
       "errors": []
     },
     {
@@ -2401,7 +2402,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:citation",
       "cost_units": 0.0,
-      "duration_s": 4.810500013263663e-05,
+      "duration_s": 7.484199977625394e-05,
       "errors": []
     },
     {
@@ -2470,7 +2471,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:primary_source",
       "cost_units": 0.0,
-      "duration_s": 0.0006082939999032533,
+      "duration_s": 0.0007209739997051656,
       "errors": []
     },
     {
@@ -2539,7 +2540,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:quote",
       "cost_units": 0.0,
-      "duration_s": 0.000748511999972834,
+      "duration_s": 0.000826606000373431,
       "errors": []
     },
     {
@@ -2608,7 +2609,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:statistics",
       "cost_units": 0.0,
-      "duration_s": 0.0008717499999875145,
+      "duration_s": 0.000850443999752315,
       "errors": []
     },
     {
@@ -2677,7 +2678,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:date",
       "cost_units": 0.0,
-      "duration_s": 4.457499971977086e-05,
+      "duration_s": 5.584500013355864e-05,
       "errors": []
     },
     {
@@ -2746,7 +2747,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:cross_source",
       "cost_units": 0.0,
-      "duration_s": 0.00048175600022659637,
+      "duration_s": 0.0005718780003007851,
       "errors": []
     },
     {
@@ -2816,7 +2817,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:contradiction",
       "cost_units": 0.0,
-      "duration_s": 0.0008869709999999031,
+      "duration_s": 0.0008192569998755062,
       "errors": []
     },
     {
@@ -3034,7 +3035,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:research_to_knowledge",
       "cost_units": 0.0,
-      "duration_s": 0.009601083000234212,
+      "duration_s": 0.008904490000077203,
       "errors": []
     },
     {
@@ -3085,7 +3086,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:knowledge_classify",
       "cost_units": 0.0,
-      "duration_s": 0.000196969999706198,
+      "duration_s": 0.00019406599994908902,
       "errors": []
     },
     {
@@ -3175,7 +3176,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:knowledge_gap",
       "cost_units": 0.0,
-      "duration_s": 3.6906000332237454e-05,
+      "duration_s": 3.382700015208684e-05,
       "errors": []
     },
     {
@@ -3240,7 +3241,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 5.0,
-      "duration_s": 0.000984087999768235,
+      "duration_s": 0.0009657489999881363,
       "errors": []
     },
     {
@@ -3330,7 +3331,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 20.0,
-      "duration_s": 0.0009473210002397536,
+      "duration_s": 0.0007900660002633231,
       "errors": []
     },
     {
@@ -3384,7 +3385,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 5.0,
-      "duration_s": 0.007479461999992054,
+      "duration_s": 0.00720625799976915,
       "errors": []
     },
     {
@@ -3436,7 +3437,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 5.0,
-      "duration_s": 0.0007959240001582657,
+      "duration_s": 0.0007794630000717007,
       "errors": []
     },
     {
@@ -3492,7 +3493,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 5.0,
-      "duration_s": 0.00093837899976279,
+      "duration_s": 0.0010460309999871242,
       "errors": []
     },
     {
@@ -3544,7 +3545,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:factuality",
       "cost_units": 0.0,
-      "duration_s": 4.781900042871712e-05,
+      "duration_s": 6.768899993403465e-05,
       "errors": []
     },
     {
@@ -3596,7 +3597,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:hallucination",
       "cost_units": 0.0,
-      "duration_s": 0.0007355939997069072,
+      "duration_s": 0.0007638390002284723,
       "errors": []
     },
     {
@@ -3648,7 +3649,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:hype",
       "cost_units": 0.0,
-      "duration_s": 0.0003621619998739334,
+      "duration_s": 0.0003714389999913692,
       "errors": []
     },
     {
@@ -3700,7 +3701,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:clickbait",
       "cost_units": 0.0,
-      "duration_s": 0.00046669799985465943,
+      "duration_s": 0.0005335599998943508,
       "errors": []
     },
     {
@@ -3752,7 +3753,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:ai_slop",
       "cost_units": 0.0,
-      "duration_s": 0.0001681050002844131,
+      "duration_s": 0.00018524899996918975,
       "errors": []
     },
     {
@@ -3809,7 +3810,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:platform_fit",
       "cost_units": 0.0,
-      "duration_s": 0.00018928700001197285,
+      "duration_s": 0.00020360100006655557,
       "errors": []
     },
     {
@@ -3881,7 +3882,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:readability",
       "cost_units": 0.0,
-      "duration_s": 0.002051683999980014,
+      "duration_s": 0.0022192500000528526,
       "errors": []
     },
     {
@@ -3933,7 +3934,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:plagiarism",
       "cost_units": 0.0,
-      "duration_s": 0.0007231560002765036,
+      "duration_s": 0.0009427269997104304,
       "errors": []
     },
     {
@@ -3985,7 +3986,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:educational_value",
       "cost_units": 0.0,
-      "duration_s": 0.00044257899980948423,
+      "duration_s": 0.0004998789995624975,
       "errors": []
     },
     {
@@ -4121,7 +4122,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 20.0,
-      "duration_s": 0.0010571759999038477,
+      "duration_s": 0.0010917750000771775,
       "errors": []
     },
     {
@@ -4180,7 +4181,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 20.0,
-      "duration_s": 0.0006791630003135651,
+      "duration_s": 0.0008361089999198157,
       "errors": []
     },
     {
@@ -4260,7 +4261,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 20.0,
-      "duration_s": 0.0005696339999303746,
+      "duration_s": 0.000657683000099496,
       "errors": []
     },
     {
@@ -4316,7 +4317,7 @@
       "backend": "scripted",
       "provenance": "scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json",
       "cost_units": 20.0,
-      "duration_s": 0.0006255829998735862,
+      "duration_s": 0.0007960849998198682,
       "errors": []
     },
     {
@@ -4341,7 +4342,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:experiment_registrar",
       "cost_units": 0.0,
-      "duration_s": 0.0002501200001461257,
+      "duration_s": 0.0002467839999553689,
       "errors": []
     },
     {
@@ -4423,7 +4424,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:analytics_plan",
       "cost_units": 0.0,
-      "duration_s": 0.0057534319998922,
+      "duration_s": 0.006461075000061101,
       "errors": []
     },
     {
@@ -4448,7 +4449,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:secret_scan",
       "cost_units": 0.0,
-      "duration_s": 0.003855658999782463,
+      "duration_s": 0.004477779999888298,
       "errors": []
     },
     {
@@ -4473,7 +4474,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:privacy",
       "cost_units": 0.0,
-      "duration_s": 0.0007421220002470363,
+      "duration_s": 0.0007240259997161047,
       "errors": []
     },
     {
@@ -4498,7 +4499,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:external_action",
       "cost_units": 0.0,
-      "duration_s": 0.0002625199999783945,
+      "duration_s": 0.00023452200002793688,
       "errors": []
     },
     {
@@ -4506,7 +4507,7 @@
       "task": "Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.\n\nSTAGE: REPORT — Assemble the run into a report.\nYOUR ROLE: Report-Generation Agent: Assemble run outputs into a markdown report.",
       "status": "OK",
       "findings": [
-        "report written (38373 chars)"
+        "report written (38470 chars)"
       ],
       "evidence": [],
       "assumptions": [],
@@ -4515,17 +4516,17 @@
       "next_action": "",
       "sources": [],
       "data": {
-        "report_path": "/home/user/furnacegold/demo/data/runs/20260928T133546Z_07e64d/report.md"
+        "report_path": "/home/user/furnacegold/demo/data/runs/20260928T134549Z_994e69/report.md"
       },
       "files_changed": [
-        "demo/data/runs/20260928T133546Z_07e64d/report.md"
+        "demo/data/runs/20260928T134549Z_994e69/report.md"
       ],
       "tests_performed": [],
       "confidence": 1.0,
       "backend": "rule",
       "provenance": "deterministic rule rule:report",
       "cost_units": 0.0,
-      "duration_s": 0.0007610070001646818,
+      "duration_s": 0.0008421520001320459,
       "errors": []
     },
     {
@@ -4552,7 +4553,7 @@
       "backend": "rule",
       "provenance": "deterministic rule rule:run_learning",
       "cost_units": 0.0,
-      "duration_s": 0.0021505419999812148,
+      "duration_s": 0.0020783549998668605,
       "errors": []
     }
   ]

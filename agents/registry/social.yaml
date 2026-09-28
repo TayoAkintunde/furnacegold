@@ -23,18 +23,20 @@ defaults:
   prompt_template: platform_content
   capabilities: [platform_content]
 agents:
-  - {id: x_post, name: X Short-Post Agent, focus: "X (Twitter) short post", params: {platform: x_post}, keywords: [x, twitter, post]}
-  - {id: x_thread, name: X Thread Agent, focus: "X (Twitter) thread", params: {platform: x_thread}, keywords: [x, twitter, thread]}
-  - {id: linkedin, name: LinkedIn Agent, focus: "LinkedIn post", params: {platform: linkedin}, keywords: [linkedin, professional], priority: 7}
-  - {id: linkedin_carousel, name: LinkedIn Carousel Agent, focus: "LinkedIn document carousel", params: {platform: linkedin_carousel}, keywords: [linkedin, carousel]}
-  - {id: instagram, name: Instagram Agent, focus: "Instagram caption", params: {platform: instagram}, keywords: [instagram]}
-  - {id: instagram_carousel, name: Instagram Carousel Agent, focus: "Instagram carousel", params: {platform: instagram_carousel}, keywords: [instagram, carousel]}
-  - {id: tiktok, name: TikTok Agent, focus: "TikTok video script", params: {platform: tiktok}, keywords: [tiktok, video, short]}
-  - {id: youtube_shorts, name: YouTube Shorts Agent, focus: "YouTube Shorts script", params: {platform: youtube_shorts}, keywords: [youtube, shorts, video]}
-  - {id: facebook, name: Facebook Agent, focus: "Facebook post", params: {platform: facebook}, keywords: [facebook]}
-  - {id: reddit, name: Reddit Educational-Content Agent, focus: "Reddit educational post (value-first, no self-promotion, follows subreddit rules)", params: {platform: reddit}, keywords: [reddit, community]}
-  - {id: community, name: Community-Content Agent, focus: "community post (Discord/Slack/forum)", params: {platform: community}, keywords: [community, discord, forum]}
-  - {id: newsletter, name: Newsletter Agent, focus: "email newsletter issue", params: {platform: newsletter}, keywords: [newsletter, email], priority: 7}
-  - {id: blog, name: Blog Agent, focus: "blog article", params: {platform: blog}, keywords: [blog, article], priority: 7}
-  - {id: seo, name: SEO Content Agent, focus: "search-optimized article", params: {platform: seo_article}, keywords: [seo, search, article]}
-  - {id: podcast, name: Podcast Agent, focus: "podcast episode outline", params: {platform: podcast}, keywords: [podcast, audio]}
+  # keywords = platform names only; params.group ties format variants to their platform;
+  # params.format_keywords = the format that must be named for a variant to be chosen.
+  - {id: x_post, name: X Short-Post Agent, focus: "X (Twitter) short post", params: {platform: x_post, group: x}, keywords: [x, twitter, tweet]}
+  - {id: x_thread, name: X Thread Agent, focus: "X (Twitter) thread", params: {platform: x_thread, group: x, format_keywords: [thread]}, keywords: [x, twitter]}
+  - {id: linkedin, name: LinkedIn Agent, focus: "LinkedIn post", params: {platform: linkedin, group: linkedin}, keywords: [linkedin], priority: 7}
+  - {id: linkedin_carousel, name: LinkedIn Carousel Agent, focus: "LinkedIn document carousel", params: {platform: linkedin_carousel, group: linkedin, format_keywords: [carousel]}, keywords: [linkedin]}
+  - {id: instagram, name: Instagram Agent, focus: "Instagram caption", params: {platform: instagram, group: instagram}, keywords: [instagram]}
+  - {id: instagram_carousel, name: Instagram Carousel Agent, focus: "Instagram carousel", params: {platform: instagram_carousel, group: instagram, format_keywords: [carousel]}, keywords: [instagram]}
+  - {id: tiktok, name: TikTok Agent, focus: "TikTok video script", params: {platform: tiktok, group: tiktok}, keywords: [tiktok]}
+  - {id: youtube_shorts, name: YouTube Shorts Agent, focus: "YouTube Shorts script", params: {platform: youtube_shorts, group: youtube}, keywords: [youtube]}
+  - {id: facebook, name: Facebook Agent, focus: "Facebook post", params: {platform: facebook, group: facebook}, keywords: [facebook]}
+  - {id: reddit, name: Reddit Educational-Content Agent, focus: "Reddit educational post (value-first, no self-promotion, follows subreddit rules)", params: {platform: reddit, group: reddit}, keywords: [reddit, subreddit]}
+  - {id: community, name: Community-Content Agent, focus: "community post (Discord/Slack/forum)", params: {platform: community, group: community}, keywords: [discord, forum, slack community]}
+  - {id: newsletter, name: Newsletter Agent, focus: "email newsletter issue", params: {platform: newsletter, group: newsletter}, keywords: [newsletter], priority: 7}
+  - {id: blog, name: Blog Agent, focus: "blog article", params: {platform: blog, group: blog}, keywords: [blog, article], priority: 7}
+  - {id: seo, name: SEO Content Agent, focus: "search-optimized article", params: {platform: seo_article, group: seo}, keywords: [seo]}
+  - {id: podcast, name: Podcast Agent, focus: "podcast episode outline", params: {platform: podcast, group: podcast}, keywords: [podcast]}

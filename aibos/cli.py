@@ -278,6 +278,10 @@ def cmd_integrations(args):
 
 def cmd_correct(args):
     from aibos.performance import PerformanceLog
+    from aibos.registry import Registry
+    if args.agent_id not in Registry.load():
+        print(f"unknown agent '{args.agent_id}' — nothing recorded (see `python -m aibos agents --family <family>`)")
+        return 1
     PerformanceLog().record_correction(args.agent_id, args.run_id, " ".join(args.note), args.severity)
     print("correction recorded")
 
@@ -342,7 +346,8 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("sources", help="manage captured sources")
     p.add_argument("action", choices=["list", "add", "import"]); p.add_argument("--url"); p.add_argument("--file")
     p.add_argument("--id"); p.add_argument("--title"); p.add_argument("--publisher"); p.add_argument("--published")
-    p.add_argument("--type", default="unknown"); p.set_defaults(func=cmd_sources)
+    from aibos.evidence import SOURCE_TIER
+    p.add_argument("--type", default="unknown", choices=sorted(SOURCE_TIER)); p.set_defaults(func=cmd_sources)
     p = sub.add_parser("approvals", help="human approval queue")
     p.add_argument("action", choices=["list", "show", "approve", "reject"]); p.add_argument("id", nargs="?")
     p.add_argument("--all", action="store_true"); p.add_argument("--by", default="human")
@@ -360,5 +365,9 @@ def main(argv: list[str] | None = None) -> int:
     if argv and argv[0].startswith("/"):
         argv[0] = argv[0][1:]
     args = build_parser().parse_args(argv)
-    rc = args.func(args)
+    try:
+        rc = args.func(args)
+    except BrokenPipeError:          # output piped into `head` etc.
+        sys.stderr.close()
+        return 0
     return rc if isinstance(rc, int) else 0

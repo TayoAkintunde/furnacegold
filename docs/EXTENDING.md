@@ -24,7 +24,7 @@ A new family file needs `family`, `domain`, `level`, `defaults` (all 17 required
 ## Add a new platform
 
 1. Add the platform rules to `config/platforms.yaml`: length limits, part separator, norms, and the integration key.
-2. Add a social agent: `{id: bluesky, name: Bluesky Agent, focus: "Bluesky post", params: {platform: bluesky}, keywords: [bluesky]}`.
+2. Add a social agent: `{id: bluesky, name: Bluesky Agent, focus: "Bluesky post", params: {platform: bluesky, group: bluesky}, keywords: [bluesky]}`. Keywords must name the platform only; never use generic words like "post" or "video". For a format variant (a thread or carousel), reuse the platform's `group` and add `format_keywords: [thread]`. The variant is then chosen only when that format is named, and it replaces the plain agent.
 3. Add the integration to `config/integrations.yaml` with `adapter: null`. It stays `NOT CONNECTED` until someone writes an adapter.
 4. `content_quality.platform_fit` enforces the new limits automatically, and the analytics plan names the integration.
 

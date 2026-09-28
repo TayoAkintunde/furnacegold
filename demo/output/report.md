@@ -1,6 +1,6 @@
 # Run report — Find an important recent development in AI, research it, verify it, explain it to a beginner, turn it into several pieces of content, identify potential business opportunities, design one validation experiment, and produce a weekly-style opportunity report.
 
-- **Run id:** `20260928T133546Z_07e64d`  ·  **Date:** 2026-09-28  ·  **Complexity:** complex
+- **Run id:** `20260928T134549Z_994e69`  ·  **Date:** 2026-09-28  ·  **Complexity:** complex
 - **Model backend:** scripted (scripted: authored 2026-09-28 by the Claude Code session operator acting as the model backend (no anthropic SDK / API key in this environment); grounded only in demo/sources.json)
 - **Team:** 10 model-backed agents + 28 deterministic checks (out of 319 registered)
 - **Budget used:** 140.0 cost units, 0 model calls, $0.0000
@@ -479,16 +479,16 @@ Thanks for reading.
 | Agent | Status | Backend | Cost units | Seconds | Notes |
 |---|---|---|---|---|---|
 | security.prompt_injection | OK | rule | 0.0 | 0.001 | 0 finding(s) |
-| research.ai_news | OK | scripted | 20.0 | 0.003 | Selected development: OpenAI discontinued the Sora video-generation API on September 24, 2026, after discontin |
+| research.ai_news | OK | scripted | 20.0 | 0.002 | Selected development: OpenAI discontinued the Sora video-generation API on September 24, 2026, after discontin |
 | verification.source_quality | OK | rule | 0.0 | 0.000 | Source-Quality Evaluator: {'pass': 4, 'warn': 5} |
 | verification.citation | OK | rule | 0.0 | 0.000 | Citation Verifier: {'pass': 9} |
 | verification.primary_source | OK | rule | 0.0 | 0.001 | Primary-Source Verifier: {'pass': 4, 'warn': 5} |
 | verification.quote | OK | rule | 0.0 | 0.001 | Quote Verifier: {'pass': 9} |
 | verification.statistics | OK | rule | 0.0 | 0.001 | Statistics Verifier: {'pass': 7, 'na': 2} |
 | verification.date | OK | rule | 0.0 | 0.000 | Date Verifier: {'warn': 9} |
-| verification.cross_source | OK | rule | 0.0 | 0.000 | Cross-Source Verifier: {'pass': 2, 'warn': 7} |
+| verification.cross_source | OK | rule | 0.0 | 0.001 | Cross-Source Verifier: {'pass': 2, 'warn': 7} |
 | verification.contradiction | OK | rule | 0.0 | 0.001 | Contradiction Detector: {'pass': 9} |
-| knowledge.research_to_knowledge | OK | rule | 0.0 | 0.010 | 4 verified knowledge entries; 5 open questions |
+| knowledge.research_to_knowledge | OK | rule | 0.0 | 0.009 | 4 verified knowledge entries; 5 open questions |
 | knowledge.classifier | OK | rule | 0.0 | 0.000 | classified 6/9 claims |
 | knowledge.gap | OK | rule | 0.0 | 0.000 | 16 knowledge gaps |
 | education.beginner_teacher | OK | scripted | 5.0 | 0.001 | Beginner explanation written using verified claims c1, c2, c6, c7 only. |
@@ -499,7 +499,7 @@ Thanks for reading.
 | content_quality.factuality | OK | rule | 0.0 | 0.000 | Factuality Evaluator: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
 | content_quality.hallucination | OK | rule | 0.0 | 0.001 | Hallucination Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
 | content_quality.hype | OK | rule | 0.0 | 0.000 | Hype Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
-| content_quality.clickbait | OK | rule | 0.0 | 0.000 | Clickbait Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
+| content_quality.clickbait | OK | rule | 0.0 | 0.001 | Clickbait Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
 | content_quality.ai_slop | OK | rule | 0.0 | 0.000 | AI-Slop Detector: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
 | content_quality.platform_fit | OK | rule | 0.0 | 0.000 | Platform-Fit Checker: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
 | content_quality.readability | OK | rule | 0.0 | 0.002 | Readability Evaluator: 4 drafts, 0 blocking, 0 warnings, avg score 1.0 |
@@ -514,13 +514,13 @@ Thanks for reading.
 | security.secret_detector | OK | rule | 0.0 | 0.004 | 0 finding(s) |
 | security.privacy | OK | rule | 0.0 | 0.001 | 0 finding(s) |
 | security.external_action | OK | rule | 0.0 | 0.000 | no unapproved external actions; nothing was published |
-| automation.report_generation | OK | rule | 0.0 | 0.001 | report written (38373 chars) |
+| automation.report_generation | OK | rule | 0.0 | 0.001 | report written (38470 chars) |
 | learning.run_learner | OK | rule | 0.0 | 0.002 | verified 4/9 claims |
 
 ## Integration status
 
 - **anthropic**: PACKAGE REQUIRED — pip install anthropic
-- **http_fetch**: CONNECTED — ready
+- **http_fetch**: CONNECTED — adapter ready; network reachability is not pre-checked (a failed fetch is reported, never substituted)
 - **local_files**: CONNECTED — ready
 - **metrics_csv**: CONNECTED — ready
 - **web_search**: NOT CONNECTED — no adapter implemented yet
