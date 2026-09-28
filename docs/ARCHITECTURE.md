@@ -31,7 +31,7 @@ LEVEL 5  analytics/learning    (metric analysts, anomaly/trend, evaluator, audit
 | `runtime.py` | Runs one agent: status/budget checks, rule or model dispatch, output-contract validation, secret scan of model output, declared-output merging, confidence escalation, performance logging | 26, 29, 31 |
 | `backends.py` | `AnthropicBackend` (official SDK, cost-class → model tier, refusal handling), `OfflineBackend` (honest NO_MODEL), `ScriptedBackend` (recorded responses with provenance) | 29, 43 |
 | `prompts.py`, `agents/prompts/` | Shared output contract + 12 family templates | 26 |
-| `rules/` | 70 deterministic rule implementations (verification, knowledge, content quality, security, analytics, ops) | 5, 6, 9, 19–22 |
+| `rules/` | 66 deterministic rule implementations (verification, knowledge, content quality, security, analytics, ops) | 5, 6, 9, 19–22 |
 | `evidence.py` | Source store, quote matching, verification aggregation, confidence, evidence chains | 27 |
 | `conflict.py` | Conflict detection and resolution. Prefers primary evidence and keeps disagreement when unresolved. | 28 |
 | `cost.py` | Cost classes → units/models, per-run budget, response cache with TTL | 29 |
